@@ -1,0 +1,15 @@
+[package]
+name = "sim-platform-audio"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+description = "Ubuntu native audio and plugin capsule adapters for SIM."
+publish = true
+
+[dependencies]
+sim-audio-ports = "0.1.0"
+
+[lints]
+workspace = true

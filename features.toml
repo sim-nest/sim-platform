@@ -83,6 +83,16 @@ steps = [
 ]
 
 [[feature]]
+id = "feature/sim-platform/native-media-realization"
+title = "Native audio and plugin realization"
+summary = "Realize audio-owned device and plugin ports through explicit platform capsule bindings."
+owner = "crate/sim-platform-audio"
+audiences = ["code", "framework"]
+guidance = "Bind only capsule-advertised ALSA, ASIO, CoreAudio, JACK, PipeWire, PortAudio, cpal, LV2, VST3, or CLAP services. Consumers use sim-audio-ports Cards and typed refusals; absent APIs are Unsupported, native handles never enter domain code, and callbacks obey the prevalidated nonallocating nonblocking budget."
+claims_anchors = ["anchor/crate/sim-platform-audio"]
+supports = ["feature/sim-audio-daw/native-media-ports", "feature/sim-platform/ubuntu-pc-capsule"]
+
+[[feature]]
 id = "feature/sim-platform/host-directory-realization"
 title = "Modeled and Ubuntu host-directory realization"
 summary = "Realize storage-owned HostDirPort semantics with one deterministic model and one confined Ubuntu adapter."
