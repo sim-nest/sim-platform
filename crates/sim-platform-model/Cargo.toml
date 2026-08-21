@@ -10,6 +10,7 @@ publish = false
 [dependencies]
 sim-platform-core = { path = "../sim-platform-core" }
 sim-kernel = "0.2.0"
+sim-lib-exec = "0.2.0"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 

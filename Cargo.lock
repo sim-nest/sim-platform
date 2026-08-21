@@ -673,6 +673,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "sim-lib-exec"
+version = "0.2.0"
+dependencies = [
+ "sim-cookbook",
+ "sim-kernel",
+]
+
+[[package]]
 name = "sim-lib-midi-core"
 version = "0.1.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1404,6 +1412,7 @@ dependencies = [
  "serde",
  "serde_json",
  "sim-kernel",
+ "sim-lib-exec",
  "sim-platform-core",
 ]
 
@@ -1413,6 +1422,7 @@ version = "0.1.0"
 dependencies = [
  "serde",
  "serde_json",
+ "sim-lib-exec",
  "sim-platform-core",
  "sim-platform-linux",
  "sim-platform-model",

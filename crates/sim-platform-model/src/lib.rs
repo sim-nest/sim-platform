@@ -16,6 +16,9 @@ use std::{
     sync::{Arc, Mutex},
 };
 
+mod process;
+pub use process::{ModelProcess, ModelProcessOutcome};
+
 pub const FICTIONAL_CAPSULE: &str = r#"
 schema = "sim.platform-capsule/v1"
 provider = "platform/site/fictional"

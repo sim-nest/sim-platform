@@ -7,6 +7,8 @@ use sim_platform_core::{
 };
 
 pub use sim_platform_linux as linux;
+mod process;
+pub use process::UbuntuProcess;
 pub const BUNDLE_DESCRIPTOR: &str = "sim.platform-bundle.toml";
 /// Ubuntu PC distribution bundle. The one row admits only this capsule.
 pub const UBUNTU_BUNDLE_MANIFEST: &str = r#"

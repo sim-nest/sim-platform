@@ -52,6 +52,16 @@ guidance = "Register an UbuntuPcProfile as Card data, inject preopened XDG roots
 claims_anchors = ["anchor/crate/sim-platform-linux", "anchor/crate/sim-platform-ubuntu-pc", "spec-test/sim-platform/crates/sim-platform-ubuntu-pc/tests/conformance", "spec-test/sim-platform/acceptance/ubuntu-pc"]
 supports = ["feature/sim-platform/platform-owner", "feature/sim-platform/bootstrap-rind", "feature/sim-platform/platform-policy"]
 
+[[feature]]
+id = "feature/sim-platform/process-realization"
+title = "Modeled and Ubuntu process realization"
+summary = "Realize runtime-owned ProcessPort requests through a deterministic model or confined Ubuntu process tree."
+owner = "crate/sim-platform-ubuntu-pc"
+audiences = ["code", "framework"]
+guidance = "Use ModelProcess for portable policy and race tests and UbuntuProcess only at the physical capsule boundary. Runtime owns request validation and ProcResult; these adapters own spawn, diminished environment, canonical cwd confinement, monotonic deadlines, bounded pipes, cancellation, process-group cleanup, wait, and native error mapping."
+claims_anchors = ["anchor/crate/sim-platform-model", "anchor/crate/sim-platform-ubuntu-pc"]
+supports = ["feature/sim-platform/ubuntu-pc-capsule", "feature/sim-runtime/host-exec"]
+
 [[route]]
 id = "route/author-platform-provider"
 task = "Author a platform provider"
