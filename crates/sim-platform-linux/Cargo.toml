@@ -13,6 +13,7 @@ role = "platform-capsule"
 [dependencies]
 serde = { version = "1", features = ["derive"] }
 sim-platform-core = { path = "../sim-platform-core" }
+sim-transport-ports = { version = "0.1.0" }
 
 [lints]
 workspace = true

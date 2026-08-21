@@ -62,6 +62,16 @@ guidance = "Use ModelProcess for portable policy and race tests and UbuntuProces
 claims_anchors = ["anchor/crate/sim-platform-model", "anchor/crate/sim-platform-ubuntu-pc"]
 supports = ["feature/sim-platform/ubuntu-pc-capsule", "feature/sim-runtime/host-exec"]
 
+[[feature]]
+id = "feature/sim-platform/transport-realization"
+title = "Ubuntu socket, DNS, and local IPC realization"
+summary = "Realize agent-net transport ports inside the Linux capsule with typed native failures and explicit platform-specific IPC identities."
+owner = "crate/sim-platform-linux"
+audiences = ["code", "framework"]
+guidance = "Bind LinuxSocketPort, LinuxDnsPort, and optional LinuxIpcPort at capsule activation. Protocol crates consume only sim-transport-ports traits; physical loopback and native-error conformance stays in this capsule."
+claims_anchors = ["anchor/crate/sim-platform-linux", "spec-test/sim-platform/crates/sim-platform-linux/tests/transport"]
+supports = ["feature/sim-agent-net/transport-ports", "feature/sim-platform/ubuntu-pc-capsule"]
+
 [[route]]
 id = "route/author-platform-provider"
 task = "Author a platform provider"

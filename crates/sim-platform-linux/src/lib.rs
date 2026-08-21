@@ -9,6 +9,9 @@ use std::{
     time::{Duration, Instant, SystemTime, UNIX_EPOCH},
 };
 
+mod transport;
+pub use transport::{LinuxDnsPort, LinuxIpcPort, LinuxSocketPort, bind_transport_services};
+
 /// Privacy-filtered facts supplied during registration.
 #[derive(Clone, Debug, Serialize, Deserialize, Eq, PartialEq)]
 pub struct HostFacts {
