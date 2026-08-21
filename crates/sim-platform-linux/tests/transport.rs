@@ -47,11 +47,21 @@ fn ipc_variants_do_not_share_a_path_contract() {
     {
         let path = std::env::temp_dir().join(format!("sim-platform-ipc-{}", std::process::id()));
         let _ = std::fs::remove_file(&path);
-        let listener = LinuxIpcPort.listen(&IpcAddress::UnixPath(path.clone())).unwrap();
-        let mut client = LinuxIpcPort.connect(&IpcAddress::UnixPath(path.clone())).unwrap();
-        let mut server = loop { if let Some(stream) = listener.accept().unwrap() { break stream; } };
+        let listener = LinuxIpcPort
+            .listen(&IpcAddress::UnixPath(path.clone()))
+            .unwrap();
+        let mut client = LinuxIpcPort
+            .connect(&IpcAddress::UnixPath(path.clone()))
+            .unwrap();
+        let mut server = loop {
+            if let Some(stream) = listener.accept().unwrap() {
+                break stream;
+            }
+        };
         client.write_all(b"ipc").unwrap();
-        let mut bytes = [0; 3]; server.read_exact(&mut bytes).unwrap(); assert_eq!(&bytes, b"ipc");
+        let mut bytes = [0; 3];
+        server.read_exact(&mut bytes).unwrap();
+        assert_eq!(&bytes, b"ipc");
         listener.close().unwrap();
         std::fs::remove_file(path).unwrap();
     }

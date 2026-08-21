@@ -7,6 +7,8 @@ use sim_platform_core::{
 };
 
 pub use sim_platform_linux as linux;
+mod loader;
+pub use loader::UbuntuLoaderPort;
 mod process;
 pub use process::UbuntuProcess;
 pub const BUNDLE_DESCRIPTOR: &str = "sim.platform-bundle.toml";
