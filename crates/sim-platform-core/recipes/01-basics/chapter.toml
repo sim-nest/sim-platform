@@ -1,0 +1,4 @@
+id = "fictional-capsule"
+title = "Validate a fictional capsule"
+summary = "Parse fictional capsule and bundle records and validate them against discovered owner context without claiming a real provider."
+

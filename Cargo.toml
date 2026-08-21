@@ -1,0 +1,22 @@
+[workspace]
+resolver = "3"
+members = [
+  "crates/sim-platform-core",
+  "crates/sim-platform-model",
+  "crates/sim-lib-platform",
+  "crates/sim-platform-bootstrap",
+  "xtask",
+]
+
+[workspace.package]
+edition = "2024"
+license = "MPL-2.0"
+repository = "https://github.com/sim-nest/sim-platform"
+homepage = "https://github.com/sim-nest/sim-platform"
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+
+[workspace.lints.clippy]
+pedantic = "warn"
+

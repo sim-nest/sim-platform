@@ -1,0 +1,15 @@
+[package]
+name = "sim-platform-model"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Fictional platform records for deterministic SIM tests"
+publish = false
+
+[dependencies]
+sim-platform-core = { path = "../sim-platform-core" }
+
+[lints]
+workspace = true
+

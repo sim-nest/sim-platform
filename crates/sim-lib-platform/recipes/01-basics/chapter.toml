@@ -1,0 +1,4 @@
+id = "parse-manifests"
+title = "Parse platform manifests"
+summary = "Use the pure facade to parse versioned manifests."
+

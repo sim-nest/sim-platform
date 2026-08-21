@@ -1,0 +1,5 @@
+title = "sim-lib-platform recipes"
+
+[[chapter]]
+path = "01-basics/chapter.toml"
+
