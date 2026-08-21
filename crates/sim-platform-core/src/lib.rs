@@ -50,6 +50,9 @@ pub struct CapsuleManifest {
     pub services: Vec<String>,
     #[serde(default)]
     pub shells: Vec<String>,
+    /// Exact loader kinds implemented by this capsule.
+    #[serde(default)]
+    pub loader_kinds: Vec<String>,
 }
 
 #[derive(Clone, Debug, Deserialize, Eq, PartialEq)]
@@ -58,6 +61,8 @@ pub struct BundleManifest {
     pub schema: String,
     pub capsule: String,
     pub artifact: String,
+    /// Exact loader kind used to realize `artifact`.
+    pub loader: String,
     pub artifact_content: String,
     pub entry: String,
     #[serde(default)]
@@ -79,6 +84,7 @@ pub enum ValidationError {
     UnknownRole(String),
     EmptyField(&'static str),
     WrongEntry(String),
+    UnsupportedLoader(String),
 }
 
 impl fmt::Display for ValidationError {
@@ -153,11 +159,15 @@ pub fn validate_bundle(
         (&bundle.capsule, "capsule"),
         (&bundle.artifact, "artifact"),
         (&bundle.artifact_content, "artifact_content"),
+        (&bundle.loader, "loader"),
     ] {
         require_nonempty(value, field)?;
     }
     if bundle.entry != "sim_native_abi_v1" {
         return Err(ValidationError::WrongEntry(bundle.entry.clone()));
+    }
+    if !capsule.loader_kinds.contains(&bundle.loader) {
+        return Err(ValidationError::UnsupportedLoader(bundle.loader.clone()));
     }
     if let Some(shell) = &bundle.shell
         && !capsule.shells.contains(shell)
@@ -524,11 +534,13 @@ schema = "sim.platform-capsule/v1"
 provider = "platform/site/fictional"
 services = ["service/fictional-clock"]
 shells = ["shell/fictional"]
+loader_kinds = ["loader/static-v1"]
 "#;
     const BUNDLE: &str = r#"
 schema = "sim.platform-bundle/v1"
 capsule = "platform/site/fictional"
 artifact = "lib/sim-platform-fictional"
+loader = "loader/static-v1"
 artifact_content = "sha256:fictional"
 entry = "sim_native_abi_v1"
 shell = "shell/fictional"

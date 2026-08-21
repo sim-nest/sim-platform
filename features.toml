@@ -20,7 +20,7 @@ title = "Platform capsule owner"
 summary = "Own and validate platform capsule and content-bound bundle manifests without granting host authority."
 owner = "crate/sim-platform-core"
 audiences = ["code", "framework"]
-guidance = "Load sim-lib-platform for the closed thirteen-function Small SIM API, then bind platform/active-site in the current realization environment. Use the shaped records and pure resolver for provider-neutral selection; never resolve a global host, synthesize an unbound CPU fallback, or wrap canonical domain refs."
+guidance = "Load sim-lib-platform for the closed thirteen-function Small SIM API, then bind platform/active-site in the current realization environment. Capsule Cards advertise exact loader kinds and bundle descriptors select one kind and artifact without suffix discovery. Use the shaped records and pure resolver for provider-neutral selection; never resolve a global host, synthesize an unbound CPU fallback, or wrap canonical domain refs."
 claims_anchors = ["anchor/crate/sim-platform-core", "anchor/crate/sim-platform-model", "anchor/crate/sim-lib-platform", "anchor/crate/sim-platform-bootstrap"]
 
 [[feature]]
@@ -38,7 +38,7 @@ title = "Content-bound platform bootstrap rind"
 summary = "Admit one exact adjacent platform bundle and capsule through the existing native ABI without ambient discovery."
 owner = "crate/sim-platform-bootstrap"
 audiences = ["code", "framework"]
-guidance = "Supply BootstrapEnvelope, BootstrapPolicy, executable location, and kernel context explicitly. The rind reads only sim.platform-bundle.toml plus its named capsule card and artifact, verifies content and authority, then delegates to the existing native loader without fallback."
+guidance = "Supply BootstrapEnvelope, BootstrapPolicy, executable location, and kernel context explicitly. The rind reads only sim.platform-bundle.toml plus its named capsule card and exact artifact, verifies content, loader-kind support, and authority, then delegates to the first native loader without fallback. Subsequent libraries use LoaderPort."
 claims_anchors = ["anchor/crate/sim-platform-bootstrap"]
 supports = ["feature/sim-platform/platform-owner"]
 

@@ -15,6 +15,7 @@ pub const UBUNTU_BUNDLE_MANIFEST: &str = r#"
 schema = "sim.platform-bundle/v1"
 capsule = "platform/site/ubuntu-pc"
 artifact = "sim-platform-ubuntu-pc.so"
+loader = "loader/native-v1"
 artifact_content = "sha256:ubuntu-pc-release-content"
 entry = "sim_native_abi_v1"
 "#;
@@ -25,6 +26,7 @@ schema = "sim.platform-capsule/v1"
 provider = "platform/site/ubuntu-pc"
 services = ["platform/monotonic", "platform/wall-clock", "platform/entropy"]
 shells = []
+loader_kinds = ["loader/native-v1", "loader/wasm-v1", "loader/source-v1", "loader/static-v1"]
 "#;
 #[derive(Clone, Copy, Debug, Serialize, Deserialize, Eq, PartialEq)]
 #[serde(rename_all = "kebab-case")]

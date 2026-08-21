@@ -1414,6 +1414,7 @@ dependencies = [
  "sim-kernel",
  "sim-lib-exec",
  "sim-platform-core",
+ "sim-run-loaders",
 ]
 
 [[package]]
@@ -1431,8 +1432,6 @@ dependencies = [
 [[package]]
 name = "sim-run-loaders"
 version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b8f8ae54be3b8471adc887edf677868757e2f988da285a5ed6efd9b53aaa5862"
 dependencies = [
  "libloading",
  "sim-codec",

@@ -56,14 +56,14 @@ fn fixture(
     fs::write(
         dir.path().join("capsule.toml"),
         format!(
-            "schema = \"sim.platform-capsule/v1\"\nprovider = \"fictional-desktop\"\nservices = [\"{service}\"]\n"
+            "schema = \"sim.platform-capsule/v1\"\nprovider = \"fictional-desktop\"\nservices = [\"{service}\"]\nloader_kinds = [\"loader/native-v1\"]\n"
         ),
     )
     .unwrap();
     fs::write(
         dir.path().join(BUNDLE_DESCRIPTOR_NAME),
         format!(
-            "schema = \"sim.platform-bundle/v1\"\ncapsule = \"capsule.toml\"\nartifact = \"capsule.so\"\nartifact_content = \"{digest}\"\nentry = \"sim_native_abi_v1\"\n"
+            "schema = \"sim.platform-bundle/v1\"\ncapsule = \"capsule.toml\"\nartifact = \"capsule.so\"\nloader = \"loader/native-v1\"\nartifact_content = \"{digest}\"\nentry = \"sim_native_abi_v1\"\n"
         ),
     )
     .unwrap();
@@ -76,6 +76,7 @@ fn fixture(
             provider: "pending".into(),
             services: vec![],
             shells: vec![],
+            loader_kinds: vec!["loader/native-v1".into()],
         },
         preopened_roots: vec![],
         kernel_seed: 7,

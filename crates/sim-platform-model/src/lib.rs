@@ -16,6 +16,77 @@ use std::{
     sync::{Arc, Mutex},
 };
 
+/// Deterministic AOT loader service used by model capsules.
+#[derive(Default)]
+pub struct ModelLoaderPort {
+    registry: sim_run_loaders::StaticRegistry,
+}
+
+impl ModelLoaderPort {
+    /// Registers one exact AOT artifact factory as model data.
+    pub fn register(
+        &self,
+        artifact: Symbol,
+        factory: impl Fn() -> Box<dyn sim_kernel::Lib> + Send + Sync + 'static,
+    ) {
+        self.registry.register(artifact, factory);
+    }
+}
+
+impl sim_run_loaders::LoaderPort for ModelLoaderPort {
+    fn loader_kinds(&self) -> Vec<sim_run_loaders::LoaderKind> {
+        vec![sim_run_loaders::LoaderKind::new(Symbol::qualified(
+            "loader",
+            "static-v1",
+        ))]
+    }
+
+    fn realize(
+        &self,
+        _: &mut Cx,
+        request: sim_run_loaders::LoadRequest,
+    ) -> KernelResult<sim_run_loaders::LoadOutcome> {
+        require_model_static_kind(&request.kind)?;
+        let artifact = sim_run_loaders::static_artifact(&request.source)?.ok_or_else(|| {
+            Error::HostError("model static loader received unsupported source".to_owned())
+        })?;
+        self.registry.realize(&artifact)
+    }
+
+    fn inspect(
+        &self,
+        cx: &mut Cx,
+        request: &sim_run_loaders::LoadRequest,
+    ) -> KernelResult<Option<sim_kernel::LibManifest>> {
+        let source = match &request.source {
+            sim_kernel::LibSource::Open { kind, payload } => sim_kernel::LibSource::Open {
+                kind: kind.clone(),
+                payload: payload.clone(),
+            },
+            _ => return Ok(None),
+        };
+        self.realize(
+            cx,
+            sim_run_loaders::LoadRequest {
+                kind: request.kind.clone(),
+                source,
+            },
+        )
+        .map(|outcome| Some(outcome.manifest))
+    }
+}
+
+fn require_model_static_kind(kind: &sim_run_loaders::LoaderKind) -> KernelResult<()> {
+    if kind.symbol() == &Symbol::qualified("loader", "static-v1") {
+        Ok(())
+    } else {
+        Err(Error::HostError(format!(
+            "model capsule does not support loader kind {}",
+            kind.symbol()
+        )))
+    }
+}
+
 mod process;
 pub use process::{ModelProcess, ModelProcessOutcome};
 
@@ -24,12 +95,14 @@ schema = "sim.platform-capsule/v1"
 provider = "platform/site/fictional"
 services = ["service/fictional-clock"]
 shells = ["shell/fictional"]
+loader_kinds = ["loader/static-v1"]
 "#;
 
 pub const FICTIONAL_BUNDLE: &str = r#"
 schema = "sim.platform-bundle/v1"
 capsule = "platform/site/fictional"
 artifact = "lib/sim-platform-fictional"
+loader = "loader/static-v1"
 artifact_content = "sha256:fictional-not-an-artifact"
 entry = "sim_native_abi_v1"
 shell = "shell/fictional"
