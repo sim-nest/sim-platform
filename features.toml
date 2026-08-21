@@ -32,11 +32,22 @@ audiences = ["code", "framework"]
 guidance = "Compose open platform records, evidence thresholds, and ordered substitutes through platform_require. Tests should inject SeededPlatform services into PlatformSite; missing bindings are Unsupported and every modeled clock, entropy, lifecycle, limit, mount, receipt, and ledger reference is deterministic."
 claims_anchors = ["anchor/crate/sim-platform-core", "anchor/crate/sim-platform-model"]
 
+[[feature]]
+id = "feature/sim-platform/bootstrap-rind"
+title = "Content-bound platform bootstrap rind"
+summary = "Admit one exact adjacent platform bundle and capsule through the existing native ABI without ambient discovery."
+owner = "crate/sim-platform-bootstrap"
+audiences = ["code", "framework"]
+guidance = "Supply BootstrapEnvelope, BootstrapPolicy, executable location, and kernel context explicitly. The rind reads only sim.platform-bundle.toml plus its named capsule card and artifact, verifies content and authority, then delegates to the existing native loader without fallback."
+claims_anchors = ["anchor/crate/sim-platform-bootstrap"]
+supports = ["feature/sim-platform/platform-owner"]
+
 [[route]]
 id = "route/author-platform-provider"
 task = "Author a platform provider"
 audiences = ["code", "framework"]
 steps = [
   { feature = "feature/sim-platform/platform-owner", why = "The sole owner validates capsule identity, declared services and shells, canonical bootstrap use, and product-closure isolation before any real provider can be claimed." },
+  { feature = "feature/sim-platform/bootstrap-rind", why = "The bounded rind admits only the content-bound adjacent capsule through the stable native ABI." },
   { feature = "feature/sim-platform/platform-policy", why = "The pure resolver and modeled site provide the reusable service-selection and deterministic conformance surface." },
 ]
