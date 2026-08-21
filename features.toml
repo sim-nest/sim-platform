@@ -61,3 +61,13 @@ steps = [
   { feature = "feature/sim-platform/bootstrap-rind", why = "The bounded rind admits only the content-bound adjacent capsule through the stable native ABI." },
   { feature = "feature/sim-platform/platform-policy", why = "The pure resolver and modeled site provide the reusable service-selection and deterministic conformance surface." },
 ]
+
+[[feature]]
+id = "feature/sim-platform/product-membrane"
+title = "Platform product membrane"
+summary = "Expose provider-neutral records, requirement builders, provider-author contracts, and exact model and Ubuntu bundle closures."
+owner = "crate/sim-lib-platform"
+audiences = ["code", "framework"]
+guidance = "Build requirements through RequirementBuilder and implement PlatformProviderAuthor outside consumer closures. Select one curated descriptor at the process rind; preserve identical pure argv while the descriptor supplies different bound services."
+claims_anchors = ["anchor/crate/sim-lib-platform", "anchor/crate/sim-platform-model", "anchor/crate/sim-platform-ubuntu-pc"]
+supports = ["feature/sim-platform/platform-owner", "feature/sim-platform/bootstrap-rind"]

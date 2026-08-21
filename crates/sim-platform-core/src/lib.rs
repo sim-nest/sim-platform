@@ -264,6 +264,74 @@ pub struct Requirement {
     pub minimum_evidence: EvidenceLevel,
 }
 
+/// Builder for an ordered, provider-neutral platform requirement.
+#[derive(Clone, Debug, Default, Eq, PartialEq)]
+pub struct RequirementBuilder {
+    requirements: Vec<Requirement>,
+}
+
+impl RequirementBuilder {
+    /// Starts an empty requirement set.
+    #[must_use]
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    /// Appends one required service.
+    ///
+    /// # Errors
+    /// Returns [`PlatformRecordError::InvalidSymbol`] for an empty service identity.
+    pub fn require(mut self, service: impl Into<String>) -> Result<Self, PlatformRecordError> {
+        self.requirements.push(Requirement {
+            service: OpenSymbol::new(service)?,
+            optional: false,
+            substitutes: Vec::new(),
+            minimum_evidence: EvidenceLevel::Modeled,
+        });
+        Ok(self)
+    }
+
+    /// Appends one optional service with ordered substitutes.
+    ///
+    /// # Errors
+    /// Returns [`PlatformRecordError::InvalidSymbol`] for an empty service or substitute.
+    pub fn optional<I, S>(
+        mut self,
+        service: impl Into<String>,
+        substitutes: I,
+    ) -> Result<Self, PlatformRecordError>
+    where
+        I: IntoIterator<Item = S>,
+        S: Into<String>,
+    {
+        self.requirements.push(Requirement {
+            service: OpenSymbol::new(service)?,
+            optional: true,
+            substitutes: substitutes
+                .into_iter()
+                .map(Into::into)
+                .map(OpenSymbol::new)
+                .collect::<Result<_, _>>()?,
+            minimum_evidence: EvidenceLevel::Modeled,
+        });
+        Ok(self)
+    }
+
+    /// Finishes the ordered requirement list.
+    #[must_use]
+    pub fn build(self) -> Vec<Requirement> {
+        self.requirements
+    }
+}
+
+/// Contract implemented by capsule authors without exposing concrete capsules.
+pub trait PlatformProviderAuthor {
+    /// Returns shaped discovery data for the provider.
+    fn card(&self) -> PlatformCard;
+    /// Returns the exact services the capsule binds for this card.
+    fn bound_services(&self) -> BoundServices;
+}
+
 /// Atomic resolver input.
 #[derive(Clone, Debug, Deserialize, serde::Serialize, Eq, PartialEq)]
 pub struct PlatformRequest {

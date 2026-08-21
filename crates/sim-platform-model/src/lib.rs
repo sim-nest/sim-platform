@@ -32,6 +32,9 @@ entry = "sim_native_abi_v1"
 shell = "shell/fictional"
 "#;
 
+/// Curated model-distribution bundle. Its single row is the complete closure.
+pub const MODEL_BUNDLE_MANIFEST: &str = FICTIONAL_BUNDLE;
+
 /// Parse both fictional records.
 ///
 /// # Errors

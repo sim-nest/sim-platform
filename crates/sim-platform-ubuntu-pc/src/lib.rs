@@ -8,6 +8,22 @@ use sim_platform_core::{
 
 pub use sim_platform_linux as linux;
 pub const BUNDLE_DESCRIPTOR: &str = "sim.platform-bundle.toml";
+/// Ubuntu PC distribution bundle. The one row admits only this capsule.
+pub const UBUNTU_BUNDLE_MANIFEST: &str = r#"
+schema = "sim.platform-bundle/v1"
+capsule = "platform/site/ubuntu-pc"
+artifact = "sim-platform-ubuntu-pc.so"
+artifact_content = "sha256:ubuntu-pc-release-content"
+entry = "sim_native_abi_v1"
+"#;
+
+/// Ubuntu PC capsule card paired with [`UBUNTU_BUNDLE_MANIFEST`].
+pub const UBUNTU_CAPSULE_MANIFEST: &str = r#"
+schema = "sim.platform-capsule/v1"
+provider = "platform/site/ubuntu-pc"
+services = ["platform/monotonic", "platform/wall-clock", "platform/entropy"]
+shells = []
+"#;
 #[derive(Clone, Copy, Debug, Serialize, Deserialize, Eq, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub enum Architecture {

@@ -9,6 +9,10 @@ pub use runtime::{
 };
 
 pub use sim_platform_core::{
-    BundleManifest, CapsuleManifest, PackageRole, ValidationContext, ValidationError, parse_bundle,
-    parse_capsule, validate_bundle, validate_capsules,
+    Activation, BoundServices, BundleManifest, CapsuleManifest, ContractProvenance,
+    ExecutionEvidence, FactPort, Lifecycle, OpenSymbol, PackageRole, PlatformCard,
+    PlatformProviderAuthor, PlatformRecordError, PlatformRequest, RefusalKind, Requirement,
+    RequirementBuilder, ResolutionReceipt, ResolutionRefusal, ServiceBinding, ServiceOffer,
+    ValidationContext, ValidationError, parse_bundle, parse_capsule, platform_require,
+    validate_bundle, validate_capsules,
 };

@@ -465,6 +465,7 @@ dependencies = [
  "serde_json",
  "sim-platform-core",
  "sim-platform-linux",
+ "sim-platform-model",
 ]
 
 [[package]]
