@@ -2,6 +2,7 @@
 //! Pure, fail-closed manifest contracts for the sole SIM platform owner.
 
 use serde::Deserialize;
+use std::collections::BTreeMap;
 use std::collections::BTreeSet;
 use std::fmt;
 
@@ -183,6 +184,267 @@ fn require_nonempty(value: &str, field: &'static str) -> Result<(), ValidationEr
     } else {
         Ok(())
     }
+}
+
+/// Stable, open identity for platform records and services.
+///
+/// The platform owner intentionally does not close this namespace into an enum:
+/// providers may introduce symbols without changing this crate.
+#[derive(Clone, Debug, Deserialize, serde::Serialize, Eq, Ord, PartialEq, PartialOrd)]
+#[serde(transparent)]
+pub struct OpenSymbol(pub String);
+
+impl OpenSymbol {
+    /// Constructs a non-empty slash-qualified symbol.
+    ///
+    /// # Errors
+    /// Returns [`PlatformRecordError::InvalidSymbol`] for a malformed identity.
+    pub fn new(value: impl Into<String>) -> Result<Self, PlatformRecordError> {
+        let value = value.into();
+        let valid = !value.trim().is_empty()
+            && value.contains('/')
+            && !value.starts_with('/')
+            && !value.ends_with('/')
+            && !value.chars().any(char::is_whitespace);
+        valid
+            .then_some(Self(value.clone()))
+            .ok_or(PlatformRecordError::InvalidSymbol(value))
+    }
+}
+
+/// Cross-domain facts a platform may expose. This is deliberately the complete
+/// list: process, identity, environment and host-path access are not services.
+#[derive(Clone, Copy, Debug, Deserialize, serde::Serialize, Eq, Ord, PartialEq, PartialOrd)]
+#[serde(rename_all = "kebab-case")]
+pub enum FactPort {
+    WallClock,
+    MonotonicClock,
+    Timer,
+    Entropy,
+    Locale,
+    Timezone,
+    LifecyclePressure,
+    MachineLimits,
+}
+
+/// Evidence strength attached to a service claim.
+#[derive(Clone, Copy, Debug, Deserialize, serde::Serialize, Eq, Ord, PartialEq, PartialOrd)]
+#[serde(rename_all = "kebab-case")]
+pub enum EvidenceLevel {
+    Declared,
+    Modeled,
+    Measured,
+    Attested,
+}
+
+/// One service offered by a platform card.
+#[derive(Clone, Debug, Deserialize, serde::Serialize, Eq, PartialEq)]
+pub struct ServiceOffer {
+    pub service: OpenSymbol,
+    pub port: FactPort,
+    pub evidence: EvidenceLevel,
+}
+
+/// Shaped data describing an available platform without embedding behavior.
+#[derive(Clone, Debug, Deserialize, serde::Serialize, Eq, PartialEq)]
+pub struct PlatformCard {
+    pub schema: OpenSymbol,
+    pub site: OpenSymbol,
+    pub services: Vec<ServiceOffer>,
+    pub provenance: ContractProvenance,
+}
+
+/// One requested service, with ordered, explicit substitutes.
+#[derive(Clone, Debug, Deserialize, serde::Serialize, Eq, PartialEq)]
+pub struct Requirement {
+    pub service: OpenSymbol,
+    #[serde(default)]
+    pub substitutes: Vec<OpenSymbol>,
+    pub optional: bool,
+    pub minimum_evidence: EvidenceLevel,
+}
+
+/// Atomic resolver input.
+#[derive(Clone, Debug, Deserialize, serde::Serialize, Eq, PartialEq)]
+pub struct PlatformRequest {
+    pub request: OpenSymbol,
+    pub requirements: Vec<Requirement>,
+}
+
+/// A requested identity and the concrete offer selected for it.
+#[derive(Clone, Debug, Deserialize, serde::Serialize, Eq, PartialEq)]
+pub struct ServiceBinding {
+    pub requested: OpenSymbol,
+    pub bound: OpenSymbol,
+    pub port: FactPort,
+    pub evidence: EvidenceLevel,
+}
+
+/// Complete result of an atomic resolution.
+#[derive(Clone, Debug, Deserialize, serde::Serialize, Eq, PartialEq)]
+pub struct BoundServices {
+    pub request: OpenSymbol,
+    pub site: OpenSymbol,
+    pub bindings: Vec<ServiceBinding>,
+}
+
+#[derive(Clone, Debug, Deserialize, serde::Serialize, Eq, PartialEq)]
+#[serde(rename_all = "kebab-case")]
+pub enum RefusalKind {
+    Unsupported,
+    InsufficientEvidence,
+    InjectedFault,
+    InvalidRequest,
+}
+
+/// Fail-closed resolver refusal. No partial bindings accompany it.
+#[derive(Clone, Debug, Deserialize, serde::Serialize, Eq, PartialEq)]
+pub struct ResolutionRefusal {
+    pub request: OpenSymbol,
+    pub service: OpenSymbol,
+    pub kind: RefusalKind,
+    pub detail: String,
+}
+
+#[derive(Clone, Debug, Deserialize, serde::Serialize, Eq, PartialEq)]
+pub struct ResolutionReceipt {
+    pub id: OpenSymbol,
+    pub request: OpenSymbol,
+    pub site: OpenSymbol,
+    pub bindings: Vec<ServiceBinding>,
+    pub card_digest: String,
+}
+
+#[derive(Clone, Debug, Deserialize, serde::Serialize, Eq, PartialEq)]
+#[serde(rename_all = "kebab-case")]
+pub enum Lifecycle {
+    Created,
+    Ready,
+    Pressured,
+    Suspended,
+    Stopped,
+}
+
+#[derive(Clone, Debug, Deserialize, serde::Serialize, Eq, PartialEq)]
+pub struct Activation {
+    pub id: OpenSymbol,
+    pub site: OpenSymbol,
+    pub lifecycle: Lifecycle,
+    pub services: BoundServices,
+}
+
+#[derive(Clone, Debug, Deserialize, serde::Serialize, Eq, PartialEq)]
+pub struct ContractProvenance {
+    pub contract: OpenSymbol,
+    pub content_digest: String,
+    pub issuer: OpenSymbol,
+}
+
+#[derive(Clone, Debug, Deserialize, serde::Serialize, Eq, PartialEq)]
+pub struct ExecutionEvidence {
+    pub execution: OpenSymbol,
+    pub activation: OpenSymbol,
+    pub request_digest: String,
+    pub result_digest: String,
+    pub ledger_ref: OpenSymbol,
+}
+
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub enum PlatformRecordError {
+    InvalidSymbol(String),
+    DuplicateOffer(OpenSymbol),
+}
+
+impl fmt::Display for PlatformRecordError {
+    fn fmt(&self, out: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(out, "{self:?}")
+    }
+}
+impl std::error::Error for PlatformRecordError {}
+
+/// Pure `platform/require` resolver. Selection is deterministic (requested
+/// identity first, then substitutes in caller order) and atomic.
+///
+/// # Errors
+/// Returns a refusal without partial bindings when a required service is
+/// unsupported or does not satisfy its minimum evidence level.
+///
+/// # Panics
+/// Panics only if serde cannot serialize the closed, data-only [`PlatformCard`]
+/// representation, which its implementation makes infallible.
+pub fn platform_require(
+    card: &PlatformCard,
+    request: &PlatformRequest,
+) -> Result<(BoundServices, ResolutionReceipt), ResolutionRefusal> {
+    let mut offers = BTreeMap::new();
+    for offer in &card.services {
+        offers.insert(&offer.service, offer);
+    }
+    let mut bindings = Vec::new();
+    for requirement in &request.requirements {
+        let candidates =
+            std::iter::once(&requirement.service).chain(requirement.substitutes.iter());
+        let mut weak = false;
+        let selected = candidates
+            .filter_map(|id| offers.get(id).copied())
+            .find(|offer| {
+                let enough = offer.evidence >= requirement.minimum_evidence;
+                weak |= !enough;
+                enough
+            });
+        match selected {
+            Some(offer) => bindings.push(ServiceBinding {
+                requested: requirement.service.clone(),
+                bound: offer.service.clone(),
+                port: offer.port,
+                evidence: offer.evidence,
+            }),
+            None if requirement.optional => {}
+            None => {
+                return Err(ResolutionRefusal {
+                    request: request.request.clone(),
+                    service: requirement.service.clone(),
+                    kind: if weak {
+                        RefusalKind::InsufficientEvidence
+                    } else {
+                        RefusalKind::Unsupported
+                    },
+                    detail: if weak {
+                        "offers do not meet minimum evidence"
+                    } else {
+                        "service is unbound"
+                    }
+                    .into(),
+                });
+            }
+        }
+    }
+    let bound = BoundServices {
+        request: request.request.clone(),
+        site: card.site.clone(),
+        bindings,
+    };
+    let card_bytes = serde_json::to_vec(card).expect("platform records serialize");
+    let digest = stable_digest(&card_bytes);
+    let receipt = ResolutionReceipt {
+        id: OpenSymbol(format!("receipt/{digest}")),
+        request: request.request.clone(),
+        site: card.site.clone(),
+        bindings: bound.bindings.clone(),
+        card_digest: digest,
+    };
+    Ok((bound, receipt))
+}
+
+/// Stable host-independent digest used for modeled receipts and evidence.
+#[must_use]
+pub fn stable_digest(bytes: &[u8]) -> String {
+    // FNV-1a is used as an identity checksum, not for security.
+    let mut hash = 0xcbf2_9ce4_8422_2325_u64;
+    for byte in bytes {
+        hash = (hash ^ u64::from(*byte)).wrapping_mul(0x0000_0100_0000_01b3);
+    }
+    format!("fnv1a64:{hash:016x}")
 }
 
 #[cfg(test)]

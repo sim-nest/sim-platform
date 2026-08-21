@@ -20,8 +20,17 @@ title = "Platform capsule owner"
 summary = "Own and validate platform capsule and content-bound bundle manifests without granting host authority."
 owner = "crate/sim-platform-core"
 audiences = ["code", "framework"]
-guidance = "Use this feature when defining a future platform provider. The current repository contains fictional model records only and claims no real provider."
+guidance = "Use the shaped platform records and pure platform/require resolver for provider-neutral service selection. Use sim-platform-model for deterministic host-free tests and PlatformSite for explicit child-environment binding; never synthesize an unbound CPU or host fallback."
 claims_anchors = ["anchor/crate/sim-platform-core", "anchor/crate/sim-platform-model", "anchor/crate/sim-lib-platform", "anchor/crate/sim-platform-bootstrap"]
+
+[[feature]]
+id = "feature/sim-platform/platform-policy"
+title = "Deterministic platform policy and modeled site"
+summary = "Resolve explicit cross-domain fact services atomically and execute against a seeded, host-free EvalFabric site."
+owner = "crate/sim-platform-core"
+audiences = ["code", "framework"]
+guidance = "Compose open platform records, evidence thresholds, and ordered substitutes through platform_require. Tests should inject SeededPlatform services into PlatformSite; missing bindings are Unsupported and every modeled clock, entropy, lifecycle, limit, mount, receipt, and ledger reference is deterministic."
+claims_anchors = ["anchor/crate/sim-platform-core", "anchor/crate/sim-platform-model"]
 
 [[route]]
 id = "route/author-platform-provider"
@@ -29,4 +38,5 @@ task = "Author a platform provider"
 audiences = ["code", "framework"]
 steps = [
   { feature = "feature/sim-platform/platform-owner", why = "The sole owner validates capsule identity, declared services and shells, canonical bootstrap use, and product-closure isolation before any real provider can be claimed." },
+  { feature = "feature/sim-platform/platform-policy", why = "The pure resolver and modeled site provide the reusable service-selection and deterministic conformance surface." },
 ]
