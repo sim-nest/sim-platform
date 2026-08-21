@@ -1,0 +1,8 @@
+id = "grep-tree"
+title = "Grep a directory tree"
+codec = "lisp"
+setup = "setup.siml"
+purpose = "purpose.md"
+order = 20
+tags = ["file", "table", "find", "grep", "capability", "allow-capability:table.fs", "allow-capability:fs/read", "allow-capability:fs/write", "allow-capability:find"]
+requires = ["core"]

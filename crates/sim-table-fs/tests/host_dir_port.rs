@@ -1,0 +1,124 @@
+use sim_storage_port::{Cancellation, HostDirErrorKind, HostDirPort, HostEntryKind, NeverCancel};
+use sim_table_fs::{MemoryHostDirPort, UbuntuHostDirPort};
+use std::{
+    path::PathBuf,
+    sync::atomic::{AtomicBool, Ordering},
+};
+
+struct Flag(AtomicBool);
+impl Cancellation for Flag {
+    fn is_cancelled(&self) -> bool {
+        self.0.load(Ordering::SeqCst)
+    }
+}
+
+fn path(parts: &[&str]) -> Vec<String> {
+    parts.iter().map(|part| (*part).to_owned()).collect()
+}
+
+fn conformance(port: &dyn HostDirPort) {
+    port.create_dir(&path(&["nested"])).unwrap();
+    port.replace(&path(&["alpha.siml"]), b"old", &NeverCancel)
+        .unwrap();
+    port.replace(&path(&["alpha.siml"]), b"new", &NeverCancel)
+        .unwrap();
+    assert_eq!(port.read(&path(&["alpha.siml"])).unwrap(), b"new");
+    assert_eq!(
+        port.list(&[])
+            .unwrap()
+            .iter()
+            .map(|e| (&e.name, e.kind))
+            .collect::<Vec<_>>(),
+        vec![
+            (&"alpha.siml".to_owned(), HostEntryKind::File),
+            (&"nested".to_owned(), HostEntryKind::Directory)
+        ]
+    );
+    let child = port.child("nested").unwrap();
+    child
+        .replace(&path(&["leaf.siml"]), b"payload", &NeverCancel)
+        .unwrap();
+    assert_eq!(
+        port.read(&path(&["nested", "leaf.siml"])).unwrap(),
+        b"payload"
+    );
+    for bad in [
+        vec!["..".to_owned()],
+        vec!["a/b".to_owned()],
+        vec!["a\\b".to_owned()],
+    ] {
+        assert_eq!(
+            port.metadata(&bad).unwrap_err().kind,
+            HostDirErrorKind::Escape
+        );
+    }
+    let cancelled = Flag(AtomicBool::new(true));
+    assert_eq!(
+        port.replace(&path(&["cancelled"]), b"no", &cancelled)
+            .unwrap_err()
+            .kind,
+        HostDirErrorKind::Cancelled
+    );
+    assert!(port.metadata(&path(&["cancelled"])).unwrap().is_none());
+    port.remove_dir_all(&path(&["nested"])).unwrap();
+    assert!(port.metadata(&path(&["nested"])).unwrap().is_none());
+}
+
+#[test]
+fn model_and_ubuntu_share_conformance() {
+    conformance(&MemoryHostDirPort::new("model", 4096));
+    let root = temp_root("ubuntu");
+    conformance(&UbuntuHostDirPort::open(root.clone()).unwrap());
+    std::fs::remove_dir_all(root).unwrap();
+}
+
+#[test]
+fn model_enforces_quota_without_partial_commit() {
+    let port = MemoryHostDirPort::new("quota", 3);
+    port.replace(&path(&["leaf"]), b"old", &NeverCancel)
+        .unwrap();
+    assert_eq!(
+        port.replace(&path(&["leaf"]), b"larger", &NeverCancel)
+            .unwrap_err()
+            .kind,
+        HostDirErrorKind::QuotaExceeded
+    );
+    assert_eq!(port.read(&path(&["leaf"])).unwrap(), b"old");
+}
+
+#[cfg(unix)]
+#[test]
+fn ubuntu_rejects_symlink_and_special_file_escape() {
+    use std::os::unix::fs::symlink;
+    let root = temp_root("escape");
+    let outside = temp_root("outside");
+    std::fs::create_dir_all(&root).unwrap();
+    std::fs::create_dir_all(&outside).unwrap();
+    symlink(&outside, root.join("link")).unwrap();
+    let port = UbuntuHostDirPort::open(root.clone()).unwrap();
+    assert_eq!(
+        port.metadata(&path(&["link"])).unwrap_err().kind,
+        HostDirErrorKind::SpecialFile
+    );
+    assert_eq!(
+        port.child("link")
+            .unwrap()
+            .metadata(&path(&["leaf"]))
+            .unwrap_err()
+            .kind,
+        HostDirErrorKind::Escape
+    );
+    std::fs::remove_dir_all(root).unwrap();
+    std::fs::remove_dir_all(outside).unwrap();
+}
+
+fn temp_root(name: &str) -> PathBuf {
+    std::env::temp_dir().join(format!(
+        "sim-host-dir-{name}-{}-{}",
+        std::process::id(),
+        std::time::SystemTime::now()
+            .duration_since(std::time::UNIX_EPOCH)
+            .unwrap()
+            .as_nanos()
+    ))
+}

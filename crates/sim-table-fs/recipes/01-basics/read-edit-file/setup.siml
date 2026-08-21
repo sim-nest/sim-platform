@@ -1,0 +1,5 @@
+{
+  (set (table/fs ".sim/cookbook/core-read-edit-file") 'note "alpha beta")
+  (dir/edit (table/fs ".sim/cookbook/core-read-edit-file") 'note "beta" "gamma")
+  (get (table/fs ".sim/cookbook/core-read-edit-file") 'note)
+}

@@ -1,0 +1,5 @@
+book = "storage/table-fs"
+title = "Filesystem Table"
+summary = "Host directory reads, writes, edits, and searches through the table surface."
+order = 124
+chapters = ["01-basics"]

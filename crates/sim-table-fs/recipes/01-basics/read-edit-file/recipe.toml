@@ -1,0 +1,8 @@
+id = "read-edit-file"
+title = "Read and edit a file"
+codec = "lisp"
+setup = "setup.siml"
+purpose = "purpose.md"
+order = 10
+tags = ["file", "table", "edit", "capability", "allow-capability:table.fs", "allow-capability:fs/read", "allow-capability:fs/write", "allow-capability:edit"]
+requires = ["core"]

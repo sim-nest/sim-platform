@@ -1,0 +1,5 @@
+{
+  (set (table/fs ".sim/cookbook/core-grep-tree") 'alpha "one needle")
+  (set (table/fs ".sim/cookbook/core-grep-tree") 'beta "plain hay")
+  (find/grep (table/fs ".sim/cookbook/core-grep-tree") "needle" "*.siml" 10)
+}

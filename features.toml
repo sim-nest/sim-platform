@@ -63,6 +63,16 @@ steps = [
 ]
 
 [[feature]]
+id = "feature/sim-platform/host-directory-realization"
+title = "Modeled and Ubuntu host-directory realization"
+summary = "Realize storage-owned HostDirPort semantics with one deterministic model and one confined Ubuntu adapter."
+owner = "crate/sim-table-fs"
+audiences = ["code", "framework"]
+guidance = "Inject MemoryHostDirPort in portable storage tests and use UbuntuHostDirPort only at the platform capsule boundary; both must pass the shared host-directory conformance body."
+claims_anchors = ["anchor/crate/sim-table-fs", "spec-test/sim-platform/crates/sim-table-fs/tests/host-dir-port"]
+supports = ["feature/sim-platform/ubuntu-pc-capsule"]
+
+[[feature]]
 id = "feature/sim-platform/product-membrane"
 title = "Platform product membrane"
 summary = "Expose provider-neutral records, requirement builders, provider-author contracts, and exact model and Ubuntu bundle closures."
