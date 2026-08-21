@@ -5,6 +5,8 @@ members = [
   "crates/sim-platform-model",
   "crates/sim-lib-platform",
   "crates/sim-platform-bootstrap",
+  "crates/sim-platform-linux",
+  "crates/sim-platform-ubuntu-pc",
   "xtask",
 ]
 
@@ -19,4 +21,3 @@ unsafe_code = "forbid"
 
 [workspace.lints.clippy]
 pedantic = "warn"
-

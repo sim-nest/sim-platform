@@ -42,6 +42,16 @@ guidance = "Supply BootstrapEnvelope, BootstrapPolicy, executable location, and 
 claims_anchors = ["anchor/crate/sim-platform-bootstrap"]
 supports = ["feature/sim-platform/platform-owner"]
 
+[[feature]]
+id = "feature/sim-platform/ubuntu-pc-capsule"
+title = "Ubuntu PC reference capsule"
+summary = "Provide explicit desktop and headless Ubuntu Cards over bounded Linux mechanics, with deterministic entropy and sanitized physical evidence."
+owner = "crate/sim-platform-ubuntu-pc"
+audiences = ["code", "framework"]
+guidance = "Register an UbuntuPcProfile as Card data, inject preopened XDG roots and a Portal implementation, then drive Capsule requests through explicit grants and budgets. Headless Cards omit desktop offers so platform/require returns Unsupported; neither provider probes or falls back."
+claims_anchors = ["anchor/crate/sim-platform-linux", "anchor/crate/sim-platform-ubuntu-pc", "spec-test/sim-platform/crates/sim-platform-ubuntu-pc/tests/conformance", "spec-test/sim-platform/acceptance/ubuntu-pc"]
+supports = ["feature/sim-platform/platform-owner", "feature/sim-platform/bootstrap-rind", "feature/sim-platform/platform-policy"]
+
 [[route]]
 id = "route/author-platform-provider"
 task = "Author a platform provider"

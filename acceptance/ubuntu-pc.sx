@@ -1,0 +1,13 @@
+(attestation
+  (schema "sim.platform-physical-attestation/v1")
+  (provider "ubuntu-pc")
+  (registered-capability "linux-x86_64")
+  (source "ubuntu-25.10|x86_64|registered-control-local")
+  (source-content "fnv1a64:41fdd80c770ae9f2")
+  (artifact "sim-platform-ubuntu-pc|workspace-test-artifact")
+  (artifact-content "fnv1a64:018c6b634aafe833")
+  (card "ubuntu-pc|x86_64|desktop+headless")
+  (card-content "fnv1a64:4be8e55bd66dd4d9")
+  (result "clock+entropy+mount+headless-unsupported+cleanup|pass")
+  (result-content "fnv1a64:6fc0b36648cf320d")
+  (checks "clock" "entropy" "mount" "headless-unsupported" "cleanup"))

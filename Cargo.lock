@@ -439,6 +439,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "sim-platform-linux"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "sim-platform-core",
+]
+
+[[package]]
 name = "sim-platform-model"
 version = "0.1.0"
 dependencies = [
@@ -446,6 +454,16 @@ dependencies = [
  "serde_json",
  "sim-kernel",
  "sim-platform-core",
+]
+
+[[package]]
+name = "sim-platform-ubuntu-pc"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "serde_json",
+ "sim-platform-core",
+ "sim-platform-linux",
 ]
 
 [[package]]

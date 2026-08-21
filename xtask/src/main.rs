@@ -37,6 +37,8 @@ fn main() {
         "sim-platform-model",
         "sim-lib-platform",
         "sim-platform-bootstrap",
+        "sim-platform-linux",
+        "sim-platform-ubuntu-pc",
     ] {
         for relative in [
             "Cargo.toml",
