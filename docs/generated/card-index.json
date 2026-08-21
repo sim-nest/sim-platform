@@ -1,0 +1,42 @@
+{
+  "card_count": 6,
+  "cards": [
+    {
+      "id": "browse/catalog",
+      "kind": "browse-root",
+      "owner": "workspace",
+      "summary": "root browse catalog"
+    },
+    {
+      "id": "cookbook/sim-lib-platform",
+      "kind": "cookbook-recipe",
+      "owner": "sim-lib-platform",
+      "summary": ""
+    },
+    {
+      "id": "cookbook/sim-platform-bootstrap",
+      "kind": "cookbook-recipe",
+      "owner": "sim-platform-bootstrap",
+      "summary": ""
+    },
+    {
+      "id": "cookbook/sim-platform-core",
+      "kind": "cookbook-recipe",
+      "owner": "sim-platform-core",
+      "summary": ""
+    },
+    {
+      "id": "cookbook/sim-platform-model",
+      "kind": "cookbook-recipe",
+      "owner": "sim-platform-model",
+      "summary": ""
+    },
+    {
+      "id": "registry/catalog",
+      "kind": "browse-registry",
+      "owner": "workspace",
+      "summary": "registry catalog browse card"
+    }
+  ],
+  "generator": "xtask repo-contract v1"
+}

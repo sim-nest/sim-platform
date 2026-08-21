@@ -1,0 +1,1 @@
+(platform fictional-capsule (schema sim.platform-capsule/v1) (provider platform/site/fictional) (evidence fictional))

@@ -1,0 +1,12 @@
+{"kind":"recipe","path":"crates/sim-lib-platform/recipes/01-basics/chapter.toml"}
+{"kind":"recipe","path":"crates/sim-lib-platform/recipes/book.toml"}
+{"kind":"recipe","path":"crates/sim-platform-bootstrap/recipes/01-basics/chapter.toml"}
+{"kind":"recipe","path":"crates/sim-platform-bootstrap/recipes/book.toml"}
+{"kind":"recipe","path":"crates/sim-platform-core/recipes/01-basics/chapter.toml"}
+{"kind":"recipe","path":"crates/sim-platform-core/recipes/01-basics/fictional-capsule/expected.txt"}
+{"kind":"recipe","path":"crates/sim-platform-core/recipes/01-basics/fictional-capsule/purpose.md"}
+{"kind":"recipe","path":"crates/sim-platform-core/recipes/01-basics/fictional-capsule/recipe.toml"}
+{"kind":"recipe","path":"crates/sim-platform-core/recipes/01-basics/fictional-capsule/setup.siml"}
+{"kind":"recipe","path":"crates/sim-platform-core/recipes/book.toml"}
+{"kind":"recipe","path":"crates/sim-platform-model/recipes/01-basics/chapter.toml"}
+{"kind":"recipe","path":"crates/sim-platform-model/recipes/book.toml"}

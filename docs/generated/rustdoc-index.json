@@ -1,0 +1,40 @@
+{
+  "generator": "xtask repo-contract v1",
+  "packages": [
+    {
+      "crate_name": "sim_lib_platform",
+      "group": "workspace",
+      "manifest": "crates/sim-lib-platform/Cargo.toml",
+      "package": "sim-lib-platform",
+      "summary": "Pure API facade. Host bindings arrive only through validated future capsules."
+    },
+    {
+      "crate_name": "sim_platform_bootstrap",
+      "group": "workspace",
+      "manifest": "crates/sim-platform-bootstrap/Cargo.toml",
+      "package": "sim-platform-bootstrap",
+      "summary": "Reserved bootstrap rind. Host behavior is intentionally absent in OS5.00."
+    },
+    {
+      "crate_name": "sim_platform_core",
+      "group": "workspace",
+      "manifest": "crates/sim-platform-core/Cargo.toml",
+      "package": "sim-platform-core",
+      "summary": "Pure, fail-closed manifest contracts for the sole SIM platform owner."
+    },
+    {
+      "crate_name": "sim_platform_model",
+      "group": "workspace",
+      "manifest": "crates/sim-platform-model/Cargo.toml",
+      "package": "sim-platform-model",
+      "summary": "Fictional records only; this crate does not represent a real provider."
+    },
+    {
+      "crate_name": "xtask",
+      "group": "workspace",
+      "manifest": "xtask/Cargo.toml",
+      "package": "xtask",
+      "summary": "Repository-local structural gates."
+    }
+  ]
+}

@@ -22,7 +22,6 @@ owner = "crate/sim-platform-core"
 audiences = ["code", "framework"]
 guidance = "Use this feature when defining a future platform provider. The current repository contains fictional model records only and claims no real provider."
 claims_anchors = ["anchor/crate/sim-platform-core", "anchor/crate/sim-platform-model", "anchor/crate/sim-lib-platform", "anchor/crate/sim-platform-bootstrap"]
-claims_specimens = ["recipe/sim-platform/crates/sim-platform-core/01-basics/fictional-capsule"]
 
 [[route]]
 id = "route/author-platform-provider"
@@ -30,6 +29,4 @@ task = "Author a platform provider"
 audiences = ["code", "framework"]
 steps = [
   { feature = "feature/sim-platform/platform-owner", why = "The sole owner validates capsule identity, declared services and shells, canonical bootstrap use, and product-closure isolation before any real provider can be claimed." },
-  { specimen = "recipe/sim-platform/crates/sim-platform-core/01-basics/fictional-capsule", why = "The fictional specimen demonstrates the manifest contract without claiming hardware or host evidence." },
 ]
-

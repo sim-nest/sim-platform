@@ -1,0 +1,17 @@
+{
+  "schema": "sim.card-index.v1",
+  "cards": [
+    "crates/sim-lib-platform/recipes/01-basics/chapter.toml",
+    "crates/sim-lib-platform/recipes/book.toml",
+    "crates/sim-platform-bootstrap/recipes/01-basics/chapter.toml",
+    "crates/sim-platform-bootstrap/recipes/book.toml",
+    "crates/sim-platform-core/recipes/01-basics/chapter.toml",
+    "crates/sim-platform-core/recipes/01-basics/fictional-capsule/expected.txt",
+    "crates/sim-platform-core/recipes/01-basics/fictional-capsule/purpose.md",
+    "crates/sim-platform-core/recipes/01-basics/fictional-capsule/recipe.toml",
+    "crates/sim-platform-core/recipes/01-basics/fictional-capsule/setup.siml",
+    "crates/sim-platform-core/recipes/book.toml",
+    "crates/sim-platform-model/recipes/01-basics/chapter.toml",
+    "crates/sim-platform-model/recipes/book.toml"
+  ]
+}

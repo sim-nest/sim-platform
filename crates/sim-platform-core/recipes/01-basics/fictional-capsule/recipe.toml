@@ -1,0 +1,17 @@
+id = "fictional-capsule"
+title = "Validate a fictional capsule"
+codec = "lisp"
+setup = "setup.siml"
+purpose = "purpose.md"
+expected = "expected.txt"
+order = 10
+tags = ["platform", "capsule", "fictional"]
+requires = []
+capabilities = []
+assert_tags = ["fictional"]
+assert_capabilities = []
+assert_setup_codec = "lisp"
+
+[[expect]]
+form = 0
+result = "(expr:call platform fictional-capsule (expr:call schema sim.platform-capsule/v1) (expr:call provider platform/site/fictional) (expr:call evidence fictional))"

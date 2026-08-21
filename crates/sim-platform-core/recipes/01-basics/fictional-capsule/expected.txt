@@ -1,0 +1,1 @@
+(expr:call platform fictional-capsule (expr:call schema sim.platform-capsule/v1) (expr:call provider platform/site/fictional) (expr:call evidence fictional))

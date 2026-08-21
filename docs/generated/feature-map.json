@@ -1,0 +1,30 @@
+{
+  "generator": "xtask repo-contract v1",
+  "packages": [
+    {
+      "features": [],
+      "group": "workspace",
+      "package": "sim-lib-platform"
+    },
+    {
+      "features": [],
+      "group": "workspace",
+      "package": "sim-platform-bootstrap"
+    },
+    {
+      "features": [],
+      "group": "workspace",
+      "package": "sim-platform-core"
+    },
+    {
+      "features": [],
+      "group": "workspace",
+      "package": "sim-platform-model"
+    },
+    {
+      "features": [],
+      "group": "workspace",
+      "package": "xtask"
+    }
+  ]
+}
