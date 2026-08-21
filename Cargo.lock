@@ -410,6 +410,7 @@ dependencies = [
 name = "sim-lib-platform"
 version = "0.1.0"
 dependencies = [
+ "sim-kernel",
  "sim-platform-core",
 ]
 

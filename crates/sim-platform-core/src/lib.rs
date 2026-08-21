@@ -292,9 +292,13 @@ pub struct BoundServices {
 #[serde(rename_all = "kebab-case")]
 pub enum RefusalKind {
     Unsupported,
-    InsufficientEvidence,
-    InjectedFault,
-    InvalidRequest,
+    Denied,
+    Unavailable,
+    Suspended,
+    Invalid,
+    BudgetExhausted,
+    Cancelled,
+    ProviderFault,
 }
 
 /// Fail-closed resolver refusal. No partial bindings accompany it.
@@ -404,11 +408,7 @@ pub fn platform_require(
                 return Err(ResolutionRefusal {
                     request: request.request.clone(),
                     service: requirement.service.clone(),
-                    kind: if weak {
-                        RefusalKind::InsufficientEvidence
-                    } else {
-                        RefusalKind::Unsupported
-                    },
+                    kind: RefusalKind::Unsupported,
                     detail: if weak {
                         "offers do not meet minimum evidence"
                     } else {

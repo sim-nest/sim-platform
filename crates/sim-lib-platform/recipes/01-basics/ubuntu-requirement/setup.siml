@@ -1,0 +1,7 @@
+(platform/require
+  (expr:list
+    (expr:map [service platform/service/monotonic])
+    (expr:map [service storage/service/config-dir])
+    (expr:map [service device/service/gpio]
+              [optional true]
+              [substitute platform/service/none])))

@@ -65,7 +65,65 @@ fn resolver_is_atomic_and_uses_ordered_substitutes_and_evidence() {
         }],
     };
     let refusal = platform_require(&card, &denied).unwrap_err();
-    assert_eq!(refusal.kind, RefusalKind::InsufficientEvidence);
+    assert_eq!(refusal.kind, RefusalKind::Unsupported);
+}
+
+#[test]
+fn roadmap_requirement_is_host_independent_and_atomic() {
+    let card = PlatformCard {
+        schema: symbol("platform/card/v1"),
+        site: symbol("platform/site/model"),
+        provenance: provenance(),
+        services: vec![
+            ServiceOffer {
+                service: symbol("platform/service/monotonic"),
+                port: FactPort::MonotonicClock,
+                evidence: EvidenceLevel::Modeled,
+            },
+            ServiceOffer {
+                service: symbol("storage/service/config-dir"),
+                port: FactPort::MachineLimits,
+                evidence: EvidenceLevel::Modeled,
+            },
+            ServiceOffer {
+                service: symbol("platform/service/none"),
+                port: FactPort::LifecyclePressure,
+                evidence: EvidenceLevel::Modeled,
+            },
+        ],
+    };
+    let request = PlatformRequest {
+        request: symbol("request/small-api-roadmap"),
+        requirements: vec![
+            Requirement {
+                service: symbol("platform/service/monotonic"),
+                substitutes: vec![],
+                optional: false,
+                minimum_evidence: EvidenceLevel::Declared,
+            },
+            Requirement {
+                service: symbol("storage/service/config-dir"),
+                substitutes: vec![],
+                optional: false,
+                minimum_evidence: EvidenceLevel::Declared,
+            },
+            Requirement {
+                service: symbol("device/service/gpio"),
+                substitutes: vec![symbol("platform/service/none")],
+                optional: true,
+                minimum_evidence: EvidenceLevel::Declared,
+            },
+        ],
+    };
+    let (bound, _) = platform_require(&card, &request).unwrap();
+    assert_eq!(bound.bindings[2].bound, symbol("platform/service/none"));
+
+    let mut refused = request;
+    refused.requirements[1].service = symbol("storage/service/missing-dir");
+    assert_eq!(
+        platform_require(&card, &refused).unwrap_err().kind,
+        RefusalKind::Unsupported
+    );
 }
 
 #[test]
@@ -82,10 +140,48 @@ fn records_round_trip_through_installed_general_expression_codecs() {
     };
     // Records project as ordinary expression data; this descriptor exercises every
     // field category (open symbols, ordered lists, enums and provenance).
-    let expr = Expr::List(vec![
-        Expr::Symbol(Symbol::qualified("platform", "card")),
-        Expr::String(serde_json::to_string(&record).unwrap()),
-    ]);
+    let request = PlatformRequest {
+        request: symbol("request/round-trip"),
+        requirements: vec![Requirement {
+            service: symbol("clock/wall"),
+            substitutes: vec![],
+            optional: false,
+            minimum_evidence: EvidenceLevel::Modeled,
+        }],
+    };
+    let (services, receipt) = platform_require(&record, &request).unwrap();
+    let lifecycle = Lifecycle::Ready;
+    let activation = Activation {
+        id: symbol("activation/round-trip"),
+        site: record.site.clone(),
+        lifecycle: lifecycle.clone(),
+        services,
+    };
+    let evidence = ExecutionEvidence {
+        execution: symbol("execution/round-trip"),
+        activation: activation.id.clone(),
+        request_digest: "sha256:request".into(),
+        result_digest: "sha256:result".into(),
+        ledger_ref: symbol("ledger/round-trip"),
+    };
+    let expr = Expr::List(
+        vec![
+            ("card", serde_json::to_string(&record).unwrap()),
+            ("request", serde_json::to_string(&request).unwrap()),
+            ("receipt", serde_json::to_string(&receipt).unwrap()),
+            ("lifecycle", serde_json::to_string(&lifecycle).unwrap()),
+            ("activation", serde_json::to_string(&activation).unwrap()),
+            ("attestation", serde_json::to_string(&evidence).unwrap()),
+        ]
+        .into_iter()
+        .map(|(kind, json)| {
+            Expr::List(vec![
+                Expr::Symbol(Symbol::qualified("platform", kind)),
+                Expr::String(json),
+            ])
+        })
+        .collect(),
+    );
     let mut cx = Cx::new(Arc::new(EagerPolicy), Arc::new(DefaultFactory));
     let lisp = sim_codec_lisp::LispCodecLib::new(cx.registry_mut().fresh_codec_id()).unwrap();
     cx.load_lib(&lisp).unwrap();

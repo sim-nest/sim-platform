@@ -1,0 +1,1 @@
+(expr:call platform require (expr:call expr list (expr:call expr map (expr:list service platform/service/monotonic)) (expr:call expr map (expr:list service storage/service/config-dir)) (expr:call expr map (expr:list service device/service/gpio) (expr:list optional true) (expr:list substitute platform/service/none))))

@@ -1,0 +1,17 @@
+id = "ubuntu-requirement"
+title = "Bind the Small SIM API requirement on Ubuntu PC"
+codec = "lisp"
+setup = "setup.siml"
+purpose = "purpose.md"
+expected = "expected.txt"
+order = 20
+tags = ["platform", "ubuntu", "requirement", "refusal"]
+requires = []
+capabilities = []
+assert_tags = ["ubuntu"]
+assert_capabilities = []
+assert_setup_codec = "lisp"
+
+[[expect]]
+form = 0
+result = "(expr:call platform require (expr:call expr list (expr:call expr map (expr:list service platform/service/monotonic)) (expr:call expr map (expr:list service storage/service/config-dir)) (expr:call expr map (expr:list service device/service/gpio) (expr:list optional true) (expr:list substitute platform/service/none))))"

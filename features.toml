@@ -20,7 +20,7 @@ title = "Platform capsule owner"
 summary = "Own and validate platform capsule and content-bound bundle manifests without granting host authority."
 owner = "crate/sim-platform-core"
 audiences = ["code", "framework"]
-guidance = "Use the shaped platform records and pure platform/require resolver for provider-neutral service selection. Use sim-platform-model for deterministic host-free tests and PlatformSite for explicit child-environment binding; never synthesize an unbound CPU or host fallback."
+guidance = "Load sim-lib-platform for the closed thirteen-function Small SIM API, then bind platform/active-site in the current realization environment. Use the shaped records and pure resolver for provider-neutral selection; never resolve a global host, synthesize an unbound CPU fallback, or wrap canonical domain refs."
 claims_anchors = ["anchor/crate/sim-platform-core", "anchor/crate/sim-platform-model", "anchor/crate/sim-lib-platform", "anchor/crate/sim-platform-bootstrap"]
 
 [[feature]]
@@ -29,8 +29,8 @@ title = "Deterministic platform policy and modeled site"
 summary = "Resolve explicit cross-domain fact services atomically and execute against a seeded, host-free EvalFabric site."
 owner = "crate/sim-platform-core"
 audiences = ["code", "framework"]
-guidance = "Compose open platform records, evidence thresholds, and ordered substitutes through platform_require. Tests should inject SeededPlatform services into PlatformSite; missing bindings are Unsupported and every modeled clock, entropy, lifecycle, limit, mount, receipt, and ledger reference is deterministic."
-claims_anchors = ["anchor/crate/sim-platform-core", "anchor/crate/sim-platform-model"]
+guidance = "Compose open platform records, evidence thresholds, and ordered substitutes through platform_require. The facade checks capability before provider permission and sends bounded local-only requests to the lexically active PlatformSite. Tests should inject SeededPlatform services; missing bindings are Unsupported and every modeled clock, entropy, lifecycle, limit, mount, receipt, and ledger reference is deterministic."
+claims_anchors = ["anchor/crate/sim-platform-core", "anchor/crate/sim-platform-model", "anchor/crate/sim-lib-platform", "spec-test/sim-platform/crates/sim-platform-core/tests/policy"]
 
 [[feature]]
 id = "feature/sim-platform/bootstrap-rind"

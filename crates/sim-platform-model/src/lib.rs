@@ -269,12 +269,13 @@ fn refuse_injected(
             )
     );
     if hit {
-        let kind = if config.fault == Some(InjectedFault::InsufficientEvidence) {
-            RefusalKind::InsufficientEvidence
-        } else if config.fault == Some(InjectedFault::Unsupported) {
+        let kind = if matches!(
+            config.fault,
+            Some(InjectedFault::InsufficientEvidence | InjectedFault::Unsupported)
+        ) {
             RefusalKind::Unsupported
         } else {
-            RefusalKind::InjectedFault
+            RefusalKind::ProviderFault
         };
         Err(refusal(
             0,

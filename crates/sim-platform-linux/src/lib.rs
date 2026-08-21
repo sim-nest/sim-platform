@@ -189,20 +189,17 @@ impl<P: Portal> Capsule<P> {
     /// cancelled, or over-budget work.
     pub fn apply(&mut self, token: u64, request: Request) -> Result<Reply, ResolutionRefusal> {
         if self.lifecycle == Lifecycle::Suspended {
-            return Err(refusal(
-                RefusalKind::InjectedFault,
-                "activation is suspended",
-            ));
+            return Err(refusal(RefusalKind::Suspended, "activation is suspended"));
         }
         if self.cancelled.contains(&token) {
             return Err(refusal(
-                RefusalKind::InjectedFault,
+                RefusalKind::Cancelled,
                 "request is cancelled or revoked",
             ));
         }
         if self.used >= self.budget.requests || self.queue.len() >= self.budget.queue {
             return Err(refusal(
-                RefusalKind::InvalidRequest,
+                RefusalKind::BudgetExhausted,
                 "activation budget exhausted",
             ));
         }
@@ -217,7 +214,7 @@ impl<P: Portal> Capsule<P> {
             Request::WallClock => Ok(Reply::Integer(
                 SystemTime::now()
                     .duration_since(UNIX_EPOCH)
-                    .map_err(|_| refusal(RefusalKind::InjectedFault, "wall clock before epoch"))?
+                    .map_err(|_| refusal(RefusalKind::ProviderFault, "wall clock before epoch"))?
                     .as_nanos()
                     .cast_signed(),
             )),
@@ -231,7 +228,7 @@ impl<P: Portal> Capsule<P> {
                 ))
             }
             Request::Timer(_) => Err(refusal(
-                RefusalKind::InvalidRequest,
+                RefusalKind::BudgetExhausted,
                 "timer budget exceeded",
             )),
             Request::Entropy(bytes)
@@ -241,7 +238,7 @@ impl<P: Portal> Capsule<P> {
                 Ok(Reply::Bytes(self.entropy(bytes)))
             }
             Request::Entropy(_) => Err(refusal(
-                RefusalKind::InvalidRequest,
+                RefusalKind::BudgetExhausted,
                 "entropy budget exceeded",
             )),
             Request::Locale => Ok(Reply::Text(self.facts.locale.clone())),
@@ -264,10 +261,8 @@ impl<P: Portal> Capsule<P> {
                     refusal(
                         match e {
                             PortalError::Unsupported => RefusalKind::Unsupported,
-                            PortalError::Denied | PortalError::Revoked => {
-                                RefusalKind::InsufficientEvidence
-                            }
-                            PortalError::Cancelled => RefusalKind::InjectedFault,
+                            PortalError::Denied | PortalError::Revoked => RefusalKind::Denied,
+                            PortalError::Cancelled => RefusalKind::Cancelled,
                         },
                         "portal refused request",
                     )
