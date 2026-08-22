@@ -1,5 +1,5 @@
 {
-  "card_count": 17,
+  "card_count": 20,
   "cards": [
     {
       "id": "browse/catalog",
@@ -11,6 +11,12 @@
       "id": "cookbook/sim-lib-platform",
       "kind": "cookbook-recipe",
       "owner": "sim-lib-platform",
+      "summary": ""
+    },
+    {
+      "id": "cookbook/sim-platform-amazfit",
+      "kind": "cookbook-recipe",
+      "owner": "sim-platform-amazfit",
       "summary": ""
     },
     {
@@ -41,6 +47,12 @@
       "id": "cookbook/sim-platform-core",
       "kind": "cookbook-recipe",
       "owner": "sim-platform-core",
+      "summary": ""
+    },
+    {
+      "id": "cookbook/sim-platform-halo",
+      "kind": "cookbook-recipe",
+      "owner": "sim-platform-halo",
       "summary": ""
     },
     {
@@ -80,6 +92,12 @@
       "summary": ""
     },
     {
+      "id": "cookbook/sim-platform-wasi",
+      "kind": "cookbook-recipe",
+      "owner": "sim-platform-wasi",
+      "summary": ""
+    },
+    {
       "id": "cookbook/sim-platform-web-shell",
       "kind": "cookbook-recipe",
       "owner": "sim-platform-web-shell",
@@ -114,12 +132,14 @@
   "groups": {
     "workspace": [
       "sim-lib-platform",
+      "sim-platform-amazfit",
       "sim-platform-android",
       "sim-platform-audio",
       "sim-platform-bootstrap",
       "sim-platform-browser",
       "sim-platform-construction",
       "sim-platform-core",
+      "sim-platform-halo",
       "sim-platform-ios",
       "sim-platform-linux",
       "sim-platform-macos",
@@ -127,6 +147,7 @@
       "sim-platform-model",
       "sim-platform-ubuntu-pc",
       "sim-platform-ubuntu-rpi",
+      "sim-platform-wasi",
       "sim-platform-web-shell",
       "sim-platform-windows",
       "sim-table-fs",
@@ -136,7 +157,7 @@
   },
   "non_citizen_exemption_count": 0,
   "non_citizen_exemptions": [],
-  "package_count": 19,
+  "package_count": 22,
   "packages": [
     {
       "crate_name": "sim_lib_platform",
@@ -170,6 +191,33 @@
           ],
           "name": "sim_lib_platform",
           "src": "crates/sim-lib-platform/src/lib.rs"
+        }
+      ]
+    },
+    {
+      "crate_name": "sim_platform_amazfit",
+      "dependencies": [],
+      "description": "Bounded Amazfit and Zepp OS proxy capsule",
+      "features": [],
+      "group": "workspace",
+      "manifest": "crates/sim-platform-amazfit/Cargo.toml",
+      "name": "sim-platform-amazfit",
+      "publish": "false",
+      "root": "crates/sim-platform-amazfit",
+      "rustdoc_summary": "Bounded Amazfit proxy state machine hosted by the Android capsule.",
+      "target_kinds": [
+        "lib"
+      ],
+      "targets": [
+        {
+          "crate_types": [
+            "lib"
+          ],
+          "kind": [
+            "lib"
+          ],
+          "name": "sim_platform_amazfit",
+          "src": "crates/sim-platform-amazfit/src/lib.rs"
         }
       ]
     },
@@ -358,8 +406,45 @@
           "kind": [
             "test"
           ],
+          "name": "bundle_composition",
+          "src": "crates/sim-platform-core/tests/bundle_composition.rs"
+        },
+        {
+          "crate_types": [
+            "bin"
+          ],
+          "kind": [
+            "test"
+          ],
           "name": "policy",
           "src": "crates/sim-platform-core/tests/policy.rs"
+        }
+      ]
+    },
+    {
+      "crate_name": "sim_platform_halo",
+      "dependencies": [],
+      "description": "Official-contract bounded Halo proxy capsule",
+      "features": [],
+      "group": "workspace",
+      "manifest": "crates/sim-platform-halo/Cargo.toml",
+      "name": "sim-platform-halo",
+      "publish": "false",
+      "root": "crates/sim-platform-halo",
+      "rustdoc_summary": "Host-owned Halo proxy over the official SDK transport model.",
+      "target_kinds": [
+        "lib"
+      ],
+      "targets": [
+        {
+          "crate_types": [
+            "lib"
+          ],
+          "kind": [
+            "lib"
+          ],
+          "name": "sim_platform_halo",
+          "src": "crates/sim-platform-halo/src/lib.rs"
         }
       ]
     },
@@ -723,6 +808,41 @@
       ]
     },
     {
+      "crate_name": "sim_platform_wasi",
+      "dependencies": [
+        {
+          "kind": "normal",
+          "optional": false,
+          "package": "sim-platform-core",
+          "rename": null,
+          "target": null
+        }
+      ],
+      "description": "Least-authority WASI component capsule for SIM",
+      "features": [],
+      "group": "workspace",
+      "manifest": "crates/sim-platform-wasi/Cargo.toml",
+      "name": "sim-platform-wasi",
+      "publish": "false",
+      "root": "crates/sim-platform-wasi",
+      "rustdoc_summary": "Least-authority WASI capsule.",
+      "target_kinds": [
+        "lib"
+      ],
+      "targets": [
+        {
+          "crate_types": [
+            "lib"
+          ],
+          "kind": [
+            "lib"
+          ],
+          "name": "sim_platform_wasi",
+          "src": "crates/sim-platform-wasi/src/lib.rs"
+        }
+      ]
+    },
+    {
       "crate_name": "sim-web-shell",
       "dependencies": [
         {
@@ -961,10 +1081,10 @@
     "generated_by": "cargo run -p xtask -- simdoc",
     "generation_timestamp": "2026-08-21T22:21:04+02:00",
     "generator": "xtask repo-contract v1",
-    "git_commit": "3f80482ee1c2ee134d531bd722a803f17ff3b1f7",
+    "git_commit": "63880565cbadabc9ad71e14d08eec636a4d13a04",
     "repo": "sim-platform",
     "schema": "sim.provenance.v1",
-    "source_commit": "3f80482ee1c2ee134d531bd722a803f17ff3b1f7",
+    "source_commit": "63880565cbadabc9ad71e14d08eec636a4d13a04",
     "source_remote": "https://github.com/sim-nest/sim-platform",
     "validation_commands": [
       "cargo fmt --all --check",
@@ -977,9 +1097,9 @@
       "cargo run -p xtask -- validation-matrix --check --repo .",
       "cargo run -p xtask -- crate-catalog --check --repo ."
     ],
-    "workspace_hash": "61717d1ac4d915ca",
+    "workspace_hash": "b72a9380e297724b",
     "workspace_hash_algorithm": "fnv1a64",
-    "workspace_hash_input_count": 121,
+    "workspace_hash_input_count": 136,
     "workspace_hash_inputs": [
       "Cargo.toml",
       "crates/sim-lib-platform/Cargo.toml",
@@ -988,6 +1108,11 @@
       "crates/sim-lib-platform/recipes/book.toml",
       "crates/sim-lib-platform/src/lib.rs",
       "crates/sim-lib-platform/src/runtime.rs",
+      "crates/sim-platform-amazfit/Cargo.toml",
+      "crates/sim-platform-amazfit/recipes/01-basics/proxy/recipe.toml",
+      "crates/sim-platform-amazfit/recipes/book.toml",
+      "crates/sim-platform-amazfit/src/lib.rs",
+      "crates/sim-platform-amazfit/src/tests.rs",
       "crates/sim-platform-android/Cargo.toml",
       "crates/sim-platform-android/recipes/01-basics/android-aot/recipe.toml",
       "crates/sim-platform-android/recipes/book.toml",
@@ -1014,7 +1139,13 @@
       "crates/sim-platform-core/recipes/01-basics/fictional-capsule/recipe.toml",
       "crates/sim-platform-core/recipes/book.toml",
       "crates/sim-platform-core/src/lib.rs",
+      "crates/sim-platform-core/tests/bundle_composition.rs",
       "crates/sim-platform-core/tests/policy.rs",
+      "crates/sim-platform-halo/Cargo.toml",
+      "crates/sim-platform-halo/recipes/01-basics/view-input/recipe.toml",
+      "crates/sim-platform-halo/recipes/book.toml",
+      "crates/sim-platform-halo/src/lib.rs",
+      "crates/sim-platform-halo/src/tests.rs",
       "crates/sim-platform-ios/Cargo.toml",
       "crates/sim-platform-ios/recipes/01-basics/ios-aot/recipe.toml",
       "crates/sim-platform-ios/recipes/book.toml",
@@ -1057,6 +1188,10 @@
       "crates/sim-platform-ubuntu-rpi/recipes/book.toml",
       "crates/sim-platform-ubuntu-rpi/src/lib.rs",
       "crates/sim-platform-ubuntu-rpi/tests/conformance.rs",
+      "crates/sim-platform-wasi/Cargo.toml",
+      "crates/sim-platform-wasi/recipes/01-basics/headless-bundle/recipe.toml",
+      "crates/sim-platform-wasi/recipes/book.toml",
+      "crates/sim-platform-wasi/src/lib.rs",
       "crates/sim-platform-web-shell/Cargo.toml",
       "crates/sim-platform-web-shell/recipes/01-basics/modeled-boundary/recipe.toml",
       "crates/sim-platform-web-shell/recipes/book.toml",
@@ -1104,7 +1239,7 @@
       "xtask/Cargo.toml"
     ]
   },
-  "recipe_book_count": 15,
+  "recipe_book_count": 18,
   "recipes": [
     {
       "book": "sim-lib-platform",
@@ -1133,6 +1268,26 @@
       ],
       "summary": "",
       "title": "sim-lib-platform recipes"
+    },
+    {
+      "book": "sim-platform-amazfit",
+      "book_toml": "crates/sim-platform-amazfit/recipes/book.toml",
+      "card_id": "cookbook/sim-platform-amazfit",
+      "group": "workspace",
+      "package": "sim-platform-amazfit",
+      "recipe_count": 1,
+      "recipes": [
+        {
+          "card_id": "sim-platform-amazfit/01-basics/amazfit-bounded-proxy",
+          "codec": "",
+          "id": "amazfit-bounded-proxy",
+          "package": "sim-platform-amazfit",
+          "recipe_toml": "crates/sim-platform-amazfit/recipes/01-basics/proxy/recipe.toml",
+          "title": "Exercise the modeled Amazfit proxy"
+        }
+      ],
+      "summary": "",
+      "title": "Amazfit proxy capsule"
     },
     {
       "book": "sim-platform-android",
@@ -1215,6 +1370,26 @@
       ],
       "summary": "",
       "title": "sim-platform-core recipes"
+    },
+    {
+      "book": "sim-platform-halo",
+      "book_toml": "crates/sim-platform-halo/recipes/book.toml",
+      "card_id": "cookbook/sim-platform-halo",
+      "group": "workspace",
+      "package": "sim-platform-halo",
+      "recipe_count": 1,
+      "recipes": [
+        {
+          "card_id": "sim-platform-halo/01-basics/halo-view-and-input",
+          "codec": "",
+          "id": "halo-view-and-input",
+          "package": "sim-platform-halo",
+          "recipe_toml": "crates/sim-platform-halo/recipes/01-basics/view-input/recipe.toml",
+          "title": "Show a bounded view and receive Halo input"
+        }
+      ],
+      "summary": "",
+      "title": "Halo proxy capsule"
     },
     {
       "book": "sim-platform-ios",
@@ -1316,6 +1491,26 @@
       ],
       "summary": "",
       "title": "Ubuntu Raspberry Pi capsule"
+    },
+    {
+      "book": "sim-platform-wasi",
+      "book_toml": "crates/sim-platform-wasi/recipes/book.toml",
+      "card_id": "cookbook/sim-platform-wasi",
+      "group": "workspace",
+      "package": "sim-platform-wasi",
+      "recipe_count": 1,
+      "recipes": [
+        {
+          "card_id": "sim-platform-wasi/01-basics/headless-bundle",
+          "codec": "",
+          "id": "headless-bundle",
+          "package": "sim-platform-wasi",
+          "recipe_toml": "crates/sim-platform-wasi/recipes/01-basics/headless-bundle/recipe.toml",
+          "title": ""
+        }
+      ],
+      "summary": "",
+      "title": "WASI capsule recipes"
     },
     {
       "book": "sim-platform-web-shell",

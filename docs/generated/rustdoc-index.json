@@ -9,6 +9,13 @@
       "summary": "The closed, provider-neutral platform API."
     },
     {
+      "crate_name": "sim_platform_amazfit",
+      "group": "workspace",
+      "manifest": "crates/sim-platform-amazfit/Cargo.toml",
+      "package": "sim-platform-amazfit",
+      "summary": "Bounded Amazfit proxy state machine hosted by the Android capsule."
+    },
+    {
       "crate_name": "sim_platform_android",
       "group": "workspace",
       "manifest": "crates/sim-platform-android/Cargo.toml",
@@ -49,6 +56,13 @@
       "manifest": "crates/sim-platform-core/Cargo.toml",
       "package": "sim-platform-core",
       "summary": "Pure, fail-closed manifest contracts for the sole SIM platform owner."
+    },
+    {
+      "crate_name": "sim_platform_halo",
+      "group": "workspace",
+      "manifest": "crates/sim-platform-halo/Cargo.toml",
+      "package": "sim-platform-halo",
+      "summary": "Host-owned Halo proxy over the official SDK transport model."
     },
     {
       "crate_name": "sim_platform_ios",
@@ -98,6 +112,13 @@
       "manifest": "crates/sim-platform-ubuntu-rpi/Cargo.toml",
       "package": "sim-platform-ubuntu-rpi",
       "summary": "Headless Ubuntu Raspberry Pi capsule with profile-owned native facts."
+    },
+    {
+      "crate_name": "sim_platform_wasi",
+      "group": "workspace",
+      "manifest": "crates/sim-platform-wasi/Cargo.toml",
+      "package": "sim-platform-wasi",
+      "summary": "Least-authority WASI capsule."
     },
     {
       "crate_name": "sim-web-shell",

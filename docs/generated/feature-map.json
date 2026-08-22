@@ -9,6 +9,11 @@
     {
       "features": [],
       "group": "workspace",
+      "package": "sim-platform-amazfit"
+    },
+    {
+      "features": [],
+      "group": "workspace",
       "package": "sim-platform-android"
     },
     {
@@ -35,6 +40,11 @@
       "features": [],
       "group": "workspace",
       "package": "sim-platform-core"
+    },
+    {
+      "features": [],
+      "group": "workspace",
+      "package": "sim-platform-halo"
     },
     {
       "features": [],
@@ -84,6 +94,11 @@
       "features": [],
       "group": "workspace",
       "package": "sim-platform-ubuntu-rpi"
+    },
+    {
+      "features": [],
+      "group": "workspace",
+      "package": "sim-platform-wasi"
     },
     {
       "features": [],

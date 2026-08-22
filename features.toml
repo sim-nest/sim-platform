@@ -169,7 +169,7 @@ owner = "crate/sim-platform-linux"
 audiences = ["code", "framework"]
 guidance = "Bind LinuxSocketPort, LinuxDnsPort, optional LinuxIpcPort, and LinuxWallClock at capsule activation. Protocol crates consume only sim-transport-ports and sim-lib-server traits; physical loopback, wall-time observation, and native-error conformance stay in this capsule."
 claims_anchors = ["anchor/crate/sim-platform-linux"]
-supports = ["feature/sim-agent-net/transport-ports", "feature/sim-platform/ubuntu-pc-capsule"]
+supports = ["feature/sim-platform/ubuntu-pc-capsule"]
 
 [[route]]
 id = "route/author-platform-provider"
@@ -199,7 +199,7 @@ owner = "crate/sim-platform-browser"
 audiences = ["code", "framework"]
 guidance = "Load sim-platform-browser as a Wasm capsule and derive its Card only from APIs detected by the window or worker shell. The JavaScript membrane copies bytes and performs Rust-selected host calls; it owns no SIM routing or presentation policy. Keep DOM, Canvas, WebGPU, Scene, Intent, SurfaceCodec, and render trees in sim-web. Missing APIs and denied permissions fail closed, and stopped or suspended capsules release every pending call and handle."
 claims_anchors = ["anchor/crate/sim-platform-browser"]
-supports = ["feature/sim-platform/platform-owner", "feature/sim-web/view-surface", "feature/sim-agent-net/transport-ports"]
+supports = ["feature/sim-platform/platform-owner", "feature/sim-web/view-surface"]
 
 [[feature]]
 id = "feature/sim-platform/wasi-capsule"
@@ -238,7 +238,7 @@ owner = "crate/sim-platform-audio"
 audiences = ["code", "framework"]
 guidance = "Bind only capsule-advertised ALSA, ASIO, CoreAudio, JACK, PipeWire, PortAudio, cpal, LV2, VST3, or CLAP services. Consumers, including wasm ABI adapters, use sim-audio-ports Cards and typed refusals; ABI import names remain declarations while performed callbacks are capsule-owned host facts. Absent APIs are Unsupported, native handles never enter domain code, and callbacks obey the prevalidated nonallocating nonblocking budget."
 claims_anchors = ["anchor/crate/sim-platform-audio"]
-supports = ["feature/sim-audio-daw/native-media-ports", "feature/sim-platform/ubuntu-pc-capsule"]
+supports = ["feature/sim-platform/ubuntu-pc-capsule"]
 
 [[feature]]
 id = "feature/sim-platform/host-directory-realization"
@@ -263,9 +263,47 @@ supports = ["feature/sim-platform/host-directory-realization", "feature/sim-plat
 [[feature]]
 id = "feature/sim-platform/product-membrane"
 title = "Platform product membrane"
-summary = "Expose provider-neutral records, requirement builders, provider-author contracts, and exact model and Ubuntu bundle closures."
+summary = "Enforce one absolute, evidence-derived boundary between pure products, neutral ports, bootstrap, host tools, and declared capsules."
 owner = "crate/sim-lib-platform"
 audiences = ["code", "framework"]
-guidance = "Build requirements through RequirementBuilder and implement PlatformProviderAuthor outside consumer closures. Select one curated descriptor at the process rind; preserve identical pure argv while the descriptor supplies different bound services."
-claims_anchors = ["anchor/crate/sim-lib-platform", "anchor/crate/sim-platform-model", "anchor/crate/sim-platform-ubuntu-pc"]
+guidance = "Start with a neutral sim-host-core primitive and a domain-owned port, prove behavior with the deterministic platform model, then realize it in one declared capsule and retain conformance and attestation evidence. The permanent membrane rejects unclassified targets, unknown binding kinds, undeclared imports, host-tool reachability, duplicate backend ownership, bootstrap growth, and content or support-claim drift; there is no migration baseline or ambient fallback."
+claims_anchors = ["anchor/repo/sim-platform"]
 supports = ["feature/sim-platform/platform-owner", "feature/sim-platform/bootstrap-rind"]
+
+[[route]]
+id = "route/realize-host-need"
+task = "Realize a host need through the absolute platform membrane"
+audiences = ["code", "framework"]
+steps = [
+  { feature = "feature/sim-foundation/host-primitives", why = "Begin with the neutral primitive, open identity, bounded refusal, and lexical binding contract." },
+  { feature = "feature/sim-storage/host-storage-primitives", why = "Put storage semantics in the domain-owned port; substitute the corresponding domain port for non-storage needs." },
+  { feature = "feature/sim-platform/platform-policy", why = "Use the seeded model as the deterministic, host-free behavior specimen before selecting physical mechanics." },
+  { feature = "feature/sim-platform/ubuntu-pc-capsule", why = "Implement the need in one explicitly selected capsule whose Card declares the offered service." },
+  { feature = "feature/sim-platform/transport-realization", why = "Run the shared port conformance at the capsule boundary so native results are compared semantically." },
+  { feature = "feature/sim-platform/platform-owner", why = "Retain the matching Card, artifact, attestation, and evidence-derived support row in the composed bundle." },
+]
+
+[[route]]
+id = "route/audit-platform-membrane"
+task = "Audit every platform membrane realization"
+audiences = ["code", "framework"]
+steps = [
+  { feature = "feature/sim-platform/product-membrane", why = "Begin with the permanent classification, closure, evidence, and ownership gate." },
+  { feature = "feature/sim-platform/construction-integration-realization", why = "Check construction integration remains a capsule realization, not domain ownership." },
+  { feature = "feature/sim-platform/device-physical-port", why = "Check physical device mechanics remain behind the shared device port." },
+  { feature = "feature/sim-platform/native-midi-realization", why = "Check native MIDI mechanics remain behind the music-owned contract." },
+  { feature = "feature/sim-platform/process-realization", why = "Check modeled and physical process providers share the runtime-owned port." },
+  { feature = "feature/sim-platform/web-shell-realization", why = "Check native web hosting does not absorb presentation policy." },
+  { feature = "feature/sim-platform/native-compute-probing", why = "Check hardware probing is injected into compute-owned executors." },
+  { feature = "feature/sim-platform/native-media-realization", why = "Check audio and plugin mechanics remain behind media-owned ports." },
+  { feature = "feature/sim-platform/host-directory-realization", why = "Check host paths remain confined behind the storage-owned port." },
+  { feature = "feature/sim-platform/ledger-command-realization", why = "Check ledger composition consumes only preopened storage and clock services." },
+  { feature = "feature/sim-platform/macos-capsule", why = "Verify the macOS Card and cross-build evidence independently." },
+  { feature = "feature/sim-platform/windows-capsule", why = "Verify the Windows Card and cross-build evidence independently." },
+  { feature = "feature/sim-platform/android-capsule", why = "Verify the Android Card, shell boundary, and target attestations independently." },
+  { feature = "feature/sim-platform/ios-capsule", why = "Verify the iOS Card, shell boundary, and target attestations independently." },
+  { feature = "feature/sim-platform/wasi-capsule", why = "Verify the declared WASI import surface and modeled/hosted evidence independently." },
+  { feature = "feature/sim-platform/ubuntu-rpi-capsule", why = "Keep cross-build and physical Raspberry Pi support grades distinct." },
+  { feature = "feature/sim-platform/amazfit-proxy-capsule", why = "Keep the bounded watch proxy separate from Android capsule ownership." },
+  { feature = "feature/sim-platform/halo-proxy-capsule", why = "Keep the official-contract glasses proxy separate from its host capsule." },
+]

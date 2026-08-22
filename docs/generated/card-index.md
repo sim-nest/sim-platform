@@ -6,16 +6,20 @@
 | --- | --- | --- | --- |
 | `browse/catalog` | `browse-root` | `workspace` | root browse catalog |
 | `cookbook/sim-lib-platform` | `cookbook-recipe` | `sim-lib-platform` |  |
+| `cookbook/sim-platform-amazfit` | `cookbook-recipe` | `sim-platform-amazfit` |  |
 | `cookbook/sim-platform-android` | `cookbook-recipe` | `sim-platform-android` |  |
 | `cookbook/sim-platform-bootstrap` | `cookbook-recipe` | `sim-platform-bootstrap` |  |
+| `cookbook/sim-platform-browser` | `cookbook-recipe` | `sim-platform-browser` |  |
 | `cookbook/sim-platform-construction` | `cookbook-recipe` | `sim-platform-construction` |  |
 | `cookbook/sim-platform-core` | `cookbook-recipe` | `sim-platform-core` |  |
+| `cookbook/sim-platform-halo` | `cookbook-recipe` | `sim-platform-halo` |  |
 | `cookbook/sim-platform-ios` | `cookbook-recipe` | `sim-platform-ios` |  |
 | `cookbook/sim-platform-linux` | `cookbook-recipe` | `sim-platform-linux` |  |
 | `cookbook/sim-platform-macos` | `cookbook-recipe` | `sim-platform-macos` |  |
 | `cookbook/sim-platform-model` | `cookbook-recipe` | `sim-platform-model` |  |
 | `cookbook/sim-platform-ubuntu-pc` | `cookbook-recipe` | `sim-platform-ubuntu-pc` |  |
 | `cookbook/sim-platform-ubuntu-rpi` | `cookbook-recipe` | `sim-platform-ubuntu-rpi` |  |
+| `cookbook/sim-platform-wasi` | `cookbook-recipe` | `sim-platform-wasi` |  |
 | `cookbook/sim-platform-web-shell` | `cookbook-recipe` | `sim-platform-web-shell` |  |
 | `cookbook/sim-platform-windows` | `cookbook-recipe` | `sim-platform-windows` |  |
 | `cookbook/storage/table-fs` | `cookbook-recipe` | `sim-table-fs` | Host directory reads, writes, edits, and searches through the table surface. |

@@ -5,11 +5,14 @@
 | Package | Group | Features | Workspace feature edges |
 | --- | --- | ---: | ---: |
 | `sim-lib-platform` | `workspace` | 0 | 0 |
+| `sim-platform-amazfit` | `workspace` | 0 | 0 |
 | `sim-platform-android` | `workspace` | 0 | 0 |
 | `sim-platform-audio` | `workspace` | 0 | 0 |
 | `sim-platform-bootstrap` | `workspace` | 0 | 0 |
+| `sim-platform-browser` | `workspace` | 0 | 0 |
 | `sim-platform-construction` | `workspace` | 0 | 0 |
 | `sim-platform-core` | `workspace` | 0 | 0 |
+| `sim-platform-halo` | `workspace` | 0 | 0 |
 | `sim-platform-ios` | `workspace` | 0 | 0 |
 | `sim-platform-linux` | `workspace` | 0 | 0 |
 | `sim-platform-macos` | `workspace` | 0 | 0 |
@@ -17,6 +20,7 @@
 | `sim-platform-model` | `workspace` | 0 | 0 |
 | `sim-platform-ubuntu-pc` | `workspace` | 0 | 0 |
 | `sim-platform-ubuntu-rpi` | `workspace` | 0 | 0 |
+| `sim-platform-wasi` | `workspace` | 0 | 0 |
 | `sim-platform-web-shell` | `workspace` | 0 | 0 |
 | `sim-platform-windows` | `workspace` | 0 | 0 |
 | `sim-table-fs` | `workspace` | 6 | 0 |

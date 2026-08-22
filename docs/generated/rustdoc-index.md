@@ -5,11 +5,14 @@
 | Package | Group | Summary |
 | --- | --- | --- |
 | `sim-lib-platform` | `workspace` | The closed, provider-neutral platform API. |
+| `sim-platform-amazfit` | `workspace` | Bounded Amazfit proxy state machine hosted by the Android capsule. |
 | `sim-platform-android` | `workspace` | Android AOT platform capsule and thin shell contract |
 | `sim-platform-audio` | `workspace` | Native media realization owned by the platform capsule. |
 | `sim-platform-bootstrap` | `workspace` | The sole, bounded host rind used to admit the first platform capsule. |
+| `sim-platform-browser` | `workspace` | Capability-honest browser Wasm capsule and byte-frame host membrane |
 | `sim-platform-construction` | `workspace` | Platform-capsule implementations of construction-owned integration ports. |
 | `sim-platform-core` | `workspace` | Pure, fail-closed manifest contracts for the sole SIM platform owner. |
+| `sim-platform-halo` | `workspace` | Host-owned Halo proxy over the official SDK transport model. |
 | `sim-platform-ios` | `workspace` | iOS AOT platform capsule and thin shell contract |
 | `sim-platform-linux` | `workspace` | Bounded Linux mechanics. Native paths and portal calls cannot escape this package. |
 | `sim-platform-macos` | `workspace` | macOS capsule policy, packaging, and testable native membrane. |
@@ -17,6 +20,7 @@
 | `sim-platform-model` | `workspace` | Deterministic, host-free platform model and the standard platform site. |
 | `sim-platform-ubuntu-pc` | `workspace` | Ubuntu PC capsule registration and sanitized evidence contracts. |
 | `sim-platform-ubuntu-rpi` | `workspace` | Headless Ubuntu Raspberry Pi capsule with profile-owned native facts. |
+| `sim-platform-wasi` | `workspace` | Least-authority WASI capsule. |
 | `sim-platform-web-shell` | `workspace` | Native Linux process capsule for the host-neutral SIM web shell. |
 | `sim-platform-windows` | `workspace` | Windows capsule policy, bounded native membrane, and package description. |
 | `sim-table-fs` | `workspace` | Filesystem-backed table store for SIM. |
