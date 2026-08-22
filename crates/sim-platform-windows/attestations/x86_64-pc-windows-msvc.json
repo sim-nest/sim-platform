@@ -1,0 +1,7 @@
+{
+  "schema": "sim.platform-cross-build-attestation/v1",
+  "target": "x86_64-pc-windows-msvc",
+  "evidence": "cross-built",
+  "execution": "not-claimed",
+  "imports": ["KERNEL32.dll", "USER32.dll", "OLE32.dll", "WS2_32.dll", "MMDevAPI.dll", "D3D12.dll", "DXGI.dll"]
+}

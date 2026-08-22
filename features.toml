@@ -102,6 +102,16 @@ claims_anchors = ["anchor/crate/sim-platform-linux", "anchor/crate/sim-platform-
 supports = ["feature/sim-platform/ubuntu-pc-capsule", "feature/sim-platform/platform-owner", "feature/sim-platform/platform-policy"]
 
 [[feature]]
+id = "feature/sim-platform/windows-capsule"
+title = "Windows platform capsule"
+summary = "Realize frozen platform and domain ports through bounded Win32 and WinRT mechanics and one content-bound package."
+owner = "crate/sim-platform-windows"
+audiences = ["code", "framework"]
+guidance = "Activate WindowsCapsule with explicit preopened roots, capability grants, process/output budgets, and an injected NativeServices implementation. Keep drive, separator, UTF-16, package identity, permission, Win32/WinRT selection, job-object, and artifact-suffix policy inside this crate. Consume only Card service identities and load the package through sim_native_abi_v1; cross-build evidence does not claim hosted or physical execution."
+claims_anchors = ["anchor/crate/sim-platform-windows"]
+supports = ["feature/sim-platform/platform-owner", "feature/sim-platform/bootstrap-rind", "feature/sim-platform/platform-policy", "feature/sim-platform/native-media-realization"]
+
+[[feature]]
 id = "feature/sim-platform/process-realization"
 title = "Modeled and Ubuntu process realization"
 summary = "Realize runtime-owned ProcessPort requests through a deterministic model or confined Ubuntu process tree."

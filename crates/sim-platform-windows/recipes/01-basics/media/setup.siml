@@ -1,0 +1,1 @@
+(platform/require 'platform/audio 'platform/midi 'platform/compute)

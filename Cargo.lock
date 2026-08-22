@@ -2204,6 +2204,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "sim-platform-windows"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "serde_json",
+ "sim-platform-core",
+]
+
+[[package]]
 name = "sim-platform-ubuntu-rpi"
 version = "0.1.0"
 dependencies = [

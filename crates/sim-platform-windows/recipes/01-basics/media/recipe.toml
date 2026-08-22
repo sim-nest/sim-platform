@@ -1,0 +1,4 @@
+schema = "sim.recipe/v1"
+title = "Select Windows media services"
+setup = "setup.siml"
+expected = "expected.txt"

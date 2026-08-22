@@ -1,0 +1,4 @@
+schema = "sim.recipe/v1"
+title = "Cancel a bounded Windows process tree"
+setup = "setup.siml"
+expected = "expected.txt"

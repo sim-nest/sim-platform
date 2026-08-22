@@ -1,0 +1,4 @@
+schema = "sim.recipe/v1"
+title = "Launch through the Windows activation port"
+setup = "setup.siml"
+expected = "expected.txt"

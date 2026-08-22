@@ -11,6 +11,7 @@ members = [
   "crates/sim-platform-construction",
   "crates/sim-platform-linux",
   "crates/sim-platform-macos",
+  "crates/sim-platform-windows",
   "crates/sim-platform-ubuntu-pc",
   "crates/sim-platform-ubuntu-rpi",
   "crates/sim-viture-ffi",
