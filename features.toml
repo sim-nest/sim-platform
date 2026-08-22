@@ -157,7 +157,7 @@ title = "Modeled and Ubuntu process realization"
 summary = "Realize runtime-owned ProcessPort requests through a deterministic model or confined Ubuntu process tree."
 owner = "crate/sim-platform-ubuntu-pc"
 audiences = ["code", "framework"]
-guidance = "Use ModelProcess for portable policy and race tests and UbuntuProcess only at the physical capsule boundary. Runtime owns request validation and ProcResult; these adapters own spawn, diminished environment, canonical cwd confinement, monotonic deadlines, bounded pipes, cancellation, process-group cleanup, wait, and native error mapping."
+guidance = "Use ModelProcess for portable dispatch-boundary and race tests and UbuntuProcess only at the physical capsule boundary. Boot configuration maps opaque program, project-root, and private-artifact references to native resources. The Ubuntu capsule clears the environment, renders only sealed bindings, marks dispatch at successful spawn, and reports timeout or cancellation as stopped only after process-group kill and reap; every post-spawn ambiguity is UnknownAfterDispatch."
 claims_anchors = ["anchor/crate/sim-platform-model", "anchor/crate/sim-platform-ubuntu-pc"]
 supports = ["feature/sim-platform/ubuntu-pc-capsule", "feature/sim-runtime/host-exec"]
 

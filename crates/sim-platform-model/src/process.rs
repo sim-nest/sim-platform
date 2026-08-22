@@ -1,31 +1,30 @@
 use sim_lib_exec::{
-    ProcResult, ProcessCancellation, ProcessError, ProcessPort, ProcessReceipt, ProcessRequest,
+    DispatchEvidence, ProcResult, ProcessAttempt, ProcessCancellation, ProcessPort, ProcessReceipt,
+    ProcessRefusal, ProcessRequest, StopReceipt,
 };
 use std::{collections::VecDeque, sync::Mutex};
 
-/// One deterministic modeled process outcome, including cleanup races.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum ModelProcessOutcome {
+    Refused(String),
+    SpawnFailure(String),
     Exit {
         at_mono_ns: u64,
         stdout: Vec<u8>,
         stderr: Vec<u8>,
         exit_code: i32,
     },
-    SpawnFailure(String),
-    Timeout {
+    TimeoutStopped {
         at_mono_ns: u64,
-        kill_failure: Option<String>,
-        leaked_descendants: bool,
     },
-    Cancelled {
+    CancelStopped {
         at_mono_ns: u64,
-        kill_failure: Option<String>,
-        leaked_descendants: bool,
+    },
+    UnknownAfterDispatch {
+        stage: String,
+        detail: String,
     },
 }
-
-/// FIFO scripted process adapter. It never reads host time, files, environment, or processes.
 pub struct ModelProcess {
     outcomes: Mutex<VecDeque<ModelProcessOutcome>>,
     requests: Mutex<Vec<ProcessRequest>>,
@@ -47,70 +46,86 @@ impl ModelProcess {
     }
 }
 impl ProcessPort for ModelProcess {
-    fn run(
-        &self,
-        request: &ProcessRequest,
-        cancellation: &ProcessCancellation,
-    ) -> Result<ProcessReceipt, ProcessError> {
+    fn run(&self, request: &ProcessRequest, cancellation: &ProcessCancellation) -> ProcessAttempt {
         self.requests
             .lock()
             .expect("model process mutex poisoned")
             .push(request.clone());
-        let outcome = self
+        if cancellation.is_cancelled() {
+            return ProcessAttempt::NotDispatched {
+                refusal: ProcessRefusal::Refused("cancelled before spawn".into()),
+            };
+        }
+        let Some(outcome) = self
             .outcomes
             .lock()
             .expect("model process mutex poisoned")
             .pop_front()
-            .ok_or_else(|| ProcessError::Spawn("model script exhausted".into()))?;
-        if cancellation.is_cancelled() {
-            return Err(ProcessError::Cancelled {
-                kill_failure: None,
-                leaked_descendants: false,
-            });
-        }
+        else {
+            return ProcessAttempt::NotDispatched {
+                refusal: ProcessRefusal::Refused("model script exhausted".into()),
+            };
+        };
         match outcome {
-            ModelProcessOutcome::SpawnFailure(v) => Err(ProcessError::Spawn(v)),
-            ModelProcessOutcome::Timeout {
-                kill_failure,
-                leaked_descendants,
-                ..
-            } => Err(ProcessError::Timeout {
-                kill_failure,
-                leaked_descendants,
-            }),
-            ModelProcessOutcome::Cancelled {
-                kill_failure,
-                leaked_descendants,
-                ..
-            } => Err(ProcessError::Cancelled {
-                kill_failure,
-                leaked_descendants,
-            }),
+            ModelProcessOutcome::Refused(v) => ProcessAttempt::NotDispatched {
+                refusal: ProcessRefusal::Refused(v),
+            },
+            ModelProcessOutcome::SpawnFailure(v) => ProcessAttempt::NotDispatched {
+                refusal: ProcessRefusal::SpawnFailed(v),
+            },
+            ModelProcessOutcome::TimeoutStopped { at_mono_ns } => {
+                ProcessAttempt::StoppedAfterTimeout {
+                    receipt: stop(at_mono_ns),
+                }
+            }
+            ModelProcessOutcome::CancelStopped { at_mono_ns } => {
+                ProcessAttempt::StoppedAfterCancel {
+                    receipt: stop(at_mono_ns),
+                }
+            }
+            ModelProcessOutcome::UnknownAfterDispatch { stage, detail } => {
+                ProcessAttempt::UnknownAfterDispatch {
+                    evidence: DispatchEvidence {
+                        provider: "platform/site/model".into(),
+                        stage,
+                        detail,
+                    },
+                }
+            }
             ModelProcessOutcome::Exit {
                 at_mono_ns,
                 stdout,
                 stderr,
                 exit_code,
             } => {
-                if at_mono_ns > request.timeout_ms.saturating_mul(1_000_000) {
-                    return Err(ProcessError::Timeout {
-                        kill_failure: None,
-                        leaked_descendants: false,
-                    });
+                if at_mono_ns > request.budget.timeout_ms.saturating_mul(1_000_000) {
+                    return ProcessAttempt::StoppedAfterTimeout {
+                        receipt: stop(at_mono_ns),
+                    };
                 }
-                let (stdout, stderr, truncated) = cap(stdout, stderr, request.max_output_bytes);
-                Ok(ProcessReceipt {
-                    provider: "platform/site/model".into(),
-                    elapsed_mono_ns: at_mono_ns,
-                    result: ProcResult {
-                        stdout: String::from_utf8_lossy(&stdout).into_owned(),
-                        stderr: String::from_utf8_lossy(&stderr).into_owned(),
-                        exit_code,
-                        truncated,
+                let (stdout, stderr, truncated) =
+                    cap(stdout, stderr, request.budget.max_output_bytes);
+                ProcessAttempt::Completed {
+                    receipt: ProcessReceipt {
+                        provider: "platform/site/model".into(),
+                        elapsed_mono_ns: at_mono_ns,
+                        result: ProcResult {
+                            stdout: String::from_utf8_lossy(&stdout).into_owned(),
+                            stderr: String::from_utf8_lossy(&stderr).into_owned(),
+                            exit_code,
+                            truncated,
+                        },
                     },
-                })
+                }
             }
         }
+    }
+}
+fn stop(elapsed_mono_ns: u64) -> StopReceipt {
+    StopReceipt {
+        provider: "platform/site/model".into(),
+        elapsed_mono_ns,
+        cleanup: "process group killed and reaped".into(),
     }
 }
 fn cap(mut stdout: Vec<u8>, mut stderr: Vec<u8>, budget: usize) -> (Vec<u8>, Vec<u8>, bool) {
@@ -123,64 +138,65 @@ fn cap(mut stdout: Vec<u8>, mut stderr: Vec<u8>, budget: usize) -> (Vec<u8>, Vec
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::{collections::BTreeMap, path::PathBuf};
+    use sim_lib_exec::{ProcessBudget, ProgramRef, ProjectRootRef, SealedBindings};
     fn request() -> ProcessRequest {
         ProcessRequest {
-            argv: vec!["tool".into(), "arg with spaces".into()],
-            cwd: PathBuf::from("/root/work"),
-            root: PathBuf::from("/root"),
-            timeout_ms: 5,
-            max_output_bytes: 4,
-            stdin: None,
-            environment: BTreeMap::new(),
+            program: ProgramRef::new("tool").unwrap(),
+            argv: vec![],
+            root: ProjectRootRef::new("project").unwrap(),
+            environment: SealedBindings::empty(),
+            private_artifacts: vec![],
+            budget: ProcessBudget {
+                timeout_ms: 5,
+                max_output_bytes: 4,
+                stdin: None,
+            },
         }
     }
     #[test]
-    fn models_output_timeout_cancellation_failed_kill_and_leaks() {
+    fn distinguishes_both_sides_of_spawn_and_preserves_nonzero_completion() {
         let model = ModelProcess::new([
+            ModelProcessOutcome::SpawnFailure("missing".into()),
+            ModelProcessOutcome::UnknownAfterDispatch {
+                stage: "reap".into(),
+                detail: "lost status".into(),
+            },
             ModelProcessOutcome::Exit {
                 at_mono_ns: 1,
                 stdout: b"12345".to_vec(),
-                stderr: b"err".to_vec(),
+                stderr: vec![],
                 exit_code: 7,
             },
-            ModelProcessOutcome::Timeout {
-                at_mono_ns: 6_000_000,
-                kill_failure: Some("denied".into()),
-                leaked_descendants: true,
-            },
-            ModelProcessOutcome::Cancelled {
-                at_mono_ns: 2,
-                kill_failure: None,
-                leaked_descendants: false,
-            },
         ]);
-        let result = model
-            .run(&request(), &ProcessCancellation::default())
-            .unwrap();
-        assert!(result.result.truncated);
-        assert_eq!(result.result.stdout, "1234");
         assert!(matches!(
             model.run(&request(), &ProcessCancellation::default()),
-            Err(ProcessError::Timeout {
-                kill_failure: Some(_),
-                leaked_descendants: true
-            })
+            ProcessAttempt::NotDispatched { .. }
         ));
         assert!(matches!(
             model.run(&request(), &ProcessCancellation::default()),
-            Err(ProcessError::Cancelled { .. })
+            ProcessAttempt::UnknownAfterDispatch { .. }
         ));
-        assert_eq!(model.requests().len(), 3);
+        let ProcessAttempt::Completed { receipt } =
+            model.run(&request(), &ProcessCancellation::default())
+        else {
+            panic!()
+        };
+        assert_eq!(receipt.result.exit_code, 7);
+        assert!(receipt.result.truncated)
     }
     #[test]
-    fn pre_cancel_wins_deterministically() {
-        let model = ModelProcess::new([ModelProcessOutcome::SpawnFailure("must not win".into())]);
-        let token = ProcessCancellation::default();
-        token.cancel();
+    fn stopped_outcomes_assert_cleanup() {
+        let model = ModelProcess::new([
+            ModelProcessOutcome::TimeoutStopped { at_mono_ns: 6 },
+            ModelProcessOutcome::CancelStopped { at_mono_ns: 2 },
+        ]);
         assert!(matches!(
-            model.run(&request(), &token),
-            Err(ProcessError::Cancelled { .. })
+            model.run(&request(), &ProcessCancellation::default()),
+            ProcessAttempt::StoppedAfterTimeout { .. }
         ));
+        assert!(matches!(
+            model.run(&request(), &ProcessCancellation::default()),
+            ProcessAttempt::StoppedAfterCancel { .. }
+        ))
     }
 }
