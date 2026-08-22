@@ -1,0 +1,2 @@
+platform/card
+sim_native_abi_v1

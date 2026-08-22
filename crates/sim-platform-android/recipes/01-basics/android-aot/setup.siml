@@ -1,0 +1,1 @@
+(platform/require 'platform/card '(loader/static-v1 sim_native_abi_v1))

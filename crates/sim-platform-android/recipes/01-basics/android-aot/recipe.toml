@@ -1,0 +1,5 @@
+id = "android-aot"
+title = "Load the Android AOT capsule"
+purpose = "Prove Android selects the same platform library Card and loader ABI as the desktop bootloader."
+setup = "setup.siml"
+expected = "expected.txt"

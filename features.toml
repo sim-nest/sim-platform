@@ -92,6 +92,16 @@ claims_anchors = ["anchor/crate/sim-platform-macos"]
 supports = ["feature/sim-platform/platform-owner", "feature/sim-platform/bootstrap-rind", "feature/sim-platform/platform-policy", "feature/sim-platform/native-media-realization"]
 
 [[feature]]
+id = "feature/sim-platform/android-capsule"
+title = "Android AOT platform capsule"
+summary = "Host the unchanged native ABI as AOT Rust behind one thin Kotlin lifecycle and activation shell."
+owner = "crate/sim-platform-android"
+audiences = ["code", "framework"]
+guidance = "Cross-build the four declared Rust Android targets with the provenance-pinned LTS NDK. The Kotlin Activity is only a typed byte-frame pump for lifecycle, activation, permissions, content URI grants, notifications, audio devices, and background execution. Pass shared content as bounded Table, Dir, or inline byte references; never expose ambient paths or introduce an Android domain trait or mobile runtime."
+claims_anchors = ["anchor/crate/sim-platform-android"]
+supports = ["feature/sim-platform/platform-owner", "feature/sim-platform/bootstrap-rind", "feature/sim-platform/platform-policy", "feature/sim-platform/native-media-realization"]
+
+[[feature]]
 id = "feature/sim-platform/ubuntu-rpi-capsule"
 title = "Ubuntu Raspberry Pi capsule"
 summary = "Provide an evidence-graded, headless Raspberry Pi Card whose device bindings come only from an explicit board profile."

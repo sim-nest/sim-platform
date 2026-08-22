@@ -1,0 +1,2 @@
+title = "Android platform capsule"
+recipes = ["android-aot/recipe.toml"]

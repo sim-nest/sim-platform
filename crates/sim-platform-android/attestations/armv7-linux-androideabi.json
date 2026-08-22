@@ -1,0 +1,1 @@
+{"schema":"sim.platform-cross-build-attestation/v1","target":"armv7-linux-androideabi","level":"modeled-cross-build","physical":false,"checks":["aot-staticlib","native-import-policy","byte-frame-parity"]}

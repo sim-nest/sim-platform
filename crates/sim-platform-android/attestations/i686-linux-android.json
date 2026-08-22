@@ -1,0 +1,1 @@
+{"schema":"sim.platform-cross-build-attestation/v1","target":"i686-linux-android","level":"modeled-cross-build","physical":false,"checks":["aot-staticlib","native-import-policy","byte-frame-parity"]}
