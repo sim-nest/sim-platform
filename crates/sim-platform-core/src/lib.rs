@@ -458,6 +458,200 @@ pub enum PlatformRecordError {
     DuplicateOffer(OpenSymbol),
 }
 
+/// Content-addressed application or library admitted to a runtime bundle.
+#[derive(Clone, Debug, Deserialize, serde::Serialize, Eq, Ord, PartialEq, PartialOrd)]
+pub struct BundleContent {
+    pub id: OpenSymbol,
+    pub content_digest: String,
+    /// Capabilities this content is permitted to exercise.
+    #[serde(default)]
+    pub capabilities: Vec<OpenSymbol>,
+}
+
+/// Evidence retained beside a capsule Card. Contract provenance and execution
+/// evidence deliberately remain distinct so generated support matrices cannot
+/// turn a declaration into a tested claim.
+#[derive(Clone, Debug, Deserialize, serde::Serialize, Eq, PartialEq)]
+pub struct CapsuleAttestation {
+    pub capsule: OpenSymbol,
+    pub artifact_digest: String,
+    pub card_digest: String,
+    pub evidence: ExecutionEvidence,
+}
+
+/// The sole capsule artifact emitted into a composed bundle.
+#[derive(Clone, Debug, Deserialize, serde::Serialize, Eq, PartialEq)]
+pub struct CapsuleArtifact {
+    pub capsule: OpenSymbol,
+    pub content_digest: String,
+}
+
+/// Ordered, content-addressed plan consumed identically by every boot entry.
+#[derive(Clone, Debug, Deserialize, serde::Serialize, Eq, PartialEq)]
+pub struct LibraryLoadPlan {
+    pub application: BundleContent,
+    pub libraries: Vec<BundleContent>,
+}
+
+/// Provider-neutral boot data. It contains no target-selection mechanism.
+#[derive(Clone, Debug, Deserialize, serde::Serialize, Eq, PartialEq)]
+pub struct PureBootEnvelope {
+    pub schema: OpenSymbol,
+    pub capsule: OpenSymbol,
+    pub bootstrap: OpenSymbol,
+    pub load_plan: LibraryLoadPlan,
+}
+
+/// Complete runtime bundle: exactly one descriptor and one capsule artifact.
+#[derive(Clone, Debug, Deserialize, serde::Serialize, Eq, PartialEq)]
+pub struct ComposedBundle {
+    pub bootstrap: PureBootEnvelope,
+    pub capsule_artifact: CapsuleArtifact,
+    pub card: PlatformCard,
+    pub attestation: CapsuleAttestation,
+}
+
+/// Pure build-tool input. A build tool selects `capsule`; runtime data merely
+/// records that explicit choice and the exact content closure.
+pub struct BundleComposition<'a> {
+    pub capsule: &'a OpenSymbol,
+    pub application: BundleContent,
+    pub libraries: Vec<BundleContent>,
+    pub cards: &'a [PlatformCard],
+    pub attestations: &'a [CapsuleAttestation],
+    pub declared_artifacts: &'a BTreeMap<OpenSymbol, String>,
+    pub allowed_capabilities: &'a BTreeSet<OpenSymbol>,
+    pub required_services: &'a [OpenSymbol],
+}
+
+/// Typed, fail-closed bundle-composition refusal.
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub enum BundleRefusal {
+    MissingCapsule(OpenSymbol),
+    DuplicateProvider(OpenSymbol),
+    MissingAttestation(OpenSymbol),
+    DuplicateAttestation(OpenSymbol),
+    UndeclaredArtifact(OpenSymbol),
+    EvidenceContentMismatch(OpenSymbol),
+    CapabilityEscalation {
+        content: OpenSymbol,
+        capability: OpenSymbol,
+    },
+    MissingRequiredService(OpenSymbol),
+    DuplicateContent(OpenSymbol),
+}
+
+impl fmt::Display for BundleRefusal {
+    fn fmt(&self, out: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(out, "{self:?}")
+    }
+}
+impl std::error::Error for BundleRefusal {}
+
+/// Composes one selected capsule with an explicit application and library
+/// closure. No substitute capsule is considered when the selected Card is
+/// absent or invalid.
+pub fn compose_bundle(input: BundleComposition<'_>) -> Result<ComposedBundle, BundleRefusal> {
+    let matching_cards = input
+        .cards
+        .iter()
+        .filter(|card| card.site == *input.capsule)
+        .collect::<Vec<_>>();
+    let card = match matching_cards.as_slice() {
+        [] => return Err(BundleRefusal::MissingCapsule(input.capsule.clone())),
+        [card] => *card,
+        _ => return Err(BundleRefusal::DuplicateProvider(input.capsule.clone())),
+    };
+    let matching_attestations = input
+        .attestations
+        .iter()
+        .filter(|item| item.capsule == *input.capsule)
+        .collect::<Vec<_>>();
+    let attestation = match matching_attestations.as_slice() {
+        [] => return Err(BundleRefusal::MissingAttestation(input.capsule.clone())),
+        [attestation] => *attestation,
+        _ => return Err(BundleRefusal::DuplicateAttestation(input.capsule.clone())),
+    };
+    let Some(artifact_digest) = input.declared_artifacts.get(input.capsule) else {
+        return Err(BundleRefusal::UndeclaredArtifact(input.capsule.clone()));
+    };
+    let card_digest = stable_digest(&serde_json::to_vec(card).expect("platform Card serializes"));
+    if attestation.artifact_digest != *artifact_digest || attestation.card_digest != card_digest {
+        return Err(BundleRefusal::EvidenceContentMismatch(
+            input.capsule.clone(),
+        ));
+    }
+    for service in input.required_services {
+        if !card.services.iter().any(|offer| offer.service == *service) {
+            return Err(BundleRefusal::MissingRequiredService(service.clone()));
+        }
+    }
+    let mut content_ids = BTreeSet::new();
+    for content in std::iter::once(&input.application).chain(input.libraries.iter()) {
+        if !content_ids.insert(content.id.clone()) {
+            return Err(BundleRefusal::DuplicateContent(content.id.clone()));
+        }
+        if let Some(capability) = content
+            .capabilities
+            .iter()
+            .find(|capability| !input.allowed_capabilities.contains(*capability))
+        {
+            return Err(BundleRefusal::CapabilityEscalation {
+                content: content.id.clone(),
+                capability: capability.clone(),
+            });
+        }
+    }
+    let bootstrap = PureBootEnvelope {
+        schema: OpenSymbol("boot/envelope/v1".into()),
+        capsule: input.capsule.clone(),
+        bootstrap: OpenSymbol("bootstrap/sim-native-abi-v1".into()),
+        load_plan: LibraryLoadPlan {
+            application: input.application,
+            libraries: input.libraries,
+        },
+    };
+    Ok(ComposedBundle {
+        bootstrap,
+        capsule_artifact: CapsuleArtifact {
+            capsule: input.capsule.clone(),
+            content_digest: artifact_digest.clone(),
+        },
+        card: card.clone(),
+        attestation: attestation.clone(),
+    })
+}
+
+/// One generated support-matrix row derived only from a retained Card and its
+/// matching attestation.
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct PlatformSupportRow {
+    pub capsule: OpenSymbol,
+    pub service: OpenSymbol,
+    pub contract_provenance: String,
+    pub execution_evidence: String,
+}
+
+/// Generates support rows without consulting target names or hand-maintained
+/// support lists.
+pub fn platform_support_matrix(bundles: &[ComposedBundle]) -> Vec<PlatformSupportRow> {
+    let mut rows = bundles
+        .iter()
+        .flat_map(|bundle| {
+            bundle.card.services.iter().map(|offer| PlatformSupportRow {
+                capsule: bundle.card.site.clone(),
+                service: offer.service.clone(),
+                contract_provenance: bundle.card.provenance.content_digest.clone(),
+                execution_evidence: bundle.attestation.evidence.result_digest.clone(),
+            })
+        })
+        .collect::<Vec<_>>();
+    rows.sort_by(|left, right| {
+        (&left.capsule, &left.service).cmp(&(&right.capsule, &right.service))
+    });
+    rows
+}
+
 impl fmt::Display for PlatformRecordError {
     fn fmt(&self, out: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(out, "{self:?}")

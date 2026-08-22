@@ -9,10 +9,12 @@ pub use runtime::{
 };
 
 pub use sim_platform_core::{
-    Activation, BoundServices, BundleManifest, CapsuleManifest, ContractProvenance,
-    ExecutionEvidence, FactPort, Lifecycle, OpenSymbol, PackageRole, PlatformCard,
-    PlatformProviderAuthor, PlatformRecordError, PlatformRequest, RefusalKind, Requirement,
-    RequirementBuilder, ResolutionReceipt, ResolutionRefusal, ServiceBinding, ServiceOffer,
-    ValidationContext, ValidationError, parse_bundle, parse_capsule, platform_require,
+    Activation, BoundServices, BundleComposition, BundleContent, BundleManifest, BundleRefusal,
+    CapsuleArtifact, CapsuleAttestation, CapsuleManifest, ComposedBundle, ContractProvenance,
+    ExecutionEvidence, FactPort, LibraryLoadPlan, Lifecycle, OpenSymbol, PackageRole, PlatformCard,
+    PlatformProviderAuthor, PlatformRecordError, PlatformRequest, PlatformSupportRow,
+    PureBootEnvelope, RefusalKind, Requirement, RequirementBuilder, ResolutionReceipt,
+    ResolutionRefusal, ServiceBinding, ServiceOffer, ValidationContext, ValidationError,
+    compose_bundle, parse_bundle, parse_capsule, platform_require, platform_support_matrix,
     validate_bundle, validate_capsules,
 };

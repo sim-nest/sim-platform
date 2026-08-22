@@ -46,10 +46,10 @@ claims_anchors = ["anchor/crate/sim-platform-midi"]
 [[feature]]
 id = "feature/sim-platform/platform-owner"
 title = "Platform capsule owner"
-summary = "Own and validate platform capsule and content-bound bundle manifests without granting host authority."
+summary = "Compose one selected capsule with explicit application and library content into a pure runtime bundle."
 owner = "crate/sim-platform-core"
 audiences = ["code", "framework"]
-guidance = "Load sim-lib-platform for the closed thirteen-function Small SIM API, then bind platform/active-site in the current realization environment. Capsule Cards advertise exact loader kinds and bundle descriptors select one kind and artifact without suffix discovery. Use the shaped records and pure resolver for provider-neutral selection; never resolve a global host, synthesize an unbound CPU fallback, or wrap canonical domain refs."
+guidance = "Call compose_bundle with one selected capsule id, explicit application/library content ids, retained Cards and matching attestations. It emits one PureBootEnvelope and one CapsuleArtifact, rejects authority or evidence drift, and never chooses a substitute provider. Generate support matrices only with platform_support_matrix so contract provenance and execution evidence remain separate."
 claims_anchors = ["anchor/crate/sim-platform-core", "anchor/crate/sim-platform-model", "anchor/crate/sim-lib-platform", "anchor/crate/sim-platform-bootstrap"]
 
 [[feature]]
