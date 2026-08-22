@@ -12,5 +12,11 @@ Table/Dir policy uses the storage-owned `HostDirPort`; the package provides one
 deterministic in-memory model and one root-confined Ubuntu realization behind
 that shared boundary.
 
+Physical device transport follows the same rule. `sim-viture-ffi` is the
+Ubuntu VITURE capsule package: it owns SDK discovery, dynamic loading, USB
+device-path probes, native handles, lifecycle, and a deterministic modeled
+`DevicePhysicalPort`. Stream-host crates consume that port and retain all
+device profiles and stream semantics.
+
 See `docs/humans/README.md`, `docs/agents/README.md`, `docs/generated/README.md`,
 and `docs/rustdoc/README.md` for the four documentation lanes.

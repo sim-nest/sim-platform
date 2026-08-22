@@ -1,0 +1,16 @@
+[package]
+name = "sim-viture-ffi"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+description = "Unsafe-isolated dynamic loader for VITURE glasses SDK entry points."
+readme = "BROCHURE.md"
+publish = true
+repository = "https://github.com/sim-nest/sim-platform"
+homepage = "https://github.com/sim-nest/sim-platform"
+
+[dependencies]
+libloading = "0.8"
+
+[lints.rust]
+unsafe_code = "allow"

@@ -1,5 +1,15 @@
 schema = "sim.features"
 
+[[feature]]
+id = "feature/sim-platform/device-physical-port"
+title = "Capsule-owned physical device transport"
+summary = "Own VITURE SDK loading, USB discovery, native handles, lifecycle, bounded queues, and modeled transport behind DevicePhysicalPort."
+owner = "crate/sim-viture-ffi"
+audiences = ["code", "framework"]
+guidance = "Compose this capsule port under stream-host DeviceProvider implementations. Keep profiles, consent, retention, timing, staleness, placement, and stream samples in sim-stream-host; never load a vendor SDK or probe a device path there."
+claims_anchors = ["anchor/crate/sim-viture-ffi", "spec-test/sim-platform/crates/sim-viture-ffi/src/physical"]
+supports = ["feature/sim-stream-host/hardware-host-surfaces"]
+
 [enforcement.audience]
 user = "strict"
 framework = "strict"
