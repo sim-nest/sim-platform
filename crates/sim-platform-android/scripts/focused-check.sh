@@ -1,15 +1,15 @@
 #!/bin/sh
 set -eu
 
-root=$(CDPATH= cd -- "$(dirname -- "$0")/../../.." && pwd)
+root=$(CDPATH='' cd -- "$(dirname -- "$0")/../../.." && pwd)
 scratch=$(mktemp -d /tmp/sim-platform-android-check.XXXXXX)
+trap 'rm -rf "$scratch"' EXIT HUP INT TERM
 cp -R "$root/crates/sim-platform-android" "$scratch/android"
-cp -R "$root/crates/sim-platform-core" "$scratch/core"
-sed -i 's#path = "../sim-platform-core"#path = "../core"#' "$scratch/android/Cargo.toml"
+cp "$root/crates/sim-platform-android/Cargo.lock" "$scratch/Cargo.lock"
 printf '%s\n' \
   '[workspace]' \
   'resolver = "3"' \
-  'members = ["android", "core"]' \
+  'members = ["android"]' \
   '' \
   '[workspace.package]' \
   'edition = "2024"' \
@@ -24,8 +24,15 @@ printf '%s\n' \
 
 toolchain=/home/bo/.rustup/toolchains/stable-x86_64-unknown-linux-gnu
 RUSTUP_TOOLCHAIN=stable-x86_64-unknown-linux-gnu "$toolchain/bin/cargo" \
-  test --manifest-path "$scratch/Cargo.toml" -p sim-platform-android --offline
+  test --manifest-path "$scratch/Cargo.toml" --locked -p sim-platform-android --offline
+RUSTUP_TOOLCHAIN=stable-x86_64-unknown-linux-gnu "$toolchain/bin/cargo" \
+  clippy --manifest-path "$scratch/Cargo.toml" --locked -p sim-platform-android \
+  --all-targets --offline -- -D warnings
+RUSTUP_TOOLCHAIN=stable-x86_64-unknown-linux-gnu "$toolchain/bin/cargo" \
+  doc --manifest-path "$scratch/Cargo.toml" --locked -p sim-platform-android --no-deps --offline
 test "$(find "$root/crates/sim-platform-android/attestations" -name '*.json' | wc -l)" -eq 4
-test "$(grep -c 'NativeLibAbiV1::call' "$root/crates/sim-platform-android/src/lib.rs")" -eq 1
-grep -q 'sim_native_abi_v1' "$root/crates/sim-platform-android/native/sim_native_abi.c"
+grep -q 'NativeLibAbiV1' "$root/crates/sim-platform-android/src/ffi.rs"
+grep -q 'sim_native_abi_v1' "$root/crates/sim-platform-android/src/ffi.rs"
+grep -q 'Java_org_simnest_shell_SimActivity_nativeCall' "$root/crates/sim-platform-android/src/ffi.rs"
 grep -q 'System.loadLibrary' "$root/shell/android/app/src/main/java/org/simnest/shell/SimActivity.kt"
+grep -q 'android-emulator-runner' "$root/.github/workflows/ci.yml"

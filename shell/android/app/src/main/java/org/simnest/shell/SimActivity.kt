@@ -5,21 +5,130 @@ import android.content.Intent
 import android.media.AudioManager
 import android.net.Uri
 import android.os.Bundle
+import org.json.JSONArray
+import org.json.JSONObject
 
-/** Thin packet pump. Rust owns policy; Android objects never cross this boundary. */
+/** Thin typed packet pump. Rust owns policy; Android objects never cross this boundary. */
 class SimActivity : Activity() {
-    private external fun nativeCall(function: String, frame: ByteArray): ByteArray
-    override fun onCreate(state: Bundle?) { super.onCreate(state); lifecycle("created") ; intent?.let(::activate) }
-    override fun onResume() { super.onResume(); lifecycle("active") }
-    override fun onPause() { lifecycle("suspended"); super.onPause() }
-    override fun onDestroy() { lifecycle("stopped"); super.onDestroy() }
-    override fun onNewIntent(intent: Intent) { super.onNewIntent(intent); activate(intent) }
-    private fun lifecycle(state: String) = nativeCall("platform/lifecycle", "{\"type\":\"lifecycle\",\"state\":\"$state\"}".encodeToByteArray())
-    private fun activate(intent: Intent) { val ref = intent.data?.let(::boundedContentRef) ?: "null"; nativeCall("platform/activation", "{\"type\":\"activation\",\"action\":\"${intent.action ?: "view"}\",\"content\":$ref}".encodeToByteArray()) }
-    private fun boundedContentRef(uri: Uri): String { contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION); return "{\"kind\":\"table\",\"mount\":\"android-content\",\"key\":[\"${uri.toString().hashCode()}\"]}" }
-    fun permissionResult(name: String, granted: Boolean) = nativeCall("platform/activation", "{\"type\":\"permission\",\"permission\":\"$name\",\"granted\":$granted}".encodeToByteArray())
-    fun notification(channel: String, bytes: ByteArray) = nativeCall("platform/activation", "{\"type\":\"notification\",\"channel\":\"$channel\",\"payload\":[]}".encodeToByteArray())
-    fun audioDevice(manager: AudioManager, id: Int, connected: Boolean) = nativeCall("platform/activation", "{\"type\":\"audio-device\",\"id\":\"$id\",\"connected\":$connected}".encodeToByteArray())
-    fun backgroundExecution(allowed: Boolean) = nativeCall("platform/activation", "{\"type\":\"background-execution\",\"allowed\":$allowed}".encodeToByteArray())
-    companion object { init { System.loadLibrary("sim_platform_android") } }
+    private external fun nativeInstantiate(): Long
+    private external fun nativeDestroy(handle: Long)
+    private external fun nativeCall(handle: Long, function: Int, frame: ByteArray): ByteArray
+
+    private var capsule = 0L
+
+    override fun onCreate(state: Bundle?) {
+        super.onCreate(state)
+        capsule = nativeInstantiate()
+        lifecycle("created")
+        intent?.let(::activate)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        lifecycle("active")
+    }
+
+    override fun onPause() {
+        lifecycle("suspended")
+        super.onPause()
+    }
+
+    override fun onDestroy() {
+        if (capsule != 0L) {
+            lifecycle("stopped")
+            nativeDestroy(capsule)
+            capsule = 0L
+        }
+        super.onDestroy()
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        activate(intent)
+    }
+
+    private fun invoke(function: Int, input: JSONObject): JSONObject =
+        JSONObject(nativeCall(capsule, function, input.toString().encodeToByteArray()).decodeToString())
+
+    private fun lifecycle(state: String): JSONObject =
+        invoke(LIFECYCLE, JSONObject().put("type", "lifecycle").put("state", state))
+
+    private fun activate(intent: Intent): JSONObject =
+        invoke(
+            ACTIVATION,
+            JSONObject()
+                .put("type", "activation")
+                .put("action", intent.action ?: "android.intent.action.VIEW")
+                .put("content", intent.data?.let { boundedContentRef(intent, it) }),
+        )
+
+    private fun boundedContentRef(intent: Intent, uri: Uri): JSONObject {
+        val persistable = intent.flags and Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION != 0
+        val readable = intent.flags and Intent.FLAG_GRANT_READ_URI_PERMISSION != 0
+        if (persistable && readable) {
+            contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        }
+        return JSONObject()
+            .put("kind", "table")
+            .put("mount", "android-content")
+            .put("key", JSONArray().put(uri.toString().hashCode().toUInt().toString(16)))
+    }
+
+    fun permissionResult(name: String, granted: Boolean): JSONObject =
+        invoke(
+            ACTIVATION,
+            JSONObject()
+                .put("type", "permission")
+                .put("permission", name)
+                .put("granted", granted),
+        )
+
+    fun notification(channel: String, bytes: ByteArray): JSONObject =
+        invoke(
+            ACTIVATION,
+            JSONObject()
+                .put("type", "notification")
+                .put("channel", channel)
+                .put("payload", JSONArray(bytes.map { it.toUByte().toInt() })),
+        )
+
+    fun audioDevice(manager: AudioManager, id: Int, connected: Boolean): JSONObject {
+        manager.getDevices(AudioManager.GET_DEVICES_ALL)
+        return invoke(
+            ACTIVATION,
+            JSONObject()
+                .put("type", "audio-device")
+                .put("id", id.toString())
+                .put("connected", connected),
+        )
+    }
+
+    fun backgroundExecution(allowed: Boolean): JSONObject =
+        invoke(
+            ACTIVATION,
+            JSONObject()
+                .put("type", "background-execution")
+                .put("allowed", allowed),
+        )
+
+    internal fun testLifecycle(state: String): JSONObject = lifecycle(state)
+
+    internal fun testActivation(action: String): JSONObject =
+        invoke(
+            ACTIVATION,
+            JSONObject()
+                .put("type", "activation")
+                .put("action", action)
+                .put("content", JSONObject.NULL),
+        )
+
+    companion object {
+        private const val LIFECYCLE = 0
+        private const val ACTIVATION = 1
+
+        init {
+            System.loadLibrary("sim_platform_android")
+        }
+    }
 }

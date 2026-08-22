@@ -2135,6 +2135,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "sim-platform-android"
+version = "0.1.0"
+dependencies = [
+ "jni-sys 0.3.1",
+ "serde",
+ "serde_json",
+ "sim-codec-binary 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "sim-kernel",
+]
+
+[[package]]
 name = "sim-platform-core"
 version = "0.1.0"
 dependencies = [

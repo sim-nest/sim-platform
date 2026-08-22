@@ -1,1 +1,14 @@
-{"schema":"sim.platform-cross-build-attestation/v1","target":"x86_64-linux-android","level":"modeled-cross-build","physical":false,"checks":["aot-staticlib","native-import-policy","byte-frame-parity","emulator-lifecycle-model"]}
+{
+  "schema": "sim.platform-cross-build-attestation/v1",
+  "target": "x86_64-linux-android",
+  "evidence": "cross-built",
+  "registered_host": null,
+  "hosted_ci": false,
+  "hosted_receipt": null,
+  "rust_release": "1.97.1",
+  "rust_commit": "8bab26f4f68e0e26f0bb7960be334d5b520ea452",
+  "target_spec_sha256": "6c252111d87dba02790ec3d61c6b005a33296e9d7abfde10aab3c28653a6067b",
+  "artifact_sha256": "142b61e26a641943353d62db09d578deb4b4ebfdda1159f38d68ac6a6e988c18",
+  "undefined_imports_sha256": "870cae1b17c7d37dd1c2c78379b3fc4504ec13cd03012d15ac157f6ab3202ef7",
+  "undefined_imports_count": 4587
+}

@@ -1,1 +1,26 @@
-{"schema":"sim.platform-toolchain-provenance/v1","checked_on":"2026-08-22","digest_semantics":"sha256 of the pipe-delimited URI, pinned version, support claims, API floor, and target set","rust":{"version":"1.97.1","uri":"https://doc.rust-lang.org/rustc/platform-support/android.html","contract_sha256":"25e30a7b8a2c2a8146c549d22c9bf662e731df623f075eb208aeea9733df97fe","support":"tier-2-with-host-tools; std; Android NDK linker"},"ndk":{"version":"r27d-lts","uri":"https://developer.android.com/ndk/downloads/","contract_sha256":"f186fcae3f9bca81645723e832b9e89d06096775615d4d2dfedf188e57c6d168","api_floor":28},"targets":["aarch64-linux-android","armv7-linux-androideabi","x86_64-linux-android","i686-linux-android"]}
+{
+  "schema": "sim.platform-android-build-provenance/v1",
+  "local_checked_on": "2026-08-22",
+  "rust": {
+    "official_uri": "https://doc.rust-lang.org/rustc/platform-support/android.html",
+    "release": "1.97.1",
+    "commit": "8bab26f4f68e0e26f0bb7960be334d5b520ea452",
+    "pin_sha256": "059e35b45a38f97d19555c97a5c564fefcd49ba7d1cda40a18e1831d818ac704",
+    "target_specs": {
+      "aarch64-linux-android": "d5764303e75a17e965eb706b05d352ef2cee8edd7b26e95c93fe2bbbbd7cb075",
+      "armv7-linux-androideabi": "56e9a9cf3f8f1b63db1d9dcc0730deabf9b02a8360c42536531e12d70842b51a",
+      "i686-linux-android": "e5db79642770d336e355c7ffc873c43c75bc92faf35ceecc90e977ac6507a320",
+      "x86_64-linux-android": "6c252111d87dba02790ec3d61c6b005a33296e9d7abfde10aab3c28653a6067b"
+    },
+    "local_support_facts": "compiler target metadata says tier 2, std true, host_tools false"
+  },
+  "ndk": {
+    "official_uri": "https://developer.android.com/ndk/downloads/",
+    "release": "r27d",
+    "package": "27.3.13750724",
+    "api_floor": 28,
+    "pin_sha256": "404f1fa7ce583b2f63d399f67f7bcce52319edc9c898f21bd774c8b7ea2d5b16"
+  },
+  "official_remote_recheck": "terminal-closeout-required",
+  "official_response_sha256": null
+}
