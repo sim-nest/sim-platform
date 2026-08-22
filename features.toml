@@ -132,6 +132,16 @@ claims_anchors = ["anchor/crate/sim-table-fs", "spec-test/sim-platform/crates/si
 supports = ["feature/sim-platform/ubuntu-pc-capsule"]
 
 [[feature]]
+id = "feature/sim-platform/ledger-command-realization"
+title = "Ledger command platform composition"
+summary = "Bind preopened Table/Dir mounts and the active platform clock into the loadable ledger command."
+owner = "crate/sim-table-fs"
+audiences = ["code", "framework"]
+guidance = "Construct ledger command context only from named preopened HostDirPort mounts and the active platform wall-clock service. Use MemoryHostDirPort plus SeededPlatform for product tests; native paths, environment discovery, and temporary directories stay outside ledger libraries and receipts."
+claims_anchors = ["anchor/crate/sim-table-fs", "anchor/crate/sim-platform-model"]
+supports = ["feature/sim-platform/host-directory-realization", "feature/sim-platform/platform-policy", "feature/sim-ledger/ledger-command"]
+
+[[feature]]
 id = "feature/sim-platform/product-membrane"
 title = "Platform product membrane"
 summary = "Expose provider-neutral records, requirement builders, provider-author contracts, and exact model and Ubuntu bundle closures."
