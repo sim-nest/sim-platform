@@ -1,0 +1,18 @@
+{
+  "schema": "sim.platform.amazfit-provenance/v1",
+  "recorded": "2026-08-22",
+  "remote_recheck": "terminal-closeout-required",
+  "reason": "ordinary roadmap work unit is mechanically networkless",
+  "supported_runtime": {
+    "device_family": "Amazfit T-Rex 3 Pro",
+    "minimum_api_level": "4.0",
+    "language": "Zepp OS supported JavaScript subset",
+    "evidence": "model/cross-built"
+  },
+  "official_sources": [
+    "https://docs.zepp.com/docs/guides/framework/device/app/",
+    "https://docs.zepp.com/docs/v2/guides/framework/device/js-support/",
+    "https://docs.zepp.com/docs/guides/framework/device/app-service/",
+    "https://docs.zepp.com/docs/reference/related-resources/device-list/"
+  ]
+}

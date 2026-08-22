@@ -102,6 +102,16 @@ claims_anchors = ["anchor/crate/sim-platform-android"]
 supports = ["feature/sim-platform/platform-owner", "feature/sim-platform/bootstrap-rind", "feature/sim-platform/platform-policy", "feature/sim-platform/native-media-realization"]
 
 [[feature]]
+id = "feature/sim-platform/amazfit-proxy-capsule"
+title = "Amazfit bounded proxy capsule"
+summary = "Bridge a minimal Zepp OS event, sensor, haptic, and glance shell through the Android capsule without running SIM behavior on the watch."
+owner = "crate/sim-platform-amazfit"
+audiences = ["code", "framework"]
+guidance = "Activate AmazfitCapsule inside the Android companion and exchange only versioned, bounded proxy frames with the Zepp device app. Map accepted watch inputs and outputs to the existing WATCH_8 Device, Stream, and Surface contracts in the host provider. The JavaScript shell owns official lifecycle registration and vendor calls only; it has no evaluator, routing policy, or parallel phone runtime."
+claims_anchors = ["anchor/crate/sim-platform-amazfit"]
+supports = ["feature/sim-platform/android-capsule", "feature/sim-stream-host/hardware-host-surfaces", "feature/sim-web/device-surfaces"]
+
+[[feature]]
 id = "feature/sim-platform/ios-capsule"
 title = "iOS AOT platform capsule"
 summary = "Host the unchanged native ABI as statically linked Rust behind one thin Swift scene shell."

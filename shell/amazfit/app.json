@@ -1,0 +1,7 @@
+{
+  "configVersion": "v3",
+  "app": { "appId": 1099511627777, "appName": "SIM bounded proxy", "appType": "app", "version": { "code": 1, "name": "0.1.0" }, "icon": "" },
+  "runtime": { "apiVersion": { "compatible": "4.0", "target": "4.0", "minVersion": "4.0" } },
+  "targets": { "default": { "module": { "page": { "pages": ["app"] } }, "platforms": [ { "name": "Amazfit T-Rex 3 Pro" } ] } },
+  "permissions": []
+}

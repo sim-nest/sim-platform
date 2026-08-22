@@ -1,0 +1,3 @@
+title = "Amazfit proxy"
+description = "Bounded modeled proxy conformance."
+order = ["proxy"]
