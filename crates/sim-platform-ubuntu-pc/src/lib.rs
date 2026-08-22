@@ -7,7 +7,9 @@ use sim_platform_core::{
 };
 
 pub use sim_platform_linux as linux;
+mod compute;
 mod loader;
+pub use compute::UbuntuComputeProbe;
 pub use loader::UbuntuLoaderPort;
 mod process;
 pub use process::UbuntuProcess;
