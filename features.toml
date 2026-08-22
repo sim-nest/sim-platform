@@ -127,7 +127,7 @@ title = "Native audio and plugin realization"
 summary = "Realize audio-owned device and plugin ports through explicit platform capsule bindings."
 owner = "crate/sim-platform-audio"
 audiences = ["code", "framework"]
-guidance = "Bind only capsule-advertised ALSA, ASIO, CoreAudio, JACK, PipeWire, PortAudio, cpal, LV2, VST3, or CLAP services. Consumers use sim-audio-ports Cards and typed refusals; absent APIs are Unsupported, native handles never enter domain code, and callbacks obey the prevalidated nonallocating nonblocking budget."
+guidance = "Bind only capsule-advertised ALSA, ASIO, CoreAudio, JACK, PipeWire, PortAudio, cpal, LV2, VST3, or CLAP services. Consumers, including wasm ABI adapters, use sim-audio-ports Cards and typed refusals; ABI import names remain declarations while performed callbacks are capsule-owned host facts. Absent APIs are Unsupported, native handles never enter domain code, and callbacks obey the prevalidated nonallocating nonblocking budget."
 claims_anchors = ["anchor/crate/sim-platform-audio"]
 supports = ["feature/sim-audio-daw/native-media-ports", "feature/sim-platform/ubuntu-pc-capsule"]
 
