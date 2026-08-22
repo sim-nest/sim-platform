@@ -12,6 +12,26 @@ use std::{
 mod transport;
 pub use transport::{LinuxDnsPort, LinuxIpcPort, LinuxSocketPort, bind_transport_services};
 
+/// Linux capsule realization of the server wall-clock contract.
+#[derive(Clone, Copy, Debug, Default)]
+pub struct LinuxWallClock;
+
+impl sim_lib_server::WallClock for LinuxWallClock {
+    fn now(&self) -> sim_kernel::Result<sim_lib_server::WallTimestamp> {
+        let elapsed = SystemTime::now()
+            .duration_since(UNIX_EPOCH)
+            .map_err(|error| {
+                sim_kernel::Error::HostError(format!(
+                    "Linux wall clock precedes Unix epoch: {error}"
+                ))
+            })?;
+        let unix_millis = u64::try_from(elapsed.as_millis()).map_err(|_| {
+            sim_kernel::Error::HostError("Linux wall clock exceeds u64 milliseconds".to_owned())
+        })?;
+        Ok(sim_lib_server::WallTimestamp::from_unix_millis(unix_millis))
+    }
+}
+
 /// Privacy-filtered facts supplied during registration.
 #[derive(Clone, Debug, Serialize, Deserialize, Eq, PartialEq)]
 pub struct HostFacts {

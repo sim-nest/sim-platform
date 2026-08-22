@@ -97,7 +97,7 @@ title = "Ubuntu socket, DNS, and local IPC realization"
 summary = "Realize agent-net transport ports inside the Linux capsule with typed native failures and explicit platform-specific IPC identities."
 owner = "crate/sim-platform-linux"
 audiences = ["code", "framework"]
-guidance = "Bind LinuxSocketPort, LinuxDnsPort, and optional LinuxIpcPort at capsule activation. Protocol crates consume only sim-transport-ports traits; physical loopback and native-error conformance stays in this capsule."
+guidance = "Bind LinuxSocketPort, LinuxDnsPort, optional LinuxIpcPort, and LinuxWallClock at capsule activation. Protocol crates consume only sim-transport-ports and sim-lib-server traits; physical loopback, wall-time observation, and native-error conformance stay in this capsule."
 claims_anchors = ["anchor/crate/sim-platform-linux", "spec-test/sim-platform/crates/sim-platform-linux/tests/transport"]
 supports = ["feature/sim-agent-net/transport-ports", "feature/sim-platform/ubuntu-pc-capsule"]
 
