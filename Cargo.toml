@@ -1,6 +1,7 @@
 [workspace]
 resolver = "3"
 members = [
+  "crates/sim-platform-web-shell",
   "crates/sim-platform-audio",
   "crates/sim-platform-core",
   "crates/sim-platform-model",

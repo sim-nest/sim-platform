@@ -9,7 +9,17 @@
     {
       "features": [],
       "group": "workspace",
+      "package": "sim-platform-audio"
+    },
+    {
+      "features": [],
+      "group": "workspace",
       "package": "sim-platform-bootstrap"
+    },
+    {
+      "features": [],
+      "group": "workspace",
+      "package": "sim-platform-construction"
     },
     {
       "features": [],
@@ -19,7 +29,100 @@
     {
       "features": [],
       "group": "workspace",
+      "package": "sim-platform-linux"
+    },
+    {
+      "features": [
+        {
+          "edges": [],
+          "name": "default",
+          "workspace_edges": []
+        },
+        {
+          "edges": [
+            "dep:midir",
+            "dep:zbus"
+          ],
+          "name": "native-midi",
+          "workspace_edges": []
+        }
+      ],
+      "group": "workspace",
+      "package": "sim-platform-midi"
+    },
+    {
+      "features": [],
+      "group": "workspace",
       "package": "sim-platform-model"
+    },
+    {
+      "features": [],
+      "group": "workspace",
+      "package": "sim-platform-ubuntu-pc"
+    },
+    {
+      "features": [],
+      "group": "workspace",
+      "package": "sim-platform-web-shell"
+    },
+    {
+      "features": [
+        {
+          "edges": [],
+          "name": "default",
+          "workspace_edges": []
+        },
+        {
+          "edges": [
+            "dep:sim-lib-midi-shapes",
+            "dep:sim-lib-midi-smf"
+          ],
+          "name": "midi",
+          "workspace_edges": []
+        },
+        {
+          "edges": [
+            "dep:sim-lib-music-core",
+            "dep:sim-lib-music-shapes"
+          ],
+          "name": "music",
+          "workspace_edges": []
+        },
+        {
+          "edges": [
+            "dep:sim-lib-music-core",
+            "dep:sim-lib-music-notation",
+            "dep:sim-lib-music-shapes"
+          ],
+          "name": "notation",
+          "workspace_edges": []
+        },
+        {
+          "edges": [
+            "dep:sim-lib-sound-core",
+            "dep:sim-lib-sound-shapes"
+          ],
+          "name": "sound",
+          "workspace_edges": []
+        },
+        {
+          "edges": [
+            "dep:sim-lib-pitch-core",
+            "dep:sim-lib-sound-core",
+            "dep:sim-lib-sound-shapes",
+            "dep:sim-lib-sound-tuning"
+          ],
+          "name": "tuning",
+          "workspace_edges": []
+        }
+      ],
+      "group": "workspace",
+      "package": "sim-table-fs"
+    },
+    {
+      "features": [],
+      "group": "workspace",
+      "package": "sim-viture-ffi"
     },
     {
       "features": [],

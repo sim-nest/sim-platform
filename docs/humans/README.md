@@ -17,12 +17,30 @@ This generated lane consumes `docs/generated/sim-index-fragment.sx`. Global inde
 
 | Feature | Subject | Specimens | Summary |
 | --- | --- | ---: | --- |
+| `feature/sim-platform/construction-integration-realization` | `crate/sim-platform-construction` | 0 | Realize Dalux HTTPS and Powerproject desktop automation behind construction-owned ports. |
+| `feature/sim-platform/device-physical-port` | `crate/sim-viture-ffi` | 0 | Own VITURE SDK loading, USB discovery, native handles, lifecycle, bounded queues, and modeled transport behind DevicePhysicalPort. |
+| `feature/sim-platform/native-midi-realization` | `crate/sim-platform-midi` | 0 | Ubuntu and deterministic platform ports realize BlueZ and RtMidi endpoints behind the music-owned MidiPort contract. |
 | `feature/sim-platform/platform-owner` | `crate/sim-platform-core` | 0 | Own and validate platform capsule and content-bound bundle manifests without granting host authority. |
+| `feature/sim-platform/platform-policy` | `crate/sim-platform-core` | 0 | Resolve explicit cross-domain fact services atomically and execute against a seeded, host-free EvalFabric site. |
+| `feature/sim-platform/bootstrap-rind` | `crate/sim-platform-bootstrap` | 0 | Admit one exact adjacent platform bundle and capsule through the existing native ABI without ambient discovery. |
+| `feature/sim-platform/ubuntu-pc-capsule` | `crate/sim-platform-ubuntu-pc` | 0 | Provide explicit desktop and headless Ubuntu Cards over bounded Linux mechanics, including the full post-bootstrap loader service. |
+| `feature/sim-platform/process-realization` | `crate/sim-platform-ubuntu-pc` | 0 | Realize runtime-owned ProcessPort requests through a deterministic model or confined Ubuntu process tree. |
+| `feature/sim-platform/transport-realization` | `crate/sim-platform-linux` | 0 | Realize agent-net transport ports inside the Linux capsule with typed native failures and explicit platform-specific IPC identities. |
+| `feature/sim-platform/web-shell-realization` | `crate/sim-platform-web-shell` | 0 | Realize the host-neutral web shell through Linux-owned process, transport, mount, time, entropy, and external-open services. |
+| `feature/sim-platform/native-compute-probing` | `crate/sim-platform-ubuntu-pc` | 0 | Probe CUDA, ROCm, and wgpu once in the Ubuntu capsule and inject retained results into compute-owned executors. |
+| `feature/sim-platform/native-media-realization` | `crate/sim-platform-audio` | 0 | Realize audio-owned device and plugin ports through explicit platform capsule bindings. |
+| `feature/sim-platform/host-directory-realization` | `crate/sim-table-fs` | 0 | Realize storage-owned HostDirPort semantics with one deterministic model and one confined Ubuntu adapter. |
+| `feature/sim-platform/ledger-command-realization` | `crate/sim-table-fs` | 0 | Bind preopened Table/Dir mounts and the active platform clock into the loadable ledger command. |
+| `feature/sim-platform/product-membrane` | `crate/sim-lib-platform` | 0 | Expose provider-neutral records, requirement builders, provider-author contracts, and exact model and Ubuntu bundle closures. |
 
 ## Surfaces
 
 | Surface | Kind | Subject |
 | --- | --- | --- |
+| `cli/determinism-probe` | `cli` | `crate/sim-platform-model` |
+| `cli/sim-platform-model` | `cli` | `crate/sim-platform-model` |
+| `cli/sim-platform-web-shell` | `cli` | `crate/sim-platform-web-shell` |
+| `cli/sim-web-shell` | `cli` | `crate/sim-platform-web-shell` |
 | `cli/xtask` | `cli` | `crate/xtask` |
 | `docs/sim-platform/generated` | `docs` | `doc-set/sim-platform/generated` |
 | `model/sim-platform-model` | `model-exchange` | `crate/sim-platform-model` |
@@ -30,17 +48,43 @@ This generated lane consumes `docs/generated/sim-index-fragment.sx`. Global inde
 ## Recipes
 
 - `crates/sim-lib-platform/recipes/01-basics/chapter.toml`
+- `crates/sim-lib-platform/recipes/01-basics/modeled-requirement/expected.txt`
+- `crates/sim-lib-platform/recipes/01-basics/modeled-requirement/purpose.md`
+- `crates/sim-lib-platform/recipes/01-basics/modeled-requirement/recipe.toml`
+- `crates/sim-lib-platform/recipes/01-basics/modeled-requirement/setup.siml`
+- `crates/sim-lib-platform/recipes/01-basics/ubuntu-requirement/expected.txt`
+- `crates/sim-lib-platform/recipes/01-basics/ubuntu-requirement/purpose.md`
+- `crates/sim-lib-platform/recipes/01-basics/ubuntu-requirement/recipe.toml`
+- `crates/sim-lib-platform/recipes/01-basics/ubuntu-requirement/setup.siml`
 - `crates/sim-lib-platform/recipes/book.toml`
 - `crates/sim-platform-bootstrap/recipes/01-basics/chapter.toml`
 - `crates/sim-platform-bootstrap/recipes/book.toml`
+- `crates/sim-platform-construction/recipes/01-basics/chapter.toml`
+- `crates/sim-platform-construction/recipes/book.toml`
 - `crates/sim-platform-core/recipes/01-basics/chapter.toml`
 - `crates/sim-platform-core/recipes/01-basics/fictional-capsule/expected.txt`
 - `crates/sim-platform-core/recipes/01-basics/fictional-capsule/purpose.md`
 - `crates/sim-platform-core/recipes/01-basics/fictional-capsule/recipe.toml`
 - `crates/sim-platform-core/recipes/01-basics/fictional-capsule/setup.siml`
 - `crates/sim-platform-core/recipes/book.toml`
+- `crates/sim-platform-linux/recipes/book.toml`
 - `crates/sim-platform-model/recipes/01-basics/chapter.toml`
 - `crates/sim-platform-model/recipes/book.toml`
+- `crates/sim-platform-ubuntu-pc/recipes/book.toml`
+- `crates/sim-platform-web-shell/recipes/01-basics/chapter.toml`
+- `crates/sim-platform-web-shell/recipes/01-basics/modeled-boundary/expected.txt`
+- `crates/sim-platform-web-shell/recipes/01-basics/modeled-boundary/purpose.md`
+- `crates/sim-platform-web-shell/recipes/01-basics/modeled-boundary/recipe.toml`
+- `crates/sim-platform-web-shell/recipes/01-basics/modeled-boundary/setup.siml`
+- `crates/sim-platform-web-shell/recipes/book.toml`
+- `crates/sim-table-fs/recipes/01-basics/chapter.toml`
+- `crates/sim-table-fs/recipes/01-basics/grep-tree/purpose.md`
+- `crates/sim-table-fs/recipes/01-basics/grep-tree/recipe.toml`
+- `crates/sim-table-fs/recipes/01-basics/grep-tree/setup.siml`
+- `crates/sim-table-fs/recipes/01-basics/read-edit-file/purpose.md`
+- `crates/sim-table-fs/recipes/01-basics/read-edit-file/recipe.toml`
+- `crates/sim-table-fs/recipes/01-basics/read-edit-file/setup.siml`
+- `crates/sim-table-fs/recipes/book.toml`
 
 ## Worked Examples
 

@@ -1,5 +1,5 @@
 {
-  "card_count": 6,
+  "card_count": 11,
   "cards": [
     {
       "id": "browse/catalog",
@@ -20,9 +20,21 @@
       "summary": ""
     },
     {
+      "id": "cookbook/sim-platform-construction",
+      "kind": "cookbook-recipe",
+      "owner": "sim-platform-construction",
+      "summary": ""
+    },
+    {
       "id": "cookbook/sim-platform-core",
       "kind": "cookbook-recipe",
       "owner": "sim-platform-core",
+      "summary": ""
+    },
+    {
+      "id": "cookbook/sim-platform-linux",
+      "kind": "cookbook-recipe",
+      "owner": "sim-platform-linux",
       "summary": ""
     },
     {
@@ -30,6 +42,24 @@
       "kind": "cookbook-recipe",
       "owner": "sim-platform-model",
       "summary": ""
+    },
+    {
+      "id": "cookbook/sim-platform-ubuntu-pc",
+      "kind": "cookbook-recipe",
+      "owner": "sim-platform-ubuntu-pc",
+      "summary": ""
+    },
+    {
+      "id": "cookbook/sim-platform-web-shell",
+      "kind": "cookbook-recipe",
+      "owner": "sim-platform-web-shell",
+      "summary": ""
+    },
+    {
+      "id": "cookbook/storage/table-fs",
+      "kind": "cookbook-recipe",
+      "owner": "sim-table-fs",
+      "summary": "Host directory reads, writes, edits, and searches through the table surface."
     },
     {
       "id": "registry/catalog",

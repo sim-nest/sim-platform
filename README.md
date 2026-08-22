@@ -4,6 +4,11 @@
 descriptors. It begins with pure manifest contracts and fictional model data;
 repository membership alone grants no host-binding authority.
 
+The native `sim-web-shell` executable also lives here. Its Linux capsule
+realizes the host-neutral web shell's transport, mounted-file, monotonic-time,
+entropy, and external-open services; all Surface, Scene, Intent, session, and
+layout policy remains in `sim-web`.
+
 The workspace contains the pure contract (`sim-platform-core`), deterministic
 fictional examples (`sim-platform-model`), the loadable pure API
 (`sim-lib-platform`), and the uniquely classified bootstrap rind

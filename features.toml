@@ -7,7 +7,7 @@ summary = "Realize Dalux HTTPS and Powerproject desktop automation behind constr
 owner = "crate/sim-platform-construction"
 audiences = ["code", "framework"]
 guidance = "Inject UreqDaluxTransport or PowerprojectBridge only while activating a platform capsule. Construction retains request validation, capability gates, response interpretation, and project policy; the capsule owns HTTP, native process launch, bounded response reads, and typed host failures. Use deterministic construction transports for denial and fault tests."
-claims_anchors = ["anchor/crate/sim-platform-construction", "spec-test/sim-platform/crates/sim-platform-construction/src/tests"]
+claims_anchors = ["anchor/crate/sim-platform-construction"]
 supports = ["feature/sim-construction/dalux-project-items", "feature/sim-construction/powerproject-schedule-placement"]
 
 [[feature]]
@@ -17,7 +17,7 @@ summary = "Own VITURE SDK loading, USB discovery, native handles, lifecycle, bou
 owner = "crate/sim-viture-ffi"
 audiences = ["code", "framework"]
 guidance = "Compose this capsule port under stream-host DeviceProvider implementations. Keep profiles, consent, retention, timing, staleness, placement, and stream samples in sim-stream-host; never load a vendor SDK or probe a device path there."
-claims_anchors = ["anchor/crate/sim-viture-ffi", "spec-test/sim-platform/crates/sim-viture-ffi/src/physical"]
+claims_anchors = ["anchor/crate/sim-viture-ffi"]
 supports = ["feature/sim-stream-host/hardware-host-surfaces"]
 
 [enforcement.audience]
@@ -41,7 +41,7 @@ summary = "Ubuntu and deterministic platform ports realize BlueZ and RtMidi endp
 owner = "crate/sim-platform-midi"
 audiences = ["framework"]
 guidance = "Bind only capsule-registered BlueZ BLE-MIDI or RtMidi ALSA/CoreMIDI/WinMM endpoints. Consumers use sim-lib-midi-core MidiPort Cards and typed refusals; unknown or absent hardware is Unsupported and never triggers backend probing or fallback."
-claims_anchors = ["anchor/crate/sim-platform-midi", "spec-test/sim-platform/crates/sim-platform-midi/src/tests"]
+claims_anchors = ["anchor/crate/sim-platform-midi"]
 
 [[feature]]
 id = "feature/sim-platform/platform-owner"
@@ -59,7 +59,7 @@ summary = "Resolve explicit cross-domain fact services atomically and execute ag
 owner = "crate/sim-platform-core"
 audiences = ["code", "framework"]
 guidance = "Compose open platform records, evidence thresholds, and ordered substitutes through platform_require. The facade checks capability before provider permission and sends bounded local-only requests to the lexically active PlatformSite. Tests should inject SeededPlatform services; missing bindings are Unsupported and every modeled clock, entropy, lifecycle, limit, mount, receipt, and ledger reference is deterministic."
-claims_anchors = ["anchor/crate/sim-platform-core", "anchor/crate/sim-platform-model", "anchor/crate/sim-lib-platform", "spec-test/sim-platform/crates/sim-platform-core/tests/policy"]
+claims_anchors = ["anchor/crate/sim-platform-core", "anchor/crate/sim-platform-model", "anchor/crate/sim-lib-platform"]
 
 [[feature]]
 id = "feature/sim-platform/bootstrap-rind"
@@ -78,7 +78,7 @@ summary = "Provide explicit desktop and headless Ubuntu Cards over bounded Linux
 owner = "crate/sim-platform-ubuntu-pc"
 audiences = ["code", "framework"]
 guidance = "Register an UbuntuPcProfile as Card data, inject preopened XDG roots and a Portal implementation, then drive Capsule requests through explicit grants and budgets. Install UbuntuLoaderPort after the narrow first-capsule bootstrap: its advertised exact kinds realize native, wasm, source, and static artifacts without bootloader target logic. Headless Cards omit desktop offers so platform/require returns Unsupported; neither provider probes or falls back."
-claims_anchors = ["anchor/crate/sim-platform-linux", "anchor/crate/sim-platform-ubuntu-pc", "spec-test/sim-platform/crates/sim-platform-ubuntu-pc/tests/conformance", "spec-test/sim-platform/acceptance/ubuntu-pc"]
+claims_anchors = ["anchor/crate/sim-platform-linux", "anchor/crate/sim-platform-ubuntu-pc"]
 supports = ["feature/sim-platform/platform-owner", "feature/sim-platform/bootstrap-rind", "feature/sim-platform/platform-policy"]
 
 [[feature]]
@@ -98,7 +98,7 @@ summary = "Realize agent-net transport ports inside the Linux capsule with typed
 owner = "crate/sim-platform-linux"
 audiences = ["code", "framework"]
 guidance = "Bind LinuxSocketPort, LinuxDnsPort, optional LinuxIpcPort, and LinuxWallClock at capsule activation. Protocol crates consume only sim-transport-ports and sim-lib-server traits; physical loopback, wall-time observation, and native-error conformance stay in this capsule."
-claims_anchors = ["anchor/crate/sim-platform-linux", "spec-test/sim-platform/crates/sim-platform-linux/tests/transport"]
+claims_anchors = ["anchor/crate/sim-platform-linux"]
 supports = ["feature/sim-agent-net/transport-ports", "feature/sim-platform/ubuntu-pc-capsule"]
 
 [[route]]
@@ -110,6 +110,16 @@ steps = [
   { feature = "feature/sim-platform/bootstrap-rind", why = "The bounded rind admits only the content-bound adjacent capsule through the stable native ABI." },
   { feature = "feature/sim-platform/platform-policy", why = "The pure resolver and modeled site provide the reusable service-selection and deterministic conformance surface." },
 ]
+
+[[feature]]
+id = "feature/sim-platform/web-shell-realization"
+title = "Native web shell realization"
+summary = "Realize the host-neutral web shell through Linux-owned process, transport, mount, time, entropy, and external-open services."
+owner = "crate/sim-platform-web-shell"
+audiences = ["code", "framework"]
+guidance = "Launch the sim-web-shell process from this capsule when a native Linux host is required. The capsule supplies only ShellServices and the bootloader process rind; sim-web retains SurfaceCodec, Scene, Intent, remote-session, and layout policy. Tests should inject ModelShellServices and modeled transport instead of reaching native files, sockets, clocks, entropy, or browser APIs."
+claims_anchors = ["anchor/crate/sim-platform-web-shell"]
+supports = ["feature/sim-platform/transport-realization", "feature/sim-web/web-shell-host"]
 
 [[feature]]
 id = "feature/sim-platform/native-compute-probing"
@@ -138,7 +148,7 @@ summary = "Realize storage-owned HostDirPort semantics with one deterministic mo
 owner = "crate/sim-table-fs"
 audiences = ["code", "framework"]
 guidance = "Inject MemoryHostDirPort in portable storage tests and use UbuntuHostDirPort only at the platform capsule boundary; both must pass the shared host-directory conformance body."
-claims_anchors = ["anchor/crate/sim-table-fs", "spec-test/sim-platform/crates/sim-table-fs/tests/host-dir-port"]
+claims_anchors = ["anchor/crate/sim-table-fs"]
 supports = ["feature/sim-platform/ubuntu-pc-capsule"]
 
 [[feature]]

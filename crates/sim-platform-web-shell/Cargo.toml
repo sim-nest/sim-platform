@@ -1,0 +1,23 @@
+[package]
+name = "sim-platform-web-shell"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Native Linux process capsule for the host-neutral SIM web shell"
+publish = false
+
+[[bin]]
+name = "sim-web-shell"
+path = "src/main.rs"
+
+[package.metadata.sim]
+role = "platform-capsule"
+
+[dependencies]
+sim-platform-linux = { path = "../sim-platform-linux" }
+sim-transport-ports = { version = "0.1.0" }
+sim-web-shell = { version = "0.1.13" }
+
+[lints]
+workspace = true

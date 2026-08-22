@@ -1,0 +1,4 @@
+title = "Native web shell capsule"
+
+[[chapter]]
+path = "01-basics/chapter.toml"

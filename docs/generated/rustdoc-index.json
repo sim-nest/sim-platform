@@ -6,14 +6,28 @@
       "group": "workspace",
       "manifest": "crates/sim-lib-platform/Cargo.toml",
       "package": "sim-lib-platform",
-      "summary": "Pure API facade. Host bindings arrive only through validated future capsules."
+      "summary": "The closed, provider-neutral platform API."
+    },
+    {
+      "crate_name": "sim_platform_audio",
+      "group": "workspace",
+      "manifest": "crates/sim-platform-audio/Cargo.toml",
+      "package": "sim-platform-audio",
+      "summary": "Native media realization owned by the platform capsule."
     },
     {
       "crate_name": "sim_platform_bootstrap",
       "group": "workspace",
       "manifest": "crates/sim-platform-bootstrap/Cargo.toml",
       "package": "sim-platform-bootstrap",
-      "summary": "Reserved bootstrap rind. Host behavior is intentionally absent in OS5.00."
+      "summary": "The sole, bounded host rind used to admit the first platform capsule."
+    },
+    {
+      "crate_name": "sim_platform_construction",
+      "group": "workspace",
+      "manifest": "crates/sim-platform-construction/Cargo.toml",
+      "package": "sim-platform-construction",
+      "summary": "Platform-capsule implementations of construction-owned integration ports."
     },
     {
       "crate_name": "sim_platform_core",
@@ -23,11 +37,53 @@
       "summary": "Pure, fail-closed manifest contracts for the sole SIM platform owner."
     },
     {
+      "crate_name": "sim_platform_linux",
+      "group": "workspace",
+      "manifest": "crates/sim-platform-linux/Cargo.toml",
+      "package": "sim-platform-linux",
+      "summary": "Bounded Linux mechanics. Native paths and portal calls cannot escape this package."
+    },
+    {
+      "crate_name": "sim_platform_midi",
+      "group": "workspace",
+      "manifest": "crates/sim-platform-midi/Cargo.toml",
+      "package": "sim-platform-midi",
+      "summary": "Capsule-owned native MIDI selection and realization."
+    },
+    {
       "crate_name": "sim_platform_model",
       "group": "workspace",
       "manifest": "crates/sim-platform-model/Cargo.toml",
       "package": "sim-platform-model",
-      "summary": "Fictional records only; this crate does not represent a real provider."
+      "summary": "Deterministic, host-free platform model and the standard platform site."
+    },
+    {
+      "crate_name": "sim_platform_ubuntu_pc",
+      "group": "workspace",
+      "manifest": "crates/sim-platform-ubuntu-pc/Cargo.toml",
+      "package": "sim-platform-ubuntu-pc",
+      "summary": "Ubuntu PC capsule registration and sanitized evidence contracts."
+    },
+    {
+      "crate_name": "sim-web-shell",
+      "group": "workspace",
+      "manifest": "crates/sim-platform-web-shell/Cargo.toml",
+      "package": "sim-platform-web-shell",
+      "summary": "Native Linux process capsule for the host-neutral SIM web shell."
+    },
+    {
+      "crate_name": "sim_table_fs",
+      "group": "workspace",
+      "manifest": "crates/sim-table-fs/Cargo.toml",
+      "package": "sim-table-fs",
+      "summary": "Filesystem-backed table store for SIM."
+    },
+    {
+      "crate_name": "sim_viture_ffi",
+      "group": "workspace",
+      "manifest": "crates/sim-viture-ffi/Cargo.toml",
+      "package": "sim-viture-ffi",
+      "summary": "Unsafe-isolated dynamic loader for VITURE glasses SDK entry points."
     },
     {
       "crate_name": "xtask",

@@ -1,0 +1,18 @@
+id = "modeled-boundary"
+title = "Check the web shell capsule boundary"
+summary = "Confirm the native rind injects services while sim-web retains surface policy."
+codec = "lisp"
+setup = "setup.siml"
+purpose = "purpose.md"
+expected = "expected.txt"
+order = 10
+tags = ["platform", "web", "capsule"]
+requires = []
+capabilities = []
+assert_tags = ["platform", "web", "capsule"]
+assert_capabilities = []
+assert_setup_codec = "lisp"
+
+[[expect]]
+form = 0
+result = "(expr:call platform web-shell-capsule (expr:call services transport mount monotonic-time entropy external-open) (expr:call surface-owner sim-web))"

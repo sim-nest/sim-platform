@@ -1,0 +1,3 @@
+(platform web-shell-capsule
+  (services transport mount monotonic-time entropy external-open)
+  (surface-owner sim-web))
