@@ -5,6 +5,12 @@ edition.workspace = true
 license.workspace = true
 publish = false
 
+[package.metadata.sim]
+role = "host-tool"
+
+[dependencies]
+sim-kernel = "0.2.1"
+sim-lib-compute-cli = "0.2.0"
+
 [lints]
 workspace = true
-

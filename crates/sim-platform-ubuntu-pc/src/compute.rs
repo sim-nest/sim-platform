@@ -1,6 +1,6 @@
 //! Native compute discovery owned by the Ubuntu platform capsule.
 
-use std::sync::mpsc;
+use std::{process::Command, sync::mpsc};
 
 use sim_lib_compute_auto::{ComputeDeviceIdentity, ComputeEvidenceKind};
 use sim_lib_compute_cuda::{
@@ -20,7 +20,7 @@ use wgpu::{
 };
 
 /// Ubuntu implementation of the compute probe membrane.
-#[derive(Clone, Debug, Default)]
+#[derive(Clone, Debug)]
 pub struct UbuntuComputeProbe {
     cuda: CudaRuntimeLoader,
     rocm: RocmRuntimeLoader,
@@ -29,8 +29,42 @@ pub struct UbuntuComputeProbe {
 impl UbuntuComputeProbe {
     /// Uses Ubuntu's normal native library and adapter search policy.
     pub fn new() -> Self {
-        Self::default()
+        Self {
+            cuda: CudaRuntimeLoader::new(),
+            rocm: RocmRuntimeLoader::new().with_observed_gfx_targets(observed_gfx_targets()),
+        }
     }
+}
+
+impl Default for UbuntuComputeProbe {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
+fn observed_gfx_targets() -> Vec<String> {
+    let Ok(output) = Command::new("rocm_agent_enumerator").output() else {
+        return Vec::new();
+    };
+    if !output.status.success() {
+        return Vec::new();
+    }
+    let Ok(stdout) = String::from_utf8(output.stdout) else {
+        return Vec::new();
+    };
+    parse_gfx_targets(&stdout)
+}
+
+fn parse_gfx_targets(stdout: &str) -> Vec<String> {
+    let mut targets = stdout
+        .lines()
+        .map(str::trim)
+        .filter(|line| line.starts_with("gfx") && *line != "gfx000")
+        .map(ToOwned::to_owned)
+        .collect::<Vec<_>>();
+    targets.sort();
+    targets.dedup();
+    targets
 }
 
 impl CudaProbePort for UbuntuComputeProbe {
@@ -173,6 +207,14 @@ mod tests {
     use sim_lib_compute_cuda::ComputeCudaLib;
     use sim_lib_compute_rocm::ComputeRocmLib;
     use sim_lib_compute_wgpu::ComputeWgpuLib;
+
+    #[test]
+    fn amd_target_observation_is_filtered_sorted_and_deduplicated() {
+        assert_eq!(
+            parse_gfx_targets("gfx1151\ngfx000\nnoise\ngfx1103\ngfx1151\n"),
+            vec!["gfx1103", "gfx1151"]
+        );
+    }
 
     #[test]
     fn absent_native_runtimes_cross_membrane_once_and_export_no_provider() {

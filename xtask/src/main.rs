@@ -2,6 +2,7 @@
 //! Repository-local structural gates.
 
 use std::path::Path;
+use std::sync::Arc;
 
 const REQUIRED: &[&str] = &[
     "README.md",
@@ -19,10 +20,19 @@ fn main() {
     let command = std::env::args().nth(1);
     if !matches!(
         command.as_deref(),
-        Some("check" | "simdoc" | "crate-catalog")
+        Some("check" | "simdoc" | "crate-catalog" | "compute-acceptance")
     ) {
-        eprintln!("usage: cargo run -p xtask -- <check|simdoc|crate-catalog> [--check]");
+        eprintln!(
+            "usage: cargo run -p xtask -- <check|simdoc|crate-catalog> [--check] | compute-acceptance <capture|verify|import> ..."
+        );
         std::process::exit(2);
+    }
+    if command.as_deref() == Some("compute-acceptance") {
+        if let Err(error) = compute_acceptance(std::env::args().collect()) {
+            eprintln!("{error}");
+            std::process::exit(1);
+        }
+        return;
     }
     let missing = REQUIRED
         .iter()
@@ -53,4 +63,26 @@ fn main() {
             }
         }
     }
+}
+
+fn compute_acceptance(args: Vec<String>) -> Result<(), String> {
+    let command_args = std::iter::once("compute".to_owned())
+        .chain(std::iter::once("acceptance".to_owned()))
+        .chain(args.into_iter().skip(2))
+        .collect::<Vec<_>>();
+    let command = sim_lib_compute_cli::parse_compute_args(&command_args)
+        .map_err(|error| error.to_string())?;
+    let (mut cx, seat) = sim_kernel::Cx::new_seated(
+        Arc::new(sim_kernel::EagerPolicy),
+        Arc::new(sim_kernel::DefaultFactory),
+    );
+    seat.grant(
+        &mut cx,
+        sim_lib_compute_cli::compute_acceptance_capability(),
+    )
+    .map_err(|error| error.to_string())?;
+    let output = sim_lib_compute_cli::run_command(&mut cx, None, &command)
+        .map_err(|error| error.to_string())?;
+    print!("{output}");
+    Ok(())
 }

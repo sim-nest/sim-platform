@@ -102,6 +102,16 @@ steps = [
 ]
 
 [[feature]]
+id = "feature/sim-platform/native-compute-probing"
+title = "Capsule-owned native compute probing"
+summary = "Probe CUDA, ROCm, and wgpu once in the Ubuntu capsule and inject retained results into compute-owned executors."
+owner = "crate/sim-platform-ubuntu-pc"
+audiences = ["code", "framework"]
+guidance = "Construct UbuntuComputeProbe at capsule activation, then pass its CUDA, ROCm, and wgpu probe ports to the matching sim-compute provider constructors. The capsule owns library search, adapter enumeration, vendor and driver observation, gfx target discovery, transfer checks, and physical acceptance invocation; sim-compute retains TensorExecutor policy, site placement, and resident storage."
+claims_anchors = ["anchor/crate/sim-platform-ubuntu-pc"]
+supports = ["feature/sim-compute/tensor-providers", "feature/sim-platform/ubuntu-pc-capsule"]
+
+[[feature]]
 id = "feature/sim-platform/native-media-realization"
 title = "Native audio and plugin realization"
 summary = "Realize audio-owned device and plugin ports through explicit platform capsule bindings."
