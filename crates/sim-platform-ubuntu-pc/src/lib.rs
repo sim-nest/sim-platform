@@ -5,6 +5,7 @@ use sim_platform_core::{
     ContractProvenance, EvidenceLevel, FactPort, OpenSymbol, PlatformCard, ServiceOffer,
     stable_digest,
 };
+use std::{ffi::OsString, path::PathBuf};
 
 pub use sim_platform_linux as linux;
 mod compute;
@@ -13,6 +14,42 @@ pub use compute::UbuntuComputeProbe;
 pub use loader::UbuntuLoaderPort;
 mod process;
 pub use process::UbuntuProcess;
+
+/// Owned process-entry facts captured by the Ubuntu capsule.
+///
+/// Portable bootloaders consume this value and never inspect argv, the current
+/// directory, or environment variables themselves.
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct UbuntuProcessEnvelope {
+    /// Complete process argument vector.
+    pub argv: Vec<OsString>,
+    /// Explicit working root supplied to configuration and cache policy.
+    pub work_root: PathBuf,
+    /// Explicit cache root override, when supplied by the host.
+    pub cache_root: Option<PathBuf>,
+    /// Explicit registry artifact endpoint, when supplied by the host.
+    pub registry_endpoint: Option<String>,
+    /// Whether the host admits unauthenticated non-loopback registry access.
+    pub allow_insecure_registry: bool,
+}
+
+impl UbuntuProcessEnvelope {
+    /// Captures the bounded process facts owned by this concrete capsule.
+    ///
+    /// # Errors
+    /// Returns an error when the host does not expose a current working root.
+    pub fn capture() -> std::io::Result<Self> {
+        Ok(Self {
+            argv: std::env::args_os().collect(),
+            work_root: std::env::current_dir()?,
+            cache_root: std::env::var_os("SIM_CLI_CACHE_DIR").map(PathBuf::from),
+            registry_endpoint: std::env::var_os("SIM_GIT_REGISTRY_ENDPOINT")
+                .map(|value| value.to_string_lossy().into_owned()),
+            allow_insecure_registry: std::env::var_os("SIM_GIT_REGISTRY_ALLOW_INSECURE")
+                .is_some_and(|value| !value.is_empty()),
+        })
+    }
+}
 pub const BUNDLE_DESCRIPTOR: &str = "sim.platform-bundle.toml";
 /// Ubuntu PC distribution bundle. The one row admits only this capsule.
 pub const UBUNTU_BUNDLE_MANIFEST: &str = r#"
