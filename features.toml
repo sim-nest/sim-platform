@@ -15,6 +15,15 @@ major_entrypoints = "strict"
 frameworks = "strict"
 
 [[feature]]
+id = "feature/sim-platform/native-midi-realization"
+title = "Capsule-owned native MIDI realization"
+summary = "Ubuntu and deterministic platform ports realize BlueZ and RtMidi endpoints behind the music-owned MidiPort contract."
+owner = "crate/sim-platform-midi"
+audiences = ["framework"]
+guidance = "Bind only capsule-registered BlueZ BLE-MIDI or RtMidi ALSA/CoreMIDI/WinMM endpoints. Consumers use sim-lib-midi-core MidiPort Cards and typed refusals; unknown or absent hardware is Unsupported and never triggers backend probing or fallback."
+claims_anchors = ["anchor/crate/sim-platform-midi", "spec-test/sim-platform/crates/sim-platform-midi/src/tests"]
+
+[[feature]]
 id = "feature/sim-platform/platform-owner"
 title = "Platform capsule owner"
 summary = "Own and validate platform capsule and content-bound bundle manifests without granting host authority."

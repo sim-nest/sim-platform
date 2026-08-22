@@ -4,6 +4,7 @@ members = [
   "crates/sim-platform-audio",
   "crates/sim-platform-core",
   "crates/sim-platform-model",
+  "crates/sim-platform-midi",
   "crates/sim-lib-platform",
   "crates/sim-platform-bootstrap",
   "crates/sim-platform-linux",
