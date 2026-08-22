@@ -79,6 +79,10 @@ fn fixture(
             loader_kinds: vec!["loader/native-v1".into()],
         },
         preopened_roots: vec![],
+        config_roots: crate::BootstrapConfigRoots {
+            home: None,
+            work: dir.path().join("config"),
+        },
         kernel_seed: 7,
     };
     let policy = BootstrapPolicy {

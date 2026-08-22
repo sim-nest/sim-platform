@@ -42,6 +42,15 @@ pub struct BootstrapStdio {
     pub stderr: Vec<u8>,
 }
 
+/// Configuration roots resolved and supplied by the embedding host.
+#[derive(Clone, Debug, Default, Eq, PartialEq)]
+pub struct BootstrapConfigRoots {
+    /// Central user configuration root, when the host supplies one.
+    pub home: Option<PathBuf>,
+    /// Working configuration root.
+    pub work: PathBuf,
+}
+
 /// All data crossing from the tiny host rind into the bootloader.
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct BootstrapEnvelope {
@@ -55,6 +64,8 @@ pub struct BootstrapEnvelope {
     pub capsule_card: CapsuleManifest,
     /// Roots explicitly preopened by the host, with no implicit current root.
     pub preopened_roots: Vec<PathBuf>,
+    /// Configuration roots explicitly resolved by the host.
+    pub config_roots: BootstrapConfigRoots,
     /// Caller-owned deterministic kernel handle seed.
     pub kernel_seed: u64,
 }
@@ -78,7 +89,12 @@ impl BootstrapEnvelope {
                 return Err(BootstrapError::EnvelopeBound("argument is too large"));
             }
         }
-        for root in &self.preopened_roots {
+        for root in self
+            .preopened_roots
+            .iter()
+            .chain(self.config_roots.home.iter())
+            .chain(std::iter::once(&self.config_roots.work))
+        {
             if root.as_os_str().as_encoded_bytes().len() > MAX_ENVELOPE_ITEM_BYTES {
                 return Err(BootstrapError::EnvelopeBound("preopened root is too large"));
             }
