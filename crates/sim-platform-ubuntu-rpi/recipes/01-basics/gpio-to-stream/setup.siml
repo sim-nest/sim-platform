@@ -1,0 +1,1 @@
+(stream/from-device (platform/require 'device/gpio) :edge 'rising)

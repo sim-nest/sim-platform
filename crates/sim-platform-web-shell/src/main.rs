@@ -91,10 +91,8 @@ mod tests {
         services.fill_entropy(&mut entropy).unwrap();
         assert_ne!(entropy, [0; 16]);
 
-        let root = std::env::temp_dir().join(format!(
-            "sim-platform-web-shell-{}",
-            std::process::id()
-        ));
+        let root =
+            std::env::temp_dir().join(format!("sim-platform-web-shell-{}", std::process::id()));
         let mut file = std::fs::File::create(&root).unwrap();
         file.write_all(b"mounted").unwrap();
         assert_eq!(

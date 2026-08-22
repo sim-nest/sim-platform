@@ -50,6 +50,7 @@ fn main() {
         "sim-platform-construction",
         "sim-platform-linux",
         "sim-platform-ubuntu-pc",
+        "sim-platform-ubuntu-rpi",
     ] {
         for relative in [
             "Cargo.toml",

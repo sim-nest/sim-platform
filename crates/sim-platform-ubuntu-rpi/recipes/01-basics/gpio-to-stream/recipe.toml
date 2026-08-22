@@ -1,0 +1,4 @@
+title = "GPIO to Stream"
+purpose = "purpose.md"
+setup = "setup.siml"
+expected = "expected.txt"

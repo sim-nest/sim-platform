@@ -1,0 +1,5 @@
+{
+  "targets": ["aarch64-unknown-linux-gnu"],
+  "evidence": "cross-built",
+  "registered_host": null
+}

@@ -6,6 +6,27 @@ use std::collections::BTreeMap;
 use std::collections::BTreeSet;
 use std::fmt;
 
+/// Shared Ubuntu profile facts composed by concrete PC and Pi capsules.
+#[derive(Clone, Copy, Debug, Deserialize, serde::Serialize, Eq, PartialEq)]
+#[serde(rename_all = "kebab-case")]
+pub enum UbuntuArchitecture {
+    X86_64,
+    Aarch64,
+}
+
+#[derive(Clone, Copy, Debug, Deserialize, serde::Serialize, Eq, PartialEq)]
+#[serde(rename_all = "kebab-case")]
+pub enum UbuntuProfileKind {
+    Desktop,
+    Headless,
+}
+
+#[derive(Clone, Debug, Deserialize, serde::Serialize, Eq, PartialEq)]
+pub struct UbuntuProfile {
+    pub architecture: UbuntuArchitecture,
+    pub kind: UbuntuProfileKind,
+}
+
 /// The only accepted package classifications. Missing metadata is pure.
 #[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
 pub enum PackageRole {

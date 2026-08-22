@@ -1,0 +1,2 @@
+title = "Headless devices"
+recipes = ["gpio-to-stream/recipe.toml"]

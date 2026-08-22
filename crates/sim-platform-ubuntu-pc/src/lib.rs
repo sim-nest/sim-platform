@@ -5,6 +5,10 @@ use sim_platform_core::{
     ContractProvenance, EvidenceLevel, FactPort, OpenSymbol, PlatformCard, ServiceOffer,
     stable_digest,
 };
+pub use sim_platform_core::{
+    UbuntuArchitecture as Architecture, UbuntuProfile as UbuntuPcProfile,
+    UbuntuProfileKind as ProfileKind,
+};
 use std::{ffi::OsString, path::PathBuf};
 
 pub use sim_platform_linux as linux;
@@ -69,23 +73,6 @@ services = ["platform/monotonic", "platform/wall-clock", "platform/entropy"]
 shells = []
 loader_kinds = ["loader/native-v1", "loader/wasm-v1", "loader/source-v1", "loader/static-v1"]
 "#;
-#[derive(Clone, Copy, Debug, Serialize, Deserialize, Eq, PartialEq)]
-#[serde(rename_all = "kebab-case")]
-pub enum Architecture {
-    X86_64,
-    Aarch64,
-}
-#[derive(Clone, Copy, Debug, Serialize, Deserialize, Eq, PartialEq)]
-#[serde(rename_all = "kebab-case")]
-pub enum ProfileKind {
-    Desktop,
-    Headless,
-}
-#[derive(Clone, Debug, Serialize, Deserialize, Eq, PartialEq)]
-pub struct UbuntuPcProfile {
-    pub architecture: Architecture,
-    pub kind: ProfileKind,
-}
 #[derive(Clone, Debug, Serialize, Deserialize, Eq, PartialEq)]
 pub struct RegisteredCard {
     pub profile: UbuntuPcProfile,
