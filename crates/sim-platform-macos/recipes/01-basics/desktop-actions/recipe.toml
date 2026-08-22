@@ -1,0 +1,4 @@
+schema = "sim.recipe/v1"
+title = "Launch, open, and share through the macOS capsule"
+setup = "setup.siml"
+expected = "expected.txt"

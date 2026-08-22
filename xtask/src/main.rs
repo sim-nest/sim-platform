@@ -49,6 +49,7 @@ fn main() {
         "sim-platform-bootstrap",
         "sim-platform-construction",
         "sim-platform-linux",
+        "sim-platform-macos",
         "sim-platform-ubuntu-pc",
         "sim-platform-ubuntu-rpi",
     ] {

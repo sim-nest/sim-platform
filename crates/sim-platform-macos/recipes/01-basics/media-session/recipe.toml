@@ -1,0 +1,4 @@
+schema = "sim.recipe/v1"
+title = "Select CoreAudio and CoreMIDI capsule bindings"
+setup = "setup.siml"
+expected = "expected.txt"

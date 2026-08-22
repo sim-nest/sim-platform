@@ -25,3 +25,8 @@ device profiles and stream semantics.
 
 See `docs/humans/README.md`, `docs/agents/README.md`, `docs/generated/README.md`,
 and `docs/rustdoc/README.md` for the four documentation lanes.
+
+`sim-platform-macos` is the Apple desktop capsule. It maps frozen service ports
+to documented macOS frameworks, confines native glue and entitlements to the
+capsule, and constructs content-bound unsigned development bundles for both
+supported Mac architectures without changing portable code or the native ABI.

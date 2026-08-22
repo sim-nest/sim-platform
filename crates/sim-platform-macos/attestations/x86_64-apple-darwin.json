@@ -1,0 +1,1 @@
+{"schema":"sim.platform-cross-build-attestation/v1","target":"x86_64-apple-darwin","level":"modeled-cross-build","physical":false,"checks":["deterministic-bundle","lifecycle-model","permission-denial","cleanup"]}

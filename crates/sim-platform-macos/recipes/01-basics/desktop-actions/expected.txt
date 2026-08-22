@@ -1,0 +1,1 @@
+Card(platform/site/macos; activation=open=share=attested; prompt=false)

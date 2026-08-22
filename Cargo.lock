@@ -2158,6 +2158,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "sim-platform-macos"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "serde_json",
+ "sha2",
+ "sim-platform-core",
+]
+
+[[package]]
 name = "sim-platform-midi"
 version = "0.1.0"
 dependencies = [

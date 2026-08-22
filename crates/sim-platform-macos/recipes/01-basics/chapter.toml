@@ -1,0 +1,2 @@
+title = "Desktop and media"
+recipes = ["desktop-actions/recipe.toml", "media-session/recipe.toml"]

@@ -82,6 +82,16 @@ claims_anchors = ["anchor/crate/sim-platform-linux", "anchor/crate/sim-platform-
 supports = ["feature/sim-platform/platform-owner", "feature/sim-platform/bootstrap-rind", "feature/sim-platform/platform-policy"]
 
 [[feature]]
+id = "feature/sim-platform/macos-capsule"
+title = "macOS platform capsule"
+summary = "Realize the frozen platform and domain ports through documented macOS frameworks and one deterministic unsigned application bundle."
+owner = "crate/sim-platform-macos"
+audiences = ["code", "framework"]
+guidance = "Activate MacosCapsule with explicit capability grants and an injected NativeServices implementation. Permission status is observational and cannot prompt; request_permission is the only prompt path and refuses a missing matching SIM capability before entering native code. Build both Apple architectures from the same content-bound CapsuleInput, keep AppKit/CoreServices/Security/CoreAudio/CoreMIDI/Metal and entitlement mechanics in this package, and load the resulting ordinary platform Site through sim_native_abi_v1."
+claims_anchors = ["anchor/crate/sim-platform-macos"]
+supports = ["feature/sim-platform/platform-owner", "feature/sim-platform/bootstrap-rind", "feature/sim-platform/platform-policy", "feature/sim-platform/native-media-realization"]
+
+[[feature]]
 id = "feature/sim-platform/ubuntu-rpi-capsule"
 title = "Ubuntu Raspberry Pi capsule"
 summary = "Provide an evidence-graded, headless Raspberry Pi Card whose device bindings come only from an explicit board profile."
