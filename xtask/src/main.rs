@@ -47,6 +47,7 @@ fn main() {
         "sim-platform-model",
         "sim-lib-platform",
         "sim-platform-bootstrap",
+        "sim-platform-construction",
         "sim-platform-linux",
         "sim-platform-ubuntu-pc",
     ] {

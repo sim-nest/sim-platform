@@ -1,0 +1,19 @@
+[package]
+name = "sim-platform-construction"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Platform capsule realization for construction integration ports"
+publish = false
+
+[package.metadata.sim]
+role = "platform-capsule"
+
+[dependencies]
+sim-site-dalux = { version = "0.1.0", git = "https://github.com/sim-nest/sim-construction", rev = "06bdd024393593ef0b6e6bc1621e3454a6c47ffe" }
+sim-site-powerproject = { version = "0.1.0", git = "https://github.com/sim-nest/sim-construction", rev = "06bdd024393593ef0b6e6bc1621e3454a6c47ffe" }
+ureq = "2"
+
+[lints]
+workspace = true

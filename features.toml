@@ -1,6 +1,16 @@
 schema = "sim.features"
 
 [[feature]]
+id = "feature/sim-platform/construction-integration-realization"
+title = "Construction integration platform realization"
+summary = "Realize Dalux HTTPS and Powerproject desktop automation behind construction-owned ports."
+owner = "crate/sim-platform-construction"
+audiences = ["code", "framework"]
+guidance = "Inject UreqDaluxTransport or PowerprojectBridge only while activating a platform capsule. Construction retains request validation, capability gates, response interpretation, and project policy; the capsule owns HTTP, native process launch, bounded response reads, and typed host failures. Use deterministic construction transports for denial and fault tests."
+claims_anchors = ["anchor/crate/sim-platform-construction", "spec-test/sim-platform/crates/sim-platform-construction/src/tests"]
+supports = ["feature/sim-construction/dalux-project-items", "feature/sim-construction/powerproject-schedule-placement"]
+
+[[feature]]
 id = "feature/sim-platform/device-physical-port"
 title = "Capsule-owned physical device transport"
 summary = "Own VITURE SDK loading, USB discovery, native handles, lifecycle, bounded queues, and modeled transport behind DevicePhysicalPort."
