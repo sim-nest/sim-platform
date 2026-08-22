@@ -66,6 +66,10 @@ impl FsDir {
 
     pub(crate) fn read_leaf_path(&self, cx: &mut Cx, path: &[String], ext: &str) -> Result<Expr> {
         let bytes = self.port.read(path).map_err(port_error)?;
+        Self::decode_leaf_bytes(cx, ext, &bytes)
+    }
+
+    pub(crate) fn decode_leaf_bytes(cx: &mut Cx, ext: &str, bytes: &[u8]) -> Result<Expr> {
         Ok(match decode_expr_for_ext(ext, &bytes) {
             Some(expr) => expr?,
             None => {

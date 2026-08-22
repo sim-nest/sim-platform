@@ -12,6 +12,7 @@ homepage = "https://github.com/sim-nest/sim-platform"
 [dependencies]
 globset = { version = "0.4" }
 regex = { version = "1" }
+rustix = { version = "1.1.4", features = ["fs"] }
 sim-citizen = { version = "0.2.0" }
 sim-citizen-derive = { version = "0.2.0" }
 sim-codec = { version = "0.1.7" }

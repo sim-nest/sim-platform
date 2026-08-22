@@ -243,10 +243,10 @@ supports = ["feature/sim-platform/ubuntu-pc-capsule"]
 [[feature]]
 id = "feature/sim-platform/host-directory-realization"
 title = "Modeled and Ubuntu host-directory realization"
-summary = "Realize storage-owned HostDirPort semantics with one deterministic model and one confined Ubuntu adapter."
+summary = "Realize storage-owned HostDirPort semantics, including linearizable leaf compare-exchange, with one deterministic model and one confined Ubuntu adapter."
 owner = "crate/sim-table-fs"
 audiences = ["code", "framework"]
-guidance = "Inject MemoryHostDirPort in portable storage tests and use UbuntuHostDirPort only at the platform capsule boundary; both must pass the shared host-directory conformance body."
+guidance = "Inject MemoryHostDirPort in portable storage tests and use UbuntuHostDirPort only at the platform capsule boundary. Both run compare-exchange under one atomic boundary; Ubuntu owns its cross-process lock, crash-safe temporary write, sync, atomic replace, and directory sync."
 claims_anchors = ["anchor/crate/sim-table-fs"]
 supports = ["feature/sim-platform/ubuntu-pc-capsule"]
 

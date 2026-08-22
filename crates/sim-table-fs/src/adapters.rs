@@ -1,8 +1,9 @@
 //! Platform realizations of the portable host-directory port.
 
+use rustix::fs::{FlockOperation, flock};
 use sim_storage_port::{
-    Cancellation, HostDirError, HostDirErrorKind as Kind, HostDirPort, HostEntry, HostEntryKind,
-    PortResult,
+    Cancellation, HostCompareExchange, HostDirError, HostDirErrorKind as Kind, HostDirPort,
+    HostEntry, HostEntryKind, PortResult,
 };
 use std::{
     collections::BTreeMap,
@@ -150,6 +151,60 @@ impl HostDirPort for MemoryHostDirPort {
         state.entries.insert(full, ModelEntry::File(bytes.to_vec()));
         Ok(())
     }
+    fn compare_exchange(
+        &self,
+        path: &[String],
+        expected: Option<&[u8]>,
+        replacement: Option<&[u8]>,
+        cancel: &dyn Cancellation,
+    ) -> PortResult<HostCompareExchange> {
+        if path.is_empty() {
+            return Err(err(Kind::Escape, "compare-exchange requires a leaf path"));
+        }
+        if cancel.is_cancelled() {
+            return Err(err(Kind::Cancelled, "write cancelled"));
+        }
+        let full = self.full(path)?;
+        let mut state = self
+            .state
+            .lock()
+            .map_err(|_| err(Kind::Native, "model lock poisoned"))?;
+        let observed = match state.entries.get(&full) {
+            Some(ModelEntry::File(b)) => Some(b.clone()),
+            Some(ModelEntry::Dir) => return Err(err(Kind::SpecialFile, "entry is a directory")),
+            None => None,
+        };
+        if cancel.is_cancelled() {
+            return Err(err(Kind::Cancelled, "write cancelled"));
+        }
+        let exchanged = observed.as_deref() == expected;
+        if exchanged {
+            match replacement {
+                Some(bytes) => {
+                    let used: u64 = state
+                        .entries
+                        .values()
+                        .map(|entry| match entry {
+                            ModelEntry::File(bytes) => bytes.len() as u64,
+                            ModelEntry::Dir => 0,
+                        })
+                        .sum();
+                    let old = observed.as_ref().map_or(0, |bytes| bytes.len() as u64);
+                    if used - old + bytes.len() as u64 > state.quota {
+                        return Err(err(Kind::QuotaExceeded, "storage quota exceeded"));
+                    }
+                    state.entries.insert(full, ModelEntry::File(bytes.to_vec()));
+                }
+                None => {
+                    state.entries.remove(&full);
+                }
+            }
+        }
+        Ok(HostCompareExchange {
+            exchanged,
+            observed,
+        })
+    }
     fn remove_file(&self, path: &[String]) -> PortResult<()> {
         let full = self.full(path)?;
         let mut state = self
@@ -233,6 +288,29 @@ impl UbuntuHostDirPort {
             return Err(err(Kind::Escape, "path escapes root"));
         }
         Ok(candidate)
+    }
+    fn lock_file(&self, path: &[String]) -> PortResult<std::fs::File> {
+        let lock_root = self.root.join(".sim-cas-locks");
+        std::fs::create_dir_all(&lock_root).map_err(map_io)?;
+        let name = self
+            .prefix
+            .iter()
+            .chain(path)
+            .fold(String::new(), |mut out, part| {
+                use std::fmt::Write as _;
+                let _ = write!(out, "{}-", part.len());
+                for byte in part.as_bytes() {
+                    let _ = write!(out, "{byte:02x}");
+                }
+                out.push('-');
+                out
+            });
+        OpenOptions::new()
+            .create(true)
+            .read(true)
+            .write(true)
+            .open(lock_root.join(name))
+            .map_err(map_io)
     }
 }
 fn map_io(error: std::io::Error) -> HostDirError {
@@ -329,6 +407,53 @@ impl HostDirPort for UbuntuHostDirPort {
             }
         }
         Err(err(Kind::Native, "temporary namespace exhausted"))
+    }
+    fn compare_exchange(
+        &self,
+        path: &[String],
+        expected: Option<&[u8]>,
+        replacement: Option<&[u8]>,
+        cancel: &dyn Cancellation,
+    ) -> PortResult<HostCompareExchange> {
+        if path.is_empty() {
+            return Err(err(Kind::Escape, "compare-exchange requires a leaf path"));
+        }
+        validate(path)?;
+        let lock = self.lock_file(path)?;
+        flock(&lock, FlockOperation::LockExclusive).map_err(|error| map_io(error.into()))?;
+        let target = self.resolve(path)?;
+        let observed = match std::fs::read(&target) {
+            Ok(bytes) => Some(bytes),
+            Err(e) if e.kind() == std::io::ErrorKind::NotFound => None,
+            Err(e) => return Err(map_io(e)),
+        };
+        if cancel.is_cancelled() {
+            return Err(err(Kind::Cancelled, "write cancelled"));
+        }
+        let exchanged = observed.as_deref() == expected;
+        if exchanged {
+            match replacement {
+                Some(bytes) => self.replace(path, bytes, cancel)?,
+                None => {
+                    if observed.is_some() {
+                        self.remove_file(path)?;
+                        let parent = target
+                            .parent()
+                            .ok_or_else(|| err(Kind::Escape, "missing parent"))?;
+                        OpenOptions::new()
+                            .read(true)
+                            .open(parent)
+                            .and_then(|f| f.sync_all())
+                            .map_err(map_io)?;
+                    }
+                }
+            }
+        }
+        flock(&lock, FlockOperation::Unlock).map_err(|error| map_io(error.into()))?;
+        Ok(HostCompareExchange {
+            exchanged,
+            observed,
+        })
     }
     fn remove_file(&self, path: &[String]) -> PortResult<()> {
         std::fs::remove_file(self.resolve(path)?).map_err(map_io)

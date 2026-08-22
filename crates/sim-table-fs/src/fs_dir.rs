@@ -2,7 +2,8 @@ use sim_storage_port::{HostDirPort, HostEntryKind, NeverCancel};
 use std::{collections::BTreeSet, path::PathBuf, sync::Arc};
 
 use sim_kernel::{
-    Cx, Error, Expr, Object, ObjectEncode, ObjectEncoding, Result, Symbol, Value,
+    Cx, Error, Expr, Object, ObjectEncode, ObjectEncoding, Result, Symbol, TableCompareExchange,
+    TableExpected, TableObserved, TableReplacement, Value,
     id::CORE_TABLE_CLASS_ID,
     object::ClassRef,
     table::{Dir, Table},
@@ -193,6 +194,56 @@ impl Table for FsDir {
             }
             None => cx.factory().nil(),
         }
+    }
+
+    fn compare_exchange(
+        &self,
+        cx: &mut Cx,
+        key: Symbol,
+        expected: TableExpected,
+        replacement: TableReplacement,
+    ) -> Result<TableCompareExchange> {
+        require_table_fs_read(cx)?;
+        require_table_fs_write(cx)?;
+        let existing = self.leaf_path_for_read(&key)?;
+        let replacement_expr = match replacement {
+            TableReplacement::Delete => None,
+            TableReplacement::Value(value) => Some(value.object().as_expr(cx)?),
+        };
+        let ext = existing
+            .as_ref()
+            .map(|(_, ext)| *ext)
+            .or_else(|| replacement_expr.as_ref().and_then(infer_ext_from_expr))
+            .unwrap_or(DEFAULT_EXT);
+        let path = existing
+            .as_ref()
+            .map(|(path, _)| path.clone())
+            .unwrap_or(self.leaf_name(&key, ext)?);
+        let expected_bytes = match &expected {
+            TableExpected::Absent => None,
+            TableExpected::Value(expr) => Some(Self::encode_leaf_expr(cx, ext, expr)?),
+        };
+        let replacement_bytes = replacement_expr
+            .as_ref()
+            .map(|expr| Self::encode_leaf_expr(cx, ext, expr))
+            .transpose()?;
+        let outcome = self
+            .port
+            .compare_exchange(
+                &path,
+                expected_bytes.as_deref(),
+                replacement_bytes.as_deref(),
+                &NeverCancel,
+            )
+            .map_err(port_error)?;
+        let observed = match outcome.observed {
+            None => TableObserved::Absent,
+            Some(bytes) => TableObserved::Value(Self::decode_leaf_bytes(cx, ext, &bytes)?),
+        };
+        Ok(TableCompareExchange {
+            exchanged: outcome.exchanged,
+            observed,
+        })
     }
 
     fn keys(&self, cx: &mut Cx) -> Result<Vec<Symbol>> {

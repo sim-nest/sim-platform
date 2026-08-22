@@ -2,7 +2,10 @@ use sim_storage_port::{Cancellation, HostDirErrorKind, HostDirPort, HostEntryKin
 use sim_table_fs::{MemoryHostDirPort, UbuntuHostDirPort};
 use std::{
     path::PathBuf,
-    sync::atomic::{AtomicBool, Ordering},
+    sync::{
+        Arc, Barrier,
+        atomic::{AtomicBool, Ordering},
+    },
 };
 
 struct Flag(AtomicBool);
@@ -64,11 +67,60 @@ fn conformance(port: &dyn HostDirPort) {
     assert!(port.metadata(&path(&["nested"])).unwrap().is_none());
 }
 
+fn cas_conformance(port: &dyn HostDirPort) {
+    let leaf = path(&["lease.siml"]);
+    let first = port
+        .compare_exchange(&leaf, None, Some(b"nil"), &NeverCancel)
+        .unwrap();
+    assert!(first.exchanged);
+    assert_eq!(first.observed, None);
+    let stale = port
+        .compare_exchange(&leaf, Some(b"wrong"), None, &NeverCancel)
+        .unwrap();
+    assert!(!stale.exchanged);
+    assert_eq!(stale.observed.as_deref(), Some(b"nil".as_slice()));
+    assert!(
+        port.compare_exchange(&leaf, Some(b"nil"), None, &NeverCancel)
+            .unwrap()
+            .exchanged
+    );
+    assert!(port.metadata(&leaf).unwrap().is_none());
+}
+
+fn concurrent_claimers(port: Arc<dyn HostDirPort>) {
+    let barrier = Arc::new(Barrier::new(3));
+    let mut workers = Vec::new();
+    for value in [b"one".as_slice(), b"two".as_slice()] {
+        let port = Arc::clone(&port);
+        let barrier = Arc::clone(&barrier);
+        let value = value.to_vec();
+        workers.push(std::thread::spawn(move || {
+            barrier.wait();
+            port.compare_exchange(&path(&["claim"]), None, Some(&value), &NeverCancel)
+                .unwrap()
+                .exchanged
+        }));
+    }
+    barrier.wait();
+    assert_eq!(
+        workers
+            .into_iter()
+            .map(|worker| worker.join().unwrap())
+            .filter(|won| *won)
+            .count(),
+        1
+    );
+}
+
 #[test]
 fn model_and_ubuntu_share_conformance() {
     conformance(&MemoryHostDirPort::new("model", 4096));
+    cas_conformance(&MemoryHostDirPort::new("model-cas", 4096));
+    concurrent_claimers(Arc::new(MemoryHostDirPort::new("model-race", 4096)));
     let root = temp_root("ubuntu");
     conformance(&UbuntuHostDirPort::open(root.clone()).unwrap());
+    cas_conformance(&UbuntuHostDirPort::open(root.clone()).unwrap());
+    concurrent_claimers(Arc::new(UbuntuHostDirPort::open(root.clone()).unwrap()));
     std::fs::remove_dir_all(root).unwrap();
 }
 
