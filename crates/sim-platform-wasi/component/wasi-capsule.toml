@@ -1,0 +1,13 @@
+schema = "sim.platform-wasi-component/v1"
+provider = "platform/site/wasi"
+world = "sim:wasi/capsule@1.0.0"
+artifact = "sim-platform-wasi.component.wasm"
+imports = [
+  "wasi:filesystem/preopens@0.2.0#get-directories => storage/table-dir",
+  "wasi:clocks/wall-clock@0.2.0#now => platform/wall-clock",
+  "wasi:clocks/monotonic-clock@0.2.0#now => platform/monotonic",
+  "wasi:random/random@0.2.0#get-random-bytes => platform/entropy",
+  "wasi:sockets/tcp@0.2.0#start-connect => transport/socket",
+  "wasi:cli/exit@0.2.0#exit => platform/lifecycle",
+]
+excluded = ["process-create", "native-dynamic-load", "ui", "notification", "device"]

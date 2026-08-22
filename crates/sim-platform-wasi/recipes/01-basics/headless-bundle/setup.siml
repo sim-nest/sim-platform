@@ -1,0 +1,9 @@
+(bundle
+  :capsule "platform/site/wasi"
+  :artifact "sim-platform-wasi.component.wasm"
+  :preopens {"input" (Dir :table "artifacts" :key "input-v1")
+             "output" (Table :table "results" :key "run-v1")}
+  :clock {:monotonic-ticks 4000}
+  :entropy {:seed "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f"}
+  :sockets ["127.0.0.1:9443"]
+  :lifecycle "bounded")

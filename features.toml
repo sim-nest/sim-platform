@@ -181,6 +181,16 @@ guidance = "Load sim-platform-browser as a Wasm capsule and derive its Card only
 claims_anchors = ["anchor/crate/sim-platform-browser"]
 supports = ["feature/sim-platform/platform-owner", "feature/sim-web/view-surface", "feature/sim-agent-net/transport-ports"]
 
+[[feature]]
+id = "feature/sim-platform/wasi-capsule"
+title = "Least-authority WASI component capsule"
+summary = "Inspect a closed WASI import surface and realize it through explicit Table/Dir and canonical platform or domain ports."
+owner = "crate/sim-platform-wasi"
+audiences = ["code", "framework"]
+guidance = "Admit a component only after every import matches the capsule declaration, then activate it with the complete authority bundle: named Table/Dir refs, explicit clocks and entropy, declared socket endpoints, lifecycle, and matching capabilities. Treat in-memory and hosted-runtime frame results as separate evidence grades. Unsupported process creation, native loading, UI, notification, and device services remain absent and refuse without probing."
+claims_anchors = ["anchor/crate/sim-platform-wasi", "anchor/card/cookbook/sim-platform-wasi"]
+supports = ["feature/sim-platform/platform-owner", "feature/sim-platform/platform-policy"]
+
 [[route]]
 id = "route/host-sim-in-browser"
 task = "Host SIM in a browser without moving presentation policy into the platform"

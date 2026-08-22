@@ -15,6 +15,7 @@ members = [
   "crates/sim-platform-android",
   "crates/sim-platform-ios",
   "crates/sim-platform-windows",
+  "crates/sim-platform-wasi",
   "crates/sim-platform-ubuntu-pc",
   "crates/sim-platform-ubuntu-rpi",
   "crates/sim-viture-ffi",

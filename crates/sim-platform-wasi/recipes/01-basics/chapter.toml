@@ -1,0 +1,3 @@
+title = "Least-authority activation"
+
+recipes = ["headless-bundle/recipe.toml"]

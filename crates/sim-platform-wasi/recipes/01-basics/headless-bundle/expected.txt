@@ -1,0 +1,1 @@
+Card(platform/site/wasi; ambient=false; authorities=bundle-only)

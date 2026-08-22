@@ -53,6 +53,7 @@ fn main() {
         "sim-platform-android",
         "sim-platform-ios",
         "sim-platform-browser",
+        "sim-platform-wasi",
         "sim-platform-ubuntu-pc",
         "sim-platform-ubuntu-rpi",
     ] {
