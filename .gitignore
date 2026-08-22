@@ -1,2 +1,4 @@
 /target/
 /.sim/
+/shell/android/.gradle/
+/shell/android/app/build/
