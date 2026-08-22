@@ -1,5 +1,5 @@
 {
-  "card_count": 11,
+  "card_count": 16,
   "cards": [
     {
       "id": "browse/catalog",
@@ -11,6 +11,12 @@
       "id": "cookbook/sim-lib-platform",
       "kind": "cookbook-recipe",
       "owner": "sim-lib-platform",
+      "summary": ""
+    },
+    {
+      "id": "cookbook/sim-platform-android",
+      "kind": "cookbook-recipe",
+      "owner": "sim-platform-android",
       "summary": ""
     },
     {
@@ -32,9 +38,21 @@
       "summary": ""
     },
     {
+      "id": "cookbook/sim-platform-ios",
+      "kind": "cookbook-recipe",
+      "owner": "sim-platform-ios",
+      "summary": ""
+    },
+    {
       "id": "cookbook/sim-platform-linux",
       "kind": "cookbook-recipe",
       "owner": "sim-platform-linux",
+      "summary": ""
+    },
+    {
+      "id": "cookbook/sim-platform-macos",
+      "kind": "cookbook-recipe",
+      "owner": "sim-platform-macos",
       "summary": ""
     },
     {
@@ -50,9 +68,21 @@
       "summary": ""
     },
     {
+      "id": "cookbook/sim-platform-ubuntu-rpi",
+      "kind": "cookbook-recipe",
+      "owner": "sim-platform-ubuntu-rpi",
+      "summary": ""
+    },
+    {
       "id": "cookbook/sim-platform-web-shell",
       "kind": "cookbook-recipe",
       "owner": "sim-platform-web-shell",
+      "summary": ""
+    },
+    {
+      "id": "cookbook/sim-platform-windows",
+      "kind": "cookbook-recipe",
+      "owner": "sim-platform-windows",
       "summary": ""
     },
     {
@@ -78,15 +108,20 @@
   "groups": {
     "workspace": [
       "sim-lib-platform",
+      "sim-platform-android",
       "sim-platform-audio",
       "sim-platform-bootstrap",
       "sim-platform-construction",
       "sim-platform-core",
+      "sim-platform-ios",
       "sim-platform-linux",
+      "sim-platform-macos",
       "sim-platform-midi",
       "sim-platform-model",
       "sim-platform-ubuntu-pc",
+      "sim-platform-ubuntu-rpi",
       "sim-platform-web-shell",
+      "sim-platform-windows",
       "sim-table-fs",
       "sim-viture-ffi",
       "xtask"
@@ -94,7 +129,7 @@
   },
   "non_citizen_exemption_count": 0,
   "non_citizen_exemptions": [],
-  "package_count": 13,
+  "package_count": 18,
   "packages": [
     {
       "crate_name": "sim_lib_platform",
@@ -128,6 +163,39 @@
           ],
           "name": "sim_lib_platform",
           "src": "crates/sim-lib-platform/src/lib.rs"
+        }
+      ]
+    },
+    {
+      "crate_name": "sim_platform_android",
+      "dependencies": [],
+      "description": "Android AOT platform capsule and thin shell contract",
+      "features": [],
+      "group": "workspace",
+      "manifest": "crates/sim-platform-android/Cargo.toml",
+      "name": "sim-platform-android",
+      "publish": "false",
+      "root": "crates/sim-platform-android",
+      "rustdoc_summary": "Android AOT platform capsule and thin shell contract",
+      "target_kinds": [
+        "cdylib",
+        "rlib",
+        "staticlib"
+      ],
+      "targets": [
+        {
+          "crate_types": [
+            "rlib",
+            "staticlib",
+            "cdylib"
+          ],
+          "kind": [
+            "rlib",
+            "staticlib",
+            "cdylib"
+          ],
+          "name": "sim_platform_android",
+          "src": "crates/sim-platform-android/src/lib.rs"
         }
       ]
     },
@@ -259,6 +327,39 @@
       ]
     },
     {
+      "crate_name": "sim_platform_ios",
+      "dependencies": [],
+      "description": "iOS AOT platform capsule and thin shell contract",
+      "features": [],
+      "group": "workspace",
+      "manifest": "crates/sim-platform-ios/Cargo.toml",
+      "name": "sim-platform-ios",
+      "publish": "false",
+      "root": "crates/sim-platform-ios",
+      "rustdoc_summary": "iOS AOT platform capsule and thin shell contract",
+      "target_kinds": [
+        "cdylib",
+        "rlib",
+        "staticlib"
+      ],
+      "targets": [
+        {
+          "crate_types": [
+            "rlib",
+            "staticlib",
+            "cdylib"
+          ],
+          "kind": [
+            "rlib",
+            "staticlib",
+            "cdylib"
+          ],
+          "name": "sim_platform_ios",
+          "src": "crates/sim-platform-ios/src/lib.rs"
+        }
+      ]
+    },
+    {
       "crate_name": "sim_platform_linux",
       "dependencies": [
         {
@@ -301,6 +402,52 @@
           ],
           "name": "transport",
           "src": "crates/sim-platform-linux/tests/transport.rs"
+        }
+      ]
+    },
+    {
+      "crate_name": "sim_platform_macos",
+      "dependencies": [
+        {
+          "kind": "normal",
+          "optional": false,
+          "package": "sim-platform-core",
+          "rename": null,
+          "target": null
+        }
+      ],
+      "description": "macOS platform capsule and deterministic unsigned bundle",
+      "features": [],
+      "group": "workspace",
+      "manifest": "crates/sim-platform-macos/Cargo.toml",
+      "name": "sim-platform-macos",
+      "publish": "false",
+      "root": "crates/sim-platform-macos",
+      "rustdoc_summary": "macOS capsule policy, packaging, and testable native membrane.",
+      "target_kinds": [
+        "lib",
+        "test"
+      ],
+      "targets": [
+        {
+          "crate_types": [
+            "lib"
+          ],
+          "kind": [
+            "lib"
+          ],
+          "name": "sim_platform_macos",
+          "src": "crates/sim-platform-macos/src/lib.rs"
+        },
+        {
+          "crate_types": [
+            "bin"
+          ],
+          "kind": [
+            "test"
+          ],
+          "name": "conformance",
+          "src": "crates/sim-platform-macos/tests/conformance.rs"
         }
       ]
     },
@@ -493,6 +640,52 @@
       ]
     },
     {
+      "crate_name": "sim_platform_ubuntu_rpi",
+      "dependencies": [
+        {
+          "kind": "normal",
+          "optional": false,
+          "package": "sim-platform-core",
+          "rename": null,
+          "target": null
+        }
+      ],
+      "description": "Ubuntu Raspberry Pi platform capsule",
+      "features": [],
+      "group": "workspace",
+      "manifest": "crates/sim-platform-ubuntu-rpi/Cargo.toml",
+      "name": "sim-platform-ubuntu-rpi",
+      "publish": "false",
+      "root": "crates/sim-platform-ubuntu-rpi",
+      "rustdoc_summary": "Headless Ubuntu Raspberry Pi capsule with profile-owned native facts.",
+      "target_kinds": [
+        "lib",
+        "test"
+      ],
+      "targets": [
+        {
+          "crate_types": [
+            "lib"
+          ],
+          "kind": [
+            "lib"
+          ],
+          "name": "sim_platform_ubuntu_rpi",
+          "src": "crates/sim-platform-ubuntu-rpi/src/lib.rs"
+        },
+        {
+          "crate_types": [
+            "bin"
+          ],
+          "kind": [
+            "test"
+          ],
+          "name": "conformance",
+          "src": "crates/sim-platform-ubuntu-rpi/tests/conformance.rs"
+        }
+      ]
+    },
+    {
       "crate_name": "sim-web-shell",
       "dependencies": [
         {
@@ -524,6 +717,52 @@
           ],
           "name": "sim-web-shell",
           "src": "crates/sim-platform-web-shell/src/main.rs"
+        }
+      ]
+    },
+    {
+      "crate_name": "sim_platform_windows",
+      "dependencies": [
+        {
+          "kind": "normal",
+          "optional": false,
+          "package": "sim-platform-core",
+          "rename": null,
+          "target": null
+        }
+      ],
+      "description": "Windows platform capsule and content-bound package",
+      "features": [],
+      "group": "workspace",
+      "manifest": "crates/sim-platform-windows/Cargo.toml",
+      "name": "sim-platform-windows",
+      "publish": "false",
+      "root": "crates/sim-platform-windows",
+      "rustdoc_summary": "Windows capsule policy, bounded native membrane, and package description.",
+      "target_kinds": [
+        "lib",
+        "test"
+      ],
+      "targets": [
+        {
+          "crate_types": [
+            "lib"
+          ],
+          "kind": [
+            "lib"
+          ],
+          "name": "sim_platform_windows",
+          "src": "crates/sim-platform-windows/src/lib.rs"
+        },
+        {
+          "crate_types": [
+            "bin"
+          ],
+          "kind": [
+            "test"
+          ],
+          "name": "conformance",
+          "src": "crates/sim-platform-windows/tests/conformance.rs"
         }
       ]
     },
@@ -685,10 +924,10 @@
     "generated_by": "cargo run -p xtask -- simdoc",
     "generation_timestamp": "2026-08-21T22:21:04+02:00",
     "generator": "xtask repo-contract v1",
-    "git_commit": "285c15178fa50f67b65efdd7ea0f2fed365cda8b",
+    "git_commit": "ccd5df7dbfa26c9421224cc427903abca18ad9dc",
     "repo": "sim-platform",
     "schema": "sim.provenance.v1",
-    "source_commit": "285c15178fa50f67b65efdd7ea0f2fed365cda8b",
+    "source_commit": "ccd5df7dbfa26c9421224cc427903abca18ad9dc",
     "source_remote": "https://github.com/sim-nest/sim-platform",
     "validation_commands": [
       "cargo fmt --all --check",
@@ -701,9 +940,9 @@
       "cargo run -p xtask -- validation-matrix --check --repo .",
       "cargo run -p xtask -- crate-catalog --check --repo ."
     ],
-    "workspace_hash": "8a08fd79bb60ea8c",
+    "workspace_hash": "1b473548b0f22907",
     "workspace_hash_algorithm": "fnv1a64",
-    "workspace_hash_input_count": 82,
+    "workspace_hash_input_count": 115,
     "workspace_hash_inputs": [
       "Cargo.toml",
       "crates/sim-lib-platform/Cargo.toml",
@@ -712,6 +951,12 @@
       "crates/sim-lib-platform/recipes/book.toml",
       "crates/sim-lib-platform/src/lib.rs",
       "crates/sim-lib-platform/src/runtime.rs",
+      "crates/sim-platform-android/Cargo.toml",
+      "crates/sim-platform-android/recipes/01-basics/android-aot/recipe.toml",
+      "crates/sim-platform-android/recipes/book.toml",
+      "crates/sim-platform-android/src/ffi.rs",
+      "crates/sim-platform-android/src/lib.rs",
+      "crates/sim-platform-android/src/tests.rs",
       "crates/sim-platform-audio/Cargo.toml",
       "crates/sim-platform-audio/src/lib.rs",
       "crates/sim-platform-audio/src/tests.rs",
@@ -727,11 +972,24 @@
       "crates/sim-platform-core/recipes/book.toml",
       "crates/sim-platform-core/src/lib.rs",
       "crates/sim-platform-core/tests/policy.rs",
+      "crates/sim-platform-ios/Cargo.toml",
+      "crates/sim-platform-ios/recipes/01-basics/ios-aot/recipe.toml",
+      "crates/sim-platform-ios/recipes/book.toml",
+      "crates/sim-platform-ios/src/ffi.rs",
+      "crates/sim-platform-ios/src/lib.rs",
+      "crates/sim-platform-ios/src/tests.rs",
       "crates/sim-platform-linux/Cargo.toml",
       "crates/sim-platform-linux/recipes/book.toml",
       "crates/sim-platform-linux/src/lib.rs",
       "crates/sim-platform-linux/src/transport.rs",
       "crates/sim-platform-linux/tests/transport.rs",
+      "crates/sim-platform-macos/Cargo.toml",
+      "crates/sim-platform-macos/recipes/01-basics/desktop-actions/recipe.toml",
+      "crates/sim-platform-macos/recipes/01-basics/media-session/recipe.toml",
+      "crates/sim-platform-macos/recipes/book.toml",
+      "crates/sim-platform-macos/src/lib.rs",
+      "crates/sim-platform-macos/src/manifest.rs",
+      "crates/sim-platform-macos/tests/conformance.rs",
       "crates/sim-platform-midi/Cargo.toml",
       "crates/sim-platform-midi/src/lib.rs",
       "crates/sim-platform-midi/src/tests.rs",
@@ -751,10 +1009,24 @@
       "crates/sim-platform-ubuntu-pc/tests/conformance.rs",
       "crates/sim-platform-ubuntu-pc/tests/descriptor_boot.rs",
       "crates/sim-platform-ubuntu-pc/tests/physical_attestation.rs",
+      "crates/sim-platform-ubuntu-rpi/Cargo.toml",
+      "crates/sim-platform-ubuntu-rpi/recipes/01-basics/gpio-to-stream/recipe.toml",
+      "crates/sim-platform-ubuntu-rpi/recipes/book.toml",
+      "crates/sim-platform-ubuntu-rpi/src/lib.rs",
+      "crates/sim-platform-ubuntu-rpi/tests/conformance.rs",
       "crates/sim-platform-web-shell/Cargo.toml",
       "crates/sim-platform-web-shell/recipes/01-basics/modeled-boundary/recipe.toml",
       "crates/sim-platform-web-shell/recipes/book.toml",
       "crates/sim-platform-web-shell/src/main.rs",
+      "crates/sim-platform-windows/Cargo.toml",
+      "crates/sim-platform-windows/recipes/01-basics/launch/recipe.toml",
+      "crates/sim-platform-windows/recipes/01-basics/media/recipe.toml",
+      "crates/sim-platform-windows/recipes/01-basics/process-cancellation/recipe.toml",
+      "crates/sim-platform-windows/recipes/book.toml",
+      "crates/sim-platform-windows/src/lib.rs",
+      "crates/sim-platform-windows/src/manifest.rs",
+      "crates/sim-platform-windows/src/path.rs",
+      "crates/sim-platform-windows/tests/conformance.rs",
       "crates/sim-table-fs/Cargo.toml",
       "crates/sim-table-fs/build.rs",
       "crates/sim-table-fs/recipes/01-basics/grep-tree/recipe.toml",
@@ -789,7 +1061,7 @@
       "xtask/Cargo.toml"
     ]
   },
-  "recipe_book_count": 9,
+  "recipe_book_count": 14,
   "recipes": [
     {
       "book": "sim-lib-platform",
@@ -818,6 +1090,26 @@
       ],
       "summary": "",
       "title": "sim-lib-platform recipes"
+    },
+    {
+      "book": "sim-platform-android",
+      "book_toml": "crates/sim-platform-android/recipes/book.toml",
+      "card_id": "cookbook/sim-platform-android",
+      "group": "workspace",
+      "package": "sim-platform-android",
+      "recipe_count": 1,
+      "recipes": [
+        {
+          "card_id": "sim-platform-android/01-basics/android-aot",
+          "codec": "",
+          "id": "android-aot",
+          "package": "sim-platform-android",
+          "recipe_toml": "crates/sim-platform-android/recipes/01-basics/android-aot/recipe.toml",
+          "title": "Load the Android AOT capsule"
+        }
+      ],
+      "summary": "",
+      "title": "Android platform capsule recipes"
     },
     {
       "book": "sim-platform-bootstrap",
@@ -862,6 +1154,26 @@
       "title": "sim-platform-core recipes"
     },
     {
+      "book": "sim-platform-ios",
+      "book_toml": "crates/sim-platform-ios/recipes/book.toml",
+      "card_id": "cookbook/sim-platform-ios",
+      "group": "workspace",
+      "package": "sim-platform-ios",
+      "recipe_count": 1,
+      "recipes": [
+        {
+          "card_id": "sim-platform-ios/01-basics/ios-aot",
+          "codec": "",
+          "id": "ios-aot",
+          "package": "sim-platform-ios",
+          "recipe_toml": "crates/sim-platform-ios/recipes/01-basics/ios-aot/recipe.toml",
+          "title": "Load the iOS AOT capsule"
+        }
+      ],
+      "summary": "",
+      "title": "iOS platform capsule recipes"
+    },
+    {
       "book": "sim-platform-linux",
       "book_toml": "crates/sim-platform-linux/recipes/book.toml",
       "card_id": "cookbook/sim-platform-linux",
@@ -871,6 +1183,34 @@
       "recipes": [],
       "summary": "",
       "title": "Linux capsule mechanics"
+    },
+    {
+      "book": "sim-platform-macos",
+      "book_toml": "crates/sim-platform-macos/recipes/book.toml",
+      "card_id": "cookbook/sim-platform-macos",
+      "group": "workspace",
+      "package": "sim-platform-macos",
+      "recipe_count": 2,
+      "recipes": [
+        {
+          "card_id": "sim-platform-macos/01-basics/desktop-actions",
+          "codec": "",
+          "id": "desktop-actions",
+          "package": "sim-platform-macos",
+          "recipe_toml": "crates/sim-platform-macos/recipes/01-basics/desktop-actions/recipe.toml",
+          "title": "Launch, open, and share through the macOS capsule"
+        },
+        {
+          "card_id": "sim-platform-macos/01-basics/media-session",
+          "codec": "",
+          "id": "media-session",
+          "package": "sim-platform-macos",
+          "recipe_toml": "crates/sim-platform-macos/recipes/01-basics/media-session/recipe.toml",
+          "title": "Select CoreAudio and CoreMIDI capsule bindings"
+        }
+      ],
+      "summary": "",
+      "title": "macOS capsule recipes"
     },
     {
       "book": "sim-platform-model",
@@ -895,6 +1235,26 @@
       "title": "Ubuntu PC capsule"
     },
     {
+      "book": "sim-platform-ubuntu-rpi",
+      "book_toml": "crates/sim-platform-ubuntu-rpi/recipes/book.toml",
+      "card_id": "cookbook/sim-platform-ubuntu-rpi",
+      "group": "workspace",
+      "package": "sim-platform-ubuntu-rpi",
+      "recipe_count": 1,
+      "recipes": [
+        {
+          "card_id": "sim-platform-ubuntu-rpi/01-basics/gpio-to-stream",
+          "codec": "",
+          "id": "gpio-to-stream",
+          "package": "sim-platform-ubuntu-rpi",
+          "recipe_toml": "crates/sim-platform-ubuntu-rpi/recipes/01-basics/gpio-to-stream/recipe.toml",
+          "title": "GPIO to Stream"
+        }
+      ],
+      "summary": "",
+      "title": "Ubuntu Raspberry Pi capsule"
+    },
+    {
       "book": "sim-platform-web-shell",
       "book_toml": "crates/sim-platform-web-shell/recipes/book.toml",
       "card_id": "cookbook/sim-platform-web-shell",
@@ -913,6 +1273,42 @@
       ],
       "summary": "",
       "title": "Native web shell capsule"
+    },
+    {
+      "book": "sim-platform-windows",
+      "book_toml": "crates/sim-platform-windows/recipes/book.toml",
+      "card_id": "cookbook/sim-platform-windows",
+      "group": "workspace",
+      "package": "sim-platform-windows",
+      "recipe_count": 3,
+      "recipes": [
+        {
+          "card_id": "sim-platform-windows/01-basics/launch",
+          "codec": "",
+          "id": "launch",
+          "package": "sim-platform-windows",
+          "recipe_toml": "crates/sim-platform-windows/recipes/01-basics/launch/recipe.toml",
+          "title": "Launch through the Windows activation port"
+        },
+        {
+          "card_id": "sim-platform-windows/01-basics/media",
+          "codec": "",
+          "id": "media",
+          "package": "sim-platform-windows",
+          "recipe_toml": "crates/sim-platform-windows/recipes/01-basics/media/recipe.toml",
+          "title": "Select Windows media services"
+        },
+        {
+          "card_id": "sim-platform-windows/01-basics/process-cancellation",
+          "codec": "",
+          "id": "process-cancellation",
+          "package": "sim-platform-windows",
+          "recipe_toml": "crates/sim-platform-windows/recipes/01-basics/process-cancellation/recipe.toml",
+          "title": "Cancel a bounded Windows process tree"
+        }
+      ],
+      "summary": "",
+      "title": "Windows capsule recipes"
     },
     {
       "book": "storage/table-fs",

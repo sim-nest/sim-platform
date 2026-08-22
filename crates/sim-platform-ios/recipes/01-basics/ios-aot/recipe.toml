@@ -1,0 +1,5 @@
+id = "ios-aot"
+title = "Load the iOS AOT capsule"
+purpose = "Prove iOS selects the same platform library Card and loader ABI as the desktop bootloader."
+setup = "setup.siml"
+expected = "expected.txt"

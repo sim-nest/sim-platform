@@ -9,6 +9,11 @@
     {
       "features": [],
       "group": "workspace",
+      "package": "sim-platform-android"
+    },
+    {
+      "features": [],
+      "group": "workspace",
       "package": "sim-platform-audio"
     },
     {
@@ -29,7 +34,17 @@
     {
       "features": [],
       "group": "workspace",
+      "package": "sim-platform-ios"
+    },
+    {
+      "features": [],
+      "group": "workspace",
       "package": "sim-platform-linux"
+    },
+    {
+      "features": [],
+      "group": "workspace",
+      "package": "sim-platform-macos"
     },
     {
       "features": [
@@ -63,7 +78,17 @@
     {
       "features": [],
       "group": "workspace",
+      "package": "sim-platform-ubuntu-rpi"
+    },
+    {
+      "features": [],
+      "group": "workspace",
       "package": "sim-platform-web-shell"
+    },
+    {
+      "features": [],
+      "group": "workspace",
+      "package": "sim-platform-windows"
     },
     {
       "features": [

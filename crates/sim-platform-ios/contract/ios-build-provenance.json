@@ -1,0 +1,24 @@
+{
+  "schema": "sim.platform-ios-build-provenance/v1",
+  "local_checked_on": "2026-08-22",
+  "rust": {
+    "official_uri": "https://doc.rust-lang.org/rustc/platform-support/apple-ios.html",
+    "release": "1.97.1",
+    "commit": "8bab26f4f68e0e26f0bb7960be334d5b520ea452",
+    "pin_sha256": "662da1880986c9028ea4f30658d3f588b33578ca76314e2c077ee3f00342760d",
+    "target_specs": {
+      "aarch64-apple-ios": "08438763fd9ca210face3a3f138ca48895c5010adc9b77bbe128247b16a93d85",
+      "aarch64-apple-ios-sim": "5de602e1344edf8b949c02b5d8860f8334e1831ef7785a87f8489f56b33f1369",
+      "x86_64-apple-ios": "97d3b076d96945aacd5687cb17fa5857a739e753dc6e52b1a4617d398dafdc1d"
+    },
+    "local_support_facts": "compiler target metadata identifies aarch64 device plus aarch64 and x86_64 simulator targets with std support"
+  },
+  "swift_c_import": {
+    "official_uri": "https://developer.apple.com/documentation/swift/importing-objective-c-into-swift",
+    "contract": "C declarations are imported through a module header or bridging header; the shell imports sim_platform_ios.h",
+    "pin_sha256": "0dbb18db5191cac511e9ba807ed5be9697dc83011b7b37f7f0dc6a10a0aadeda"
+  },
+  "official_remote_recheck": "terminal-closeout-required",
+  "official_response_sha256": null,
+  "hosted_xcode_evidence": "terminal-closeout-required"
+}

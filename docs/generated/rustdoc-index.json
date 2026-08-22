@@ -9,6 +9,13 @@
       "summary": "The closed, provider-neutral platform API."
     },
     {
+      "crate_name": "sim_platform_android",
+      "group": "workspace",
+      "manifest": "crates/sim-platform-android/Cargo.toml",
+      "package": "sim-platform-android",
+      "summary": "Android AOT platform capsule and thin shell contract"
+    },
+    {
       "crate_name": "sim_platform_audio",
       "group": "workspace",
       "manifest": "crates/sim-platform-audio/Cargo.toml",
@@ -37,11 +44,25 @@
       "summary": "Pure, fail-closed manifest contracts for the sole SIM platform owner."
     },
     {
+      "crate_name": "sim_platform_ios",
+      "group": "workspace",
+      "manifest": "crates/sim-platform-ios/Cargo.toml",
+      "package": "sim-platform-ios",
+      "summary": "iOS AOT platform capsule and thin shell contract"
+    },
+    {
       "crate_name": "sim_platform_linux",
       "group": "workspace",
       "manifest": "crates/sim-platform-linux/Cargo.toml",
       "package": "sim-platform-linux",
       "summary": "Bounded Linux mechanics. Native paths and portal calls cannot escape this package."
+    },
+    {
+      "crate_name": "sim_platform_macos",
+      "group": "workspace",
+      "manifest": "crates/sim-platform-macos/Cargo.toml",
+      "package": "sim-platform-macos",
+      "summary": "macOS capsule policy, packaging, and testable native membrane."
     },
     {
       "crate_name": "sim_platform_midi",
@@ -65,11 +86,25 @@
       "summary": "Ubuntu PC capsule registration and sanitized evidence contracts."
     },
     {
+      "crate_name": "sim_platform_ubuntu_rpi",
+      "group": "workspace",
+      "manifest": "crates/sim-platform-ubuntu-rpi/Cargo.toml",
+      "package": "sim-platform-ubuntu-rpi",
+      "summary": "Headless Ubuntu Raspberry Pi capsule with profile-owned native facts."
+    },
+    {
       "crate_name": "sim-web-shell",
       "group": "workspace",
       "manifest": "crates/sim-platform-web-shell/Cargo.toml",
       "package": "sim-platform-web-shell",
       "summary": "Native Linux process capsule for the host-neutral SIM web shell."
+    },
+    {
+      "crate_name": "sim_platform_windows",
+      "group": "workspace",
+      "manifest": "crates/sim-platform-windows/Cargo.toml",
+      "package": "sim-platform-windows",
+      "summary": "Windows capsule policy, bounded native membrane, and package description."
     },
     {
       "crate_name": "sim_table_fs",

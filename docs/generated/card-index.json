@@ -1,5 +1,5 @@
 {
-  "card_count": 11,
+  "card_count": 16,
   "cards": [
     {
       "id": "browse/catalog",
@@ -11,6 +11,12 @@
       "id": "cookbook/sim-lib-platform",
       "kind": "cookbook-recipe",
       "owner": "sim-lib-platform",
+      "summary": ""
+    },
+    {
+      "id": "cookbook/sim-platform-android",
+      "kind": "cookbook-recipe",
+      "owner": "sim-platform-android",
       "summary": ""
     },
     {
@@ -32,9 +38,21 @@
       "summary": ""
     },
     {
+      "id": "cookbook/sim-platform-ios",
+      "kind": "cookbook-recipe",
+      "owner": "sim-platform-ios",
+      "summary": ""
+    },
+    {
       "id": "cookbook/sim-platform-linux",
       "kind": "cookbook-recipe",
       "owner": "sim-platform-linux",
+      "summary": ""
+    },
+    {
+      "id": "cookbook/sim-platform-macos",
+      "kind": "cookbook-recipe",
+      "owner": "sim-platform-macos",
       "summary": ""
     },
     {
@@ -50,9 +68,21 @@
       "summary": ""
     },
     {
+      "id": "cookbook/sim-platform-ubuntu-rpi",
+      "kind": "cookbook-recipe",
+      "owner": "sim-platform-ubuntu-rpi",
+      "summary": ""
+    },
+    {
       "id": "cookbook/sim-platform-web-shell",
       "kind": "cookbook-recipe",
       "owner": "sim-platform-web-shell",
+      "summary": ""
+    },
+    {
+      "id": "cookbook/sim-platform-windows",
+      "kind": "cookbook-recipe",
+      "owner": "sim-platform-windows",
       "summary": ""
     },
     {

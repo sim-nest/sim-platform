@@ -1,0 +1,2 @@
+title = "iOS platform capsule"
+recipes = ["ios-aot/recipe.toml"]
