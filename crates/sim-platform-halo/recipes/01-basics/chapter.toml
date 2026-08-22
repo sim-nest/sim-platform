@@ -1,0 +1,3 @@
+title = "Halo proxy"
+description = "Placement-independent Surface and GLASSES_8 composition."
+order = ["view-input"]

@@ -1,0 +1,16 @@
+{
+  "schema": "sim.platform.halo-provenance/v1",
+  "recorded": "2026-08-22",
+  "contract_version": "official-documentation-snapshot-2026-08-21",
+  "contract_digest": "sha256:4a25cf378acda2716d80a9146507c629afd2bf238e359351de5a0e790e2875e7",
+  "remote_recheck": "terminal-closeout-required",
+  "reason": "ordinary roadmap work is networkless; the phase composes the primary-source snapshot rechecked and pinned by OS5 on 2026-08-21",
+  "official_sources": [
+    "https://docs.brilliant.xyz/halo/halo-sdk/",
+    "https://docs.brilliant.xyz/halo/halo-sdk-bluetooth-specs/"
+  ],
+  "documented_model": "host SDK plus minimal on-device Lua event loop",
+  "supported_host_libraries": ["Android", "iOS", "Web Bluetooth"],
+  "languages_documented": ["Lua", "Flutter", "Python"],
+  "digest_input": "official-documentation-snapshot-2026-08-21\nhttps://docs.brilliant.xyz/halo/halo-sdk/\nhttps://docs.brilliant.xyz/halo/halo-sdk-bluetooth-specs/\nhost SDK plus minimal on-device Lua event loop\n"
+}

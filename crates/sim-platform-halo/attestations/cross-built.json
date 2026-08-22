@@ -1,0 +1,10 @@
+{
+  "schema": "sim.platform.attestation/v1",
+  "artifact": "shell/halo",
+  "contract_provenance": "official-documentation-snapshot-2026-08-21",
+  "execution_evidence": ["model", "cross-built"],
+  "official_emulator_execution": "deferred-to-hosted-closeout",
+  "registered_physical_halo": null,
+  "physical": false,
+  "support": "built-unattested"
+}

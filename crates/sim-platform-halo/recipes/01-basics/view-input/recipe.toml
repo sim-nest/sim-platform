@@ -1,0 +1,6 @@
+id = "halo-view-and-input"
+title = "Show a bounded view and receive Halo input"
+description = "Runs the same Surface/GLASSES_8 composition against model, official emulator, or a future attested physical placement."
+entry = "cargo test -p sim-platform-halo all_official_host_routes_share_one_codec"
+expected = "one canonical bounded codec carries Surface output and normalized glasses input"
+tags = ["halo", "glasses", "surface", "stream", "model", "emulator", "placement"]

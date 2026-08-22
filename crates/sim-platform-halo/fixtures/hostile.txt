@@ -1,0 +1,10 @@
+# Each row names a rejection covered by Rust conformance tests.
+truncated-header
+wrong-version
+out-of-order-fragment
+stale-session
+replayed-sequence
+oversized-message
+queue-pressure
+consent-withdrawal
+suspend-and-reconnect

@@ -122,6 +122,16 @@ claims_anchors = ["anchor/crate/sim-platform-ios"]
 supports = ["feature/sim-platform/platform-owner", "feature/sim-platform/bootstrap-rind", "feature/sim-platform/platform-policy", "feature/sim-platform/native-media-realization"]
 
 [[feature]]
+id = "feature/sim-platform/halo-proxy-capsule"
+title = "Halo official-contract proxy capsule"
+summary = "Bridge the official Halo host SDK and minimal Lua loop to existing GLASSES_8 Device/Stream and Surface contracts."
+owner = "crate/sim-platform-halo"
+audiences = ["code", "framework"]
+guidance = "Host Halo in an explicitly selected Android, iOS, or Web Bluetooth capsule and use the one bounded application codec for every route. Normalize inputs for GLASSES_8 and accept only bounded Surface commands. The Lua shell handles vendor callbacks and display primitives only; it owns no evaluator, routing policy, persistence, or glasses-specific application API. Treat committed model/cross-build evidence as built-unattested until a registered physical Halo run exists."
+claims_anchors = ["anchor/crate/sim-platform-halo"]
+supports = ["feature/sim-platform/android-capsule", "feature/sim-platform/ios-capsule", "feature/sim-platform/browser-capsule", "feature/sim-stream-host/hardware-host-surfaces", "feature/sim-web/device-surfaces"]
+
+[[feature]]
 id = "feature/sim-platform/ubuntu-rpi-capsule"
 title = "Ubuntu Raspberry Pi capsule"
 summary = "Provide an evidence-graded, headless Raspberry Pi Card whose device bindings come only from an explicit board profile."

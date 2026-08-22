@@ -1,0 +1,8 @@
+{
+  "schema": "sim.platform.halo-emulator-profile/v1",
+  "official_emulator": true,
+  "execution": "hosted-closeout-required",
+  "application": "shell/halo/main.lua",
+  "fixture": "fixtures/button-select.hex",
+  "physical_claim": false
+}
