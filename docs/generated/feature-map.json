@@ -24,6 +24,11 @@
     {
       "features": [],
       "group": "workspace",
+      "package": "sim-platform-browser"
+    },
+    {
+      "features": [],
+      "group": "workspace",
       "package": "sim-platform-construction"
     },
     {

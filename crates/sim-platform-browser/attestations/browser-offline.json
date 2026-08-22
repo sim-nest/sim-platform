@@ -1,0 +1,9 @@
+{
+  "schema": "sim.platform-browser-attestation/v1",
+  "environment": "modeled-browser-harness",
+  "evidence": "modeled",
+  "retained": true,
+  "contexts": ["window", "worker"],
+  "services": ["platform/lifecycle", "platform/activation", "storage/handle"],
+  "absent": ["transport/fetch", "transport/websocket", "platform/clipboard", "platform/notification", "platform/wake-lock", "platform/process", "loader/native-v1", "storage/ambient-filesystem"]
+}

@@ -30,6 +30,13 @@
       "summary": "The sole, bounded host rind used to admit the first platform capsule."
     },
     {
+      "crate_name": "sim_platform_browser",
+      "group": "workspace",
+      "manifest": "crates/sim-platform-browser/Cargo.toml",
+      "package": "sim-platform-browser",
+      "summary": "Capability-honest browser Wasm capsule and byte-frame host membrane"
+    },
+    {
       "crate_name": "sim_platform_construction",
       "group": "workspace",
       "manifest": "crates/sim-platform-construction/Cargo.toml",

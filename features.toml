@@ -172,6 +172,25 @@ claims_anchors = ["anchor/crate/sim-platform-web-shell"]
 supports = ["feature/sim-platform/transport-realization", "feature/sim-web/web-shell-host"]
 
 [[feature]]
+id = "feature/sim-platform/browser-capsule"
+title = "Capability-honest browser Wasm capsule"
+summary = "Realize detected browser lifecycle, storage, transport, clipboard, notification, permission, and wake-lock APIs through canonical framed named calls."
+owner = "crate/sim-platform-browser"
+audiences = ["code", "framework"]
+guidance = "Load sim-platform-browser as a Wasm capsule and derive its Card only from APIs detected by the window or worker shell. The JavaScript membrane copies bytes and performs Rust-selected host calls; it owns no SIM routing or presentation policy. Keep DOM, Canvas, WebGPU, Scene, Intent, SurfaceCodec, and render trees in sim-web. Missing APIs and denied permissions fail closed, and stopped or suspended capsules release every pending call and handle."
+claims_anchors = ["anchor/crate/sim-platform-browser"]
+supports = ["feature/sim-platform/platform-owner", "feature/sim-web/view-surface", "feature/sim-agent-net/transport-ports"]
+
+[[route]]
+id = "route/host-sim-in-browser"
+task = "Host SIM in a browser without moving presentation policy into the platform"
+audiences = ["code", "framework"]
+steps = [
+  { feature = "feature/sim-platform/browser-capsule", why = "The browser capsule contributes capability-honest handles and lifecycle events through canonical named-call frames." },
+  { feature = "feature/sim-web/view-surface", why = "sim-web remains the sole owner of reversible browser presentation and edit behavior." },
+]
+
+[[feature]]
 id = "feature/sim-platform/native-compute-probing"
 title = "Capsule-owned native compute probing"
 summary = "Probe CUDA, ROCm, and wgpu once in the Ubuntu capsule and inject retained results into compute-owned executors."

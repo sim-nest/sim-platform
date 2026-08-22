@@ -24,9 +24,15 @@ This generated lane consumes `docs/generated/sim-index-fragment.sx`. Global inde
 | `feature/sim-platform/platform-policy` | `crate/sim-platform-core` | 0 | Resolve explicit cross-domain fact services atomically and execute against a seeded, host-free EvalFabric site. |
 | `feature/sim-platform/bootstrap-rind` | `crate/sim-platform-bootstrap` | 0 | Admit one exact adjacent platform bundle and capsule through the existing native ABI without ambient discovery. |
 | `feature/sim-platform/ubuntu-pc-capsule` | `crate/sim-platform-ubuntu-pc` | 0 | Provide explicit desktop and headless Ubuntu Cards over bounded Linux mechanics, including the full post-bootstrap loader service. |
+| `feature/sim-platform/macos-capsule` | `crate/sim-platform-macos` | 0 | Realize the frozen platform and domain ports through documented macOS frameworks and one deterministic unsigned application bundle. |
+| `feature/sim-platform/android-capsule` | `crate/sim-platform-android` | 0 | Host the unchanged native ABI as AOT Rust behind one thin Kotlin lifecycle and activation shell. |
+| `feature/sim-platform/ios-capsule` | `crate/sim-platform-ios` | 0 | Host the unchanged native ABI as statically linked Rust behind one thin Swift scene shell. |
+| `feature/sim-platform/ubuntu-rpi-capsule` | `crate/sim-platform-ubuntu-rpi` | 0 | Provide an evidence-graded, headless Raspberry Pi Card whose device bindings come only from an explicit board profile. |
+| `feature/sim-platform/windows-capsule` | `crate/sim-platform-windows` | 0 | Realize frozen platform and domain ports through bounded Win32 and WinRT mechanics and one content-bound package. |
 | `feature/sim-platform/process-realization` | `crate/sim-platform-ubuntu-pc` | 0 | Realize runtime-owned ProcessPort requests through a deterministic model or confined Ubuntu process tree. |
 | `feature/sim-platform/transport-realization` | `crate/sim-platform-linux` | 0 | Realize agent-net transport ports inside the Linux capsule with typed native failures and explicit platform-specific IPC identities. |
 | `feature/sim-platform/web-shell-realization` | `crate/sim-platform-web-shell` | 0 | Realize the host-neutral web shell through Linux-owned process, transport, mount, time, entropy, and external-open services. |
+| `feature/sim-platform/browser-capsule` | `crate/sim-platform-browser` | 0 | Realize detected browser lifecycle, storage, transport, clipboard, notification, permission, and wake-lock APIs through canonical framed named calls. |
 | `feature/sim-platform/native-compute-probing` | `crate/sim-platform-ubuntu-pc` | 0 | Probe CUDA, ROCm, and wgpu once in the Ubuntu capsule and inject retained results into compute-owned executors. |
 | `feature/sim-platform/native-media-realization` | `crate/sim-platform-audio` | 0 | Realize audio-owned device and plugin ports through explicit platform capsule bindings. |
 | `feature/sim-platform/host-directory-realization` | `crate/sim-table-fs` | 0 | Realize storage-owned HostDirPort semantics with one deterministic model and one confined Ubuntu adapter. |
@@ -57,8 +63,20 @@ This generated lane consumes `docs/generated/sim-index-fragment.sx`. Global inde
 - `crates/sim-lib-platform/recipes/01-basics/ubuntu-requirement/recipe.toml`
 - `crates/sim-lib-platform/recipes/01-basics/ubuntu-requirement/setup.siml`
 - `crates/sim-lib-platform/recipes/book.toml`
+- `crates/sim-platform-android/recipes/01-basics/android-aot/expected.txt`
+- `crates/sim-platform-android/recipes/01-basics/android-aot/purpose.md`
+- `crates/sim-platform-android/recipes/01-basics/android-aot/recipe.toml`
+- `crates/sim-platform-android/recipes/01-basics/android-aot/setup.siml`
+- `crates/sim-platform-android/recipes/01-basics/chapter.toml`
+- `crates/sim-platform-android/recipes/book.toml`
 - `crates/sim-platform-bootstrap/recipes/01-basics/chapter.toml`
 - `crates/sim-platform-bootstrap/recipes/book.toml`
+- `crates/sim-platform-browser/recipes/01-basics/chapter.toml`
+- `crates/sim-platform-browser/recipes/01-basics/offline-browser/expected.txt`
+- `crates/sim-platform-browser/recipes/01-basics/offline-browser/purpose.md`
+- `crates/sim-platform-browser/recipes/01-basics/offline-browser/recipe.toml`
+- `crates/sim-platform-browser/recipes/01-basics/offline-browser/setup.siml`
+- `crates/sim-platform-browser/recipes/book.toml`
 - `crates/sim-platform-construction/recipes/01-basics/chapter.toml`
 - `crates/sim-platform-construction/recipes/book.toml`
 - `crates/sim-platform-core/recipes/01-basics/chapter.toml`
@@ -67,16 +85,53 @@ This generated lane consumes `docs/generated/sim-index-fragment.sx`. Global inde
 - `crates/sim-platform-core/recipes/01-basics/fictional-capsule/recipe.toml`
 - `crates/sim-platform-core/recipes/01-basics/fictional-capsule/setup.siml`
 - `crates/sim-platform-core/recipes/book.toml`
+- `crates/sim-platform-ios/recipes/01-basics/chapter.toml`
+- `crates/sim-platform-ios/recipes/01-basics/ios-aot/expected.txt`
+- `crates/sim-platform-ios/recipes/01-basics/ios-aot/purpose.md`
+- `crates/sim-platform-ios/recipes/01-basics/ios-aot/recipe.toml`
+- `crates/sim-platform-ios/recipes/01-basics/ios-aot/setup.siml`
+- `crates/sim-platform-ios/recipes/book.toml`
 - `crates/sim-platform-linux/recipes/book.toml`
+- `crates/sim-platform-macos/recipes/01-basics/chapter.toml`
+- `crates/sim-platform-macos/recipes/01-basics/desktop-actions/expected.txt`
+- `crates/sim-platform-macos/recipes/01-basics/desktop-actions/purpose.md`
+- `crates/sim-platform-macos/recipes/01-basics/desktop-actions/recipe.toml`
+- `crates/sim-platform-macos/recipes/01-basics/desktop-actions/setup.siml`
+- `crates/sim-platform-macos/recipes/01-basics/media-session/expected.txt`
+- `crates/sim-platform-macos/recipes/01-basics/media-session/purpose.md`
+- `crates/sim-platform-macos/recipes/01-basics/media-session/recipe.toml`
+- `crates/sim-platform-macos/recipes/01-basics/media-session/setup.siml`
+- `crates/sim-platform-macos/recipes/book.toml`
 - `crates/sim-platform-model/recipes/01-basics/chapter.toml`
 - `crates/sim-platform-model/recipes/book.toml`
 - `crates/sim-platform-ubuntu-pc/recipes/book.toml`
+- `crates/sim-platform-ubuntu-rpi/recipes/01-basics/chapter.toml`
+- `crates/sim-platform-ubuntu-rpi/recipes/01-basics/gpio-to-stream/expected.txt`
+- `crates/sim-platform-ubuntu-rpi/recipes/01-basics/gpio-to-stream/purpose.md`
+- `crates/sim-platform-ubuntu-rpi/recipes/01-basics/gpio-to-stream/recipe.toml`
+- `crates/sim-platform-ubuntu-rpi/recipes/01-basics/gpio-to-stream/setup.siml`
+- `crates/sim-platform-ubuntu-rpi/recipes/book.toml`
 - `crates/sim-platform-web-shell/recipes/01-basics/chapter.toml`
 - `crates/sim-platform-web-shell/recipes/01-basics/modeled-boundary/expected.txt`
 - `crates/sim-platform-web-shell/recipes/01-basics/modeled-boundary/purpose.md`
 - `crates/sim-platform-web-shell/recipes/01-basics/modeled-boundary/recipe.toml`
 - `crates/sim-platform-web-shell/recipes/01-basics/modeled-boundary/setup.siml`
 - `crates/sim-platform-web-shell/recipes/book.toml`
+- `crates/sim-platform-windows/recipes/01-basics/chapter.toml`
+- `crates/sim-platform-windows/recipes/01-basics/launch/expected.txt`
+- `crates/sim-platform-windows/recipes/01-basics/launch/purpose.md`
+- `crates/sim-platform-windows/recipes/01-basics/launch/recipe.toml`
+- `crates/sim-platform-windows/recipes/01-basics/launch/setup.siml`
+- `crates/sim-platform-windows/recipes/01-basics/media/expected.txt`
+- `crates/sim-platform-windows/recipes/01-basics/media/purpose.md`
+- `crates/sim-platform-windows/recipes/01-basics/media/recipe.toml`
+- `crates/sim-platform-windows/recipes/01-basics/media/setup.siml`
+- `crates/sim-platform-windows/recipes/01-basics/process-cancellation/expected.txt`
+- `crates/sim-platform-windows/recipes/01-basics/process-cancellation/purpose.md`
+- `crates/sim-platform-windows/recipes/01-basics/process-cancellation/recipe.toml`
+- `crates/sim-platform-windows/recipes/01-basics/process-cancellation/setup.siml`
+- `crates/sim-platform-windows/recipes/book.toml`
+- `crates/sim-platform-windows/recipes/generated-services.txt`
 - `crates/sim-table-fs/recipes/01-basics/chapter.toml`
 - `crates/sim-table-fs/recipes/01-basics/grep-tree/purpose.md`
 - `crates/sim-table-fs/recipes/01-basics/grep-tree/recipe.toml`

@@ -1,0 +1,6 @@
+id = "offline-browser"
+title = "Run an offline browser capsule"
+purpose = "Prove retained offline support without claiming unavailable browser APIs."
+setup = "setup.siml"
+expected = "expected.txt"
+attestation = "../../../attestations/browser-offline.json"

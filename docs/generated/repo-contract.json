@@ -1,5 +1,5 @@
 {
-  "card_count": 16,
+  "card_count": 17,
   "cards": [
     {
       "id": "browse/catalog",
@@ -23,6 +23,12 @@
       "id": "cookbook/sim-platform-bootstrap",
       "kind": "cookbook-recipe",
       "owner": "sim-platform-bootstrap",
+      "summary": ""
+    },
+    {
+      "id": "cookbook/sim-platform-browser",
+      "kind": "cookbook-recipe",
+      "owner": "sim-platform-browser",
       "summary": ""
     },
     {
@@ -111,6 +117,7 @@
       "sim-platform-android",
       "sim-platform-audio",
       "sim-platform-bootstrap",
+      "sim-platform-browser",
       "sim-platform-construction",
       "sim-platform-core",
       "sim-platform-ios",
@@ -129,7 +136,7 @@
   },
   "non_citizen_exemption_count": 0,
   "non_citizen_exemptions": [],
-  "package_count": 18,
+  "package_count": 19,
   "packages": [
     {
       "crate_name": "sim_lib_platform",
@@ -258,6 +265,36 @@
           ],
           "name": "sim_platform_bootstrap",
           "src": "crates/sim-platform-bootstrap/src/lib.rs"
+        }
+      ]
+    },
+    {
+      "crate_name": "sim_platform_browser",
+      "dependencies": [],
+      "description": "Capability-honest browser Wasm capsule and byte-frame host membrane",
+      "features": [],
+      "group": "workspace",
+      "manifest": "crates/sim-platform-browser/Cargo.toml",
+      "name": "sim-platform-browser",
+      "publish": "false",
+      "root": "crates/sim-platform-browser",
+      "rustdoc_summary": "Capability-honest browser Wasm capsule and byte-frame host membrane",
+      "target_kinds": [
+        "cdylib",
+        "rlib"
+      ],
+      "targets": [
+        {
+          "crate_types": [
+            "rlib",
+            "cdylib"
+          ],
+          "kind": [
+            "rlib",
+            "cdylib"
+          ],
+          "name": "sim_platform_browser",
+          "src": "crates/sim-platform-browser/src/lib.rs"
         }
       ]
     },
@@ -924,10 +961,10 @@
     "generated_by": "cargo run -p xtask -- simdoc",
     "generation_timestamp": "2026-08-21T22:21:04+02:00",
     "generator": "xtask repo-contract v1",
-    "git_commit": "ccd5df7dbfa26c9421224cc427903abca18ad9dc",
+    "git_commit": "3f80482ee1c2ee134d531bd722a803f17ff3b1f7",
     "repo": "sim-platform",
     "schema": "sim.provenance.v1",
-    "source_commit": "ccd5df7dbfa26c9421224cc427903abca18ad9dc",
+    "source_commit": "3f80482ee1c2ee134d531bd722a803f17ff3b1f7",
     "source_remote": "https://github.com/sim-nest/sim-platform",
     "validation_commands": [
       "cargo fmt --all --check",
@@ -940,9 +977,9 @@
       "cargo run -p xtask -- validation-matrix --check --repo .",
       "cargo run -p xtask -- crate-catalog --check --repo ."
     ],
-    "workspace_hash": "1b473548b0f22907",
+    "workspace_hash": "61717d1ac4d915ca",
     "workspace_hash_algorithm": "fnv1a64",
-    "workspace_hash_input_count": 115,
+    "workspace_hash_input_count": 121,
     "workspace_hash_inputs": [
       "Cargo.toml",
       "crates/sim-lib-platform/Cargo.toml",
@@ -964,6 +1001,12 @@
       "crates/sim-platform-bootstrap/recipes/book.toml",
       "crates/sim-platform-bootstrap/src/lib.rs",
       "crates/sim-platform-bootstrap/src/tests.rs",
+      "crates/sim-platform-browser/Cargo.toml",
+      "crates/sim-platform-browser/recipes/01-basics/offline-browser/recipe.toml",
+      "crates/sim-platform-browser/recipes/book.toml",
+      "crates/sim-platform-browser/src/lib.rs",
+      "crates/sim-platform-browser/src/tests.rs",
+      "crates/sim-platform-browser/src/wasm.rs",
       "crates/sim-platform-construction/Cargo.toml",
       "crates/sim-platform-construction/recipes/book.toml",
       "crates/sim-platform-construction/src/lib.rs",
@@ -1061,7 +1104,7 @@
       "xtask/Cargo.toml"
     ]
   },
-  "recipe_book_count": 14,
+  "recipe_book_count": 15,
   "recipes": [
     {
       "book": "sim-lib-platform",
@@ -1121,6 +1164,26 @@
       "recipes": [],
       "summary": "",
       "title": "sim-platform-bootstrap recipes"
+    },
+    {
+      "book": "sim-platform-browser",
+      "book_toml": "crates/sim-platform-browser/recipes/book.toml",
+      "card_id": "cookbook/sim-platform-browser",
+      "group": "workspace",
+      "package": "sim-platform-browser",
+      "recipe_count": 1,
+      "recipes": [
+        {
+          "card_id": "sim-platform-browser/01-basics/offline-browser",
+          "codec": "",
+          "id": "offline-browser",
+          "package": "sim-platform-browser",
+          "recipe_toml": "crates/sim-platform-browser/recipes/01-basics/offline-browser/recipe.toml",
+          "title": "Run an offline browser capsule"
+        }
+      ],
+      "summary": "",
+      "title": "Browser capsule recipes"
     },
     {
       "book": "sim-platform-construction",

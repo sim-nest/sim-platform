@@ -1,0 +1,8 @@
+{
+  "schema": "sim.platform-browser-wasm-imports/v1",
+  "semantic_exports": ["sim_browser_named_call"],
+  "memory_exports": ["memory", "sim_browser_alloc", "sim_browser_dealloc"],
+  "imports": [],
+  "host_operations_are_framed": true,
+  "presentation_owner": "sim-web"
+}

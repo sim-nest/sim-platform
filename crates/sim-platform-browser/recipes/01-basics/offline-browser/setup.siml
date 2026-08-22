@@ -1,0 +1,2 @@
+(platform/require 'storage/handle)
+(platform/require 'platform/lifecycle)

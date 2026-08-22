@@ -1,0 +1,2 @@
+title = "Basics"
+recipes = ["offline-browser/recipe.toml"]

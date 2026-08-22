@@ -1,5 +1,5 @@
 {
-  "card_count": 16,
+  "card_count": 17,
   "cards": [
     {
       "id": "browse/catalog",
@@ -23,6 +23,12 @@
       "id": "cookbook/sim-platform-bootstrap",
       "kind": "cookbook-recipe",
       "owner": "sim-platform-bootstrap",
+      "summary": ""
+    },
+    {
+      "id": "cookbook/sim-platform-browser",
+      "kind": "cookbook-recipe",
+      "owner": "sim-platform-browser",
       "summary": ""
     },
     {
