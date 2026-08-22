@@ -110,17 +110,8 @@ impl LoaderPort for UbuntuLoaderPort {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use sim_kernel::{
-        AbiVersion, DefaultFactory, HandleSeed, Lib, LibManifest, LibSource, LibTarget, Linker,
-        LoadCx, NoopEvalPolicy, Version,
-    };
-    fn cx() -> Cx {
-        Cx::new(
-            Arc::new(NoopEvalPolicy),
-            Arc::new(DefaultFactory),
-            HandleSeed::new(1),
-        )
-    }
+    use sim_kernel::testing::bare_cx as cx;
+    use sim_kernel::{AbiVersion, Lib, LibManifest, LibSource, LibTarget, Linker, LoadCx, Version};
     struct TestLib;
     impl Lib for TestLib {
         fn manifest(&self) -> LibManifest {
