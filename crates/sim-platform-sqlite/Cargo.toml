@@ -1,0 +1,26 @@
+[package]
+name = "sim-platform-sqlite"
+version = "0.1.0"
+edition = "2024"
+license = "MPL-2.0"
+description = "Attesting SQLite relation capsule for SIM."
+repository = "https://github.com/sim-nest/sim-platform"
+homepage = "https://github.com/sim-nest/sim-platform"
+publish = true
+
+[package.metadata.sim-recipes]
+policy = "rustdoc"
+reason = "Real-file adoption, migration, attach, and bounded execution are checked by conformance tests."
+
+[dependencies]
+rusqlite = { version = "0.31", features = ["bundled", "hooks"] }
+sim-kernel = { version = "0.2.1", path = "../../../sim-kernel" }
+sim-codec-sql = { version = "0.1.0", path = "../../../sim-codecs/crates/sim-codec-sql" }
+sim-relation-core = { version = "0.1.0", path = "../../../sim-foundation/crates/sim-relation-core" }
+sim-relation-migrate = { version = "0.1.0", path = "../../../sim-foundation/crates/sim-relation-migrate" }
+sim-relation-plan = { version = "0.1.0", path = "../../../sim-foundation/crates/sim-relation-plan" }
+sim-relation-schema = { version = "0.1.0", path = "../../../sim-foundation/crates/sim-relation-schema" }
+sim-relation-site = { version = "0.1.0", path = "../../../sim-storage/crates/sim-relation-site" }
+
+[lints]
+workspace = true

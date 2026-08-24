@@ -1,6 +1,16 @@
 schema = "sim.features"
 
 [[feature]]
+id = "feature/sim-platform/attesting-sqlite-relation-site"
+title = "Attesting SQLite relation capsule"
+summary = "Realize checked relation plans against bounded memory or preopened SQLite stores with typed values, atomic migration attestations, normalized introspection, safe attach, and stable failures."
+owner = "crate/sim-platform-sqlite"
+audiences = ["code", "framework"]
+guidance = "Load relation/site:sqlite only through SqliteDriver and a closed StorageLocator. The capsule is the sole rusqlite owner; compose sim-codec-sql lowering and the storage relation site instead of exposing SQL, paths, statements, or driver values."
+claims_anchors = ["anchor/crate/sim-platform-sqlite"]
+supports = ["feature/sim-storage/bounded-relation-site", "feature/sim-storage/sqlite-relation-locator", "feature/sim-codecs/sql-projection"]
+
+[[feature]]
 id = "feature/sim-platform/construction-integration-realization"
 title = "Construction integration platform realization"
 summary = "Realize Dalux HTTPS and Powerproject desktop automation behind construction-owned ports."

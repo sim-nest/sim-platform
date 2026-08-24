@@ -20,6 +20,7 @@ members = [
   "crates/sim-platform-wasi",
   "crates/sim-platform-ubuntu-pc",
   "crates/sim-platform-ubuntu-rpi",
+  "crates/sim-platform-sqlite",
   "crates/sim-viture-ffi",
   "crates/sim-table-fs",
   "xtask",
