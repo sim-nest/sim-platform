@@ -162,6 +162,17 @@ claims_anchors = ["anchor/crate/sim-platform-model", "anchor/crate/sim-platform-
 supports = ["feature/sim-platform/ubuntu-pc-capsule", "feature/sim-runtime/host-exec"]
 
 [[feature]]
+id = "feature/sim-platform/ubuntu-bwrap-sandbox"
+title = "Ubuntu bubblewrap sandbox realization"
+summary = "Realize the runtime sandbox contract with an anonymous root, network namespace, declared mounts, rlimits, bounded pipes, and proven process-tree cleanup."
+owner = "crate/sim-platform-ubuntu-pc"
+audiences = ["code", "framework"]
+guidance = "Register BwrapLauncher only from boot-authorized bwrap, prlimit, program, input, toolchain, and writable-root paths. Missing mechanics or resource identities refuse before spawn. The launcher clears the environment, exposes no ambient home or workspace, binds only canonical declared sources, applies CPU/address-space/process/file-size limits, and composes the Ubuntu process-group monitor for wall time, cancellation, capture, and descendant cleanup."
+claims_anchors = ["anchor/crate/sim-platform-ubuntu-pc"]
+claims_specimens = ["spec-test/sim-platform/crates/sim-platform-ubuntu-pc/src/sandbox"]
+supports = ["feature/sim-platform/process-realization", "feature/sim-runtime/sandbox-exec"]
+
+[[feature]]
 id = "feature/sim-platform/transport-realization"
 title = "Ubuntu socket, DNS, and local IPC realization"
 summary = "Realize agent-net transport ports inside the Linux capsule with typed native failures and explicit platform-specific IPC identities."

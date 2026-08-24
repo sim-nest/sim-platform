@@ -124,7 +124,7 @@ struct Budget {
     left: usize,
     truncated: bool,
 }
-fn run_child(
+pub(crate) fn run_child(
     child: &mut Child,
     request: &ProcessRequest,
     cancellation: &ProcessCancellation,
@@ -195,6 +195,12 @@ fn run_child(
                 Ok(v) => v.truncated,
                 Err(_) => return unknown(started, "capture", "output budget poisoned"),
             };
+            let pgid = child.id();
+            if group_exists(pgid) {
+                if let Err(detail) = terminate_tree(child) {
+                    return unknown(started, "cleanup", &detail);
+                }
+            }
             let elapsed_mono_ns = u64::try_from(started.elapsed().as_nanos()).unwrap_or(u64::MAX);
             return ProcessAttempt::Completed {
                 receipt: ProcessReceipt {

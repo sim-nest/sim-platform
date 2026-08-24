@@ -17,7 +17,9 @@ mod loader;
 pub use compute::UbuntuComputeProbe;
 pub use loader::UbuntuLoaderPort;
 mod process;
+mod sandbox;
 pub use process::UbuntuProcess;
+pub use sandbox::BwrapLauncher;
 
 /// Owned process-entry facts captured by the Ubuntu capsule.
 ///
