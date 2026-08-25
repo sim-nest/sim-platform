@@ -7,12 +7,17 @@ use std::collections::{BTreeMap, BTreeSet};
 
 mod audio;
 mod ffi;
+mod speech;
 
 pub use audio::{
     AudioInput, AudioRouteClass, AudioRouteReceipt, AudioSessionSpec, AudioStopReason, PcmContract,
     RouteEvidence, RouteObservation, RoutingContract,
 };
 pub use ffi::{StaticAbiCapsule, sim_native_abi_v1};
+pub use speech::{
+    LocalSpeechEvidence, SpeechFallback, SpeechInput, SpeechKind, SpeechLanguage, SpeechOutput,
+    SpeechStopReason, SpeechTier,
+};
 
 pub const NATIVE_ABI_ENTRY: &str = "sim_native_abi_v1";
 pub const ARTIFACT: &str = "artifact/sim-platform-android";
@@ -20,6 +25,7 @@ pub const LIFECYCLE_FUNCTION: &str = "platform/lifecycle";
 pub const ACTIVATION_FUNCTION: &str = "platform/activation";
 pub const CONTINUITY_FUNCTION: &str = "platform/continuity";
 pub const AUDIO_FUNCTION: &str = "platform/android-audio";
+pub const SPEECH_FUNCTION: &str = "platform/android-speech";
 pub const REQUIRED_SERVICES: [&str; 6] = [
     "mount/app-private",
     "lifecycle",
@@ -140,6 +146,9 @@ pub enum Input {
     Audio {
         input: AudioInput,
     },
+    Speech {
+        input: SpeechInput,
+    },
     BackgroundExecution {
         allowed: bool,
     },
@@ -156,6 +165,8 @@ pub struct Output {
     pub resumed_turn_content_id: Option<String>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub audio_route: Option<AudioRouteReceipt>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub speech: Option<SpeechOutput>,
 }
 
 #[derive(Default)]
@@ -168,6 +179,7 @@ pub struct Capsule {
     pending_turn_content_id: Option<String>,
     resumed_turns: BTreeSet<String>,
     audio: audio::AndroidAudioState,
+    speech: speech::AndroidSpeechState,
 }
 
 impl Capsule {
@@ -190,6 +202,7 @@ impl Capsule {
     pub fn dispatch(&mut self, function: &str, input: Input) -> Result<Output, String> {
         let mut resumed_turn_content_id = None;
         let mut audio_route = None;
+        let mut speech = None;
         let accepted = match (function, input) {
             (CONTINUITY_FUNCTION, input) => {
                 let outcome = self.dispatch_continuity(input)?;
@@ -202,6 +215,7 @@ impl Capsule {
                     self.resources.clear();
                     self.background_allowed = false;
                     self.audio.release();
+                    self.speech.release(SpeechStopReason::LifecycleExpiry);
                 }
                 true
             }
@@ -235,6 +249,9 @@ impl Capsule {
                 },
             ) => {
                 self.permissions.insert(permission, granted);
+                if permission == Permission::Microphone && !granted {
+                    self.speech.release(SpeechStopReason::PermissionLoss);
+                }
                 granted
             }
             (ACTIVATION_FUNCTION, Input::Notification { channel, .. }) => {
@@ -247,11 +264,15 @@ impl Capsule {
                 audio_route = self.audio.dispatch(input)?;
                 self.audio.armed()
             }
+            (SPEECH_FUNCTION, Input::Speech { input }) => {
+                speech = Some(self.speech.dispatch(input)?);
+                speech.as_ref().is_some_and(SpeechOutput::is_available)
+            }
             (ACTIVATION_FUNCTION, Input::BackgroundExecution { allowed }) => {
                 self.background_allowed = allowed;
                 allowed
             }
-            (LIFECYCLE_FUNCTION | ACTIVATION_FUNCTION | AUDIO_FUNCTION, _) => {
+            (LIFECYCLE_FUNCTION | ACTIVATION_FUNCTION | AUDIO_FUNCTION | SPEECH_FUNCTION, _) => {
                 return Err(format!(
                     "typed input does not match Android function {function}"
                 ));
@@ -268,6 +289,7 @@ impl Capsule {
                 .map(|plan| plan.snapshot.content_id.clone()),
             resumed_turn_content_id,
             audio_route,
+            speech,
         })
     }
 
@@ -315,17 +337,20 @@ impl Capsule {
                 self.lifecycle = Some(Lifecycle::Suspended);
                 self.resources.clear();
                 self.audio.release();
+                self.speech.release(SpeechStopReason::LifecycleExpiry);
             }
             AndroidEvent::ProcessDeath => {
                 self.binding = None;
                 self.resources.clear();
                 self.audio.release();
+                self.speech.release(SpeechStopReason::LifecycleExpiry);
                 self.lifecycle = Some(Lifecycle::Stopped);
             }
             AndroidEvent::Restart => self.lifecycle = Some(Lifecycle::Created),
             AndroidEvent::MemoryPressure => {
                 self.resources.clear();
                 self.audio.release();
+                self.speech.release(SpeechStopReason::LifecycleExpiry);
             }
         }
     }

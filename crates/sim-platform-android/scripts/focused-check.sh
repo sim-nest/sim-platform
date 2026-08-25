@@ -59,4 +59,11 @@ grep -q 'NativeLibAbiV1' "$root/crates/sim-platform-android/src/ffi.rs"
 grep -q 'sim_native_abi_v1' "$root/crates/sim-platform-android/src/ffi.rs"
 grep -q 'Java_org_simnest_shell_SimActivity_nativeCall' "$root/crates/sim-platform-android/src/ffi.rs"
 grep -q 'System.loadLibrary' "$root/shell/android/app/src/main/java/org/simnest/shell/SimActivity.kt"
+grep -q 'isOnDeviceRecognitionAvailable' "$root/shell/android/app/src/main/java/org/simnest/shell/SimActivity.kt"
+grep -q 'createOnDeviceSpeechRecognizer' "$root/shell/android/app/src/main/java/org/simnest/shell/SimActivity.kt"
+grep -q 'isNetworkConnectionRequired' "$root/shell/android/app/src/main/java/org/simnest/shell/SimActivity.kt"
+if grep -q 'createSpeechRecognizer' "$root/shell/android/app/src/main/java/org/simnest/shell/SimActivity.kt"; then
+    echo 'remote-capable Android recognizer construction is forbidden' >&2
+    exit 1
+fi
 grep -q 'android-emulator-runner' "$root/.github/workflows/ci.yml"

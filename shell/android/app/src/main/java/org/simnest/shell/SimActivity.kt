@@ -13,6 +13,8 @@ import android.os.Build
 import android.os.SystemClock
 import android.net.Uri
 import android.os.Bundle
+import android.speech.SpeechRecognizer
+import android.speech.tts.Voice
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -147,6 +149,23 @@ class SimActivity : Activity() {
         )
 
     internal fun testLifecycle(state: String): JSONObject = lifecycle(state)
+
+    /** Discovery is observational: it never constructs the remote-capable system recognizer. */
+    internal fun discoverOnDeviceRecognizer(): Boolean =
+        Build.VERSION.SDK_INT >= 31 && SpeechRecognizer.isOnDeviceRecognitionAvailable(this)
+
+    /** Called only by a network-denied installation test after discovery succeeds. */
+    internal fun createProvenOnDeviceRecognizer(): SpeechRecognizer? =
+        if (discoverOnDeviceRecognizer()) SpeechRecognizer.createOnDeviceSpeechRecognizer(this) else null
+
+    /** Filters an already-observed engine inventory; never invokes install or check-data activities. */
+    internal fun installedOnDeviceTtsLanguages(voices: Set<Voice>): Set<String> =
+        voices
+            .asSequence()
+            .filterNot(Voice::isNetworkConnectionRequired)
+            .map { it.locale.toLanguageTag() }
+            .filter(String::isNotBlank)
+            .toSortedSet()
 
     internal fun testActivation(action: String): JSONObject =
         invoke(

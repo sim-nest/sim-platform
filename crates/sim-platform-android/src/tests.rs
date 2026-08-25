@@ -82,6 +82,7 @@ fn native_static_and_modeled_paths_share_the_exact_sim_frame() {
             snapshot_content_id: None,
             resumed_turn_content_id: None,
             audio_route: None,
+            speech: None,
         }
     );
 }
