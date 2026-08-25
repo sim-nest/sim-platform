@@ -79,8 +79,139 @@ fn native_static_and_modeled_paths_share_the_exact_sim_frame() {
             lifecycle: Lifecycle::Created,
             accepted: true,
             resources: 1,
+            snapshot_content_id: None,
+            resumed_turn_content_id: None,
         }
     );
+}
+
+fn content_id(byte: char) -> String {
+    std::iter::repeat_n(byte, 64).collect()
+}
+
+fn bind_plan() -> BindPlan {
+    let providers = REQUIRED_SERVICES
+        .into_iter()
+        .map(|service| (format!("provider/{service}"), format!("provider/{service}")))
+        .collect();
+    let services = REQUIRED_SERVICES
+        .into_iter()
+        .map(|service| (service.to_owned(), format!("provider/{service}")))
+        .collect();
+    BindPlan {
+        snapshot: ProviderSnapshot {
+            content_id: content_id('a'),
+            providers,
+        },
+        app_private_mount: "app-private".into(),
+        services,
+    }
+}
+
+#[test]
+fn provider_snapshot_binds_all_required_services_or_nothing() {
+    let mut capsule = Capsule::default();
+    let mut incomplete = bind_plan();
+    incomplete.services.remove("permissions");
+    assert!(
+        capsule
+            .dispatch(CONTINUITY_FUNCTION, Input::Bind { plan: incomplete })
+            .is_err()
+    );
+    let bound = send(
+        &mut capsule,
+        CONTINUITY_FUNCTION,
+        &Input::Bind { plan: bind_plan() },
+    );
+    assert!(bound.accepted);
+    assert_eq!(bound.snapshot_content_id, Some(content_id('a')));
+}
+
+#[test]
+fn killed_submitted_turn_restores_once_from_content_and_journal_ids() {
+    let mut capsule = Capsule::default();
+    send(
+        &mut capsule,
+        CONTINUITY_FUNCTION,
+        &Input::Bind { plan: bind_plan() },
+    );
+    let turn = content_id('b');
+    let first = send(
+        &mut capsule,
+        CONTINUITY_FUNCTION,
+        &Input::SubmitTurn {
+            content_id: turn.clone(),
+        },
+    );
+    assert_eq!(first.resumed_turn_content_id, None);
+    send(
+        &mut capsule,
+        CONTINUITY_FUNCTION,
+        &Input::Event {
+            event: AndroidEvent::ProcessDeath,
+        },
+    );
+    send(
+        &mut capsule,
+        CONTINUITY_FUNCTION,
+        &Input::Event {
+            event: AndroidEvent::Restart,
+        },
+    );
+    send(
+        &mut capsule,
+        CONTINUITY_FUNCTION,
+        &Input::Bind { plan: bind_plan() },
+    );
+    let restored = send(
+        &mut capsule,
+        CONTINUITY_FUNCTION,
+        &Input::Restore {
+            plan: RestorePlan {
+                snapshot_content_id: content_id('a'),
+                journal_content_id: content_id('c'),
+                pending_turn_content_id: Some(turn.clone()),
+                permission_observations: BTreeMap::from([(Permission::SharedDocument, false)]),
+            },
+        },
+    );
+    assert_eq!(restored.resumed_turn_content_id, Some(turn.clone()));
+    assert_eq!(
+        capsule.permissions.get(&Permission::SharedDocument),
+        Some(&false)
+    );
+    let duplicate = send(
+        &mut capsule,
+        CONTINUITY_FUNCTION,
+        &Input::Restore {
+            plan: RestorePlan {
+                snapshot_content_id: content_id('a'),
+                journal_content_id: content_id('c'),
+                pending_turn_content_id: Some(turn),
+                permission_observations: BTreeMap::new(),
+            },
+        },
+    );
+    assert_eq!(
+        duplicate.resumed_turn_content_id, None,
+        "the same journal turn resumes once"
+    );
+}
+
+#[test]
+fn every_android_disruption_is_an_explicit_rust_input() {
+    let mut capsule = Capsule::default();
+    for event in [
+        AndroidEvent::Rotation,
+        AndroidEvent::ActivityRecreation,
+        AndroidEvent::BackgroundRestriction,
+        AndroidEvent::Suspend,
+        AndroidEvent::ProcessDeath,
+        AndroidEvent::Restart,
+        AndroidEvent::MemoryPressure,
+    ] {
+        assert!(send(&mut capsule, CONTINUITY_FUNCTION, &Input::Event { event }).accepted);
+    }
 }
 
 #[test]

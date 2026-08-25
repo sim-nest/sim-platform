@@ -13,6 +13,15 @@ pub const NATIVE_ABI_ENTRY: &str = "sim_native_abi_v1";
 pub const ARTIFACT: &str = "artifact/sim-platform-android";
 pub const LIFECYCLE_FUNCTION: &str = "platform/lifecycle";
 pub const ACTIVATION_FUNCTION: &str = "platform/activation";
+pub const CONTINUITY_FUNCTION: &str = "platform/continuity";
+pub const REQUIRED_SERVICES: [&str; 6] = [
+    "mount/app-private",
+    "lifecycle",
+    "foreground",
+    "permissions",
+    "activations",
+    "provider-table",
+];
 pub const TARGETS: [&str; 4] = [
     "aarch64-linux-android",
     "armv7-linux-androideabi",
@@ -27,6 +36,43 @@ pub enum Lifecycle {
     Active,
     Suspended,
     Stopped,
+}
+
+/// Android facts are inputs to Rust, never implicit control flow in Kotlin.
+#[derive(Clone, Copy, Debug, Deserialize, Eq, PartialEq, Serialize)]
+#[serde(rename_all = "kebab-case")]
+pub enum AndroidEvent {
+    Rotation,
+    ActivityRecreation,
+    BackgroundRestriction,
+    Suspend,
+    ProcessDeath,
+    Restart,
+    MemoryPressure,
+}
+
+/// One immutable, content-addressed view of all platform providers.
+#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
+pub struct ProviderSnapshot {
+    pub content_id: String,
+    pub providers: BTreeMap<String, String>,
+}
+
+/// Complete Android authority bundle. Partial installation is forbidden.
+#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
+pub struct BindPlan {
+    pub snapshot: ProviderSnapshot,
+    pub app_private_mount: String,
+    pub services: BTreeMap<String, String>,
+}
+
+/// Portable continuity record. Every identity is a content id or journal id.
+#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
+pub struct RestorePlan {
+    pub snapshot_content_id: String,
+    pub journal_content_id: String,
+    pub pending_turn_content_id: Option<String>,
+    pub permission_observations: BTreeMap<Permission, bool>,
 }
 
 #[derive(Clone, Copy, Debug, Deserialize, Eq, Ord, PartialEq, PartialOrd, Serialize)]
@@ -58,6 +104,18 @@ pub enum ContentRef {
 #[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
 #[serde(tag = "type", rename_all = "kebab-case")]
 pub enum Input {
+    Bind {
+        plan: BindPlan,
+    },
+    Event {
+        event: AndroidEvent,
+    },
+    Restore {
+        plan: RestorePlan,
+    },
+    SubmitTurn {
+        content_id: String,
+    },
     Lifecycle {
         state: Lifecycle,
     },
@@ -87,6 +145,10 @@ pub struct Output {
     pub lifecycle: Lifecycle,
     pub accepted: bool,
     pub resources: usize,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub snapshot_content_id: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub resumed_turn_content_id: Option<String>,
 }
 
 #[derive(Default)]
@@ -95,6 +157,9 @@ pub struct Capsule {
     permissions: BTreeMap<Permission, bool>,
     resources: BTreeSet<String>,
     background_allowed: bool,
+    binding: Option<BindPlan>,
+    pending_turn_content_id: Option<String>,
+    resumed_turns: BTreeSet<String>,
 }
 
 impl Capsule {
@@ -115,7 +180,13 @@ impl Capsule {
     /// Returns a closed error if the function and input type disagree or an
     /// activation carries an invalid bounded content reference.
     pub fn dispatch(&mut self, function: &str, input: Input) -> Result<Output, String> {
+        let mut resumed_turn_content_id = None;
         let accepted = match (function, input) {
+            (CONTINUITY_FUNCTION, input) => {
+                let outcome = self.dispatch_continuity(input)?;
+                resumed_turn_content_id = outcome.1;
+                outcome.0
+            }
             (LIFECYCLE_FUNCTION, Input::Lifecycle { state }) => {
                 self.lifecycle = Some(state);
                 if matches!(state, Lifecycle::Suspended | Lifecycle::Stopped) {
@@ -187,7 +258,104 @@ impl Capsule {
             lifecycle: self.lifecycle.unwrap_or(Lifecycle::Created),
             accepted,
             resources: self.resources.len(),
+            snapshot_content_id: self
+                .binding
+                .as_ref()
+                .map(|plan| plan.snapshot.content_id.clone()),
+            resumed_turn_content_id,
         })
+    }
+
+    fn dispatch_continuity(&mut self, input: Input) -> Result<(bool, Option<String>), String> {
+        match input {
+            Input::Bind { plan } => {
+                validate_bind_plan(&plan)?;
+                self.binding = Some(plan);
+                Ok((true, None))
+            }
+            Input::Event { event } => {
+                self.apply_android_event(event);
+                Ok((true, None))
+            }
+            Input::Restore { plan } => {
+                validate_restore_plan(&plan)?;
+                let binding = self.binding.as_ref().ok_or_else(|| {
+                    "Android restore requires an atomically bound provider snapshot".to_owned()
+                })?;
+                if binding.snapshot.content_id != plan.snapshot_content_id {
+                    return Err("Android restore snapshot does not match bound providers".into());
+                }
+                self.permissions = plan.permission_observations;
+                self.pending_turn_content_id = plan.pending_turn_content_id;
+                let resumed = self
+                    .pending_turn_content_id
+                    .take()
+                    .filter(|id| self.resumed_turns.insert(id.clone()));
+                Ok((true, resumed))
+            }
+            Input::SubmitTurn { content_id } => {
+                validate_content_id("turn", &content_id)?;
+                self.pending_turn_content_id = Some(content_id);
+                Ok((true, None))
+            }
+            _ => Err("typed input does not match Android continuity function".into()),
+        }
+    }
+
+    fn apply_android_event(&mut self, event: AndroidEvent) {
+        match event {
+            AndroidEvent::Rotation | AndroidEvent::ActivityRecreation => {}
+            AndroidEvent::BackgroundRestriction | AndroidEvent::Suspend => {
+                self.background_allowed = false;
+                self.lifecycle = Some(Lifecycle::Suspended);
+                self.resources.clear();
+            }
+            AndroidEvent::ProcessDeath => {
+                self.binding = None;
+                self.resources.clear();
+                self.lifecycle = Some(Lifecycle::Stopped);
+            }
+            AndroidEvent::Restart => self.lifecycle = Some(Lifecycle::Created),
+            AndroidEvent::MemoryPressure => self.resources.clear(),
+        }
+    }
+}
+
+fn validate_bind_plan(plan: &BindPlan) -> Result<(), String> {
+    validate_content_id("provider snapshot", &plan.snapshot.content_id)?;
+    if plan.app_private_mount != "app-private" {
+        return Err("Android continuity root requires the app-private mount".into());
+    }
+    let declared: BTreeSet<_> = plan.services.keys().map(String::as_str).collect();
+    let required: BTreeSet<_> = REQUIRED_SERVICES.into_iter().collect();
+    if declared != required {
+        return Err("Android bind must resolve every required service atomically".into());
+    }
+    if plan.services.values().any(|provider| {
+        plan.snapshot
+            .providers
+            .get(provider)
+            .is_none_or(|value| value != provider)
+    }) {
+        return Err("Android bind references a provider outside its immutable snapshot".into());
+    }
+    Ok(())
+}
+
+fn validate_restore_plan(plan: &RestorePlan) -> Result<(), String> {
+    validate_content_id("provider snapshot", &plan.snapshot_content_id)?;
+    validate_content_id("journal", &plan.journal_content_id)?;
+    if let Some(id) = &plan.pending_turn_content_id {
+        validate_content_id("pending turn", id)?;
+    }
+    Ok(())
+}
+
+fn validate_content_id(kind: &str, id: &str) -> Result<(), String> {
+    if id.len() == 64 && id.bytes().all(|byte| byte.is_ascii_hexdigit()) {
+        Ok(())
+    } else {
+        Err(format!("Android {kind} must be a 64-digit content id"))
     }
 }
 

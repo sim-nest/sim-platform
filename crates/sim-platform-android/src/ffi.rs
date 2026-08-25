@@ -224,15 +224,19 @@ fn manifest_expr() -> Expr {
         entry(
             "exports",
             Expr::List(
-                [crate::LIFECYCLE_FUNCTION, crate::ACTIVATION_FUNCTION]
-                    .into_iter()
-                    .map(|symbol| {
-                        Expr::Map(vec![
-                            entry("kind", Expr::String("function".into())),
-                            entry("symbol", Expr::Symbol(symbol_from_qualified(symbol))),
-                        ])
-                    })
-                    .collect(),
+                [
+                    crate::LIFECYCLE_FUNCTION,
+                    crate::ACTIVATION_FUNCTION,
+                    crate::CONTINUITY_FUNCTION,
+                ]
+                .into_iter()
+                .map(|symbol| {
+                    Expr::Map(vec![
+                        entry("kind", Expr::String("function".into())),
+                        entry("symbol", Expr::Symbol(symbol_from_qualified(symbol))),
+                    ])
+                })
+                .collect(),
             ),
         ),
     ])
@@ -308,6 +312,7 @@ mod android_jni {
             let function = match function {
                 0 => crate::LIFECYCLE_FUNCTION,
                 1 => crate::ACTIVATION_FUNCTION,
+                2 => crate::CONTINUITY_FUNCTION,
                 _ => return Err(format!("unknown Android shell function code {function}")),
             };
             let json = unsafe { read_byte_array(env, json_frame)? };

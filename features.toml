@@ -107,7 +107,7 @@ title = "Android AOT platform capsule"
 summary = "Host the unchanged native ABI as AOT Rust behind one thin Kotlin lifecycle and activation shell."
 owner = "crate/sim-platform-android"
 audiences = ["code", "framework"]
-guidance = "Cross-build the four declared Rust Android targets with the provenance-pinned LTS NDK. The Kotlin Activity is only a typed byte-frame pump for lifecycle, activation, permissions, content URI grants, notifications, audio devices, and background execution. Pass shared content as bounded Table, Dir, or inline byte references; never expose ambient paths or introduce an Android domain trait or mobile runtime."
+guidance = "Cross-build the four declared Rust Android targets with the provenance-pinned LTS NDK. Bind the complete service set atomically against one immutable provider snapshot and restore continuity only from content ids plus journal records. Rotation, recreation, restrictions, suspension, process death, restart, and memory pressure enter Rust as explicit events. The Kotlin Activity is only a bounded byte-frame callback pump; it owns no retry, policy, ranking, transcript, session, permission-prompt, or task-stack state."
 claims_anchors = ["anchor/crate/sim-platform-android"]
 supports = ["feature/sim-platform/platform-owner", "feature/sim-platform/bootstrap-rind", "feature/sim-platform/platform-policy", "feature/sim-platform/native-media-realization"]
 

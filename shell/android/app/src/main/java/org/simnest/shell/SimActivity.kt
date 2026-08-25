@@ -1,7 +1,9 @@
 package org.simnest.shell
 
 import android.app.Activity
+import android.content.ComponentCallbacks2
 import android.content.Intent
+import android.content.res.Configuration
 import android.media.AudioManager
 import android.net.Uri
 import android.os.Bundle
@@ -19,6 +21,8 @@ class SimActivity : Activity() {
     override fun onCreate(state: Bundle?) {
         super.onCreate(state)
         capsule = nativeInstantiate()
+        continuityEvent("restart")
+        if (state != null) continuityEvent("activity-recreation")
         lifecycle("created")
         intent?.let(::activate)
     }
@@ -29,8 +33,24 @@ class SimActivity : Activity() {
     }
 
     override fun onPause() {
+        continuityEvent("suspend")
         lifecycle("suspended")
         super.onPause()
+    }
+
+    override fun onStop() {
+        continuityEvent("background-restriction")
+        super.onStop()
+    }
+
+    override fun onConfigurationChanged(configuration: Configuration) {
+        super.onConfigurationChanged(configuration)
+        continuityEvent("rotation")
+    }
+
+    override fun onTrimMemory(level: Int) {
+        super.onTrimMemory(level)
+        if (level >= ComponentCallbacks2.TRIM_MEMORY_RUNNING_LOW) continuityEvent("memory-pressure")
     }
 
     override fun onDestroy() {
@@ -53,6 +73,9 @@ class SimActivity : Activity() {
 
     private fun lifecycle(state: String): JSONObject =
         invoke(LIFECYCLE, JSONObject().put("type", "lifecycle").put("state", state))
+
+    private fun continuityEvent(event: String): JSONObject =
+        invoke(CONTINUITY, JSONObject().put("type", "event").put("event", event))
 
     private fun activate(intent: Intent): JSONObject =
         invoke(
@@ -126,6 +149,7 @@ class SimActivity : Activity() {
     companion object {
         private const val LIFECYCLE = 0
         private const val ACTIVATION = 1
+        private const val CONTINUITY = 2
 
         init {
             System.loadLibrary("sim_platform_android")
