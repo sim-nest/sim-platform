@@ -2,6 +2,7 @@
 set -eu
 
 root=$(CDPATH='' cd -- "$(dirname -- "$0")/../../.." && pwd)
+mode=${1:-all}
 scratch=$(mktemp -d /tmp/sim-platform-android-check.XXXXXX)
 trap 'rm -rf "$scratch"' EXIT HUP INT TERM
 cp -R "$root/crates/sim-platform-android" "$scratch/android"
@@ -20,16 +21,39 @@ printf '%s\n' \
   'unsafe_code = "forbid"' \
   '' \
   '[workspace.lints.clippy]' \
-  'pedantic = "warn"' > "$scratch/Cargo.toml"
+  'pedantic = "warn"' \
+  '' \
+  '[patch.crates-io]' \
+  "sim-kernel = { path = \"$root/../sim-kernel\" }" \
+  "sim-codec-binary = { path = \"$root/../sim-codecs/crates/sim-codec-binary\" }" \
+  "sim-shape = { path = \"$root/../sim-shape\" }" \
+  "sim-cookbook-build = { path = \"$root/../sim-foundation/crates/sim-cookbook-build\" }" \
+  > "$scratch/Cargo.toml"
 
 toolchain=/home/bo/.rustup/toolchains/stable-x86_64-unknown-linux-gnu
-RUSTUP_TOOLCHAIN=stable-x86_64-unknown-linux-gnu "$toolchain/bin/cargo" \
-  test --manifest-path "$scratch/Cargo.toml" --locked -p sim-platform-android --offline
-RUSTUP_TOOLCHAIN=stable-x86_64-unknown-linux-gnu "$toolchain/bin/cargo" \
-  clippy --manifest-path "$scratch/Cargo.toml" --locked -p sim-platform-android \
-  --all-targets --offline -- -D warnings
-RUSTUP_TOOLCHAIN=stable-x86_64-unknown-linux-gnu "$toolchain/bin/cargo" \
-  doc --manifest-path "$scratch/Cargo.toml" --locked -p sim-platform-android --no-deps --offline
+case "$mode" in
+  all|test)
+    RUSTUP_TOOLCHAIN=stable-x86_64-unknown-linux-gnu "$toolchain/bin/cargo" \
+      test --manifest-path "$scratch/Cargo.toml" -p sim-platform-android --offline
+    ;;
+esac
+case "$mode" in
+  all|compile)
+    RUSTUP_TOOLCHAIN=stable-x86_64-unknown-linux-gnu "$toolchain/bin/cargo" \
+      clippy --manifest-path "$scratch/Cargo.toml" --locked -p sim-platform-android \
+      --all-targets --offline -- -D warnings
+    ;;
+esac
+case "$mode" in
+  all|doc)
+    RUSTUP_TOOLCHAIN=stable-x86_64-unknown-linux-gnu "$toolchain/bin/cargo" \
+      doc --manifest-path "$scratch/Cargo.toml" -p sim-platform-android --no-deps --offline
+    ;;
+esac
+case "$mode" in
+  all|test|compile|doc) ;;
+  *) printf 'unknown focused-check mode: %s\n' "$mode" >&2; exit 2 ;;
+esac
 test "$(find "$root/crates/sim-platform-android/attestations" -name '*.json' | wc -l)" -eq 4
 grep -q 'NativeLibAbiV1' "$root/crates/sim-platform-android/src/ffi.rs"
 grep -q 'sim_native_abi_v1' "$root/crates/sim-platform-android/src/ffi.rs"

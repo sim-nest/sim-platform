@@ -81,7 +81,246 @@ fn native_static_and_modeled_paths_share_the_exact_sim_frame() {
             resources: 1,
             snapshot_content_id: None,
             resumed_turn_content_id: None,
+            audio_route: None,
         }
+    );
+}
+
+fn audio_spec(api_level: u16, private_output: bool) -> AudioSessionSpec {
+    AudioSessionSpec {
+        turn_content_id: content_id('d'),
+        api_level,
+        admitted: true,
+        private_output,
+        pcm: PcmContract {
+            sample_rate_hz: 48_000,
+            channels: 2,
+            frames_per_chunk: 480,
+            queue_capacity_chunks: 8,
+        },
+        armed_at_ms: 1_000,
+        expires_at_ms: 10_000,
+    }
+}
+
+fn audio(capsule: &mut Capsule, input: AudioInput) -> Output {
+    send(capsule, AUDIO_FUNCTION, &Input::Audio { input })
+}
+
+#[test]
+fn supported_api_levels_select_the_official_focus_and_route_contract() {
+    for api in 28..=35 {
+        let mut capsule = Capsule::default();
+        let receipt = audio(
+            &mut capsule,
+            AudioInput::Arm {
+                spec: audio_spec(api, false),
+            },
+        )
+        .audio_route
+        .unwrap();
+        let expected = if api <= 30 {
+            RoutingContract::Api28To30CommunicationMode
+        } else {
+            RoutingContract::Api31To35CommunicationDevice
+        };
+        assert_eq!(receipt.routing_contract, expected);
+        assert!(receipt.focus_held && receipt.communication_route_held);
+    }
+    let mut capsule = Capsule::default();
+    assert!(
+        capsule
+            .dispatch(
+                AUDIO_FUNCTION,
+                Input::Audio {
+                    input: AudioInput::Arm {
+                        spec: audio_spec(27, false)
+                    }
+                }
+            )
+            .is_err()
+    );
+}
+
+#[test]
+fn route_receipts_are_private_independent_fresh_and_keep_turn_identity() {
+    let mut capsule = Capsule::default();
+    audio(
+        &mut capsule,
+        AudioInput::Arm {
+            spec: audio_spec(35, true),
+        },
+    );
+    let output_only = audio(
+        &mut capsule,
+        AudioInput::Route {
+            observation: RouteObservation {
+                capture: vec![AudioRouteClass::Handset],
+                render: vec![AudioRouteClass::ClassicBluetooth],
+                generation: 1,
+                observed_at_ms: 1_100,
+                evidence: RouteEvidence::DeviceCallback,
+            },
+        },
+    )
+    .audio_route
+    .unwrap();
+    assert_eq!(output_only.turn_content_id, content_id('d'));
+    assert!(!output_only.duplex, "an output route never implies input");
+    assert!(output_only.private_output_paused);
+    let changed = audio(
+        &mut capsule,
+        AudioInput::Route {
+            observation: RouteObservation {
+                capture: vec![AudioRouteClass::LeAudio],
+                render: vec![AudioRouteClass::LeAudio],
+                generation: 2,
+                observed_at_ms: 1_200,
+                evidence: RouteEvidence::CommunicationCallback,
+            },
+        },
+    )
+    .audio_route
+    .unwrap();
+    assert_eq!(changed.turn_content_id, output_only.turn_content_id);
+    assert_eq!(changed.generation, 2);
+    assert!(changed.duplex && !changed.private_output_paused && changed.fresh);
+    let json = serde_json::to_string(&changed).unwrap();
+    for forbidden in ["device-id", "address", "name", "pair"] {
+        assert!(!json.contains(forbidden));
+    }
+}
+
+#[test]
+fn every_terminal_path_releases_focus_and_communication_routing() {
+    for reason in [
+        AudioStopReason::Stop,
+        AudioStopReason::Cancellation,
+        AudioStopReason::BackgroundExpiry,
+        AudioStopReason::PermissionLoss,
+        AudioStopReason::RouteLoss,
+        AudioStopReason::FocusConflict,
+        AudioStopReason::ProcessDeath,
+    ] {
+        let mut capsule = Capsule::default();
+        audio(
+            &mut capsule,
+            AudioInput::Arm {
+                spec: audio_spec(35, false),
+            },
+        );
+        let stopped = audio(&mut capsule, AudioInput::Stop { reason });
+        assert!(!stopped.accepted);
+        assert!(stopped.audio_route.is_none());
+    }
+    let mut capsule = Capsule::default();
+    audio(
+        &mut capsule,
+        AudioInput::Arm {
+            spec: audio_spec(35, false),
+        },
+    );
+    assert!(
+        audio(&mut capsule, AudioInput::Tick { now_ms: 10_000 })
+            .audio_route
+            .is_none()
+    );
+    for event in [
+        AndroidEvent::BackgroundRestriction,
+        AndroidEvent::Suspend,
+        AndroidEvent::ProcessDeath,
+        AndroidEvent::MemoryPressure,
+    ] {
+        audio(
+            &mut capsule,
+            AudioInput::Arm {
+                spec: audio_spec(35, false),
+            },
+        );
+        send(&mut capsule, CONTINUITY_FUNCTION, &Input::Event { event });
+        assert!(
+            audio(&mut capsule, AudioInput::Tick { now_ms: 1_100 })
+                .audio_route
+                .is_none()
+        );
+    }
+}
+
+#[test]
+fn handset_wired_classic_le_output_only_conflict_unplug_denial_and_death_are_closed() {
+    for class in [
+        AudioRouteClass::Handset,
+        AudioRouteClass::Wired,
+        AudioRouteClass::ClassicBluetooth,
+        AudioRouteClass::LeAudio,
+    ] {
+        let mut capsule = Capsule::default();
+        audio(
+            &mut capsule,
+            AudioInput::Arm {
+                spec: audio_spec(31, false),
+            },
+        );
+        let receipt = audio(
+            &mut capsule,
+            AudioInput::Route {
+                observation: RouteObservation {
+                    capture: vec![class],
+                    render: vec![class],
+                    generation: 1,
+                    observed_at_ms: 1_050,
+                    evidence: RouteEvidence::DeviceCallback,
+                },
+            },
+        )
+        .audio_route
+        .unwrap();
+        assert!(receipt.duplex);
+        assert_eq!(receipt.pcm.queue_capacity_chunks, 8);
+    }
+    let mut denied = audio_spec(35, false);
+    denied.admitted = false;
+    assert!(
+        Capsule::default()
+            .dispatch(
+                AUDIO_FUNCTION,
+                Input::Audio {
+                    input: AudioInput::Arm { spec: denied }
+                }
+            )
+            .is_err()
+    );
+    let mut capsule = Capsule::default();
+    audio(
+        &mut capsule,
+        AudioInput::Arm {
+            spec: audio_spec(35, true),
+        },
+    );
+    let uncertain = audio(
+        &mut capsule,
+        AudioInput::Route {
+            observation: RouteObservation {
+                capture: vec![],
+                render: vec![],
+                generation: 1,
+                observed_at_ms: 1_100,
+                evidence: RouteEvidence::DeviceCallback,
+            },
+        },
+    )
+    .audio_route
+    .unwrap();
+    assert!(
+        uncertain.private_output_paused,
+        "unplug uncertainty pauses private output"
+    );
+    assert!(!uncertain.focus_held && !uncertain.communication_route_held);
+    assert!(
+        audio(&mut capsule, AudioInput::Tick { now_ms: 1_200 })
+            .audio_route
+            .is_none(),
+        "route loss stops the session"
     );
 }
 

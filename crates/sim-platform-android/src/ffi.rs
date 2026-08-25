@@ -228,6 +228,7 @@ fn manifest_expr() -> Expr {
                     crate::LIFECYCLE_FUNCTION,
                     crate::ACTIVATION_FUNCTION,
                     crate::CONTINUITY_FUNCTION,
+                    crate::AUDIO_FUNCTION,
                 ]
                 .into_iter()
                 .map(|symbol| {
@@ -313,6 +314,7 @@ mod android_jni {
                 0 => crate::LIFECYCLE_FUNCTION,
                 1 => crate::ACTIVATION_FUNCTION,
                 2 => crate::CONTINUITY_FUNCTION,
+                3 => crate::AUDIO_FUNCTION,
                 _ => return Err(format!("unknown Android shell function code {function}")),
             };
             let json = unsafe { read_byte_array(env, json_frame)? };
