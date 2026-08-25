@@ -3,12 +3,14 @@
   "recorded": "2026-08-22",
   "remote_recheck": "terminal-closeout-required",
   "reason": "ordinary roadmap work unit is mechanically networkless",
-  "supported_runtime": {
+  "modeled_runtime": {
     "device_family": "Amazfit T-Rex 3 Pro",
     "minimum_api_level": "4.0",
     "language": "Zepp OS supported JavaScript subset",
-    "evidence": "model/cross-built"
+    "evidence": "model/cross-built; not a physical support claim"
   },
+  "physical_route": "unsupported",
+  "route_attestation": "attestations/offline-route.json",
   "official_sources": [
     "https://docs.zepp.com/docs/guides/framework/device/app/",
     "https://docs.zepp.com/docs/v2/guides/framework/device/js-support/",

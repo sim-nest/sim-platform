@@ -1,0 +1,56 @@
+{
+  "schema": "sim.platform.amazfit-offline-route/v1",
+  "recorded": "2026-08-25",
+  "result": "unsupported",
+  "support_grade": "model-only",
+  "device": {
+    "model": "Amazfit T-Rex 3 Pro",
+    "firmware": "not-attested",
+    "zepp_os_api": "manifest-compatible-4.0",
+    "device_app": "shell/amazfit/app.js",
+    "app_service": "not-declared",
+    "side_service": "source-present-not-declared",
+    "permissions": [],
+    "background_contract": "not-declared"
+  },
+  "sanitized_trace": [
+    {
+      "edge": 1,
+      "from": "watch device-app page callback",
+      "transport": "BasePage.request proxyFrame",
+      "to": "Zepp companion app-service endpoint",
+      "status": "missing",
+      "evidence": "app.json declares only targets.default.module.page; no app-service module is packaged"
+    },
+    {
+      "edge": 2,
+      "from": "unregistered side-service source",
+      "transport": "onRequest acknowledgement",
+      "to": "Android Rust AmazfitCapsule",
+      "status": "missing",
+      "evidence": "side-service.js returns accepted without forwarding; Android source has no AmazfitCapsule or proxyFrame integration"
+    }
+  ],
+  "offline_proof": {
+    "wifi": "disabled-required",
+    "cellular": "disabled-required",
+    "executed": false,
+    "reason": "The local watch-to-Android-Rust route is incomplete before radio conditions can be tested; no server relay is accepted as a substitute."
+  },
+  "role_disposition": {
+    "watch_provider": "unsupported",
+    "continuity": "unsupported",
+    "worn_view": "unsupported"
+  },
+  "failure_disposition": {
+    "app_death": "fail-closed; no route",
+    "suspension": "fail-closed; modeled Rust state disconnects",
+    "replay": "fail-closed in modeled Rust state",
+    "stale_generation": "fail-closed in modeled Rust state",
+    "permission_loss": "fail-closed; no permissions or route declared",
+    "overflow": "fail-closed in modeled Rust state",
+    "disconnect": "fail-closed in modeled Rust state",
+    "companion_replacement": "unsupported; no attested binding"
+  },
+  "activation": "A future physical support claim requires a declared official app-service handoff, an explicit Android-to-Rust adapter, exact firmware/API evidence, and a device round trip with Wi-Fi and cellular disabled."
+}

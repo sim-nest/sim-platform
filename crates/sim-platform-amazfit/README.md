@@ -1,12 +1,12 @@
 # sim-platform-amazfit
 
-This capsule is the bounded official-wire edge between a Zepp OS device app and
-SIM's Android companion. The watch registers lifecycle callbacks and forwards
-only typed event and sensor frames; the companion enforces consent, sessions,
-deduplication, framing, and queue limits. Host adapters map those frames to the
-existing WATCH_8 Device/Stream contracts and map `scene/glance` output back to
-bounded display and haptic commands. No SIM evaluator or vendor policy runs on
-the watch, and no second phone runtime exists.
+This crate models the bounded state machine intended for a Zepp OS device-app
+edge. It does not establish a route between an Amazfit watch and SIM's Android
+companion. The delivered manifest registers no app service, the unregistered
+side-service source acknowledges and discards frames, and the Android capsule
+has no adapter into `AmazfitCapsule`.
 
-Support is `model` / `cross-built`. Physical support requires a registered watch
-resource and a device round-trip attestation.
+Support is model-only. The exact missing edges and the prerequisites for a
+physical, network-disabled round trip are recorded in
+`attestations/offline-route.json`. Amazfit therefore earns no watch-provider,
+continuity, or worn-view role and never gates the Android product.
