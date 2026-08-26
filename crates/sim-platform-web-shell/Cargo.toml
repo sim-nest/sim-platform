@@ -15,7 +15,11 @@ path = "src/main.rs"
 role = "platform-capsule"
 
 [dependencies]
+sim = { package = "sim-nest", version = "0.2.2", features = ["serve-cli"] }
+sim-lib-cookbook = { version = "0.1.16" }
+sim-lib-server = { version = "0.1.12" }
 sim-platform-linux = { path = "../sim-platform-linux" }
+sim-run-core = { version = "0.3.1" }
 sim-transport-ports = { version = "0.1.0" }
 sim-web-shell = { version = "0.1.13" }
 

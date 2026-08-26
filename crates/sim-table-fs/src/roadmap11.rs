@@ -59,18 +59,18 @@ fn with_roadmap11_exts(exts: Vec<&'static str>) -> Vec<&'static str> {
     exts
 }
 
-pub(crate) fn decode_expr_for_ext(ext: &str, _bytes: &[u8]) -> Option<sim_kernel::Result<Expr>> {
+pub(crate) fn decode_expr_for_ext(ext: &str, bytes: &[u8]) -> Option<sim_kernel::Result<Expr>> {
     match ext {
         #[cfg(feature = "midi")]
-        "mid" => Some(decode_midi(_bytes)),
+        "mid" => Some(decode_midi(bytes)),
         #[cfg(feature = "music")]
-        "music" => Some(decode_music(_bytes)),
+        "music" => Some(decode_music(bytes)),
         #[cfg(feature = "sound")]
-        "tone" => Some(decode_tone_expr(_bytes)),
+        "tone" => Some(decode_tone_expr(bytes)),
         #[cfg(feature = "tuning")]
-        "scl" => Some(decode_scala(_bytes)),
+        "scl" => Some(decode_scala(bytes)),
         #[cfg(feature = "notation")]
-        "ly" => Some(decode_lilypond(_bytes)),
+        "ly" => Some(decode_lilypond(bytes)),
         _ => None,
     }
 }
@@ -113,18 +113,18 @@ pub(crate) fn infer_ext_from_expr(expr: &Expr) -> Option<&'static str> {
     None
 }
 
-pub(crate) fn encode_expr_for_ext(ext: &str, _expr: &Expr) -> Option<sim_kernel::Result<Vec<u8>>> {
+pub(crate) fn encode_expr_for_ext(ext: &str, expr: &Expr) -> Option<sim_kernel::Result<Vec<u8>>> {
     match ext {
         #[cfg(feature = "midi")]
-        "mid" => Some(encode_midi(_expr)),
+        "mid" => Some(encode_midi(expr)),
         #[cfg(feature = "music")]
-        "music" => Some(encode_music(_expr)),
+        "music" => Some(encode_music(expr)),
         #[cfg(feature = "sound")]
-        "tone" => Some(encode_tone_expr(_expr)),
+        "tone" => Some(encode_tone_expr(expr)),
         #[cfg(feature = "tuning")]
-        "scl" => Some(encode_scala(_expr)),
+        "scl" => Some(encode_scala(expr)),
         #[cfg(feature = "notation")]
-        "ly" => Some(encode_lilypond(_expr)),
+        "ly" => Some(encode_lilypond(expr)),
         _ => None,
     }
 }
@@ -285,7 +285,7 @@ fn render_scala(cents: &[f64]) -> String {
     let mut lines = Vec::with_capacity(cents.len() + 2);
     lines.push("SIM Scala export".to_owned());
     lines.push(cents.len().to_string());
-    lines.extend(cents.iter().map(|value| value.to_string()));
+    lines.extend(cents.iter().map(std::string::ToString::to_string));
     lines.join("\n")
 }
 
@@ -320,6 +320,6 @@ fn encode_lilypond(expr: &Expr) -> sim_kernel::Result<Vec<u8>> {
 fn expect_tagged_string<'a>(expr: &'a Expr, tag: &Symbol) -> sim_kernel::Result<&'a str> {
     match tagged_payload(expr) {
         Some((actual, payload)) if actual == tag => Ok(payload),
-        _ => Err(Error::Eval(format!("table/fs: expected {} artifact", tag))),
+        _ => Err(Error::Eval(format!("table/fs: expected {tag} artifact"))),
     }
 }

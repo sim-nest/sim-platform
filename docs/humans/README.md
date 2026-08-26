@@ -4500,11 +4500,12 @@ use std::{
     fs::File,
     io::{self, Read},
     process::{Command, ExitCode},
-    sync::OnceLock,
+    sync::{Arc, OnceLock},
     time::{Duration, Instant},
 };
 
 use sim_platform_linux::{LinuxDnsPort, LinuxSocketPort};
+use sim_run_core::{Bootloader, RuntimeConfigState};
 use sim_transport_ports::TransportServices;
 use sim_web_shell::ShellServices;
 
@@ -4552,16 +4553,22 @@ impl ShellServices for LinuxWebShellServices {
 }
 
 fn main() -> ExitCode {
-    static SERVICES: OnceLock<std::sync::Arc<LinuxWebShellServices>> = OnceLock::new();
+    static SERVICES: OnceLock<Arc<LinuxWebShellServices>> = OnceLock::new();
     let services = SERVICES
-        .get_or_init(|| std::sync::Arc::new(LinuxWebShellServices::new()))
+        .get_or_init(|| Arc::new(LinuxWebShellServices::new()))
         .clone();
     let mut args: Vec<OsString> = ["sim-web-shell", "--codec", "lisp", "serve"]
         .into_iter()
         .map(OsString::from)
         .collect();
     args.extend(std::env::args_os().skip(1));
-    match sim_web_shell::web_bootloader_with_services(services).run(args) {
+    let bootloader = sim_web_shell::configure_web_bootloader_with_cookbook_and_services(
+        Bootloader::standard().with_context(install_web_minimum_loaded),
+        vec![sim_lib_cookbook::cookbook_lib_symbol()],
+        Arc::new(cookbook_web_state),
+        services,
+    );
+    match bootloader.run(args) {
         Ok(0) => ExitCode::SUCCESS,
         Ok(code) => ExitCode::from(u8::try_from(code).unwrap_or(1)),
         Err(error) => {
@@ -4569,6 +4576,22 @@ fn main() -> ExitCode {
             ExitCode::from(2)
         }
     }
+}
+
+fn install_web_minimum_loaded(cx: &mut sim::kernel::Cx) {
+    cx.set_eval_policy(Arc::new(sim::kernel::EagerPolicy));
+    sim::runtime::install_core_runtime(cx);
+}
+
+fn cookbook_web_state(config: &RuntimeConfigState) -> sim_lib_server::CookbookWebState {
+    let provider = sim_lib_cookbook::ConfigCookbookProvider::new_with_base(
+        config.effective(),
+        sim::runtime::cookbook_directory::default_cookbook_config(),
+        &sim::runtime::cookbook_directory::SimNestCookbookResolver,
+    );
+    let (directory, mut diagnostics) = provider.loadable_libs();
+    diagnostics.extend(config.diagnostics().iter().cloned());
+    sim_lib_server::CookbookWebState::from_loadable_libs(directory, diagnostics)
 }
 
 #[cfg(test)]
