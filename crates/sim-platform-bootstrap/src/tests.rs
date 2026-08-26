@@ -1,3 +1,5 @@
+// conformance: bootstrap admits only exact content-bound capsule artifacts.
+
 use super::*;
 use sim_kernel::{AbiVersion, LibManifest, LibSource, LibTarget, Symbol, Version};
 use std::sync::{Arc, Mutex};

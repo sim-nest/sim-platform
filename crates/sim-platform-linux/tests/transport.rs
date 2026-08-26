@@ -1,3 +1,5 @@
+// conformance: Linux transport realizes typed socket, DNS, IPC, and clock ports.
+
 use sim_kernel::{Cx, DefaultFactory, EagerPolicy, HandleSeed};
 use sim_lib_server::{ServerAddress, ServerTransport, TcpServerTransport};
 use sim_platform_linux::{LinuxDnsPort, LinuxIpcPort, LinuxSocketPort, bind_transport_services};

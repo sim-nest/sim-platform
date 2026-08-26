@@ -1,3 +1,5 @@
+// conformance: modeled and Ubuntu host-directory ports share atomic bounded semantics.
+
 use sim_storage_port::{Cancellation, HostDirErrorKind, HostDirPort, HostEntryKind, NeverCancel};
 use sim_table_fs::{MemoryHostDirPort, UbuntuHostDirPort};
 use std::{

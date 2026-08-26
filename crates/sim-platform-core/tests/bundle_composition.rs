@@ -1,3 +1,5 @@
+// conformance: platform bundles preserve exact capsule identity and evidence closure.
+
 use std::collections::{BTreeMap, BTreeSet};
 
 use sim_platform_core::*;

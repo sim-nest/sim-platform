@@ -1,3 +1,5 @@
+// conformance: MIDI realization advertises only explicit capsule-owned bindings.
+
 use super::*;
 use sim_lib_midi_core::{MidiDirection, MidiTimestampSource};
 

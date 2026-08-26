@@ -1,3 +1,5 @@
+// conformance: product runtime composition keeps the platform membrane explicit.
+
 use std::{sync::Arc, time::Duration};
 
 use sim_kernel::{

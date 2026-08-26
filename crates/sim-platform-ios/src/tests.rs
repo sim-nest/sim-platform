@@ -1,5 +1,7 @@
 #![allow(unsafe_code)]
 
+// conformance: iOS AOT bindings preserve lifecycle, authority, and refusal semantics.
+
 use std::ffi::CString;
 
 use sim_kernel::{NativeAbiBorrowedBytes, NativeAbiCallResponse, NativeLibAbiV1};

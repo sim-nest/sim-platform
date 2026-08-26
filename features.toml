@@ -1,6 +1,24 @@
 schema = "sim.features"
 
 [[feature]]
+id = "feature/sim-platform/generated-docs"
+title = "Generated platform contracts"
+summary = "Emit checked package, card, rustdoc, and SIM Index contracts for platform capsules and ports."
+owner = "crate/xtask"
+guidance = "Run the repository simdoc command after source facts or authored feature metadata changes; generated artifacts are projections and must never be edited by hand."
+claims_anchors = [
+  "anchor/cli/xtask",
+  "anchor/crate/xtask",
+  "anchor/doc/generated/card-index",
+  "anchor/doc/generated/feature-map",
+  "anchor/doc/generated/provenance",
+  "anchor/doc/generated/repo-contract",
+  "anchor/doc/generated/rustdoc-index",
+  "anchor/doc/generated/sim-index-fragment",
+]
+claims_surfaces = ["cli/xtask"]
+
+[[feature]]
 id = "feature/sim-platform/attesting-sqlite-relation-site"
 title = "Attesting SQLite relation capsule"
 summary = "Realize checked relation plans against bounded memory or preopened SQLite stores with typed values, atomic migration attestations, normalized introspection, safe attach, and stable failures."
@@ -8,6 +26,7 @@ owner = "crate/sim-platform-sqlite"
 audiences = ["code", "framework"]
 guidance = "Load relation/site:sqlite only through SqliteDriver and a closed StorageLocator. The capsule is the sole rusqlite owner; compose sim-codec-sql lowering and the storage relation site instead of exposing SQL, paths, statements, or driver values."
 claims_anchors = ["anchor/crate/sim-platform-sqlite"]
+claims_specimens = ["spec-test/sim-platform/crates/sim-platform-sqlite/src/lib"]
 supports = ["feature/sim-storage/bounded-relation-site", "feature/sim-storage/sqlite-relation-locator", "feature/sim-codecs/sql-projection"]
 
 [[feature]]
@@ -18,6 +37,7 @@ owner = "crate/sim-platform-construction"
 audiences = ["code", "framework"]
 guidance = "Inject UreqDaluxTransport or PowerprojectBridge only while activating a platform capsule. Construction retains request validation, capability gates, response interpretation, and project policy; the capsule owns HTTP, native process launch, bounded response reads, and typed host failures. Use deterministic construction transports for denial and fault tests."
 claims_anchors = ["anchor/crate/sim-platform-construction"]
+claims_specimens = ["spec-test/sim-platform/crates/sim-platform-construction/src/lib"]
 supports = ["feature/sim-construction/dalux-project-items", "feature/sim-construction/powerproject-schedule-placement"]
 
 [[feature]]
@@ -28,6 +48,7 @@ owner = "crate/sim-viture-ffi"
 audiences = ["code", "framework"]
 guidance = "Compose this capsule port under stream-host DeviceProvider implementations. Keep profiles, consent, retention, timing, staleness, placement, and stream samples in sim-stream-host; never load a vendor SDK or probe a device path there."
 claims_anchors = ["anchor/crate/sim-viture-ffi"]
+claims_specimens = ["spec-test/sim-platform/crates/sim-viture-ffi/src/tests"]
 supports = ["feature/sim-stream-host/hardware-host-surfaces"]
 
 [enforcement.audience]
@@ -52,6 +73,7 @@ owner = "crate/sim-platform-midi"
 audiences = ["framework"]
 guidance = "Bind only capsule-registered BlueZ BLE-MIDI or RtMidi ALSA/CoreMIDI/WinMM endpoints. Consumers use sim-lib-midi-core MidiPort Cards and typed refusals; unknown or absent hardware is Unsupported and never triggers backend probing or fallback."
 claims_anchors = ["anchor/crate/sim-platform-midi"]
+claims_specimens = ["spec-test/sim-platform/crates/sim-platform-midi/src/tests"]
 
 [[feature]]
 id = "feature/sim-platform/platform-owner"
@@ -60,7 +82,8 @@ summary = "Compose one selected capsule with explicit application and library co
 owner = "crate/sim-platform-core"
 audiences = ["code", "framework"]
 guidance = "Call compose_bundle with one selected capsule id, explicit application/library content ids, retained Cards and matching attestations. It emits one PureBootEnvelope and one CapsuleArtifact, rejects authority or evidence drift, and never chooses a substitute provider. Generate support matrices only with platform_support_matrix so contract provenance and execution evidence remain separate."
-claims_anchors = ["anchor/crate/sim-platform-core", "anchor/crate/sim-platform-model", "anchor/crate/sim-lib-platform", "anchor/crate/sim-platform-bootstrap"]
+claims_anchors = ["anchor/crate/sim-platform-core", "anchor/crate/sim-platform-model", "anchor/crate/sim-lib-platform", "anchor/runtime-lib/sim-lib-platform/platform-lib"]
+claims_specimens = ["spec-test/sim-platform/crates/sim-platform-core/tests/bundle_composition"]
 
 [[feature]]
 id = "feature/sim-platform/platform-policy"
@@ -69,7 +92,9 @@ summary = "Resolve explicit cross-domain fact services atomically and execute ag
 owner = "crate/sim-platform-core"
 audiences = ["code", "framework"]
 guidance = "Compose open platform records, evidence thresholds, and ordered substitutes through platform_require. The facade checks capability before provider permission and sends bounded local-only requests to the lexically active PlatformSite. Tests should inject SeededPlatform services; missing bindings are Unsupported and every modeled clock, entropy, lifecycle, limit, mount, receipt, and ledger reference is deterministic."
-claims_anchors = ["anchor/crate/sim-platform-core", "anchor/crate/sim-platform-model", "anchor/crate/sim-lib-platform"]
+claims_anchors = ["anchor/cli/sim-platform-model"]
+claims_surfaces = ["cli/determinism-probe", "cli/sim-platform-model"]
+claims_specimens = ["spec-test/sim-platform/crates/sim-platform-core/tests/policy"]
 
 [[feature]]
 id = "feature/sim-platform/bootstrap-rind"
@@ -79,6 +104,7 @@ owner = "crate/sim-platform-bootstrap"
 audiences = ["code", "framework"]
 guidance = "Supply BootstrapEnvelope, BootstrapPolicy, executable location, and kernel context explicitly. The rind reads only sim.platform-bundle.toml plus its named capsule card and exact artifact, verifies content, loader-kind support, and authority, then delegates to the first native loader without fallback. Subsequent libraries use LoaderPort."
 claims_anchors = ["anchor/crate/sim-platform-bootstrap"]
+claims_specimens = ["spec-test/sim-platform/crates/sim-platform-bootstrap/src/tests"]
 supports = ["feature/sim-platform/platform-owner"]
 
 [[feature]]
@@ -88,7 +114,8 @@ summary = "Provide explicit desktop and headless Ubuntu Cards over bounded Linux
 owner = "crate/sim-platform-ubuntu-pc"
 audiences = ["code", "framework"]
 guidance = "Register an UbuntuPcProfile as Card data, inject preopened XDG roots and a Portal implementation, then drive Capsule requests through explicit grants and budgets. Install UbuntuLoaderPort after the narrow first-capsule bootstrap: its advertised exact kinds realize native, wasm, source, and static artifacts without bootloader target logic. Headless Cards omit desktop offers so platform/require returns Unsupported; neither provider probes or falls back."
-claims_anchors = ["anchor/crate/sim-platform-linux", "anchor/crate/sim-platform-ubuntu-pc"]
+claims_anchors = ["anchor/crate/sim-platform-ubuntu-pc"]
+claims_specimens = ["spec-test/sim-platform/crates/sim-platform-ubuntu-pc/tests/conformance"]
 supports = ["feature/sim-platform/platform-owner", "feature/sim-platform/bootstrap-rind", "feature/sim-platform/platform-policy"]
 
 [[feature]]
@@ -99,6 +126,7 @@ owner = "crate/sim-platform-macos"
 audiences = ["code", "framework"]
 guidance = "Activate MacosCapsule with explicit capability grants and an injected NativeServices implementation. Permission status is observational and cannot prompt; request_permission is the only prompt path and refuses a missing matching SIM capability before entering native code. Build both Apple architectures from the same content-bound CapsuleInput, keep AppKit/CoreServices/Security/CoreAudio/CoreMIDI/Metal and entitlement mechanics in this package, and load the resulting ordinary platform Site through sim_native_abi_v1."
 claims_anchors = ["anchor/crate/sim-platform-macos"]
+claims_specimens = ["spec-test/sim-platform/crates/sim-platform-macos/tests/conformance"]
 supports = ["feature/sim-platform/platform-owner", "feature/sim-platform/bootstrap-rind", "feature/sim-platform/platform-policy", "feature/sim-platform/native-media-realization"]
 
 [[feature]]
@@ -109,6 +137,7 @@ owner = "crate/sim-platform-android"
 audiences = ["code", "framework"]
 guidance = "Cross-build the four declared Rust Android targets with the provenance-pinned LTS NDK. Bind the complete service set atomically against one immutable provider snapshot and restore continuity only from content ids plus journal records. For admitted audio sessions, report privacy-safe capture and render route classes independently, preserve canonical bounded PCM and timing evidence, and use the API 28-30 communication-mode or API 31-35 communication-device observation contract only while armed. Advertise transcribe or speak only for explicitly on-device implementations with installed language support after a network-denied self-test; discovery must not prompt, download, or contact a provider, and a remotely backed recognizer is never local. Preserve PCM and plain transcript contracts, return typed unsupported fallbacks, and reap speech on every authority, route, lifecycle, or bounds failure. Android and the user own pairing and route choice; never export device identity, command a headset, or infer input from output. Rotation, recreation, restrictions, suspension, permission or route loss, process death, restart, and memory pressure enter Rust as explicit events and release focus and communication routing. The Kotlin Activity is only a bounded byte-frame callback pump; it owns no retry, policy, ranking, transcript, session, permission-prompt, pairing, or task-stack state."
 claims_anchors = ["anchor/crate/sim-platform-android"]
+claims_specimens = ["spec-test/sim-platform/crates/sim-platform-android/src/tests"]
 supports = ["feature/sim-platform/platform-owner", "feature/sim-platform/bootstrap-rind", "feature/sim-platform/platform-policy", "feature/sim-platform/native-media-realization"]
 
 [[feature]]
@@ -119,6 +148,7 @@ owner = "crate/sim-platform-amazfit"
 audiences = ["code", "framework"]
 guidance = "Use AmazfitCapsule only as a fail-closed model of versioned, bounded proxy frames. The delivered Zepp manifest has no app-service declaration, its unregistered side-service source does not forward into Android, and the Android capsule has no Amazfit adapter, so do not advertise watch-provider, continuity, worn-view, glance, haptic, or input support. Physical support requires an official local handoff, an explicit Android-to-Rust adapter, exact device and firmware evidence, and a round trip attested with Wi-Fi and cellular disabled."
 claims_anchors = ["anchor/crate/sim-platform-amazfit"]
+claims_specimens = ["spec-test/sim-platform/crates/sim-platform-amazfit/src/tests"]
 supports = ["feature/sim-platform/android-capsule", "feature/sim-stream-host/hardware-host-surfaces", "feature/sim-web/device-surfaces"]
 
 [[feature]]
@@ -129,6 +159,7 @@ owner = "crate/sim-platform-ios"
 audiences = ["code", "framework"]
 guidance = "Cross-build the device and simulator Rust targets from the pinned compiler contract, then import sim_platform_ios.h from Swift and call sim_native_abi_v1 directly. Keep UIScene sessions, security-scoped URL lifetime, permission callbacks, notification and AVAudioSession glue, memory pressure, and background limits in this package. Suspension releases grants and resources; unavailable services refuse without fallback or a hidden worker."
 claims_anchors = ["anchor/crate/sim-platform-ios"]
+claims_specimens = ["spec-test/sim-platform/crates/sim-platform-ios/src/tests"]
 supports = ["feature/sim-platform/platform-owner", "feature/sim-platform/bootstrap-rind", "feature/sim-platform/platform-policy", "feature/sim-platform/native-media-realization"]
 
 [[feature]]
@@ -139,6 +170,7 @@ owner = "crate/sim-platform-halo"
 audiences = ["code", "framework"]
 guidance = "Host Halo in an explicitly selected Android, iOS, or Web Bluetooth capsule and use the one bounded application codec for every route. Normalize inputs for GLASSES_8 and accept only bounded Surface commands. The Lua shell handles vendor callbacks and display primitives only; it owns no evaluator, routing policy, persistence, or glasses-specific application API. Treat committed model/cross-build evidence as built-unattested until a registered physical Halo run exists."
 claims_anchors = ["anchor/crate/sim-platform-halo"]
+claims_specimens = ["spec-test/sim-platform/crates/sim-platform-halo/src/tests"]
 supports = ["feature/sim-platform/android-capsule", "feature/sim-platform/ios-capsule", "feature/sim-platform/browser-capsule", "feature/sim-stream-host/hardware-host-surfaces", "feature/sim-web/device-surfaces"]
 
 [[feature]]
@@ -148,7 +180,8 @@ summary = "Provide an evidence-graded, headless Raspberry Pi Card whose device b
 owner = "crate/sim-platform-ubuntu-rpi"
 audiences = ["code", "framework"]
 guidance = "Derive UbuntuRpiProfile from the Ubuntu headless profile, then declare GPIO, serial, I2C, SPI, audio, network, storage, process, and compute independently. Keep board revision, device paths, permissions, and declared absences in the profile. Consumers request domain services and receive typed Unsupported refusals; they never branch on Raspberry Pi identity. Cross-build attestations are cross-built, not physical, until a registered Pi host performs the hardware checks."
-claims_anchors = ["anchor/crate/sim-platform-linux", "anchor/crate/sim-platform-ubuntu-pc", "anchor/crate/sim-platform-ubuntu-rpi"]
+claims_anchors = ["anchor/crate/sim-platform-ubuntu-rpi", "anchor/export/sim-platform-ubuntu-rpi/model/gpio-v1", "anchor/export/sim-platform-ubuntu-rpi/runtime/process"]
+claims_specimens = ["spec-test/sim-platform/crates/sim-platform-ubuntu-rpi/tests/conformance"]
 supports = ["feature/sim-platform/ubuntu-pc-capsule", "feature/sim-platform/platform-owner", "feature/sim-platform/platform-policy"]
 
 [[feature]]
@@ -159,6 +192,7 @@ owner = "crate/sim-platform-windows"
 audiences = ["code", "framework"]
 guidance = "Activate WindowsCapsule with explicit preopened roots, capability grants, process/output budgets, and an injected NativeServices implementation. Keep drive, separator, UTF-16, package identity, permission, Win32/WinRT selection, job-object, and artifact-suffix policy inside this crate. Consume only Card service identities and load the package through sim_native_abi_v1; cross-build evidence does not claim hosted or physical execution."
 claims_anchors = ["anchor/crate/sim-platform-windows"]
+claims_specimens = ["spec-test/sim-platform/crates/sim-platform-windows/tests/conformance"]
 supports = ["feature/sim-platform/platform-owner", "feature/sim-platform/bootstrap-rind", "feature/sim-platform/platform-policy", "feature/sim-platform/native-media-realization"]
 
 [[feature]]
@@ -168,7 +202,8 @@ summary = "Realize runtime-owned ProcessPort requests through a deterministic mo
 owner = "crate/sim-platform-ubuntu-pc"
 audiences = ["code", "framework"]
 guidance = "Use ModelProcess for portable dispatch-boundary and race tests and UbuntuProcess only at the physical capsule boundary. Boot configuration maps opaque program, project-root, and private-artifact references to native resources. The Ubuntu capsule clears the environment, renders only sealed bindings, marks dispatch at successful spawn, and reports timeout or cancellation as stopped only after process-group kill and reap; every post-spawn ambiguity is UnknownAfterDispatch."
-claims_anchors = ["anchor/crate/sim-platform-model", "anchor/crate/sim-platform-ubuntu-pc"]
+claims_anchors = []
+claims_specimens = ["spec-test/sim-platform/crates/sim-platform-ubuntu-pc/tests/physical_attestation"]
 supports = ["feature/sim-platform/ubuntu-pc-capsule", "feature/sim-runtime/host-exec"]
 
 [[feature]]
@@ -178,7 +213,6 @@ summary = "Realize the runtime sandbox contract with an anonymous root, network 
 owner = "crate/sim-platform-ubuntu-pc"
 audiences = ["code", "framework"]
 guidance = "Register BwrapLauncher only from boot-authorized bwrap, prlimit, program, input, toolchain, and writable-root paths. Missing mechanics or resource identities refuse before spawn. The launcher clears the environment, exposes no ambient home or workspace, binds only canonical declared sources, applies CPU/address-space/process/file-size limits, and composes the Ubuntu process-group monitor for wall time, cancellation, capture, and descendant cleanup."
-claims_anchors = ["anchor/crate/sim-platform-ubuntu-pc"]
 claims_specimens = ["spec-test/sim-platform/crates/sim-platform-ubuntu-pc/src/sandbox"]
 supports = ["feature/sim-platform/process-realization", "feature/sim-runtime/sandbox-exec"]
 
@@ -190,6 +224,7 @@ owner = "crate/sim-platform-linux"
 audiences = ["code", "framework"]
 guidance = "Bind LinuxSocketPort, LinuxDnsPort, optional LinuxIpcPort, and LinuxWallClock at capsule activation. Protocol crates consume only sim-transport-ports and sim-lib-server traits; physical loopback, wall-time observation, and native-error conformance stay in this capsule."
 claims_anchors = ["anchor/crate/sim-platform-linux"]
+claims_specimens = ["spec-test/sim-platform/crates/sim-platform-linux/tests/transport"]
 supports = ["feature/sim-platform/ubuntu-pc-capsule"]
 
 [[route]]
@@ -209,7 +244,9 @@ summary = "Realize the host-neutral web shell through Linux-owned process, trans
 owner = "crate/sim-platform-web-shell"
 audiences = ["code", "framework"]
 guidance = "Launch the sim-web-shell process from this capsule when a native Linux host is required. The capsule supplies only ShellServices and the bootloader process rind; sim-web retains SurfaceCodec, Scene, Intent, remote-session, and layout policy. Tests should inject ModelShellServices and modeled transport instead of reaching native files, sockets, clocks, entropy, or browser APIs."
-claims_anchors = ["anchor/crate/sim-platform-web-shell"]
+claims_anchors = ["anchor/cli/sim-platform-web-shell", "anchor/crate/sim-platform-web-shell"]
+claims_surfaces = ["cli/sim-platform-web-shell", "cli/sim-web-shell"]
+claims_specimens = ["spec-test/sim-platform/crates/sim-platform-web-shell/src/main"]
 supports = ["feature/sim-platform/transport-realization", "feature/sim-web/web-shell-host"]
 
 [[feature]]
@@ -220,6 +257,7 @@ owner = "crate/sim-platform-browser"
 audiences = ["code", "framework"]
 guidance = "Load sim-platform-browser as a Wasm capsule and derive its Card only from APIs detected by the window or worker shell. The JavaScript membrane copies bytes and performs Rust-selected host calls; it owns no SIM routing or presentation policy. Keep DOM, Canvas, WebGPU, Scene, Intent, SurfaceCodec, and render trees in sim-web. Missing APIs and denied permissions fail closed, and stopped or suspended capsules release every pending call and handle."
 claims_anchors = ["anchor/crate/sim-platform-browser"]
+claims_specimens = ["spec-test/sim-platform/crates/sim-platform-browser/src/tests"]
 supports = ["feature/sim-platform/platform-owner", "feature/sim-web/view-surface"]
 
 [[feature]]
@@ -230,6 +268,7 @@ owner = "crate/sim-platform-wasi"
 audiences = ["code", "framework"]
 guidance = "Admit a component only after every import matches the capsule declaration, then activate it with the complete authority bundle: named Table/Dir refs, explicit clocks and entropy, declared socket endpoints, lifecycle, and matching capabilities. Treat in-memory and hosted-runtime frame results as separate evidence grades. Unsupported process creation, native loading, UI, notification, and device services remain absent and refuse without probing."
 claims_anchors = ["anchor/crate/sim-platform-wasi", "anchor/card/cookbook/platform/wasi"]
+claims_specimens = ["spec-test/sim-platform/crates/sim-platform-wasi/src/lib"]
 supports = ["feature/sim-platform/platform-owner", "feature/sim-platform/platform-policy"]
 
 [[route]]
@@ -248,7 +287,7 @@ summary = "Probe CUDA, ROCm, and wgpu once in the Ubuntu capsule and inject reta
 owner = "crate/sim-platform-ubuntu-pc"
 audiences = ["code", "framework"]
 guidance = "Construct UbuntuComputeProbe at capsule activation, then pass its CUDA, ROCm, and wgpu probe ports to the matching sim-compute provider constructors. The capsule owns library search, adapter enumeration, vendor and driver observation, gfx target discovery, transfer checks, and physical acceptance invocation; sim-compute retains TensorExecutor policy, site placement, and resident storage."
-claims_anchors = ["anchor/crate/sim-platform-ubuntu-pc"]
+claims_specimens = ["spec-test/sim-platform/crates/sim-platform-ubuntu-pc/src/compute"]
 supports = ["feature/sim-compute/tensor-providers", "feature/sim-platform/ubuntu-pc-capsule"]
 
 [[feature]]
@@ -259,6 +298,7 @@ owner = "crate/sim-platform-audio"
 audiences = ["code", "framework"]
 guidance = "Bind only capsule-advertised ALSA, ASIO, CoreAudio, JACK, PipeWire, PortAudio, cpal, LV2, VST3, or CLAP services. Consumers, including wasm ABI adapters, use sim-audio-ports Cards and typed refusals; ABI import names remain declarations while performed callbacks are capsule-owned host facts. Absent APIs are Unsupported, native handles never enter domain code, and callbacks obey the prevalidated nonallocating nonblocking budget."
 claims_anchors = ["anchor/crate/sim-platform-audio"]
+claims_specimens = ["spec-test/sim-platform/crates/sim-platform-audio/src/tests"]
 supports = ["feature/sim-platform/ubuntu-pc-capsule"]
 
 [[feature]]
@@ -269,6 +309,7 @@ owner = "crate/sim-table-fs"
 audiences = ["code", "framework"]
 guidance = "Inject MemoryHostDirPort in portable storage tests and use UbuntuHostDirPort only at the platform capsule boundary. Both run compare-exchange under one atomic boundary; Ubuntu owns its cross-process lock, crash-safe temporary write, sync, atomic replace, and directory sync."
 claims_anchors = ["anchor/crate/sim-table-fs"]
+claims_specimens = ["spec-test/sim-platform/crates/sim-table-fs/tests/host_dir_port"]
 supports = ["feature/sim-platform/ubuntu-pc-capsule"]
 
 [[feature]]
@@ -278,7 +319,7 @@ summary = "Bind preopened Table/Dir mounts and the active platform clock into th
 owner = "crate/sim-table-fs"
 audiences = ["code", "framework"]
 guidance = "Construct ledger command context only from named preopened HostDirPort mounts and the active platform wall-clock service. Use MemoryHostDirPort plus SeededPlatform for product tests; native paths, environment discovery, and temporary directories stay outside ledger libraries and receipts."
-claims_anchors = ["anchor/crate/sim-table-fs", "anchor/crate/sim-platform-model"]
+claims_specimens = ["spec-test/sim-platform/crates/sim-table-fs/src/tests/authority"]
 supports = ["feature/sim-platform/host-directory-realization", "feature/sim-platform/platform-policy", "feature/sim-ledger/ledger-command"]
 
 [[feature]]
@@ -289,6 +330,7 @@ owner = "crate/sim-lib-platform"
 audiences = ["code", "framework"]
 guidance = "Start with a neutral sim-host-core primitive and a domain-owned port, prove behavior with the deterministic platform model, then realize it in one declared capsule and retain conformance and attestation evidence. The permanent membrane rejects unclassified targets, unknown binding kinds, undeclared imports, host-tool reachability, duplicate backend ownership, bootstrap growth, and content or support-claim drift; there is no migration baseline or ambient fallback."
 claims_anchors = ["anchor/repo/sim-platform"]
+claims_specimens = ["spec-test/sim-platform/crates/sim-lib-platform/src/runtime"]
 supports = ["feature/sim-platform/platform-owner", "feature/sim-platform/bootstrap-rind"]
 
 [[route]]

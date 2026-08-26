@@ -2,6 +2,8 @@
 
 #![forbid(unsafe_code)]
 
+// conformance: the native web shell supplies only declared host-neutral services.
+
 use std::{
     ffi::OsString,
     fs::File,

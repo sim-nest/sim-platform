@@ -1,3 +1,5 @@
+// conformance: browser capability discovery and lifecycle fail closed.
+
 use super::*;
 
 fn full_apis() -> BrowserApis {

@@ -1,3 +1,5 @@
+// conformance: construction transports retain domain-owned admission and typed failures.
+
 //! Platform-capsule implementations of construction-owned integration ports.
 
 #![forbid(unsafe_code)]

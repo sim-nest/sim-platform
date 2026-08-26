@@ -1,3 +1,5 @@
+// conformance: native compute probing stays capsule-owned and fails closed.
+
 //! Native compute discovery owned by the Ubuntu platform capsule.
 
 use std::{process::Command, sync::mpsc};

@@ -1,3 +1,5 @@
+// conformance: preopened storage authority fails closed for command composition.
+
 use super::support::*;
 
 #[test]

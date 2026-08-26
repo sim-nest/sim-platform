@@ -1,3 +1,5 @@
+// conformance: platform service resolution is deterministic, atomic, and fail closed.
+
 use sim_codec::{Input, Output, decode_with_codec, encode_with_codec};
 use sim_kernel::{Cx, DefaultFactory, EagerPolicy, EncodeOptions, Expr, ReadPolicy, Symbol};
 use sim_platform_core::*;

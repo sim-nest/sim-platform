@@ -1,3 +1,5 @@
+// conformance: the Amazfit proxy stays bounded and does not claim an unproved route.
+
 use super::*;
 
 fn frame(session: u64, sequence: u64) -> Vec<u8> {

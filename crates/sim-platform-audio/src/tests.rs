@@ -1,3 +1,5 @@
+// conformance: media realization exposes only explicit native bindings and bounded callbacks.
+
 use super::*;
 
 #[test]

@@ -1,3 +1,5 @@
+// conformance: physical-device transport owns bounded native lifecycle and refusal behavior.
+
 use std::fs;
 use std::path::PathBuf;
 use std::time::{SystemTime, UNIX_EPOCH};

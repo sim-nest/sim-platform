@@ -1,3 +1,5 @@
+// conformance: Halo proxy frames remain bounded and transport-neutral.
+
 use super::*;
 
 fn active(transport: HostTransport) -> HaloCapsule {

@@ -1,3 +1,5 @@
+// conformance: process realization evidence is sanitized and independently verifiable.
+
 use sim_platform_ubuntu_pc::PhysicalAttestation;
 #[test]
 fn committed_physical_attestation_is_sanitized_and_offline_verifiable() {

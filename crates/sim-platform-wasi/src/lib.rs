@@ -1,6 +1,7 @@
 #![forbid(unsafe_code)]
 //! Least-authority WASI capsule.
 //!
+// conformance: WASI imports and authority remain closed and explicitly bound.
 //! WASI names are declarations at the artifact boundary. Each admitted import
 //! is paired with the existing SIM service it realizes; this crate does not
 //! introduce a filesystem, socket, clock, entropy, or process abstraction.
