@@ -17,32 +17,33 @@ This generated lane consumes `docs/generated/sim-index-fragment.sx`. Global inde
 
 | Feature | Subject | Specimens | Summary |
 | --- | --- | ---: | --- |
-| `feature/sim-platform/attesting-sqlite-relation-site` | `crate/sim-platform-sqlite` | 0 | Realize checked relation plans against bounded memory or preopened SQLite stores with typed values, atomic migration attestations, normalized introspection, safe attach, and stable failures. |
-| `feature/sim-platform/construction-integration-realization` | `crate/sim-platform-construction` | 0 | Realize Dalux HTTPS and Powerproject desktop automation behind construction-owned ports. |
-| `feature/sim-platform/device-physical-port` | `crate/sim-viture-ffi` | 0 | Own VITURE SDK loading, USB discovery, native handles, lifecycle, bounded queues, and modeled transport behind DevicePhysicalPort. |
-| `feature/sim-platform/native-midi-realization` | `crate/sim-platform-midi` | 0 | Ubuntu and deterministic platform ports realize BlueZ and RtMidi endpoints behind the music-owned MidiPort contract. |
-| `feature/sim-platform/platform-owner` | `crate/sim-platform-core` | 0 | Compose one selected capsule with explicit application and library content into a pure runtime bundle. |
-| `feature/sim-platform/platform-policy` | `crate/sim-platform-core` | 0 | Resolve explicit cross-domain fact services atomically and execute against a seeded, host-free EvalFabric site. |
-| `feature/sim-platform/bootstrap-rind` | `crate/sim-platform-bootstrap` | 0 | Admit one exact adjacent platform bundle and capsule through the existing native ABI without ambient discovery. |
-| `feature/sim-platform/ubuntu-pc-capsule` | `crate/sim-platform-ubuntu-pc` | 0 | Provide explicit desktop and headless Ubuntu Cards over bounded Linux mechanics, including the full post-bootstrap loader service. |
-| `feature/sim-platform/macos-capsule` | `crate/sim-platform-macos` | 0 | Realize the frozen platform and domain ports through documented macOS frameworks and one deterministic unsigned application bundle. |
-| `feature/sim-platform/android-capsule` | `crate/sim-platform-android` | 0 | Host the unchanged native ABI as AOT Rust behind one thin Kotlin lifecycle and activation shell. |
-| `feature/sim-platform/amazfit-proxy-capsule` | `crate/sim-platform-amazfit` | 0 | Model a bounded Zepp OS proxy while keeping the unproved watch-to-Android-Rust route explicitly unsupported. |
-| `feature/sim-platform/ios-capsule` | `crate/sim-platform-ios` | 0 | Host the unchanged native ABI as statically linked Rust behind one thin Swift scene shell. |
-| `feature/sim-platform/halo-proxy-capsule` | `crate/sim-platform-halo` | 0 | Bridge the official Halo host SDK and minimal Lua loop to existing GLASSES_8 Device/Stream and Surface contracts. |
-| `feature/sim-platform/ubuntu-rpi-capsule` | `crate/sim-platform-ubuntu-rpi` | 0 | Provide an evidence-graded, headless Raspberry Pi Card whose device bindings come only from an explicit board profile. |
-| `feature/sim-platform/windows-capsule` | `crate/sim-platform-windows` | 0 | Realize frozen platform and domain ports through bounded Win32 and WinRT mechanics and one content-bound package. |
-| `feature/sim-platform/process-realization` | `crate/sim-platform-ubuntu-pc` | 0 | Realize runtime-owned ProcessPort requests through a deterministic model or confined Ubuntu process tree. |
+| `feature/sim-platform/generated-docs` | `crate/xtask` | 0 | Emit checked package, card, rustdoc, and SIM Index contracts for platform capsules and ports. |
+| `feature/sim-platform/attesting-sqlite-relation-site` | `crate/sim-platform-sqlite` | 1 | Realize checked relation plans against bounded memory or preopened SQLite stores with typed values, atomic migration attestations, normalized introspection, safe attach, and stable failures. |
+| `feature/sim-platform/construction-integration-realization` | `crate/sim-platform-construction` | 1 | Realize Dalux HTTPS and Powerproject desktop automation behind construction-owned ports. |
+| `feature/sim-platform/device-physical-port` | `crate/sim-viture-ffi` | 1 | Own VITURE SDK loading, USB discovery, native handles, lifecycle, bounded queues, and modeled transport behind DevicePhysicalPort. |
+| `feature/sim-platform/native-midi-realization` | `crate/sim-platform-midi` | 1 | Ubuntu and deterministic platform ports realize BlueZ and RtMidi endpoints behind the music-owned MidiPort contract. |
+| `feature/sim-platform/platform-owner` | `crate/sim-platform-core` | 1 | Compose one selected capsule with explicit application and library content into a pure runtime bundle. |
+| `feature/sim-platform/platform-policy` | `crate/sim-platform-core` | 1 | Resolve explicit cross-domain fact services atomically and execute against a seeded, host-free EvalFabric site. |
+| `feature/sim-platform/bootstrap-rind` | `crate/sim-platform-bootstrap` | 1 | Admit one exact adjacent platform bundle and capsule through the existing native ABI without ambient discovery. |
+| `feature/sim-platform/ubuntu-pc-capsule` | `crate/sim-platform-ubuntu-pc` | 1 | Provide explicit desktop and headless Ubuntu Cards over bounded Linux mechanics, including the full post-bootstrap loader service. |
+| `feature/sim-platform/macos-capsule` | `crate/sim-platform-macos` | 1 | Realize the frozen platform and domain ports through documented macOS frameworks and one deterministic unsigned application bundle. |
+| `feature/sim-platform/android-capsule` | `crate/sim-platform-android` | 1 | Host the unchanged native ABI as AOT Rust behind one thin Kotlin lifecycle and activation shell. |
+| `feature/sim-platform/amazfit-proxy-capsule` | `crate/sim-platform-amazfit` | 1 | Model a bounded Zepp OS proxy while keeping the unproved watch-to-Android-Rust route explicitly unsupported. |
+| `feature/sim-platform/ios-capsule` | `crate/sim-platform-ios` | 1 | Host the unchanged native ABI as statically linked Rust behind one thin Swift scene shell. |
+| `feature/sim-platform/halo-proxy-capsule` | `crate/sim-platform-halo` | 1 | Bridge the official Halo host SDK and minimal Lua loop to existing GLASSES_8 Device/Stream and Surface contracts. |
+| `feature/sim-platform/ubuntu-rpi-capsule` | `crate/sim-platform-ubuntu-rpi` | 1 | Provide an evidence-graded, headless Raspberry Pi Card whose device bindings come only from an explicit board profile. |
+| `feature/sim-platform/windows-capsule` | `crate/sim-platform-windows` | 1 | Realize frozen platform and domain ports through bounded Win32 and WinRT mechanics and one content-bound package. |
+| `feature/sim-platform/process-realization` | `crate/sim-platform-ubuntu-pc` | 1 | Realize runtime-owned ProcessPort requests through a deterministic model or confined Ubuntu process tree. |
 | `feature/sim-platform/ubuntu-bwrap-sandbox` | `crate/sim-platform-ubuntu-pc` | 1 | Realize the runtime sandbox contract with an anonymous root, network namespace, declared mounts, rlimits, bounded pipes, and proven process-tree cleanup. |
-| `feature/sim-platform/transport-realization` | `crate/sim-platform-linux` | 0 | Realize agent-net transport ports inside the Linux capsule with typed native failures and explicit platform-specific IPC identities. |
-| `feature/sim-platform/web-shell-realization` | `crate/sim-platform-web-shell` | 0 | Realize the host-neutral web shell through Linux-owned process, transport, mount, time, entropy, and external-open services. |
-| `feature/sim-platform/browser-capsule` | `crate/sim-platform-browser` | 0 | Realize detected browser lifecycle, storage, transport, clipboard, notification, permission, and wake-lock APIs through canonical framed named calls. |
-| `feature/sim-platform/wasi-capsule` | `crate/sim-platform-wasi` | 0 | Inspect a closed WASI import surface and realize it through explicit Table/Dir and canonical platform or domain ports. |
-| `feature/sim-platform/native-compute-probing` | `crate/sim-platform-ubuntu-pc` | 0 | Probe CUDA, ROCm, and wgpu once in the Ubuntu capsule and inject retained results into compute-owned executors. |
-| `feature/sim-platform/native-media-realization` | `crate/sim-platform-audio` | 0 | Realize audio-owned device and plugin ports through explicit platform capsule bindings. |
-| `feature/sim-platform/host-directory-realization` | `crate/sim-table-fs` | 0 | Realize storage-owned HostDirPort semantics, including linearizable leaf compare-exchange, with one deterministic model and one confined Ubuntu adapter. |
-| `feature/sim-platform/ledger-command-realization` | `crate/sim-table-fs` | 0 | Bind preopened Table/Dir mounts and the active platform clock into the loadable ledger command. |
-| `feature/sim-platform/product-membrane` | `crate/sim-lib-platform` | 0 | Enforce one absolute, evidence-derived boundary between pure products, neutral ports, bootstrap, host tools, and declared capsules. |
+| `feature/sim-platform/transport-realization` | `crate/sim-platform-linux` | 1 | Realize agent-net transport ports inside the Linux capsule with typed native failures and explicit platform-specific IPC identities. |
+| `feature/sim-platform/web-shell-realization` | `crate/sim-platform-web-shell` | 1 | Realize the host-neutral web shell through Linux-owned process, transport, mount, time, entropy, and external-open services. |
+| `feature/sim-platform/browser-capsule` | `crate/sim-platform-browser` | 1 | Realize detected browser lifecycle, storage, transport, clipboard, notification, permission, and wake-lock APIs through canonical framed named calls. |
+| `feature/sim-platform/wasi-capsule` | `crate/sim-platform-wasi` | 1 | Inspect a closed WASI import surface and realize it through explicit Table/Dir and canonical platform or domain ports. |
+| `feature/sim-platform/native-compute-probing` | `crate/sim-platform-ubuntu-pc` | 1 | Probe CUDA, ROCm, and wgpu once in the Ubuntu capsule and inject retained results into compute-owned executors. |
+| `feature/sim-platform/native-media-realization` | `crate/sim-platform-audio` | 1 | Realize audio-owned device and plugin ports through explicit platform capsule bindings. |
+| `feature/sim-platform/host-directory-realization` | `crate/sim-table-fs` | 1 | Realize storage-owned HostDirPort semantics, including linearizable leaf compare-exchange, with one deterministic model and one confined Ubuntu adapter. |
+| `feature/sim-platform/ledger-command-realization` | `crate/sim-table-fs` | 1 | Bind preopened Table/Dir mounts and the active platform clock into the loadable ledger command. |
+| `feature/sim-platform/product-membrane` | `crate/sim-lib-platform` | 1 | Enforce one absolute, evidence-derived boundary between pure products, neutral ports, bootstrap, host tools, and declared capsules. |
 
 ## Surfaces
 
@@ -160,6 +161,3869 @@ This generated lane consumes `docs/generated/sim-index-fragment.sx`. Global inde
 - `crates/sim-table-fs/recipes/book.toml`
 
 ## Worked Examples
+
+### `feature/sim-platform/attesting-sqlite-relation-site`
+
+Specimen `spec-test/sim-platform/crates/sim-platform-sqlite/src/lib` is checked by `cargo test`.
+
+Source `crates/sim-platform-sqlite/src/lib.rs`:
+
+```rust
+// conformance: SQLite realization remains bounded, attested, and locator-safe.
+
+//! Attesting `SQLite` realization behind the provider-neutral relation site.
+#![forbid(unsafe_code)]
+#![deny(missing_docs)]
+
+use rusqlite::{
+    Connection, OpenFlags, ToSql,
+    types::{FromSql, Value, ValueRef},
+};
+use sim_codec_sql::{
+    PreparedSql, SqlBinding, SqliteDialect, prepare_migration, prepare_mutation, prepare_query,
+};
+use sim_kernel::{Datum, LibManifest, Symbol};
+use sim_relation_core::{
+    BaseDomain, Cell, ColumnName, DomainCatalog, DomainId, IndexName, ProviderName, RevisionName,
+    Row, SchemaName, StorageValue, TableName,
+};
+use sim_relation_migrate::{AdoptionManifest, CheckedProgram, SchemaAttestation};
+use sim_relation_plan::{CheckedMutation, CheckedQuery};
+use sim_relation_schema::{PhysicalColumn, PhysicalIndex, PhysicalSchema, PhysicalTable};
+use sim_relation_site::{
+    Bindings, Driver, DriverManifest, Limits, ProviderStats, RelationPlacement, RelationSite,
+    RelationSiteLib, RowSink, Session, SiteError, StorageAccess, StorageLocator, Transaction,
+};
+use std::{
+    collections::{BTreeMap, HashMap},
+    path::{Path, PathBuf},
+    sync::Arc,
+    time::Instant,
+};
+
+const HEX: &[u8; 16] = b"0123456789abcdef";
+
+/// Capsule-owned map from stable preopened names to private host paths.
+#[derive(Clone, Default)]
+pub struct PreopenedStores(Arc<BTreeMap<Symbol, PathBuf>>);
+impl PreopenedStores {
+    /// Builds the capsule authority map. Paths never enter the relation locator.
+    pub fn new(values: impl IntoIterator<Item = (Symbol, PathBuf)>) -> Self {
+        Self(Arc::new(values.into_iter().collect()))
+    }
+    fn resolve(&self, name: &Symbol) -> Option<&Path> {
+        self.0.get(name).map(PathBuf::as_path)
+    }
+}
+
+/// The sole `SQLite` driver, configured with admitted domains and preopened storage.
+pub struct SqliteDriver {
+    domains: Arc<DomainCatalog>,
+    stores: PreopenedStores,
+    busy_ms: u32,
+}
+impl SqliteDriver {
+    /// Constructs the capsule driver.
+    #[must_use]
+    pub fn new(domains: DomainCatalog, stores: PreopenedStores) -> Self {
+        Self {
+            domains: Arc::new(domains),
+            stores,
+            busy_ms: 2_000,
+        }
+    }
+    /// Constructs the canonical loadable site library.
+    ///
+    /// # Errors
+    ///
+    /// Returns a registration refusal when the canonical driver manifest is
+    /// invalid.
+    pub fn library(self, locator: &StorageLocator) -> Result<RelationSiteLib, SiteError> {
+        let manifest = DriverManifest::sqlite(site_symbol(), provider_symbol())?;
+        let datum = locator_datum(locator);
+        Ok(RelationSiteLib::new(RelationSite::new(
+            RelationPlacement::new(manifest.site, datum),
+            Arc::new(self),
+        )))
+    }
+}
+
+/// Canonical exported site symbol.
+#[must_use]
+pub fn site_symbol() -> Symbol {
+    Symbol::qualified("relation/site", "sqlite")
+}
+/// Canonical provider identity.
+#[must_use]
+pub fn provider_symbol() -> Symbol {
+    Symbol::qualified("relation/provider", "sqlite")
+}
+/// Verifies that a manifest declares exactly the `SQLite` kernel site export.
+///
+/// # Errors
+///
+/// Returns [`SiteError::Registration`] unless exactly one canonical site export
+/// is declared.
+pub fn verify_manifest(manifest: &LibManifest) -> Result<(), SiteError> {
+    let count = manifest.exports.iter().filter(|export| matches!(export, sim_kernel::Export::Site { symbol, .. } if symbol == &site_symbol())).count();
+    if count == 1 {
+        Ok(())
+    } else {
+        Err(SiteError::Registration)
+    }
+}
+
+fn locator_datum(value: &StorageLocator) -> Datum {
+    match value {
+        StorageLocator::Memory => Datum::Node {
+            tag: Symbol::qualified("relation", "memory"),
+            fields: vec![],
+        },
+        StorageLocator::Preopened { reference, access } => Datum::Node {
+            tag: Symbol::qualified("relation", "preopened"),
+            fields: vec![
+                (Symbol::new("ref"), Datum::Symbol(reference.clone())),
+                (
+                    Symbol::new("access"),
+                    Datum::Symbol(Symbol::new(match access {
+                        StorageAccess::ReadOnly => "read-only",
+                        StorageAccess::ReadWrite => "read-write",
+                    })),
+                ),
+            ],
+        },
+    }
+}
+
+impl Driver for SqliteDriver {
+    fn connect(&self, locator: &Datum, limits: &Limits) -> Result<Box<dyn Session>, SiteError> {
+        let locator = StorageLocator::from_datum(locator)?;
+        let connection = match locator {
+            StorageLocator::Memory => Connection::open_in_memory(),
+            StorageLocator::Preopened { reference, access } => {
+                let path = self.stores.resolve(&reference).ok_or(SiteError::Locator)?;
+                let flags = match access {
+                    StorageAccess::ReadOnly => OpenFlags::SQLITE_OPEN_READ_ONLY,
+                    StorageAccess::ReadWrite => {
+                        OpenFlags::SQLITE_OPEN_READ_WRITE | OpenFlags::SQLITE_OPEN_CREATE
+                    }
+                };
+                Connection::open_with_flags(path, flags)
+            }
+        }
+        .map_err(|error| map_error(&error))?;
+        configure(&connection, self.busy_ms, limits)?;
+        Ok(Box::new(SqliteSession {
+            connection,
+            domains: self.domains.clone(),
+            stores: self.stores.clone(),
+            cache: HashMap::new(),
+            generation: 0,
+            savepoint: 0,
+        }))
+    }
+}
+
+fn configure(connection: &Connection, busy_ms: u32, limits: &Limits) -> Result<(), SiteError> {
+    connection
+        .pragma_update(None, "foreign_keys", "ON")
+        .map_err(|error| map_error(&error))?;
+    connection
+        .busy_timeout(std::time::Duration::from_millis(u64::from(busy_ms)))
+        .map_err(|error| map_error(&error))?;
+    let started = Instant::now();
+    let deadline = limits.deadline;
+    connection.progress_handler(
+        100,
+        Some(move || deadline.is_some_and(|limit| started.elapsed() >= limit)),
+    );
+    Ok(())
+}
+
+struct SqliteSession {
+    connection: Connection,
+    domains: Arc<DomainCatalog>,
+    stores: PreopenedStores,
+    cache: HashMap<String, String>,
+    generation: u64,
+    savepoint: u64,
+}
+impl SqliteSession {
+    fn execute_rows(
+        &mut self,
+        prepared: &PreparedSql,
+        bindings: &Bindings,
+        limits: &Limits,
+        sink: &mut dyn RowSink,
+    ) -> Result<ProviderStats, SiteError> {
+        let key = format!("{:?}:{}", prepared.cache_key(), self.generation);
+        self.cache
+            .entry(key)
+            .or_insert_with(|| prepared.text().to_owned());
+        let values = bind_values(prepared, bindings, &self.domains)?;
+        let refs: Vec<&dyn ToSql> = values.iter().map(|v| v as &dyn ToSql).collect();
+        let mut statement = self
+            .connection
+            .prepare_cached(prepared.text())
+            .map_err(|error| map_error(&error))?;
+        if prepared.cache_key().output_row_type.fields().is_empty() {
+            let affected = statement
+                .execute(refs.as_slice())
+                .map_err(|error| map_error(&error))? as u64;
+            return Ok(ProviderStats {
+                work: affected.max(1),
+                affected,
+            });
+        }
+        let mut rows = statement
+            .query(refs.as_slice())
+            .map_err(|error| map_error(&error))?;
+        let mut work = 0u64;
+        while let Some(row) = rows.next().map_err(|error| map_error(&error))? {
+            work = work
+                .checked_add(1)
+                .ok_or(SiteError::Limit(sim_relation_site::LimitKind::Work))?;
+            if work > limits.work {
+                return Err(SiteError::Limit(sim_relation_site::LimitKind::Work));
+            }
+            let cells = prepared
+                .cache_key()
+                .output_row_type
+                .fields()
+                .iter()
+                .enumerate()
+                .map(|(index, field)| {
+                    decode_cell(
+                        row.get_ref(index).map_err(|error| map_error(&error))?,
+                        &field.domain,
+                        &self.domains,
+                    )
+                })
+                .collect::<Result<Vec<_>, _>>()?;
+            let admitted = Row::new(prepared.cache_key().output_row_type.clone(), cells)
+                .map_err(|_| SiteError::Conversion)?;
+            sink.push(admitted)?;
+        }
+        Ok(ProviderStats { work, affected: 0 })
+    }
+    fn migrate_inner(
+        &mut self,
+        program: &CheckedProgram,
+        limits: &Limits,
+    ) -> Result<ProviderStats, SiteError> {
+        let catalog = program
+            .program()
+            .base_schema
+            .id()
+            .map_err(|_| SiteError::Provider)?;
+        let statements = prepare_migration(program, &catalog, &SqliteDialect)
+            .map_err(|_| SiteError::Provider)?;
+        self.connection
+            .execute_batch("BEGIN IMMEDIATE")
+            .map_err(|error| map_error(&error))?;
+        let result = (|| {
+            let empty = sim_relation_core::RowType::new([]).map_err(|_| SiteError::Provider)?;
+            let bindings = Bindings::new(&empty, []).map_err(|_| SiteError::Provider)?;
+            let mut sink = NullSink;
+            let mut stats = ProviderStats::default();
+            for statement in statements.statements() {
+                let got = self.execute_rows(statement, &bindings, limits, &mut sink)?;
+                stats.work += got.work;
+                stats.affected += got.affected;
+            }
+            self.write_attestation(program)?;
+            Ok(stats)
+        })();
+        match result {
+            Ok(stats) => {
+                self.connection
+                    .execute_batch("COMMIT")
+                    .map_err(|error| map_error(&error))?;
+                self.invalidate();
+                Ok(stats)
+            }
+            Err(error) => {
+                let _ = self.connection.execute_batch("ROLLBACK");
+                Err(error)
+            }
+        }
+    }
+    fn write_attestation(&self, program: &CheckedProgram) -> Result<(), SiteError> {
+        self.connection.execute_batch("CREATE TABLE IF NOT EXISTS __sim_relation_attestation (singleton INTEGER PRIMARY KEY CHECK(singleton=1), logical_schema TEXT NOT NULL, physical_schema TEXT NOT NULL, revision TEXT NOT NULL)").map_err(|error| map_error(&error))?;
+        let physical = self.introspect(
+            RevisionName::new(Symbol::new("current")).map_err(|_| SiteError::Conversion)?,
+        )?;
+        let logical = relation_id_text(&program.program().target_schema);
+        let revision_id = program
+            .program()
+            .revisions
+            .last()
+            .map_or(&program.program().base_revision, |r| r.id());
+        let revision = relation_id_text(revision_id);
+        let physical_id = physical.id().map_err(|_| SiteError::Provider)?;
+        self.connection
+            .execute(
+                "INSERT OR REPLACE INTO __sim_relation_attestation VALUES (1, ?1, ?2, ?3)",
+                (&logical, relation_id_text(&physical_id), revision),
+            )
+            .map_err(|error| map_error(&error))?;
+        Ok(())
+    }
+    fn invalidate(&mut self) {
+        self.connection.flush_prepared_statement_cache();
+        self.cache.clear();
+        self.generation = self.generation.wrapping_add(1);
+    }
+    fn introspect(&self, revision: RevisionName) -> Result<PhysicalSchema, SiteError> {
+        introspect_connection(&self.connection, revision)
+    }
+}
+
+impl Session for SqliteSession {
+    fn query(
+        &mut self,
+        plan: &CheckedQuery,
+        bindings: &Bindings,
+        limits: &Limits,
+        sink: &mut dyn RowSink,
+    ) -> Result<ProviderStats, SiteError> {
+        let prepared = prepare_query(plan, &SqliteDialect).map_err(|_| SiteError::Provider)?;
+        self.execute_rows(&prepared, bindings, limits, sink)
+    }
+    fn mutate(
+        &mut self,
+        plan: &CheckedMutation,
+        bindings: &Bindings,
+        limits: &Limits,
+        sink: &mut dyn RowSink,
+    ) -> Result<ProviderStats, SiteError> {
+        let prepared = prepare_mutation(plan, &SqliteDialect).map_err(|_| SiteError::Provider)?;
+        self.execute_rows(&prepared, bindings, limits, sink)
+    }
+    fn migrate(
+        &mut self,
+        program: &CheckedProgram,
+        limits: &Limits,
+    ) -> Result<ProviderStats, SiteError> {
+        self.migrate_inner(program, limits)
+    }
+    fn schema(
+        &mut self,
+        program: &CheckedProgram,
+        limits: &Limits,
+    ) -> Result<ProviderStats, SiteError> {
+        self.migrate_inner(program, limits)
+    }
+    fn transaction(
+        &mut self,
+        body: &mut dyn FnMut(&mut dyn Transaction) -> Result<(), SiteError>,
+    ) -> Result<(), SiteError> {
+        self.connection
+            .execute_batch("BEGIN IMMEDIATE")
+            .map_err(|error| map_error(&error))?;
+        match body(self) {
+            Ok(()) => self
+                .connection
+                .execute_batch("COMMIT")
+                .map_err(|error| map_error(&error)),
+            Err(error) => {
+                let _ = self.connection.execute_batch("ROLLBACK");
+                Err(error)
+            }
+        }
+    }
+    fn attach(&mut self, locator: &Datum, _: &Limits) -> Result<ProviderStats, SiteError> {
+        let Datum::Node { tag, fields } = locator else {
+            return Err(SiteError::Locator);
+        };
+        if tag != &Symbol::qualified("relation", "attach") || fields.len() != 3 {
+            return Err(SiteError::Locator);
+        }
+        let get = |key: &str| {
+            fields
+                .iter()
+                .find(|(name, _)| name == &Symbol::new(key))
+                .map(|(_, value)| value)
+        };
+        let (
+            Some(Datum::Symbol(name)),
+            Some(Datum::Symbol(reference)),
+            Some(Datum::Symbol(access)),
+        ) = (get("name"), get("ref"), get("access"))
+        else {
+            return Err(SiteError::Locator);
+        };
+        if !valid_source(name) {
+            return Err(SiteError::Locator);
+        }
+        let path = self.stores.resolve(reference).ok_or(SiteError::Locator)?;
+        if access.namespace.is_some() {
+            return Err(SiteError::Locator);
+        }
+        let uri = match access.name.as_ref() {
+            "read-only" => format!("file:{}?mode=ro", path.display()),
+            "read-write" => path.display().to_string(),
+            _ => return Err(SiteError::Locator),
+        };
+        self.connection
+            .execute("ATTACH DATABASE ?1 AS ?2", (&uri, name.name.as_ref()))
+            .map_err(|error| map_error(&error))?;
+        self.invalidate();
+        Ok(ProviderStats {
+            work: 1,
+            affected: 0,
+        })
+    }
+}
+impl Transaction for SqliteSession {
+    fn savepoint(
+        &mut self,
+        body: &mut dyn FnMut(&mut dyn Transaction) -> Result<(), SiteError>,
+    ) -> Result<(), SiteError> {
+        self.savepoint += 1;
+        let name = format!("sim_savepoint_{}", self.savepoint);
+        self.connection
+            .execute_batch(&format!("SAVEPOINT {name}"))
+            .map_err(|error| map_error(&error))?;
+        match body(self) {
+            Ok(()) => self
+                .connection
+                .execute_batch(&format!("RELEASE {name}"))
+                .map_err(|error| map_error(&error)),
+            Err(error) => {
+                let _ = self
+                    .connection
+                    .execute_batch(&format!("ROLLBACK TO {name}; RELEASE {name}"));
+                Err(error)
+            }
+        }
+    }
+}
+
+struct NullSink;
+impl RowSink for NullSink {
+    fn push(&mut self, _: Row) -> Result<(), SiteError> {
+        Ok(())
+    }
+}
+
+fn bind_values(
+    prepared: &PreparedSql,
+    supplied: &Bindings,
+    domains: &DomainCatalog,
+) -> Result<Vec<Value>, SiteError> {
+    prepared
+        .bindings()
+        .iter()
+        .map(|binding| match binding {
+            SqlBinding::Literal(cell) => encode_cell(cell, domains),
+            SqlBinding::Parameter(name) => supplied
+                .row()
+                .row_type()
+                .fields()
+                .iter()
+                .position(|field| field.name.symbol() == name.symbol())
+                .map(|index| encode_cell(&supplied.row().cells()[index], domains))
+                .ok_or(SiteError::Conversion)?,
+        })
+        .collect()
+}
+fn base(domain: &DomainId, domains: &DomainCatalog) -> Result<BaseDomain, SiteError> {
+    let storage = domains.get(domain).ok_or(SiteError::Conversion)?.storage();
+    Ok(match storage {
+        sim_relation_core::StorageRepr::Bool => BaseDomain::Bool,
+        sim_relation_core::StorageRepr::I64 => BaseDomain::I64,
+        sim_relation_core::StorageRepr::F64 => BaseDomain::F64,
+        sim_relation_core::StorageRepr::Text => BaseDomain::Text,
+        sim_relation_core::StorageRepr::Bytes => BaseDomain::Bytes,
+    })
+}
+fn encode_cell(cell: &Cell, domains: &DomainCatalog) -> Result<Value, SiteError> {
+    let Some(value) = cell.value() else {
+        return Ok(Value::Null);
+    };
+    Ok(
+        match base(cell.domain(), domains)?
+            .from_datum(value)
+            .map_err(|_| SiteError::Conversion)?
+        {
+            StorageValue::Bool(v) => Value::Integer(i64::from(v)),
+            StorageValue::I64(v) => Value::Integer(v),
+            StorageValue::F64(v) => Value::Real(v),
+            StorageValue::Text(v) => Value::Text(v),
+            StorageValue::Bytes(v) => Value::Blob(v),
+        },
+    )
+}
+fn decode_cell(
+    value: ValueRef<'_>,
+    domain: &DomainId,
+    domains: &DomainCatalog,
+) -> Result<Cell, SiteError> {
+    if value == ValueRef::Null {
+        return Ok(Cell::null(domain.clone()));
+    }
+    let base = base(domain, domains)?;
+    let storage = match base {
+        BaseDomain::Bool => {
+            StorageValue::Bool(i64::column_result(value).map_err(|_| SiteError::Conversion)? != 0)
+        }
+        BaseDomain::I64 => {
+            StorageValue::I64(i64::column_result(value).map_err(|_| SiteError::Conversion)?)
+        }
+        BaseDomain::F64 => {
+            StorageValue::F64(f64::column_result(value).map_err(|_| SiteError::Conversion)?)
+        }
+        BaseDomain::Text => {
+            StorageValue::Text(String::column_result(value).map_err(|_| SiteError::Conversion)?)
+        }
+        BaseDomain::Bytes => {
+            StorageValue::Bytes(Vec::<u8>::column_result(value).map_err(|_| SiteError::Conversion)?)
+        }
+    };
+    Ok(Cell::new(
+        domain.clone(),
+        Some(base.to_datum(storage).map_err(|_| SiteError::Conversion)?),
+    ))
+}
+fn valid_source(value: &Symbol) -> bool {
+    if value.namespace.is_some() {
+        return false;
+    }
+    let text = value.name.as_ref();
+    !text.is_empty() && text.bytes().all(|b| b.is_ascii_alphanumeric() || b == b'_')
+}
+fn relation_id_text(value: &sim_relation_core::RelationId) -> String {
+    let content = value.content_id();
+    let mut digest = String::with_capacity(content.bytes.len() * 2);
+    for byte in content.bytes {
+        digest.push(char::from(HEX[usize::from(byte >> 4)]));
+        digest.push(char::from(HEX[usize::from(byte & 0x0f)]));
+    }
+    format!("{}:{digest}", content.algorithm)
+}
+fn map_error(error: &rusqlite::Error) -> SiteError {
+    use rusqlite::{
+        Error::SqliteFailure,
+        ffi::ErrorCode::{
+            ConstraintViolation, DatabaseBusy, DatabaseCorrupt, DatabaseLocked, NotADatabase,
+            OperationInterrupted, ReadOnly,
+        },
+    };
+    match error {
+        SqliteFailure(inner, _) => match inner.code {
+            ConstraintViolation => SiteError::Constraint,
+            DatabaseBusy | DatabaseLocked => SiteError::Locked,
+            ReadOnly => SiteError::ReadOnly,
+            OperationInterrupted => SiteError::Interrupted,
+            DatabaseCorrupt | NotADatabase => SiteError::Corruption,
+            _ => SiteError::Provider,
+        },
+        rusqlite::Error::FromSqlConversionFailure(..)
+        | rusqlite::Error::IntegralValueOutOfRange(..) => SiteError::Conversion,
+        _ => SiteError::Provider,
+    }
+}
+
+/// Normalizes the main `SQLite` catalog, excluding capsule metadata.
+///
+/// # Errors
+///
+/// Returns a typed site refusal when catalog queries fail or observed names,
+/// domains, columns, indexes, or revisions cannot be normalized.
+pub fn introspect_connection(
+    connection: &Connection,
+    revision: RevisionName,
+) -> Result<PhysicalSchema, SiteError> {
+    let mut tables_stmt = connection.prepare("SELECT name FROM sqlite_schema WHERE type='table' AND name NOT LIKE 'sqlite_%' AND name NOT LIKE '__sim_%' ORDER BY name").map_err(|error| map_error(&error))?;
+    let names = tables_stmt
+        .query_map([], |row| row.get::<_, String>(0))
+        .map_err(|error| map_error(&error))?
+        .collect::<Result<Vec<_>, _>>()
+        .map_err(|error| map_error(&error))?;
+    let mut tables = Vec::new();
+    for name in names {
+        if !valid_source(&Symbol::new(name.as_str())) {
+            return Err(SiteError::Conversion);
+        }
+        let mut columns_stmt = connection
+            .prepare(&format!(
+                "PRAGMA table_info(\"{}\")",
+                name.replace('"', "\"\"")
+            ))
+            .map_err(|error| map_error(&error))?;
+        let columns = columns_stmt
+            .query_map([], |row| {
+                Ok((
+                    row.get::<_, i64>(0)?,
+                    row.get::<_, String>(1)?,
+                    row.get::<_, String>(2)?,
+                    row.get::<_, i64>(3)?,
+                ))
+            })
+            .map_err(|error| map_error(&error))?
+            .map(|result| {
+                let (ordinal, name, ty, notnull) = result.map_err(|error| map_error(&error))?;
+                let (domain, storage) = affinity(&ty);
+                Ok(PhysicalColumn {
+                    name: ColumnName::new(Symbol::new(name)).map_err(|_| SiteError::Conversion)?,
+                    domain: domain.id(),
+                    storage,
+                    nullable: notnull == 0,
+                    ordinal: u32::try_from(ordinal).map_err(|_| SiteError::Conversion)?,
+                })
+            })
+            .collect::<Result<Vec<_>, SiteError>>()?;
+        let mut indexes_stmt = connection
+            .prepare(&format!(
+                "PRAGMA index_list(\"{}\")",
+                name.replace('"', "\"\"")
+            ))
+            .map_err(|error| map_error(&error))?;
+        let index_rows = indexes_stmt
+            .query_map([], |row| {
+                Ok((row.get::<_, String>(1)?, row.get::<_, i64>(2)?))
+            })
+            .map_err(|error| map_error(&error))?
+            .collect::<Result<Vec<_>, _>>()
+            .map_err(|error| map_error(&error))?;
+        let mut indexes = Vec::new();
+        for (index_name, unique) in index_rows {
+            if index_name.starts_with("sqlite_") {
+                continue;
+            }
+            let mut info = connection
+                .prepare(&format!(
+                    "PRAGMA index_info(\"{}\")",
+                    index_name.replace('"', "\"\"")
+                ))
+                .map_err(|error| map_error(&error))?;
+            let keys = info
+                .query_map([], |row| row.get::<_, String>(2))
+                .map_err(|error| map_error(&error))?
+                .map(|v| {
+                    ColumnName::new(Symbol::new(v.map_err(|error| map_error(&error))?))
+                        .map_err(|_| SiteError::Conversion)
+                })
+                .collect::<Result<Vec<_>, _>>()?;
+            indexes.push(PhysicalIndex {
+                name: IndexName::new(Symbol::new(index_name)).map_err(|_| SiteError::Conversion)?,
+                columns: keys,
+                unique: unique != 0,
+            });
+        }
+        tables.push(PhysicalTable {
+            name: TableName::new(Symbol::new(name)).map_err(|_| SiteError::Conversion)?,
+            columns,
+            indexes,
+        });
+    }
+    PhysicalSchema::normalize(
+        ProviderName::new(provider_symbol()).map_err(|_| SiteError::Conversion)?,
+        SchemaName::new(Symbol::new("main")).map_err(|_| SiteError::Conversion)?,
+        revision,
+        tables,
+    )
+    .map_err(|_| SiteError::Conversion)
+}
+
+/// Verifies existing capsule metadata or atomically adopts an exact old file.
+///
+/// Adoption cannot bless drift: the authored physical identity must equal a
+/// fresh normalized catalog observation before metadata is written.
+///
+/// # Errors
+///
+/// Returns a typed site refusal when introspection fails, retained attestation
+/// metadata disagrees, adoption proof is absent or invalid, or the metadata
+/// transaction cannot commit atomically.
+pub fn verify_or_adopt(
+    connection: &mut Connection,
+    logical_schema: sim_relation_core::RelationId,
+    revision: sim_relation_core::RelationId,
+    revision_name: RevisionName,
+    adoption: Option<&AdoptionManifest>,
+) -> Result<SchemaAttestation, SiteError> {
+    let physical_schema = introspect_connection(connection, revision_name)?
+        .id()
+        .map_err(|_| SiteError::Provider)?;
+    let existing = connection
+        .query_row(
+            "SELECT logical_schema, physical_schema, revision FROM __sim_relation_attestation WHERE singleton=1",
+            [],
+            |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?, row.get::<_, String>(2)?)),
+        )
+        .ok();
+    if let Some((logical, physical, recorded_revision)) = existing {
+        if logical != relation_id_text(&logical_schema)
+            || physical != relation_id_text(&physical_schema)
+            || recorded_revision != relation_id_text(&revision)
+        {
+            return Err(SiteError::Drift);
+        }
+    } else {
+        adoption
+            .ok_or(SiteError::Drift)?
+            .verify(&physical_schema)
+            .map_err(|_| SiteError::Drift)?;
+        let transaction = connection
+            .transaction()
+            .map_err(|error| map_error(&error))?;
+        transaction.execute_batch("CREATE TABLE __sim_relation_attestation (singleton INTEGER PRIMARY KEY CHECK(singleton=1), logical_schema TEXT NOT NULL, physical_schema TEXT NOT NULL, revision TEXT NOT NULL)").map_err(|error| map_error(&error))?;
+        transaction
+            .execute(
+                "INSERT INTO __sim_relation_attestation VALUES (1, ?1, ?2, ?3)",
+                (
+                    relation_id_text(&logical_schema),
+                    relation_id_text(&physical_schema),
+                    relation_id_text(&revision),
+                ),
+            )
+            .map_err(|error| map_error(&error))?;
+        transaction.commit().map_err(|error| map_error(&error))?;
+    }
+    Ok(SchemaAttestation {
+        logical_schema,
+        physical_schema,
+        revision,
+    })
+}
+fn affinity(value: &str) -> (BaseDomain, sim_relation_core::StorageRepr) {
+    let upper = value.to_ascii_uppercase();
+    if upper.contains("INT") {
+        (BaseDomain::I64, sim_relation_core::StorageRepr::I64)
+    } else if upper.contains("CHAR") || upper.contains("CLOB") || upper.contains("TEXT") {
+        (BaseDomain::Text, sim_relation_core::StorageRepr::Text)
+    } else if upper.contains("REAL") || upper.contains("FLOA") || upper.contains("DOUB") {
+        (BaseDomain::F64, sim_relation_core::StorageRepr::F64)
+    } else {
+        (BaseDomain::Bytes, sim_relation_core::StorageRepr::Bytes)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use sim_kernel::Lib;
+
+    fn revision() -> RevisionName {
+        RevisionName::new(Symbol::new("fixture-v1")).unwrap()
+    }
+    fn fixture_dir(name: &str) -> PathBuf {
+        let path = std::env::temp_dir().join(format!("sim-sqlite-{name}-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&path);
+        std::fs::create_dir_all(&path).unwrap();
+        path
+    }
+
+    #[test]
+    fn manifest_and_locators_are_closed() {
+        let domains = DomainCatalog::new([
+            BaseDomain::Bool.spec(),
+            BaseDomain::I64.spec(),
+            BaseDomain::F64.spec(),
+            BaseDomain::Text.spec(),
+            BaseDomain::Bytes.spec(),
+        ])
+        .unwrap();
+        let lib = SqliteDriver::new(domains, PreopenedStores::default())
+            .library(&StorageLocator::Memory)
+            .unwrap();
+        verify_manifest(&lib.manifest()).unwrap();
+        assert_eq!(lib.manifest().exports.len(), 1);
+    }
+
+    #[test]
+    fn real_file_introspection_is_normalized_and_reopens() {
+        let dir = fixture_dir("reopen");
+        let path = dir.join("relation.sqlite");
+        {
+            let connection = Connection::open(&path).unwrap();
+            connection.execute_batch(
+                "PRAGMA foreign_keys=ON;
+                 CREATE TABLE item(flag INTEGER NOT NULL, count INTEGER, ratio REAL, label TEXT, payload BLOB);
+                 CREATE UNIQUE INDEX item_label ON item(label);
+                 INSERT INTO item VALUES(1, 7, 1.5, 'kept', X'0102');",
+            ).unwrap();
+            let physical = introspect_connection(&connection, revision()).unwrap();
+            assert_eq!(physical.tables().len(), 1);
+            let columns = &physical.tables()[0].columns;
+            assert_eq!(columns.len(), 5);
+            assert_eq!(columns[0].storage, sim_relation_core::StorageRepr::I64);
+            assert_eq!(columns[2].storage, sim_relation_core::StorageRepr::F64);
+            assert_eq!(columns[3].storage, sim_relation_core::StorageRepr::Text);
+            assert_eq!(columns[4].storage, sim_relation_core::StorageRepr::Bytes);
+            assert_eq!(physical.tables()[0].indexes.len(), 1);
+            let physical_id = physical.id().unwrap();
+            let manifest = AdoptionManifest {
+                logical_schema: physical_id.clone(),
+                physical_schema: physical_id.clone(),
+            };
+            drop(physical);
+            drop(connection);
+            let mut connection = Connection::open(&path).unwrap();
+            let receipt = verify_or_adopt(
+                &mut connection,
+                physical_id.clone(),
+                physical_id.clone(),
+                revision(),
+                Some(&manifest),
+            )
+            .unwrap();
+            assert_eq!(receipt.physical_schema, physical_id);
+            verify_or_adopt(
+                &mut connection,
+                receipt.logical_schema.clone(),
+                receipt.revision.clone(),
+                revision(),
+                None,
+            )
+            .unwrap();
+            connection
+                .execute_batch("CREATE TABLE drifted(value TEXT)")
+                .unwrap();
+            assert!(matches!(
+                verify_or_adopt(
+                    &mut connection,
+                    receipt.logical_schema,
+                    receipt.revision,
+                    revision(),
+                    None,
+                ),
+                Err(SiteError::Drift)
+            ));
+        }
+        let read_only =
+            Connection::open_with_flags(&path, OpenFlags::SQLITE_OPEN_READ_ONLY).unwrap();
+        assert_eq!(
+            read_only
+                .query_row("SELECT label FROM item", [], |row| row.get::<_, String>(0))
+                .unwrap(),
+            "kept"
+        );
+        assert!(matches!(
+            read_only
+                .execute("DELETE FROM item", [])
+                .map_err(|error| map_error(&error)),
+            Err(SiteError::ReadOnly)
+        ));
+    }
+
+    #[test]
+    fn attach_lifecycle_and_stable_errors_are_real_sqlite_behaviour() {
+        let dir = fixture_dir("attach");
+        let attached = dir.join("attached.sqlite");
+        Connection::open(&attached)
+            .unwrap()
+            .execute_batch(
+                "CREATE TABLE source(value INTEGER UNIQUE); INSERT INTO source VALUES(4);",
+            )
+            .unwrap();
+        let connection = Connection::open_in_memory().unwrap();
+        connection
+            .execute(
+                "ATTACH DATABASE ?1 AS source_a",
+                [attached.to_string_lossy().as_ref()],
+            )
+            .unwrap();
+        assert_eq!(
+            connection
+                .query_row("SELECT value FROM source_a.source", [], |row| row
+                    .get::<_, i64>(0))
+                .unwrap(),
+            4
+        );
+        connection
+            .execute_batch("DETACH DATABASE source_a")
+            .unwrap();
+        assert!(connection.prepare("SELECT * FROM source_a.source").is_err());
+
+        connection.execute_batch("CREATE TABLE unique_value(value INTEGER UNIQUE); INSERT INTO unique_value VALUES(1);").unwrap();
+        assert!(matches!(
+            connection
+                .execute("INSERT INTO unique_value VALUES(1)", [])
+                .map_err(|error| map_error(&error)),
+            Err(SiteError::Constraint)
+        ));
+        assert!(matches!(
+            Connection::open(&dir).map_err(|error| map_error(&error)),
+            Err(SiteError::Provider)
+        ));
+    }
+
+    #[test]
+    fn generated_conflict_transaction_union_and_interruption_are_bounded() {
+        let dir = fixture_dir("semantics");
+        let left = dir.join("left.sqlite");
+        let right = dir.join("right.sqlite");
+        for (path, value) in [(&left, "left"), (&right, "right")] {
+            let connection = Connection::open(path).unwrap();
+            connection
+                .execute_batch("CREATE TABLE item(id INTEGER PRIMARY KEY, flag INTEGER NOT NULL, ratio REAL, label TEXT UNIQUE, payload BLOB)")
+                .unwrap();
+            connection
+                .execute(
+                    "INSERT INTO item(flag, ratio, label, payload) VALUES(1, 2.5, ?1, X'CAFE')",
+                    [value],
+                )
+                .unwrap();
+            let generated = connection.last_insert_rowid();
+            assert!(generated > 0);
+            assert_eq!(
+                connection
+                    .execute(
+                        "INSERT INTO item(flag, ratio, label, payload) VALUES(1, NULL, ?1, X'') ON CONFLICT(label) DO NOTHING",
+                        [value],
+                    )
+                    .unwrap(),
+                0
+            );
+        }
+
+        let mut connection = Connection::open_in_memory().unwrap();
+        connection
+            .execute(
+                "ATTACH DATABASE ?1 AS left_source",
+                [left.to_string_lossy().as_ref()],
+            )
+            .unwrap();
+        connection
+            .execute(
+                "ATTACH DATABASE ?1 AS right_source",
+                [right.to_string_lossy().as_ref()],
+            )
+            .unwrap();
+        let grouped = connection.query_row(
+            "SELECT COUNT(*), SUM(flag) FROM (SELECT flag FROM left_source.item UNION ALL SELECT flag FROM right_source.item)",
+            [],
+            |row| Ok((row.get::<_, i64>(0)?, row.get::<_, i64>(1)?)),
+        ).unwrap();
+        assert_eq!(grouped, (2, 2));
+
+        connection
+            .execute_batch("CREATE TABLE local(value INTEGER)")
+            .unwrap();
+        let mut transaction = connection.transaction().unwrap();
+        transaction
+            .execute("INSERT INTO local VALUES(1)", [])
+            .unwrap();
+        {
+            let mut savepoint = transaction.savepoint().unwrap();
+            savepoint
+                .execute("INSERT INTO local VALUES(2)", [])
+                .unwrap();
+            savepoint.rollback().unwrap();
+        }
+        transaction.commit().unwrap();
+        assert_eq!(
+            connection
+                .query_row("SELECT SUM(value) FROM local", [], |row| row
+                    .get::<_, i64>(0))
+                .unwrap(),
+            1
+        );
+
+        connection.progress_handler(1, Some(|| true));
+        let interrupted = connection.query_row(
+            "WITH RECURSIVE n(x) AS (VALUES(1) UNION ALL SELECT x+1 FROM n WHERE x<1000000) SELECT SUM(x) FROM n",
+            [],
+            |row| row.get::<_, i64>(0),
+        );
+        assert!(matches!(
+            interrupted.map_err(|error| map_error(&error)),
+            Err(SiteError::Interrupted)
+        ));
+    }
+}
+```
+
+### `feature/sim-platform/construction-integration-realization`
+
+Specimen `spec-test/sim-platform/crates/sim-platform-construction/src/lib` is checked by `cargo test`.
+
+Source `crates/sim-platform-construction/src/lib.rs`:
+
+```rust
+// conformance: construction transports retain domain-owned admission and typed failures.
+
+//! Platform-capsule implementations of construction-owned integration ports.
+
+#![forbid(unsafe_code)]
+#![deny(missing_docs)]
+
+use std::io::Read;
+use std::path::{Path, PathBuf};
+
+use sim_site_dalux::{DaluxHttpRequest, DaluxHttpResponse, DaluxTransport};
+use sim_site_powerproject::PowerprojectAutomation;
+
+/// Bounded native HTTP realization for Dalux requests.
+#[derive(Clone, Debug)]
+pub struct UreqDaluxTransport {
+    max_response_bytes: usize,
+}
+
+impl UreqDaluxTransport {
+    /// Creates a transport with an explicit response-size budget.
+    ///
+    /// # Errors
+    ///
+    /// Returns an error when the response-size budget is zero.
+    pub fn new(max_response_bytes: usize) -> Result<Self, String> {
+        if max_response_bytes == 0 {
+            return Err("Dalux response budget must be positive".to_owned());
+        }
+        Ok(Self { max_response_bytes })
+    }
+}
+
+impl DaluxTransport for UreqDaluxTransport {
+    fn execute(&self, request: &DaluxHttpRequest) -> Result<DaluxHttpResponse, String> {
+        let authorization = format!("Bearer {}", request.bearer_token);
+        let mut call = ureq::request(request.method, &request.url)
+            .set("Accept", "application/json")
+            .set("Authorization", &authorization);
+        if request.body.is_some() {
+            call = call.set("Content-Type", "application/json");
+        }
+        let response = match &request.body {
+            Some(body) => call.send_string(body),
+            None => call.call(),
+        };
+        let response = match response {
+            Ok(response) | Err(ureq::Error::Status(_, response)) => response,
+            Err(error) => return Err(format!("Dalux transport failed: {error}")),
+        };
+        let status = response.status();
+        let mut body = String::new();
+        std::io::Read::take(response.into_reader(), self.max_response_bytes as u64 + 1)
+            .read_to_string(&mut body)
+            .map_err(|error| format!("Dalux response read failed: {error}"))?;
+        if body.len() > self.max_response_bytes {
+            return Err(format!(
+                "Dalux response exceeded {} byte budget",
+                self.max_response_bytes
+            ));
+        }
+        Ok(DaluxHttpResponse { status, body })
+    }
+}
+
+/// Explicitly configured native bridge for Powerproject desktop automation.
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct PowerprojectBridge {
+    executable: PathBuf,
+}
+
+impl PowerprojectBridge {
+    /// Supplies the already-approved bridge executable; no environment discovery occurs.
+    ///
+    /// # Errors
+    ///
+    /// Returns an error when the executable path is empty.
+    pub fn new(executable: PathBuf) -> Result<Self, String> {
+        if executable.as_os_str().is_empty() {
+            return Err("Powerproject bridge path is empty".to_owned());
+        }
+        Ok(Self { executable })
+    }
+}
+
+impl PowerprojectAutomation for PowerprojectBridge {
+    fn export_current_project_to_mspdi(&self, out: &Path) -> Result<(), String> {
+        let status = std::process::Command::new(&self.executable)
+            .arg("export-current-project-mspdi")
+            .arg(out)
+            .status()
+            .map_err(|error| format!("could not run Powerproject bridge: {error}"))?;
+        if status.success() {
+            Ok(())
+        } else {
+            Err(format!("Powerproject bridge exited with {status}"))
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn constructors_reject_unbounded_or_missing_configuration() {
+        assert!(UreqDaluxTransport::new(0).is_err());
+        assert!(PowerprojectBridge::new(PathBuf::new()).is_err());
+    }
+
+    #[test]
+    fn unavailable_automation_is_a_typed_port_failure() {
+        let bridge =
+            PowerprojectBridge::new(PathBuf::from("definitely-not-a-real-bridge")).unwrap();
+        let error = bridge
+            .export_current_project_to_mspdi(Path::new("project.xml"))
+            .unwrap_err();
+        assert!(error.contains("could not run Powerproject bridge"));
+    }
+}
+```
+
+### `feature/sim-platform/device-physical-port`
+
+Specimen `spec-test/sim-platform/crates/sim-viture-ffi/src/tests` is checked by `cargo test`.
+
+Source `crates/sim-viture-ffi/src/tests.rs`:
+
+```rust
+// conformance: physical-device transport owns bounded native lifecycle and refusal behavior.
+
+use std::fs;
+use std::path::PathBuf;
+use std::time::{SystemTime, UNIX_EPOCH};
+
+use crate::{
+    LegacyImuRate, SdkDiscoverySource, VITURE_USB_VID, VitureError, VitureLib, VitureSdkDiscovery,
+    unsupported_viture_lib,
+};
+
+#[test]
+fn no_sdk_returns_unsupported() {
+    let lib = unsupported_viture_lib();
+    assert_eq!(lib.open_carina().unwrap_err(), VitureError::Unsupported);
+    assert_eq!(lib.legacy_init().unwrap_err(), VitureError::Unsupported);
+    assert_eq!(
+        lib.legacy_set_imu(true).unwrap_err(),
+        VitureError::Unsupported
+    );
+    assert_eq!(
+        lib.legacy_set_3d(false).unwrap_err(),
+        VitureError::Unsupported
+    );
+    assert_eq!(
+        lib.legacy_set_imu_fq(LegacyImuRate::new(120).unwrap())
+            .unwrap_err(),
+        VitureError::Unsupported
+    );
+}
+
+#[test]
+fn discovery_lists_config_runtime_and_linux_vid_candidates() {
+    let sysfs = temp_sysfs_root();
+    let device = sysfs.join("1-1");
+    let other = sysfs.join("2-1");
+    fs::create_dir_all(&device).unwrap();
+    fs::create_dir_all(&other).unwrap();
+    fs::write(device.join("idVendor"), "35CA\n").unwrap();
+    fs::write(other.join("idVendor"), "1234\n").unwrap();
+
+    let configured = PathBuf::from("/opt/viture/libviture_sdk.so");
+    let discovery = VitureSdkDiscovery::new()
+        .without_runtime_names()
+        .with_configured_path(configured.clone())
+        .with_runtime_name("libcustom_viture.so")
+        .with_sysfs_root(sysfs.clone());
+    let candidates = discovery.candidates();
+
+    assert_eq!(VITURE_USB_VID, "0x35CA");
+    assert_eq!(candidates.len(), 3);
+    assert_eq!(candidates[0].source(), SdkDiscoverySource::ConfiguredPath);
+    assert_eq!(candidates[0].library_path(), Some(configured.as_path()));
+    assert_eq!(candidates[1].source(), SdkDiscoverySource::RuntimeLinker);
+    assert_eq!(candidates[1].linker_name().unwrap(), "libcustom_viture.so");
+    assert_eq!(candidates[2].source(), SdkDiscoverySource::LinuxSysfsVid);
+    assert_eq!(candidates[2].sysfs_device(), Some(device.as_path()));
+
+    fs::remove_dir_all(sysfs).unwrap();
+}
+
+#[test]
+fn discovery_without_loadable_sdk_yields_stub() {
+    let sysfs = temp_sysfs_root();
+    let lib = VitureLib::discover(
+        &VitureSdkDiscovery::new()
+            .without_runtime_names()
+            .with_sysfs_root(sysfs.clone()),
+    )
+    .unwrap();
+
+    assert_eq!(lib.open_carina().unwrap_err(), VitureError::Unsupported);
+    fs::remove_dir_all(sysfs).unwrap();
+}
+
+#[test]
+fn legacy_rate_rejects_zero_frequency() {
+    assert_eq!(LegacyImuRate::new(0), None);
+    assert_eq!(LegacyImuRate::new(120).unwrap().hz(), 120);
+}
+
+fn temp_sysfs_root() -> PathBuf {
+    let nanos = SystemTime::now()
+        .duration_since(UNIX_EPOCH)
+        .unwrap()
+        .as_nanos();
+    let path = std::env::temp_dir().join(format!("sim-viture-ffi-{}-{nanos}", std::process::id()));
+    fs::create_dir_all(&path).unwrap();
+    path
+}
+```
+
+### `feature/sim-platform/native-midi-realization`
+
+Specimen `spec-test/sim-platform/crates/sim-platform-midi/src/tests` is checked by `cargo test`.
+
+Source `crates/sim-platform-midi/src/tests.rs`:
+
+```rust
+// conformance: MIDI realization advertises only explicit capsule-owned bindings.
+
+use super::*;
+use sim_lib_midi_core::{MidiDirection, MidiTimestampSource};
+
+fn card(id: &str, api: NativeMidiApi) -> NativeMidiBinding {
+    NativeMidiBinding {
+        api,
+        card: MidiPortCard {
+            id: MidiPortId(id.into()),
+            label: id.into(),
+            direction: MidiDirection::Duplex,
+            transport: format!("{api:?}"),
+            timestamp_source: MidiTimestampSource::Monotonic,
+            hotplug: true,
+        },
+    }
+}
+
+#[test]
+fn ubuntu_port_preserves_bytes_order_timestamps_hotplug_reconnect_and_cleanup() {
+    let first = MidiPortMessage::new(41, vec![0x90, 60, 100]).unwrap();
+    let second = MidiPortMessage::new(42, vec![0xf8]).unwrap();
+    let mut port = UbuntuMidiPort::default();
+    port.bind(
+        card("alsa/0", NativeMidiApi::AlsaRtMidi),
+        [
+            NativeMidiEvent::Message(first.clone()),
+            NativeMidiEvent::Message(second.clone()),
+            NativeMidiEvent::DeviceLost,
+        ],
+    );
+    let policy = MidiPortPolicy::bounded(1, 3, 1).unwrap();
+    assert_eq!(
+        port.cards(policy).unwrap()[0].id,
+        MidiPortId("alsa/0".into())
+    );
+    let mut connection = port.open(&MidiPortId("alsa/0".into()), policy).unwrap();
+    assert_eq!(connection.receive().unwrap(), Some(first));
+    assert_eq!(connection.receive().unwrap(), Some(second));
+    assert_eq!(connection.receive(), Err(MidiPortRefusal::DeviceLost));
+    connection.reconnect().unwrap();
+    connection
+        .send(MidiPortMessage::new(43, vec![0x80, 60, 0]).unwrap())
+        .unwrap();
+    connection.close().unwrap();
+    assert_eq!(connection.close(), Err(MidiPortRefusal::AlreadyClosed));
+}
+
+#[test]
+fn absent_denied_invalid_and_backpressured_ports_fail_closed_without_fallback() {
+    let policy = MidiPortPolicy::bounded(1, 1, 0).unwrap();
+    assert_eq!(UbuntuMidiPort::default().cards(policy), Ok(Vec::new()));
+    assert!(matches!(
+        UbuntuMidiPort::default().open(&MidiPortId("unknown".into()), policy),
+        Err(MidiPortRefusal::Unsupported)
+    ));
+    assert_eq!(
+        UbuntuMidiPort::denied().cards(policy),
+        Err(MidiPortRefusal::Denied)
+    );
+    assert_eq!(
+        MidiPortMessage::new(0, vec![0x90, 0x80]),
+        Err(MidiPortRefusal::InvalidMessage)
+    );
+    let mut port = UbuntuMidiPort::default();
+    port.bind(
+        card("bluez/0", NativeMidiApi::BluezBleMidi),
+        [
+            NativeMidiEvent::Message(MidiPortMessage::new(1, vec![0xf8]).unwrap()),
+            NativeMidiEvent::Message(MidiPortMessage::new(2, vec![0xf8]).unwrap()),
+        ],
+    );
+    assert!(matches!(
+        port.open(&MidiPortId("bluez/0".into()), policy),
+        Err(MidiPortRefusal::Backpressure)
+    ));
+}
+```
+
+### `feature/sim-platform/platform-owner`
+
+Specimen `spec-test/sim-platform/crates/sim-platform-core/tests/bundle_composition` is checked by `cargo test`.
+
+Source `crates/sim-platform-core/tests/bundle_composition.rs`:
+
+```rust
+// conformance: platform bundles preserve exact capsule identity and evidence closure.
+
+use std::collections::{BTreeMap, BTreeSet};
+
+use sim_platform_core::*;
+
+fn symbol(value: &str) -> OpenSymbol {
+    OpenSymbol::new(value).unwrap()
+}
+
+fn card(site: &str) -> PlatformCard {
+    PlatformCard {
+        schema: symbol("platform/card/v1"),
+        site: symbol(site),
+        services: vec![ServiceOffer {
+            service: symbol("platform/service/portable-eval"),
+            port: FactPort::MachineLimits,
+            evidence: EvidenceLevel::Attested,
+        }],
+        provenance: ContractProvenance {
+            contract: symbol("platform/contract/capsule-v1"),
+            content_digest: format!("sha256:contract-{site}"),
+            issuer: symbol("platform/issuer/sim-platform"),
+        },
+    }
+}
+
+fn attestation(card: &PlatformCard, result: &str) -> CapsuleAttestation {
+    CapsuleAttestation {
+        capsule: card.site.clone(),
+        artifact_digest: format!("sha256:artifact-{}", card.site.0),
+        card_digest: stable_digest(&serde_json::to_vec(card).unwrap()),
+        evidence: ExecutionEvidence {
+            execution: symbol(&format!("execution/{}", card.site.0.replace('/', "-"))),
+            activation: symbol(&format!("activation/{}", card.site.0.replace('/', "-"))),
+            request_digest: "sha256:portable-input".into(),
+            result_digest: result.into(),
+            ledger_ref: symbol(&format!("ledger/{}", card.site.0.replace('/', "-"))),
+        },
+    }
+}
+
+fn content(id: &str, digest: &str, capabilities: &[&str]) -> BundleContent {
+    BundleContent {
+        id: symbol(id),
+        content_digest: digest.into(),
+        capabilities: capabilities.iter().map(|item| symbol(item)).collect(),
+    }
+}
+
+fn compose<'a>(
+    selected: &'a OpenSymbol,
+    cards: &'a [PlatformCard],
+    attestations: &'a [CapsuleAttestation],
+    artifacts: &'a BTreeMap<OpenSymbol, String>,
+    allowed: &'a BTreeSet<OpenSymbol>,
+    required: &'a [OpenSymbol],
+) -> Result<ComposedBundle, BundleRefusal> {
+    compose_bundle(BundleComposition {
+        capsule: selected,
+        application: content(
+            "application/portable",
+            "sha256:portable-app",
+            &["capability/eval"],
+        ),
+        libraries: vec![content("library/portable-core", "sha256:portable-lib", &[])],
+        cards,
+        attestations,
+        declared_artifacts: artifacts,
+        allowed_capabilities: allowed,
+        required_services: required,
+    })
+}
+
+#[test]
+fn selected_capsule_and_explicit_content_form_one_descriptor_and_artifact() {
+    let model = card("platform/site/model");
+    let evidence = attestation(&model, "semantic:42");
+    let artifacts = BTreeMap::from([(model.site.clone(), evidence.artifact_digest.clone())]);
+    let allowed = BTreeSet::from([symbol("capability/eval")]);
+    let bundle = compose(
+        &model.site,
+        std::slice::from_ref(&model),
+        &[evidence],
+        &artifacts,
+        &allowed,
+        &[symbol("platform/service/portable-eval")],
+    )
+    .unwrap();
+
+    assert_eq!(bundle.bootstrap.capsule, model.site);
+    assert_eq!(
+        bundle.bootstrap.load_plan.application.content_digest,
+        "sha256:portable-app"
+    );
+    assert_eq!(
+        bundle.bootstrap.load_plan.libraries[0].content_digest,
+        "sha256:portable-lib"
+    );
+    assert_eq!(
+        bundle.capsule_artifact.content_digest,
+        artifacts[&bundle.bootstrap.capsule]
+    );
+    assert_eq!(
+        serde_json::to_value(&bundle)
+            .unwrap()
+            .as_object()
+            .unwrap()
+            .keys()
+            .filter(|key| *key == "bootstrap")
+            .count(),
+        1
+    );
+}
+
+#[test]
+fn composition_rejects_every_integrity_and_authority_violation() {
+    let model = card("platform/site/model");
+    let evidence = attestation(&model, "semantic:42");
+    let artifacts = BTreeMap::from([(model.site.clone(), evidence.artifact_digest.clone())]);
+    let allowed = BTreeSet::from([symbol("capability/eval")]);
+    let required = [symbol("platform/service/portable-eval")];
+    let input = |cards: &[PlatformCard], attestations: &[CapsuleAttestation]| {
+        compose(
+            &model.site,
+            cards,
+            attestations,
+            &artifacts,
+            &allowed,
+            &required,
+        )
+    };
+
+    assert!(matches!(
+        input(
+            &[model.clone(), model.clone()],
+            std::slice::from_ref(&evidence)
+        ),
+        Err(BundleRefusal::DuplicateProvider(_))
+    ));
+    assert!(matches!(
+        input(std::slice::from_ref(&model), &[]),
+        Err(BundleRefusal::MissingAttestation(_))
+    ));
+    assert!(matches!(
+        input(
+            std::slice::from_ref(&model),
+            &[evidence.clone(), evidence.clone()]
+        ),
+        Err(BundleRefusal::DuplicateAttestation(_))
+    ));
+    assert!(matches!(
+        compose(
+            &model.site,
+            std::slice::from_ref(&model),
+            std::slice::from_ref(&evidence),
+            &BTreeMap::new(),
+            &allowed,
+            &required
+        ),
+        Err(BundleRefusal::UndeclaredArtifact(_))
+    ));
+    let mut mismatched = evidence.clone();
+    mismatched.artifact_digest = "sha256:wrong".into();
+    assert!(matches!(
+        input(std::slice::from_ref(&model), &[mismatched]),
+        Err(BundleRefusal::EvidenceContentMismatch(_))
+    ));
+    assert!(matches!(
+        compose(
+            &model.site,
+            std::slice::from_ref(&model),
+            std::slice::from_ref(&evidence),
+            &artifacts,
+            &BTreeSet::new(),
+            &required
+        ),
+        Err(BundleRefusal::CapabilityEscalation { .. })
+    ));
+    assert!(matches!(
+        compose(
+            &model.site,
+            std::slice::from_ref(&model),
+            &[evidence],
+            &artifacts,
+            &allowed,
+            &[symbol("platform/service/missing")]
+        ),
+        Err(BundleRefusal::MissingRequiredService(_))
+    ));
+}
+
+#[test]
+fn portable_bundle_has_identical_semantics_across_retained_capsule_evidence() {
+    let sites = [
+        "platform/site/model",
+        "platform/site/ubuntu-pc",
+        "platform/site/linux-cross-x86",
+        "platform/site/linux-cross-arm",
+        "platform/site/android-emulator",
+        "platform/site/ios-emulator",
+        "platform/site/hosted-linux",
+        "platform/site/physical-rpi",
+    ];
+    let cards = sites.map(card);
+    let attestations = cards
+        .iter()
+        .map(|item| attestation(item, "semantic:42"))
+        .collect::<Vec<_>>();
+    let artifacts = attestations
+        .iter()
+        .map(|item| (item.capsule.clone(), item.artifact_digest.clone()))
+        .collect::<BTreeMap<_, _>>();
+    let allowed = BTreeSet::from([symbol("capability/eval")]);
+    let required = [symbol("platform/service/portable-eval")];
+    let bundles = cards
+        .iter()
+        .map(|item| {
+            compose(
+                &item.site,
+                &cards,
+                &attestations,
+                &artifacts,
+                &allowed,
+                &required,
+            )
+            .unwrap()
+        })
+        .collect::<Vec<_>>();
+
+    assert!(bundles.iter().all(
+        |bundle| bundle.bootstrap.load_plan.application.content_digest == "sha256:portable-app"
+    ));
+    assert!(
+        bundles
+            .iter()
+            .all(|bundle| bundle.attestation.evidence.result_digest == "semantic:42")
+    );
+    let matrix = platform_support_matrix(&bundles);
+    assert_eq!(matrix.len(), sites.len());
+    assert!(matrix.iter().all(
+        |row| row.contract_provenance.starts_with("sha256:contract-")
+            && row.execution_evidence == "semantic:42"
+    ));
+}
+
+#[test]
+fn removed_selected_capsule_refuses_without_implicit_provider_selection() {
+    let selected = symbol("platform/site/physical-rpi");
+    let model = card("platform/site/model");
+    let evidence = attestation(&model, "semantic:42");
+    let artifacts = BTreeMap::from([(model.site.clone(), evidence.artifact_digest.clone())]);
+    let refusal = compose(
+        &selected,
+        &[model],
+        &[evidence],
+        &artifacts,
+        &BTreeSet::from([symbol("capability/eval")]),
+        &[symbol("platform/service/portable-eval")],
+    )
+    .unwrap_err();
+    assert_eq!(refusal, BundleRefusal::MissingCapsule(selected));
+}
+```
+
+### `feature/sim-platform/platform-policy`
+
+Specimen `spec-test/sim-platform/crates/sim-platform-core/tests/policy` is checked by `cargo test`.
+
+Source `crates/sim-platform-core/tests/policy.rs`:
+
+```rust
+// conformance: platform service resolution is deterministic, atomic, and fail closed.
+
+use sim_codec::{Input, Output, decode_with_codec, encode_with_codec};
+use sim_kernel::{Cx, DefaultFactory, EagerPolicy, EncodeOptions, Expr, ReadPolicy, Symbol};
+use sim_platform_core::*;
+use std::sync::Arc;
+
+fn symbol(value: &str) -> OpenSymbol {
+    OpenSymbol::new(value).unwrap()
+}
+fn provenance() -> ContractProvenance {
+    ContractProvenance {
+        contract: symbol("platform/contract/v1"),
+        content_digest: "sha256:test".into(),
+        issuer: symbol("platform/issuer/model"),
+    }
+}
+
+#[test]
+fn resolver_is_atomic_and_uses_ordered_substitutes_and_evidence() {
+    let card = PlatformCard {
+        schema: symbol("platform/card/v1"),
+        site: symbol("platform/site/model"),
+        provenance: provenance(),
+        services: vec![
+            ServiceOffer {
+                service: symbol("clock/wall-model"),
+                port: FactPort::WallClock,
+                evidence: EvidenceLevel::Modeled,
+            },
+            ServiceOffer {
+                service: symbol("entropy/model"),
+                port: FactPort::Entropy,
+                evidence: EvidenceLevel::Declared,
+            },
+        ],
+    };
+    let request = PlatformRequest {
+        request: symbol("request/one"),
+        requirements: vec![
+            Requirement {
+                service: symbol("clock/wall"),
+                substitutes: vec![symbol("clock/wall-model")],
+                optional: false,
+                minimum_evidence: EvidenceLevel::Modeled,
+            },
+            Requirement {
+                service: symbol("locale/preferred"),
+                substitutes: vec![],
+                optional: true,
+                minimum_evidence: EvidenceLevel::Declared,
+            },
+        ],
+    };
+    let (bound, receipt) = platform_require(&card, &request).unwrap();
+    assert_eq!(bound.bindings.len(), 1);
+    assert_eq!(bound.bindings[0].bound, symbol("clock/wall-model"));
+    assert_eq!(receipt.bindings, bound.bindings);
+
+    let denied = PlatformRequest {
+        request: symbol("request/two"),
+        requirements: vec![Requirement {
+            service: symbol("entropy/model"),
+            substitutes: vec![],
+            optional: false,
+            minimum_evidence: EvidenceLevel::Attested,
+        }],
+    };
+    let refusal = platform_require(&card, &denied).unwrap_err();
+    assert_eq!(refusal.kind, RefusalKind::Unsupported);
+}
+
+#[test]
+fn roadmap_requirement_is_host_independent_and_atomic() {
+    let card = PlatformCard {
+        schema: symbol("platform/card/v1"),
+        site: symbol("platform/site/model"),
+        provenance: provenance(),
+        services: vec![
+            ServiceOffer {
+                service: symbol("platform/service/monotonic"),
+                port: FactPort::MonotonicClock,
+                evidence: EvidenceLevel::Modeled,
+            },
+            ServiceOffer {
+                service: symbol("storage/service/config-dir"),
+                port: FactPort::MachineLimits,
+                evidence: EvidenceLevel::Modeled,
+            },
+            ServiceOffer {
+                service: symbol("platform/service/none"),
+                port: FactPort::LifecyclePressure,
+                evidence: EvidenceLevel::Modeled,
+            },
+        ],
+    };
+    let request = PlatformRequest {
+        request: symbol("request/small-api-roadmap"),
+        requirements: vec![
+            Requirement {
+                service: symbol("platform/service/monotonic"),
+                substitutes: vec![],
+                optional: false,
+                minimum_evidence: EvidenceLevel::Declared,
+            },
+            Requirement {
+                service: symbol("storage/service/config-dir"),
+                substitutes: vec![],
+                optional: false,
+                minimum_evidence: EvidenceLevel::Declared,
+            },
+            Requirement {
+                service: symbol("device/service/gpio"),
+                substitutes: vec![symbol("platform/service/none")],
+                optional: true,
+                minimum_evidence: EvidenceLevel::Declared,
+            },
+        ],
+    };
+    let (bound, _) = platform_require(&card, &request).unwrap();
+    assert_eq!(bound.bindings[2].bound, symbol("platform/service/none"));
+
+    let mut refused = request;
+    refused.requirements[1].service = symbol("storage/service/missing-dir");
+    assert_eq!(
+        platform_require(&card, &refused).unwrap_err().kind,
+        RefusalKind::Unsupported
+    );
+}
+
+#[test]
+fn records_round_trip_through_installed_general_expression_codecs() {
+    let record = PlatformCard {
+        schema: symbol("platform/card/v1"),
+        site: symbol("platform/site/model"),
+        provenance: provenance(),
+        services: vec![ServiceOffer {
+            service: symbol("clock/wall"),
+            port: FactPort::WallClock,
+            evidence: EvidenceLevel::Modeled,
+        }],
+    };
+    // Records project as ordinary expression data; this descriptor exercises every
+    // field category (open symbols, ordered lists, enums and provenance).
+    let request = PlatformRequest {
+        request: symbol("request/round-trip"),
+        requirements: vec![Requirement {
+            service: symbol("clock/wall"),
+            substitutes: vec![],
+            optional: false,
+            minimum_evidence: EvidenceLevel::Modeled,
+        }],
+    };
+    let (services, receipt) = platform_require(&record, &request).unwrap();
+    let lifecycle = Lifecycle::Ready;
+    let activation = Activation {
+        id: symbol("activation/round-trip"),
+        site: record.site.clone(),
+        lifecycle: lifecycle.clone(),
+        services,
+    };
+    let evidence = ExecutionEvidence {
+        execution: symbol("execution/round-trip"),
+        activation: activation.id.clone(),
+        request_digest: "sha256:request".into(),
+        result_digest: "sha256:result".into(),
+        ledger_ref: symbol("ledger/round-trip"),
+    };
+    let expr = Expr::List(
+        vec![
+            ("card", serde_json::to_string(&record).unwrap()),
+            ("request", serde_json::to_string(&request).unwrap()),
+            ("receipt", serde_json::to_string(&receipt).unwrap()),
+            ("lifecycle", serde_json::to_string(&lifecycle).unwrap()),
+            ("activation", serde_json::to_string(&activation).unwrap()),
+            ("attestation", serde_json::to_string(&evidence).unwrap()),
+        ]
+        .into_iter()
+        .map(|(kind, json)| {
+            Expr::List(vec![
+                Expr::Symbol(Symbol::qualified("platform", kind)),
+                Expr::String(json),
+            ])
+        })
+        .collect(),
+    );
+    let mut cx = Cx::new(
+        Arc::new(EagerPolicy),
+        Arc::new(DefaultFactory),
+        sim_kernel::HandleSeed::new(0x504c_4154),
+    );
+    let lisp = sim_codec_lisp::LispCodecLib::new(cx.registry_mut().fresh_codec_id()).unwrap();
+    cx.load_lib(&lisp).unwrap();
+    let json = sim_codec_json::JsonCodecLib::new(cx.registry_mut().fresh_codec_id());
+    cx.load_lib(&json).unwrap();
+    let binary = sim_codec_binary::BinaryCodecLib::new(cx.registry_mut().fresh_codec_id());
+    cx.load_lib(&binary).unwrap();
+    for codec in [
+        Symbol::qualified("codec", "lisp"),
+        Symbol::qualified("codec", "json"),
+        Symbol::qualified("codec", "binary"),
+    ] {
+        let encoded = encode_with_codec(&mut cx, &codec, &expr, EncodeOptions::default()).unwrap();
+        let input = match encoded {
+            Output::Text(text) => Input::Text(text),
+            Output::Bytes(bytes) => Input::Bytes(bytes),
+        };
+        let decoded = decode_with_codec(&mut cx, &codec, input, ReadPolicy::default()).unwrap();
+        assert!(decoded.canonical_eq(&expr), "codec {codec}");
+    }
+}
+```
+
+### `feature/sim-platform/bootstrap-rind`
+
+Specimen `spec-test/sim-platform/crates/sim-platform-bootstrap/src/tests` is checked by `cargo test`.
+
+Source `crates/sim-platform-bootstrap/src/tests.rs`:
+
+```rust
+// conformance: bootstrap admits only exact content-bound capsule artifacts.
+
+use super::*;
+use sim_kernel::{AbiVersion, LibManifest, LibSource, LibTarget, Symbol, Version};
+use std::sync::{Arc, Mutex};
+
+struct FakeLoader {
+    paths: Arc<Mutex<Vec<PathBuf>>>,
+}
+struct FakeLib;
+impl Lib for FakeLib {
+    fn manifest(&self) -> LibManifest {
+        LibManifest {
+            id: Symbol::qualified("platform", "fictional"),
+            version: Version("1.0.0".into()),
+            abi: AbiVersion { major: 1, minor: 0 },
+            target: LibTarget::Native,
+            requires: vec![],
+            capabilities: vec![],
+            exports: vec![],
+        }
+    }
+    fn load(
+        &self,
+        _: &mut sim_kernel::LoadCx,
+        _: &mut sim_kernel::Linker<'_>,
+    ) -> sim_kernel::Result<()> {
+        Ok(())
+    }
+}
+impl LibLoader for FakeLoader {
+    fn can_load(&self, _: &LibSource) -> bool {
+        true
+    }
+    fn load(&self, _: &mut Cx, source: LibSource) -> sim_kernel::Result<Box<dyn Lib>> {
+        let path = sim_run_loaders::path_from_source(&source)
+            .unwrap()
+            .expect("bootstrap must supply a path");
+        self.paths.lock().unwrap().push(path);
+        Ok(Box::new(FakeLib))
+    }
+}
+
+fn fixture(
+    service: &str,
+) -> (
+    tempfile::TempDir,
+    PathBuf,
+    BootstrapEnvelope,
+    BootstrapPolicy,
+    FakeLoader,
+) {
+    let dir = tempfile::tempdir().unwrap();
+    let executable = dir.path().join("sim");
+    fs::write(&executable, b"frame").unwrap();
+    fs::write(dir.path().join("capsule.so"), b"fictional-native-capsule").unwrap();
+    let digest = format!("sha256:{:x}", Sha256::digest(b"fictional-native-capsule"));
+    fs::write(
+        dir.path().join("capsule.toml"),
+        format!(
+            "schema = \"sim.platform-capsule/v1\"\nprovider = \"fictional-desktop\"\nservices = [\"{service}\"]\nloader_kinds = [\"loader/native-v1\"]\n"
+        ),
+    )
+    .unwrap();
+    fs::write(
+        dir.path().join(BUNDLE_DESCRIPTOR_NAME),
+        format!(
+            "schema = \"sim.platform-bundle/v1\"\ncapsule = \"capsule.toml\"\nartifact = \"capsule.so\"\nloader = \"loader/native-v1\"\nartifact_content = \"{digest}\"\nentry = \"sim_native_abi_v1\"\n"
+        ),
+    )
+    .unwrap();
+    let envelope = BootstrapEnvelope {
+        argv: vec!["sim".into()],
+        stdio: BootstrapStdio::default(),
+        bundle_identity: "pending".into(),
+        capsule_card: CapsuleManifest {
+            schema: "sim.platform-capsule/v1".into(),
+            provider: "pending".into(),
+            services: vec![],
+            shells: vec![],
+            loader_kinds: vec!["loader/native-v1".into()],
+        },
+        preopened_roots: vec![],
+        config_roots: crate::BootstrapConfigRoots {
+            home: None,
+            work: dir.path().join("config"),
+        },
+        kernel_seed: 7,
+    };
+    let policy = BootstrapPolicy {
+        allowed_services: BTreeSet::from([service.into()]),
+    };
+    let loader = FakeLoader {
+        paths: Arc::new(Mutex::new(vec![])),
+    };
+    (dir, executable, envelope, policy, loader)
+}
+
+#[test]
+fn admits_only_the_named_adjacent_content_bound_artifact() {
+    let (_dir, executable, envelope, policy, loader) = fixture("platform/display");
+    let (mut cx, _) = Cx::new_seated(
+        Arc::new(sim_kernel::NoopEvalPolicy),
+        Arc::new(sim_kernel::DefaultFactory),
+        sim_kernel::HandleSeed::new(0x504c_4154),
+    );
+    let booted = bootstrap(&executable, envelope, &policy, &mut cx, &loader).unwrap();
+    assert_eq!(booted.envelope.capsule_card.provider, "fictional-desktop");
+    assert_eq!(
+        loader.paths.lock().unwrap().as_slice(),
+        &[executable.parent().unwrap().join("capsule.so")]
+    );
+}
+
+#[test]
+fn refuses_changed_and_over_capable_capsules_without_fallback() {
+    let (dir, executable, envelope, policy, loader) = fixture("platform/display");
+    fs::write(dir.path().join("capsule.so"), b"changed").unwrap();
+    let (mut cx, _) = Cx::new_seated(
+        Arc::new(sim_kernel::NoopEvalPolicy),
+        Arc::new(sim_kernel::DefaultFactory),
+        sim_kernel::HandleSeed::new(0x504c_4154),
+    );
+    assert!(matches!(
+        bootstrap(&executable, envelope.clone(), &policy, &mut cx, &loader),
+        Err(BootstrapError::ContentMismatch { .. })
+    ));
+    assert!(loader.paths.lock().unwrap().is_empty());
+    let (_dir, executable, envelope, _, loader) = fixture("platform/secret-admin");
+    assert!(matches!(
+        bootstrap(
+            &executable,
+            envelope,
+            &BootstrapPolicy {
+                allowed_services: BTreeSet::new()
+            },
+            &mut cx,
+            &loader
+        ),
+        Err(BootstrapError::OverCapable(_))
+    ));
+}
+
+#[test]
+fn fictional_desktop_is_entirely_fixture_data() {
+    let source = include_str!("lib.rs");
+    assert!(!source.contains("fictional-desktop"));
+    assert!(!source.contains("platform/display"));
+}
+
+#[test]
+fn bootstrap_source_has_no_ambient_or_domain_discovery() {
+    let source = include_str!("lib.rs");
+    for forbidden in [
+        "current_",
+        "std::env",
+        "var_os",
+        "PATH",
+        "target_os",
+        "reqwest",
+    ] {
+        assert!(
+            !source.contains(forbidden),
+            "forbidden ambient operation: {forbidden}"
+        );
+    }
+}
+```
+
+### `feature/sim-platform/ubuntu-pc-capsule`
+
+Specimen `spec-test/sim-platform/crates/sim-platform-ubuntu-pc/tests/conformance` is checked by `cargo test`.
+
+Source `crates/sim-platform-ubuntu-pc/tests/conformance.rs`:
+
+```rust
+use sim_platform_core::{
+    EvidenceLevel, OpenSymbol, PlatformRequest, RefusalKind, Requirement, platform_require,
+};
+use sim_platform_ubuntu_pc::{Architecture, ProfileKind, UbuntuPcProfile, linux::*, register};
+use std::{
+    path::PathBuf,
+    sync::{
+        Arc,
+        atomic::{AtomicUsize, Ordering},
+    },
+};
+
+#[derive(Clone)]
+struct TestPortal {
+    cleanup: Arc<AtomicUsize>,
+    permission: Permission,
+}
+impl Portal for TestPortal {
+    fn call(&mut self, op: DesktopOperation) -> Result<PortalReply, PortalError> {
+        match op {
+            DesktopOperation::PermissionRequest(_) if self.permission == Permission::Denied => {
+                Err(PortalError::Denied)
+            }
+            DesktopOperation::PermissionStatus(_) => Ok(PortalReply::Permission(self.permission)),
+            _ => Ok(PortalReply::Accepted),
+        }
+    }
+    fn cancel(&mut self, _: u64) {}
+    fn cleanup(&mut self) {
+        self.cleanup.fetch_add(1, Ordering::SeqCst);
+    }
+}
+fn facts() -> HostFacts {
+    HostFacts {
+        locale: "sv-SE".into(),
+        timezone: "Europe/Stockholm".into(),
+        memory_bytes: 64 << 30,
+        storage_bytes: 1 << 40,
+        parallelism: 12,
+        pressure: 7,
+    }
+}
+fn mounts() -> XdgMounts {
+    XdgMounts::new(
+        PathBuf::from("config"),
+        PathBuf::from("cache"),
+        PathBuf::from("data"),
+        PathBuf::from("state"),
+        PathBuf::from("tmp"),
+    )
+}
+fn budget() -> Budget {
+    Budget {
+        requests: 16,
+        queue: 2,
+        entropy_bytes: 16,
+        timer_ns: 1_000,
+    }
+}
+
+#[test]
+fn registers_both_architectures_as_data_and_distinct_cards() {
+    for architecture in [Architecture::X86_64, Architecture::Aarch64] {
+        let desktop = register(UbuntuPcProfile {
+            architecture,
+            kind: ProfileKind::Desktop,
+        });
+        let headless = register(UbuntuPcProfile {
+            architecture,
+            kind: ProfileKind::Headless,
+        });
+        assert!(desktop.card.services.len() > headless.card.services.len());
+        assert_eq!(desktop.profile.architecture, architecture);
+        let req = PlatformRequest {
+            request: OpenSymbol("request/notify".into()),
+            requirements: vec![Requirement {
+                service: OpenSymbol("platform/notify".into()),
+                substitutes: vec![],
+                optional: false,
+                minimum_evidence: EvidenceLevel::Declared,
+            }],
+        };
+        assert!(platform_require(&desktop.card, &req).is_ok());
+        assert_eq!(
+            platform_require(&headless.card, &req).unwrap_err().kind,
+            RefusalKind::Unsupported
+        );
+    }
+}
+#[test]
+fn clocks_seeded_entropy_locale_pressure_limits_and_preopened_mounts_work() {
+    let mut capsule = Capsule::new(facts(), mounts(), Some(HeadlessPortal), budget(), 7);
+    assert!(matches!(
+        capsule.apply(1, Request::WallClock),
+        Ok(Reply::Integer(_))
+    ));
+    assert!(matches!(
+        capsule.apply(2, Request::MonotonicClock),
+        Ok(Reply::Integer(_))
+    ));
+    assert!(matches!(
+        capsule.apply(3, Request::Timer(10)),
+        Ok(Reply::Integer(_))
+    ));
+    assert_eq!(
+        capsule.apply(4, Request::Entropy(4)).unwrap(),
+        Reply::Bytes(vec![199, 196, 31, 227])
+    );
+    assert_eq!(
+        capsule.apply(5, Request::Locale).unwrap(),
+        Reply::Text("sv-SE".into())
+    );
+    assert_eq!(
+        capsule.apply(6, Request::Timezone).unwrap(),
+        Reply::Text("Europe/Stockholm".into())
+    );
+    assert_eq!(
+        capsule.apply(7, Request::Pressure).unwrap(),
+        Reply::Integer(7)
+    );
+    assert!(matches!(
+        capsule.apply(8, Request::Limits),
+        Ok(Reply::Limits {
+            parallelism: 12,
+            ..
+        })
+    ));
+    assert!(matches!(
+        capsule.apply(9, Request::Mount(OpenSymbol("mount/xdg-config".into()))),
+        Ok(Reply::Mount(_))
+    ));
+    assert!(
+        capsule
+            .apply(10, Request::Mount(OpenSymbol("mount/home".into())))
+            .is_err()
+    );
+}
+#[test]
+fn denial_revocation_suspension_budgets_cancellation_queues_and_cleanup_fail_closed() {
+    let cleaned = Arc::new(AtomicUsize::new(0));
+    {
+        let portal = TestPortal {
+            cleanup: cleaned.clone(),
+            permission: Permission::Denied,
+        };
+        let mut capsule = Capsule::new(
+            facts(),
+            mounts(),
+            Some(portal),
+            Budget {
+                requests: 3,
+                queue: 1,
+                entropy_bytes: 1,
+                timer_ns: 0,
+            },
+            9,
+        );
+        assert!(
+            capsule
+                .apply(
+                    1,
+                    Request::Desktop(DesktopOperation::PermissionRequest("camera".into()))
+                )
+                .is_err()
+        );
+        capsule.revoke(2);
+        assert!(capsule.apply(2, Request::Locale).is_err());
+        capsule.suspend();
+        assert!(capsule.apply(3, Request::Locale).is_err());
+        capsule.resume();
+        assert!(capsule.apply(4, Request::Entropy(2)).is_err());
+        assert!(capsule.apply(5, Request::Timer(1)).is_err());
+    }
+    assert_eq!(cleaned.load(Ordering::SeqCst), 1);
+}
+#[test]
+fn bootstrap_descriptor_and_source_boundary_are_fixed() {
+    assert_eq!(
+        sim_platform_ubuntu_pc::BUNDLE_DESCRIPTOR,
+        "sim.platform-bundle.toml"
+    );
+    let linux = include_str!("../../sim-platform-linux/src/lib.rs");
+    for forbidden in [
+        "Command::new",
+        "std::process",
+        "std::env",
+        "/dev/",
+        "/sys/",
+        "/proc/",
+    ] {
+        assert!(
+            !linux.contains(forbidden),
+            "forbidden probe or shell: {forbidden}"
+        );
+    }
+}
+```
+
+### `feature/sim-platform/macos-capsule`
+
+Specimen `spec-test/sim-platform/crates/sim-platform-macos/tests/conformance` is checked by `cargo test`.
+
+Source `crates/sim-platform-macos/tests/conformance.rs`:
+
+```rust
+use sim_platform_macos::*;
+use std::sync::{Arc, Mutex};
+
+#[derive(Clone, Default)]
+struct Probe {
+    calls: Arc<Mutex<Vec<&'static str>>>,
+}
+impl NativeServices for Probe {
+    fn permission_status(&mut self, _: Permission) -> PermissionStatus {
+        self.calls.lock().unwrap().push("status");
+        PermissionStatus::Undetermined
+    }
+    fn request_permission(&mut self, _: Permission) -> PermissionStatus {
+        self.calls.lock().unwrap().push("prompt");
+        PermissionStatus::Granted
+    }
+    fn activate(&mut self) -> Result<(), &'static str> {
+        self.calls.lock().unwrap().push("activate");
+        Ok(())
+    }
+    fn cleanup(&mut self) {
+        self.calls.lock().unwrap().push("cleanup");
+    }
+}
+
+#[test]
+fn service_manifest_is_complete_and_prompt_boundary_is_singular() {
+    let required = [
+        "filesystem",
+        "process",
+        "loader",
+        "socket",
+        "lifecycle",
+        "activation",
+        "clipboard",
+        "notification",
+        "permission-status",
+        "permission-request",
+        "audio",
+        "midi",
+        "compute",
+    ];
+    for service in required {
+        assert!(
+            SERVICES.iter().any(|binding| binding.service == service),
+            "missing {service}"
+        );
+    }
+    let prompt = SERVICES
+        .iter()
+        .filter(|binding| binding.prompt == PromptPolicy::PermissionRequestOnly)
+        .collect::<Vec<_>>();
+    assert_eq!(prompt.len(), 1);
+    assert_eq!(prompt[0].service, "permission-request");
+}
+
+#[test]
+fn status_never_prompts_and_request_requires_matching_capability() {
+    let probe = Probe::default();
+    let calls = probe.calls.clone();
+    let mut capsule = MacosCapsule::new(probe, Vec::<String>::new());
+    assert_eq!(
+        capsule.permission_status(Permission::Camera),
+        Ok(PermissionStatus::Undetermined)
+    );
+    assert!(matches!(
+        capsule.request_permission(Permission::Camera),
+        Err(CapsuleError::MissingCapability(_))
+    ));
+    assert_eq!(&*calls.lock().unwrap(), &["status"]);
+    drop(capsule);
+
+    let probe = Probe::default();
+    let calls = probe.calls.clone();
+    let mut capsule = MacosCapsule::new(probe, ["platform/permission-request/camera".into()]);
+    assert_eq!(
+        capsule.request_permission(Permission::Camera),
+        Ok(PermissionStatus::Granted)
+    );
+    assert_eq!(&*calls.lock().unwrap(), &["prompt"]);
+}
+
+#[test]
+fn lifecycle_activation_denial_suspension_and_cleanup_fail_closed() {
+    let probe = Probe::default();
+    let calls = probe.calls.clone();
+    let mut capsule = MacosCapsule::new(probe, Vec::<String>::new());
+    capsule.activate().unwrap();
+    assert_eq!(capsule.lifecycle(), Lifecycle::Active);
+    capsule.suspend().unwrap();
+    assert_eq!(
+        capsule.permission_status(Permission::Camera),
+        Err(CapsuleError::Suspended)
+    );
+    capsule.resume().unwrap();
+    capsule.stop();
+    assert_eq!(capsule.activate(), Err(CapsuleError::Stopped));
+    drop(capsule);
+    assert_eq!(&*calls.lock().unwrap(), &["activate", "cleanup"]);
+}
+
+fn input(architecture: MacArchitecture) -> CapsuleInput {
+    CapsuleInput {
+        architecture,
+        rind: b"bootstrap-rind".to_vec(),
+        capsule: b"content-bound-capsule".to_vec(),
+        resources: vec![
+            ("z.txt".into(), b"z".to_vec()),
+            ("a.txt".into(), b"a".to_vec()),
+        ],
+    }
+}
+
+#[test]
+fn cross_builds_both_architectures_as_deterministic_unsigned_bundles() {
+    for architecture in [MacArchitecture::X86_64, MacArchitecture::Aarch64] {
+        let first = build_unsigned_bundle(input(architecture));
+        let second = build_unsigned_bundle(input(architecture));
+        assert_eq!(first, second);
+        assert_eq!(first.target, architecture.target());
+        assert!(
+            first
+                .files
+                .iter()
+                .any(|file| file.path.ends_with(BUNDLE_DESCRIPTOR_NAME)
+                    && String::from_utf8_lossy(&file.bytes).contains(NATIVE_ABI_ENTRY))
+        );
+        assert!(!serde_json::to_string(&first).unwrap().contains("signing"));
+    }
+    assert_ne!(
+        build_unsigned_bundle(input(MacArchitecture::X86_64)).identity,
+        build_unsigned_bundle(input(MacArchitecture::Aarch64)).identity
+    );
+}
+
+#[test]
+fn card_and_native_sources_keep_darwin_inside_capsule() {
+    let card = platform_card(MacArchitecture::Aarch64);
+    assert_eq!(card.site.0, "platform/site/macos");
+    assert!(include_str!("../native/sim_native_abi.c").contains("sim_native_abi_v1"));
+    assert!(include_str!("../native/Services.swift").contains("sim_macos_permission_request"));
+    assert!(include_str!("../native/sim.entitlements").contains("app-sandbox"));
+}
+```
+
+### `feature/sim-platform/android-capsule`
+
+Specimen `spec-test/sim-platform/crates/sim-platform-android/src/tests` is checked by `cargo test`.
+
+Source `crates/sim-platform-android/src/tests.rs`:
+
+```rust
+#![allow(unsafe_code)]
+
+// conformance: Android AOT bindings preserve lifecycle, authority, and refusal semantics.
+
+use std::ffi::CString;
+
+use sim_kernel::{NativeAbiBorrowedBytes, NativeAbiCallResponse, NativeLibAbiV1};
+
+use super::*;
+
+fn send(capsule: &mut Capsule, function: &str, input: &Input) -> Output {
+    let frame = encode_input_frame(input).unwrap();
+    decode_output_frame(&capsule.call_frame(function, &frame).unwrap()).unwrap()
+}
+
+fn take_raw_response(
+    abi: &NativeLibAbiV1,
+    response: &NativeAbiCallResponse,
+) -> Result<Vec<u8>, String> {
+    if !response.error.is_null() {
+        unsafe {
+            (abi.destroy_error)(response.error);
+        }
+        return Err("raw ABI call failed".into());
+    }
+    assert!(!response.bytes.ptr.is_null());
+    assert!(response.bytes.len <= response.bytes.cap);
+    let bytes = unsafe {
+        std::slice::from_raw_parts(response.bytes.ptr.cast_const(), response.bytes.len).to_vec()
+    };
+    unsafe {
+        (abi.destroy_bytes)(response.bytes);
+    }
+    Ok(bytes)
+}
+
+fn call_exported_native(function: &str, frame: &[u8]) -> Vec<u8> {
+    let abi = unsafe { &*sim_native_abi_v1() };
+    assert_eq!(abi.abi_major, sim_kernel::NATIVE_LIB_ABI_V1_MAJOR);
+    assert!(abi.struct_size >= std::mem::size_of::<NativeLibAbiV1>());
+    let instance = unsafe { (abi.instantiate)() };
+    assert!(!instance.is_null());
+    let function = CString::new(function).unwrap();
+    let response = unsafe {
+        (abi.call)(
+            instance,
+            function.as_ptr(),
+            NativeAbiBorrowedBytes::borrow(frame),
+        )
+    };
+    let bytes = take_raw_response(abi, &response).unwrap();
+    unsafe {
+        (abi.destroy_instance)(instance);
+    }
+    bytes
+}
+
+#[test]
+fn native_static_and_modeled_paths_share_the_exact_sim_frame() {
+    let input = Input::Activation {
+        action: "android.intent.action.VIEW".into(),
+        content: Some(ContentRef::Table {
+            mount: "shared-documents".into(),
+            key: vec!["inbox".into(), "note.siml".into()],
+        }),
+    };
+    let frame = encode_input_frame(&input).unwrap();
+
+    let modeled = Capsule::default()
+        .call_frame(ACTIVATION_FUNCTION, &frame)
+        .unwrap();
+    let mut static_capsule = StaticAbiCapsule::new().unwrap();
+    let static_path = static_capsule.call(ACTIVATION_FUNCTION, &frame).unwrap();
+    let native = call_exported_native(ACTIVATION_FUNCTION, &frame);
+
+    assert_eq!(native, static_path);
+    assert_eq!(static_path, modeled);
+    assert_eq!(
+        decode_output_frame(&native).unwrap(),
+        Output {
+            lifecycle: Lifecycle::Created,
+            accepted: true,
+            resources: 1,
+            snapshot_content_id: None,
+            resumed_turn_content_id: None,
+            audio_route: None,
+            speech: None,
+        }
+    );
+}
+
+fn audio_spec(api_level: u16, private_output: bool) -> AudioSessionSpec {
+    AudioSessionSpec {
+        turn_content_id: content_id('d'),
+        api_level,
+        admitted: true,
+        private_output,
+        pcm: PcmContract {
+            sample_rate_hz: 48_000,
+            channels: 2,
+            frames_per_chunk: 480,
+            queue_capacity_chunks: 8,
+        },
+        armed_at_ms: 1_000,
+        expires_at_ms: 10_000,
+    }
+}
+
+fn audio(capsule: &mut Capsule, input: AudioInput) -> Output {
+    send(capsule, AUDIO_FUNCTION, &Input::Audio { input })
+}
+
+#[test]
+fn supported_api_levels_select_the_official_focus_and_route_contract() {
+    for api in 28..=35 {
+        let mut capsule = Capsule::default();
+        let receipt = audio(
+            &mut capsule,
+            AudioInput::Arm {
+                spec: audio_spec(api, false),
+            },
+        )
+        .audio_route
+        .unwrap();
+        let expected = if api <= 30 {
+            RoutingContract::Api28To30CommunicationMode
+        } else {
+            RoutingContract::Api31To35CommunicationDevice
+        };
+        assert_eq!(receipt.routing_contract, expected);
+        assert!(receipt.focus_held && receipt.communication_route_held);
+    }
+    let mut capsule = Capsule::default();
+    assert!(
+        capsule
+            .dispatch(
+                AUDIO_FUNCTION,
+                Input::Audio {
+                    input: AudioInput::Arm {
+                        spec: audio_spec(27, false)
+                    }
+                }
+            )
+            .is_err()
+    );
+}
+
+#[test]
+fn route_receipts_are_private_independent_fresh_and_keep_turn_identity() {
+    let mut capsule = Capsule::default();
+    audio(
+        &mut capsule,
+        AudioInput::Arm {
+            spec: audio_spec(35, true),
+        },
+    );
+    let output_only = audio(
+        &mut capsule,
+        AudioInput::Route {
+            observation: RouteObservation {
+                capture: vec![AudioRouteClass::Handset],
+                render: vec![AudioRouteClass::ClassicBluetooth],
+                generation: 1,
+                observed_at_ms: 1_100,
+                evidence: RouteEvidence::DeviceCallback,
+            },
+        },
+    )
+    .audio_route
+    .unwrap();
+    assert_eq!(output_only.turn_content_id, content_id('d'));
+    assert!(!output_only.duplex, "an output route never implies input");
+    assert!(output_only.private_output_paused);
+    let changed = audio(
+        &mut capsule,
+        AudioInput::Route {
+            observation: RouteObservation {
+                capture: vec![AudioRouteClass::LeAudio],
+                render: vec![AudioRouteClass::LeAudio],
+                generation: 2,
+                observed_at_ms: 1_200,
+                evidence: RouteEvidence::CommunicationCallback,
+            },
+        },
+    )
+    .audio_route
+    .unwrap();
+    assert_eq!(changed.turn_content_id, output_only.turn_content_id);
+    assert_eq!(changed.generation, 2);
+    assert!(changed.duplex && !changed.private_output_paused && changed.fresh);
+    let json = serde_json::to_string(&changed).unwrap();
+    for forbidden in ["device-id", "address", "name", "pair"] {
+        assert!(!json.contains(forbidden));
+    }
+}
+
+#[test]
+fn every_terminal_path_releases_focus_and_communication_routing() {
+    for reason in [
+        AudioStopReason::Stop,
+        AudioStopReason::Cancellation,
+        AudioStopReason::BackgroundExpiry,
+        AudioStopReason::PermissionLoss,
+        AudioStopReason::RouteLoss,
+        AudioStopReason::FocusConflict,
+        AudioStopReason::ProcessDeath,
+    ] {
+        let mut capsule = Capsule::default();
+        audio(
+            &mut capsule,
+            AudioInput::Arm {
+                spec: audio_spec(35, false),
+            },
+        );
+        let stopped = audio(&mut capsule, AudioInput::Stop { reason });
+        assert!(!stopped.accepted);
+        assert!(stopped.audio_route.is_none());
+    }
+    let mut capsule = Capsule::default();
+    audio(
+        &mut capsule,
+        AudioInput::Arm {
+            spec: audio_spec(35, false),
+        },
+    );
+    assert!(
+        audio(&mut capsule, AudioInput::Tick { now_ms: 10_000 })
+            .audio_route
+            .is_none()
+    );
+    for event in [
+        AndroidEvent::BackgroundRestriction,
+        AndroidEvent::Suspend,
+        AndroidEvent::ProcessDeath,
+        AndroidEvent::MemoryPressure,
+    ] {
+        audio(
+            &mut capsule,
+            AudioInput::Arm {
+                spec: audio_spec(35, false),
+            },
+        );
+        send(&mut capsule, CONTINUITY_FUNCTION, &Input::Event { event });
+        assert!(
+            audio(&mut capsule, AudioInput::Tick { now_ms: 1_100 })
+                .audio_route
+                .is_none()
+        );
+    }
+}
+
+#[test]
+fn handset_wired_classic_le_output_only_conflict_unplug_denial_and_death_are_closed() {
+    for class in [
+        AudioRouteClass::Handset,
+        AudioRouteClass::Wired,
+        AudioRouteClass::ClassicBluetooth,
+        AudioRouteClass::LeAudio,
+    ] {
+        let mut capsule = Capsule::default();
+        audio(
+            &mut capsule,
+            AudioInput::Arm {
+                spec: audio_spec(31, false),
+            },
+        );
+        let receipt = audio(
+            &mut capsule,
+            AudioInput::Route {
+                observation: RouteObservation {
+                    capture: vec![class],
+                    render: vec![class],
+                    generation: 1,
+                    observed_at_ms: 1_050,
+                    evidence: RouteEvidence::DeviceCallback,
+                },
+            },
+        )
+        .audio_route
+        .unwrap();
+        assert!(receipt.duplex);
+        assert_eq!(receipt.pcm.queue_capacity_chunks, 8);
+    }
+    let mut denied = audio_spec(35, false);
+    denied.admitted = false;
+    assert!(
+        Capsule::default()
+            .dispatch(
+                AUDIO_FUNCTION,
+                Input::Audio {
+                    input: AudioInput::Arm { spec: denied }
+                }
+            )
+            .is_err()
+    );
+    let mut capsule = Capsule::default();
+    audio(
+        &mut capsule,
+        AudioInput::Arm {
+            spec: audio_spec(35, true),
+        },
+    );
+    let uncertain = audio(
+        &mut capsule,
+        AudioInput::Route {
+            observation: RouteObservation {
+                capture: vec![],
+                render: vec![],
+                generation: 1,
+                observed_at_ms: 1_100,
+                evidence: RouteEvidence::DeviceCallback,
+            },
+        },
+    )
+    .audio_route
+    .unwrap();
+    assert!(
+        uncertain.private_output_paused,
+        "unplug uncertainty pauses private output"
+    );
+    assert!(!uncertain.focus_held && !uncertain.communication_route_held);
+    assert!(
+        audio(&mut capsule, AudioInput::Tick { now_ms: 1_200 })
+            .audio_route
+            .is_none(),
+        "route loss stops the session"
+    );
+}
+
+fn content_id(byte: char) -> String {
+    std::iter::repeat_n(byte, 64).collect()
+}
+
+fn bind_plan() -> BindPlan {
+    let providers = REQUIRED_SERVICES
+        .into_iter()
+        .map(|service| (format!("provider/{service}"), format!("provider/{service}")))
+        .collect();
+    let services = REQUIRED_SERVICES
+        .into_iter()
+        .map(|service| (service.to_owned(), format!("provider/{service}")))
+        .collect();
+    BindPlan {
+        snapshot: ProviderSnapshot {
+            content_id: content_id('a'),
+            providers,
+        },
+        app_private_mount: "app-private".into(),
+        services,
+    }
+}
+
+#[test]
+fn provider_snapshot_binds_all_required_services_or_nothing() {
+    let mut capsule = Capsule::default();
+    let mut incomplete = bind_plan();
+    incomplete.services.remove("permissions");
+    assert!(
+        capsule
+            .dispatch(CONTINUITY_FUNCTION, Input::Bind { plan: incomplete })
+            .is_err()
+    );
+    let bound = send(
+        &mut capsule,
+        CONTINUITY_FUNCTION,
+        &Input::Bind { plan: bind_plan() },
+    );
+    assert!(bound.accepted);
+    assert_eq!(bound.snapshot_content_id, Some(content_id('a')));
+}
+
+#[test]
+fn killed_submitted_turn_restores_once_from_content_and_journal_ids() {
+    let mut capsule = Capsule::default();
+    send(
+        &mut capsule,
+        CONTINUITY_FUNCTION,
+        &Input::Bind { plan: bind_plan() },
+    );
+    let turn = content_id('b');
+    let first = send(
+        &mut capsule,
+        CONTINUITY_FUNCTION,
+        &Input::SubmitTurn {
+            content_id: turn.clone(),
+        },
+    );
+    assert_eq!(first.resumed_turn_content_id, None);
+    send(
+        &mut capsule,
+        CONTINUITY_FUNCTION,
+        &Input::Event {
+            event: AndroidEvent::ProcessDeath,
+        },
+    );
+    send(
+        &mut capsule,
+        CONTINUITY_FUNCTION,
+        &Input::Event {
+            event: AndroidEvent::Restart,
+        },
+    );
+    send(
+        &mut capsule,
+        CONTINUITY_FUNCTION,
+        &Input::Bind { plan: bind_plan() },
+    );
+    let restored = send(
+        &mut capsule,
+        CONTINUITY_FUNCTION,
+        &Input::Restore {
+            plan: RestorePlan {
+                snapshot_content_id: content_id('a'),
+                journal_content_id: content_id('c'),
+                pending_turn_content_id: Some(turn.clone()),
+                permission_observations: BTreeMap::from([(Permission::SharedDocument, false)]),
+            },
+        },
+    );
+    assert_eq!(restored.resumed_turn_content_id, Some(turn.clone()));
+    assert_eq!(
+        capsule.permissions.get(&Permission::SharedDocument),
+        Some(&false)
+    );
+    let duplicate = send(
+        &mut capsule,
+        CONTINUITY_FUNCTION,
+        &Input::Restore {
+            plan: RestorePlan {
+                snapshot_content_id: content_id('a'),
+                journal_content_id: content_id('c'),
+                pending_turn_content_id: Some(turn),
+                permission_observations: BTreeMap::new(),
+            },
+        },
+    );
+    assert_eq!(
+        duplicate.resumed_turn_content_id, None,
+        "the same journal turn resumes once"
+    );
+}
+
+#[test]
+fn every_android_disruption_is_an_explicit_rust_input() {
+    let mut capsule = Capsule::default();
+    for event in [
+        AndroidEvent::Rotation,
+        AndroidEvent::ActivityRecreation,
+        AndroidEvent::BackgroundRestriction,
+        AndroidEvent::Suspend,
+        AndroidEvent::ProcessDeath,
+        AndroidEvent::Restart,
+        AndroidEvent::MemoryPressure,
+    ] {
+        assert!(send(&mut capsule, CONTINUITY_FUNCTION, &Input::Event { event }).accepted);
+    }
+}
+
+#[test]
+fn exported_manifest_requires_the_desktop_platform_library() {
+    let mut capsule = StaticAbiCapsule::new().unwrap();
+    let bytes = capsule.manifest().unwrap();
+    let (_, expr) = sim_codec_binary::decode_frame(sim_kernel::CodecId(0), &bytes).unwrap();
+    let rendered = format!("{expr:?}");
+    assert!(rendered.contains("android-capsule"));
+    assert!(rendered.contains("sim"));
+    assert!(rendered.contains("platform"));
+    assert!(rendered.contains("lifecycle"));
+    assert!(rendered.contains("activation"));
+}
+
+#[test]
+fn recreation_denial_suspension_activation_and_cleanup_are_bounded() {
+    let mut capsule = Capsule::default();
+    send(
+        &mut capsule,
+        LIFECYCLE_FUNCTION,
+        &Input::Lifecycle {
+            state: Lifecycle::Created,
+        },
+    );
+    assert!(
+        !send(
+            &mut capsule,
+            ACTIVATION_FUNCTION,
+            &Input::Permission {
+                permission: Permission::SharedDocument,
+                granted: false,
+            },
+        )
+        .accepted
+    );
+    assert!(
+        send(
+            &mut capsule,
+            ACTIVATION_FUNCTION,
+            &Input::Activation {
+                action: "open".into(),
+                content: None,
+            },
+        )
+        .accepted
+    );
+    let suspended = send(
+        &mut capsule,
+        LIFECYCLE_FUNCTION,
+        &Input::Lifecycle {
+            state: Lifecycle::Suspended,
+        },
+    );
+    assert_eq!(suspended.resources, 0);
+    assert!(
+        !send(
+            &mut capsule,
+            ACTIVATION_FUNCTION,
+            &Input::Activation {
+                action: "resume".into(),
+                content: None,
+            },
+        )
+        .accepted
+    );
+    send(
+        &mut capsule,
+        LIFECYCLE_FUNCTION,
+        &Input::Lifecycle {
+            state: Lifecycle::Created,
+        },
+    );
+    assert!(
+        send(
+            &mut capsule,
+            ACTIVATION_FUNCTION,
+            &Input::Activation {
+                action: "resume".into(),
+                content: None,
+            },
+        )
+        .accepted
+    );
+    let stopped = send(
+        &mut capsule,
+        LIFECYCLE_FUNCTION,
+        &Input::Lifecycle {
+            state: Lifecycle::Stopped,
+        },
+    );
+    assert_eq!(stopped.resources, 0);
+}
+
+#[test]
+fn paths_unbounded_content_and_wrong_function_types_fail_closed() {
+    let invalid_path = Input::Activation {
+        action: "open".into(),
+        content: Some(ContentRef::Dir {
+            mount: "shared".into(),
+            relative: vec!["..".into()],
+        }),
+    };
+    assert!(
+        Capsule::default()
+            .dispatch(ACTIVATION_FUNCTION, invalid_path)
+            .is_err()
+    );
+    let unbounded = Input::Activation {
+        action: "open".into(),
+        content: Some(ContentRef::Bytes {
+            media_type: "application/octet-stream".into(),
+            bytes: vec![0; 8 * 1024 * 1024 + 1],
+        }),
+    };
+    assert!(
+        Capsule::default()
+            .dispatch(ACTIVATION_FUNCTION, unbounded)
+            .is_err()
+    );
+    assert!(
+        Capsule::default()
+            .dispatch(
+                LIFECYCLE_FUNCTION,
+                Input::Activation {
+                    action: "wrong-function".into(),
+                    content: None,
+                },
+            )
+            .is_err()
+    );
+}
+
+#[test]
+fn committed_cross_build_rows_never_claim_hosted_or_modeled_execution() {
+    let contract: serde_json::Value =
+        serde_json::from_str(include_str!("../contract/android-build-provenance.json")).unwrap();
+    assert_eq!(
+        contract["official_remote_recheck"],
+        "terminal-closeout-required"
+    );
+    assert!(contract["official_response_sha256"].is_null());
+
+    for row in [
+        include_str!("../attestations/aarch64-linux-android.json"),
+        include_str!("../attestations/armv7-linux-androideabi.json"),
+        include_str!("../attestations/x86_64-linux-android.json"),
+        include_str!("../attestations/i686-linux-android.json"),
+    ] {
+        let row: serde_json::Value = serde_json::from_str(row).unwrap();
+        assert_eq!(row["evidence"], "cross-built");
+        assert_eq!(row["registered_host"], serde_json::Value::Null);
+        assert_eq!(row["hosted_ci"], false);
+        assert_eq!(row["hosted_receipt"], serde_json::Value::Null);
+        for digest in [
+            "target_spec_sha256",
+            "artifact_sha256",
+            "undefined_imports_sha256",
+        ] {
+            assert_eq!(row[digest].as_str().unwrap().len(), 64);
+        }
+    }
+}
+```
+
+### `feature/sim-platform/amazfit-proxy-capsule`
+
+Specimen `spec-test/sim-platform/crates/sim-platform-amazfit/src/tests` is checked by `cargo test`.
+
+Source `crates/sim-platform-amazfit/src/tests.rs`:
+
+```rust
+// conformance: the Amazfit proxy stays bounded and does not claim an unproved route.
+
+use super::*;
+
+fn frame(session: u64, sequence: u64) -> Vec<u8> {
+    serde_json::to_vec(&Envelope {
+        version: PROTOCOL_VERSION,
+        session,
+        sequence,
+        payload: WatchEvent::Button {
+            key: "select".into(),
+        },
+    })
+    .unwrap()
+}
+fn active() -> AmazfitCapsule {
+    let mut c = AmazfitCapsule::default();
+    c.lifecycle(Lifecycle::Active);
+    c.set_consent(true);
+    c.connect(7).unwrap();
+    c
+}
+
+#[test]
+fn malformed_oversized_and_wrong_version_fail_closed() {
+    let mut c = active();
+    assert_eq!(c.receive(b"{"), Err(ProxyError::Malformed));
+    assert_eq!(
+        c.receive(&vec![0; MAX_FRAME_BYTES + 1]),
+        Err(ProxyError::Oversized)
+    );
+    let mut value: serde_json::Value = serde_json::from_slice(&frame(7, 1)).unwrap();
+    value["version"] = 9.into();
+    assert_eq!(
+        c.receive(&serde_json::to_vec(&value).unwrap()),
+        Err(ProxyError::WrongVersion)
+    );
+}
+
+#[test]
+fn reconnect_rejects_stale_session_and_duplicate_events() {
+    let mut c = active();
+    assert_eq!(c.receive(&frame(7, 1)), Ok(true));
+    assert_eq!(c.receive(&frame(7, 1)), Ok(false));
+    c.disconnect();
+    c.connect(8).unwrap();
+    assert_eq!(c.receive(&frame(7, 2)), Err(ProxyError::StaleSession));
+    assert_eq!(c.receive(&frame(8, 1)), Ok(true));
+}
+
+#[test]
+fn suspension_resume_and_consent_withdrawal_release_state() {
+    let mut c = active();
+    c.receive(&frame(7, 1)).unwrap();
+    c.lifecycle(Lifecycle::Suspended);
+    assert_eq!(c.next_event(), None);
+    assert_eq!(c.receive(&frame(7, 2)), Err(ProxyError::Inactive));
+    c.lifecycle(Lifecycle::Active);
+    c.connect(8).unwrap();
+    c.set_consent(false);
+    assert_eq!(
+        c.encode_command(1, HostCommand::Clear),
+        Err(ProxyError::ConsentRequired)
+    );
+}
+
+#[test]
+fn queue_is_bounded_and_applies_backpressure_without_eviction() {
+    let mut c = active();
+    for n in 0..MAX_PENDING_EVENTS {
+        assert_eq!(c.receive(&frame(7, n as u64)), Ok(true));
+    }
+    assert_eq!(c.receive(&frame(7, 99)), Err(ProxyError::QueueFull));
+    assert_eq!(c.next_event().unwrap().sequence, 0);
+}
+
+#[test]
+fn output_is_a_bounded_watch_8_surface_command() {
+    let c = active();
+    let bytes = c
+        .encode_command(
+            3,
+            HostCommand::Glance {
+                title: "SIM".into(),
+                body: "Ready".into(),
+            },
+        )
+        .unwrap();
+    assert!(bytes.len() <= MAX_FRAME_BYTES);
+    assert_eq!(
+        serde_json::from_slice::<Envelope<HostCommand>>(&bytes)
+            .unwrap()
+            .session,
+        7
+    );
+}
+```
+
+### `feature/sim-platform/ios-capsule`
+
+Specimen `spec-test/sim-platform/crates/sim-platform-ios/src/tests` is checked by `cargo test`.
+
+Source `crates/sim-platform-ios/src/tests.rs`:
+
+```rust
+#![allow(unsafe_code)]
+
+// conformance: iOS AOT bindings preserve lifecycle, authority, and refusal semantics.
+
+use std::ffi::CString;
+
+use sim_kernel::{NativeAbiBorrowedBytes, NativeAbiCallResponse, NativeLibAbiV1};
+
+use super::*;
+
+fn send(capsule: &mut Capsule, function: &str, input: &Input) -> Output {
+    let frame = encode_input_frame(input).unwrap();
+    decode_output_frame(&capsule.call_frame(function, &frame).unwrap()).unwrap()
+}
+
+fn take_raw_response(
+    abi: &NativeLibAbiV1,
+    response: &NativeAbiCallResponse,
+) -> Result<Vec<u8>, String> {
+    if !response.error.is_null() {
+        unsafe {
+            (abi.destroy_error)(response.error);
+        }
+        return Err("raw ABI call failed".into());
+    }
+    assert!(!response.bytes.ptr.is_null());
+    assert!(response.bytes.len <= response.bytes.cap);
+    let bytes = unsafe {
+        std::slice::from_raw_parts(response.bytes.ptr.cast_const(), response.bytes.len).to_vec()
+    };
+    unsafe {
+        (abi.destroy_bytes)(response.bytes);
+    }
+    Ok(bytes)
+}
+
+fn call_exported_native(function: &str, frame: &[u8]) -> Vec<u8> {
+    let abi = unsafe { &*sim_native_abi_v1() };
+    assert_eq!(abi.abi_major, sim_kernel::NATIVE_LIB_ABI_V1_MAJOR);
+    assert!(abi.struct_size >= std::mem::size_of::<NativeLibAbiV1>());
+    let instance = unsafe { (abi.instantiate)() };
+    assert!(!instance.is_null());
+    let function = CString::new(function).unwrap();
+    let response = unsafe {
+        (abi.call)(
+            instance,
+            function.as_ptr(),
+            NativeAbiBorrowedBytes::borrow(frame),
+        )
+    };
+    let bytes = take_raw_response(abi, &response).unwrap();
+    unsafe {
+        (abi.destroy_instance)(instance);
+    }
+    bytes
+}
+
+#[test]
+fn native_static_and_modeled_paths_share_the_exact_sim_frame() {
+    let input = Input::Activation {
+        action: "ios.intent.action.VIEW".into(),
+        content: Some(ContentRef::Table {
+            mount: "shared-documents".into(),
+            key: vec!["inbox".into(), "note.siml".into()],
+        }),
+    };
+    let frame = encode_input_frame(&input).unwrap();
+
+    let modeled = Capsule::default()
+        .call_frame(ACTIVATION_FUNCTION, &frame)
+        .unwrap();
+    let mut static_capsule = StaticAbiCapsule::new().unwrap();
+    let static_path = static_capsule.call(ACTIVATION_FUNCTION, &frame).unwrap();
+    let native = call_exported_native(ACTIVATION_FUNCTION, &frame);
+
+    assert_eq!(native, static_path);
+    assert_eq!(static_path, modeled);
+    assert_eq!(
+        decode_output_frame(&native).unwrap(),
+        Output {
+            lifecycle: Lifecycle::Connected,
+            accepted: true,
+            resources: 1,
+        }
+    );
+}
+
+#[test]
+fn exported_manifest_requires_the_desktop_platform_library() {
+    let mut capsule = StaticAbiCapsule::new().unwrap();
+    let bytes = capsule.manifest().unwrap();
+    let (_, expr) = sim_codec_binary::decode_frame(sim_kernel::CodecId(0), &bytes).unwrap();
+    let rendered = format!("{expr:?}");
+    assert!(rendered.contains("ios-capsule"));
+    assert!(rendered.contains("sim"));
+    assert!(rendered.contains("platform"));
+    assert!(rendered.contains("lifecycle"));
+    assert!(rendered.contains("activation"));
+}
+
+#[test]
+fn recreation_denial_suspension_activation_and_cleanup_are_bounded() {
+    let mut capsule = Capsule::default();
+    send(
+        &mut capsule,
+        LIFECYCLE_FUNCTION,
+        &Input::Lifecycle {
+            state: Lifecycle::Connected,
+        },
+    );
+    assert!(
+        !send(
+            &mut capsule,
+            ACTIVATION_FUNCTION,
+            &Input::Permission {
+                permission: Permission::SharedDocument,
+                granted: false,
+            },
+        )
+        .accepted
+    );
+    assert!(
+        send(
+            &mut capsule,
+            ACTIVATION_FUNCTION,
+            &Input::Activation {
+                action: "open".into(),
+                content: None,
+            },
+        )
+        .accepted
+    );
+    let suspended = send(
+        &mut capsule,
+        LIFECYCLE_FUNCTION,
+        &Input::Lifecycle {
+            state: Lifecycle::Suspended,
+        },
+    );
+    assert_eq!(suspended.resources, 0);
+    assert!(
+        !send(
+            &mut capsule,
+            ACTIVATION_FUNCTION,
+            &Input::Activation {
+                action: "resume".into(),
+                content: None,
+            },
+        )
+        .accepted
+    );
+    send(
+        &mut capsule,
+        LIFECYCLE_FUNCTION,
+        &Input::Lifecycle {
+            state: Lifecycle::Connected,
+        },
+    );
+    assert!(
+        send(
+            &mut capsule,
+            ACTIVATION_FUNCTION,
+            &Input::Activation {
+                action: "resume".into(),
+                content: None,
+            },
+        )
+        .accepted
+    );
+    let stopped = send(
+        &mut capsule,
+        LIFECYCLE_FUNCTION,
+        &Input::Lifecycle {
+            state: Lifecycle::Disconnected,
+        },
+    );
+    assert_eq!(stopped.resources, 0);
+}
+
+#[test]
+fn paths_unbounded_content_and_wrong_function_types_fail_closed() {
+    let invalid_path = Input::Activation {
+        action: "open".into(),
+        content: Some(ContentRef::Dir {
+            mount: "shared".into(),
+            relative: vec!["..".into()],
+        }),
+    };
+    assert!(
+        Capsule::default()
+            .dispatch(ACTIVATION_FUNCTION, invalid_path)
+            .is_err()
+    );
+    let unbounded = Input::Activation {
+        action: "open".into(),
+        content: Some(ContentRef::Bytes {
+            media_type: "application/octet-stream".into(),
+            bytes: vec![0; 8 * 1024 * 1024 + 1],
+        }),
+    };
+    assert!(
+        Capsule::default()
+            .dispatch(ACTIVATION_FUNCTION, unbounded)
+            .is_err()
+    );
+    assert!(
+        Capsule::default()
+            .dispatch(
+                LIFECYCLE_FUNCTION,
+                Input::Activation {
+                    action: "wrong-function".into(),
+                    content: None,
+                },
+            )
+            .is_err()
+    );
+}
+
+#[test]
+fn committed_cross_build_rows_never_claim_hosted_or_modeled_execution() {
+    let contract: serde_json::Value =
+        serde_json::from_str(include_str!("../contract/ios-build-provenance.json")).unwrap();
+    assert_eq!(
+        contract["official_remote_recheck"],
+        "terminal-closeout-required"
+    );
+    assert!(contract["official_response_sha256"].is_null());
+
+    for row in [
+        include_str!("../attestations/aarch64-apple-ios.json"),
+        include_str!("../attestations/aarch64-apple-ios-sim.json"),
+        include_str!("../attestations/x86_64-apple-ios.json"),
+    ] {
+        let row: serde_json::Value = serde_json::from_str(row).unwrap();
+        assert_eq!(row["evidence"], "cross-built");
+        assert_eq!(row["registered_host"], serde_json::Value::Null);
+        assert_eq!(row["hosted_ci"], false);
+        assert_eq!(row["hosted_receipt"], serde_json::Value::Null);
+        for digest in [
+            "target_spec_sha256",
+            "artifact_sha256",
+            "undefined_imports_sha256",
+        ] {
+            assert_eq!(row[digest].as_str().unwrap().len(), 64);
+        }
+    }
+}
+
+#[test]
+fn expired_grants_pressure_and_unavailable_services_refuse_without_retention() {
+    let mut capsule = Capsule::default();
+    send(
+        &mut capsule,
+        LIFECYCLE_FUNCTION,
+        &Input::Lifecycle {
+            state: Lifecycle::Active,
+        },
+    );
+    assert!(
+        send(
+            &mut capsule,
+            ACTIVATION_FUNCTION,
+            &Input::DocumentGrant {
+                id: "inbox".into(),
+                active: true
+            }
+        )
+        .accepted
+    );
+    assert!(
+        send(
+            &mut capsule,
+            ACTIVATION_FUNCTION,
+            &Input::Service {
+                service: Service::SharedDocument
+            }
+        )
+        .accepted
+    );
+    assert!(
+        !send(
+            &mut capsule,
+            ACTIVATION_FUNCTION,
+            &Input::DocumentGrant {
+                id: "inbox".into(),
+                active: false
+            }
+        )
+        .accepted
+    );
+    assert!(
+        !send(
+            &mut capsule,
+            ACTIVATION_FUNCTION,
+            &Input::Service {
+                service: Service::SharedDocument
+            }
+        )
+        .accepted
+    );
+    assert!(
+        send(
+            &mut capsule,
+            ACTIVATION_FUNCTION,
+            &Input::BackgroundExecution { allowed: true }
+        )
+        .accepted
+    );
+    let pressure = send(&mut capsule, ACTIVATION_FUNCTION, &Input::MemoryPressure);
+    assert_eq!(pressure.resources, 0);
+    send(
+        &mut capsule,
+        LIFECYCLE_FUNCTION,
+        &Input::Lifecycle {
+            state: Lifecycle::Suspended,
+        },
+    );
+    assert!(
+        !send(
+            &mut capsule,
+            ACTIVATION_FUNCTION,
+            &Input::Service {
+                service: Service::Audio
+            }
+        )
+        .accepted
+    );
+    assert!(!capsule.background_allowed);
+    assert!(capsule.document_grants.is_empty());
+}
+```
+
+### `feature/sim-platform/halo-proxy-capsule`
+
+Specimen `spec-test/sim-platform/crates/sim-platform-halo/src/tests` is checked by `cargo test`.
+
+Source `crates/sim-platform-halo/src/tests.rs`:
+
+```rust
+// conformance: Halo proxy frames remain bounded and transport-neutral.
+
+use super::*;
+
+fn active(transport: HostTransport) -> HaloCapsule {
+    let mut capsule = HaloCapsule::new(transport);
+    capsule.lifecycle(Lifecycle::Active);
+    capsule.set_consent(true);
+    capsule.connect(0x1020_3040).unwrap();
+    capsule
+}
+
+fn input(kind: MessageKind, sequence: u32, payload: Vec<u8>) -> Vec<Vec<u8>> {
+    encode_message(&Message {
+        kind,
+        session: 0x1020_3040,
+        sequence,
+        payload,
+    })
+    .unwrap()
+}
+
+#[test]
+fn all_official_host_routes_share_one_codec() {
+    for route in [
+        HostTransport::Android,
+        HostTransport::Ios,
+        HostTransport::WebBluetooth,
+    ] {
+        let capsule = active(route);
+        let frames = capsule
+            .encode_surface(
+                7,
+                &SurfaceCommand::Display {
+                    cells: vec![b'x'; 512],
+                },
+            )
+            .unwrap();
+        assert_eq!(frames.len(), 3);
+        assert!(
+            frames
+                .iter()
+                .all(|frame| frame.len() <= HEADER_BYTES + MAX_FRAGMENT_BYTES)
+        );
+    }
+}
+
+#[test]
+fn fragmentation_normalizes_glasses_8_input() {
+    let mut capsule = active(HostTransport::Android);
+    let mut payload = vec![1];
+    payload.extend(std::iter::repeat_n(b'a', 200));
+    let frames = input(MessageKind::Button, 1, payload);
+    assert_eq!(capsule.receive_fragment(&frames[0]), Ok(false));
+    assert_eq!(
+        capsule.receive_fragment(&frames[1]),
+        Err(ProxyError::Malformed)
+    );
+    let frames = input(
+        MessageKind::Button,
+        2,
+        [vec![1], b"select".to_vec()].concat(),
+    );
+    assert_eq!(capsule.receive_fragment(&frames[0]), Ok(true));
+    assert_eq!(
+        capsule.next_input(),
+        Some(GlassesInput::Button {
+            name: "select".into(),
+            pressed: true
+        })
+    );
+}
+
+#[test]
+fn malformed_order_replay_and_stale_sessions_fail_closed() {
+    let mut capsule = active(HostTransport::Ios);
+    assert_eq!(capsule.receive_fragment(b"bad"), Err(ProxyError::Malformed));
+    let mut fragmented = input(
+        MessageKind::Sensor,
+        3,
+        [0_i32.to_be_bytes().as_slice(), &[b's'; 200]].concat(),
+    );
+    assert_eq!(
+        capsule.receive_fragment(&fragmented[1]),
+        Err(ProxyError::FragmentOrder)
+    );
+    fragmented[0][2] = 9;
+    assert_eq!(
+        capsule.receive_fragment(&fragmented[0]),
+        Err(ProxyError::WrongVersion)
+    );
+    let valid = input(MessageKind::LinkState, 4, vec![1]);
+    assert_eq!(capsule.receive_fragment(&valid[0]), Ok(true));
+    assert_eq!(capsule.receive_fragment(&valid[0]), Err(ProxyError::Replay));
+    let mut stale = input(MessageKind::LinkState, 5, vec![1]);
+    stale[0][7] ^= 1;
+    assert_eq!(
+        capsule.receive_fragment(&stale[0]),
+        Err(ProxyError::StaleSession)
+    );
+}
+
+#[test]
+fn reconnect_suspend_and_consent_withdrawal_reap_state() {
+    let mut capsule = active(HostTransport::WebBluetooth);
+    let valid = input(MessageKind::LinkState, 1, vec![1]);
+    capsule.receive_fragment(&valid[0]).unwrap();
+    capsule.lifecycle(Lifecycle::Suspended);
+    assert_eq!(capsule.next_input(), None);
+    assert_eq!(
+        capsule.receive_fragment(&valid[0]),
+        Err(ProxyError::Inactive)
+    );
+    capsule.lifecycle(Lifecycle::Active);
+    capsule.connect(9).unwrap();
+    capsule.set_consent(false);
+    assert_eq!(
+        capsule.encode_surface(1, &SurfaceCommand::Clear),
+        Err(ProxyError::ConsentRequired)
+    );
+}
+
+#[test]
+fn queue_and_surface_are_bounded_without_eviction() {
+    let mut capsule = active(HostTransport::Android);
+    for sequence in 0..u32::try_from(MAX_PENDING_EVENTS).unwrap() {
+        let frame = input(MessageKind::LinkState, sequence, vec![1]);
+        assert_eq!(capsule.receive_fragment(&frame[0]), Ok(true));
+    }
+    let frame = input(MessageKind::LinkState, 99, vec![1]);
+    assert_eq!(
+        capsule.receive_fragment(&frame[0]),
+        Err(ProxyError::QueueFull)
+    );
+    assert_eq!(
+        capsule.next_input(),
+        Some(GlassesInput::LinkState { connected: true })
+    );
+    assert_eq!(
+        capsule.encode_surface(
+            1,
+            &SurfaceCommand::Display {
+                cells: vec![0; 1025]
+            }
+        ),
+        Err(ProxyError::Oversized)
+    );
+}
+```
+
+### `feature/sim-platform/ubuntu-rpi-capsule`
+
+Specimen `spec-test/sim-platform/crates/sim-platform-ubuntu-rpi/tests/conformance` is checked by `cargo test`.
+
+Source `crates/sim-platform-ubuntu-rpi/tests/conformance.rs`:
+
+```rust
+use sim_platform_ubuntu_rpi::{
+    Binding, BuildEvidence, PiRefusal, PiService, TargetAttestation, hostile_model_profile,
+    register,
+};
+use std::collections::BTreeSet;
+
+#[test]
+fn hostile_profile_observed_services_exactly_equal_card() {
+    let profile = hostile_model_profile();
+    let observed = PiService::ALL
+        .into_iter()
+        .filter(|service| profile.require(*service).is_ok())
+        .map(PiService::symbol)
+        .collect::<BTreeSet<_>>();
+    let registered = register(profile.clone()).unwrap();
+    let card = registered
+        .card
+        .services
+        .iter()
+        .map(|offer| offer.service.0.as_str())
+        .collect::<BTreeSet<_>>();
+    assert_eq!(observed, card);
+    assert_eq!(
+        profile.require(PiService::Gpio),
+        Ok(&Binding::Api("model/gpio-v1".into()))
+    );
+    for absent in PiService::ALL
+        .into_iter()
+        .filter(|service| *service != PiService::Gpio)
+    {
+        assert_eq!(
+            profile.require(absent),
+            Err(PiRefusal::Unsupported { service: absent })
+        );
+    }
+}
+
+#[test]
+fn ubuntu_derivation_does_not_inherit_linux_services() {
+    let profile = sim_platform_ubuntu_rpi::UbuntuRpiProfile::from_ubuntu_headless("c03115");
+    assert!(profile.bindings.is_empty());
+    assert!(profile.permissions.is_empty());
+    assert_eq!(register(profile).unwrap().card.services, Vec::new());
+}
+
+#[test]
+fn evidence_cannot_claim_unregistered_physical_testing() {
+    let cross: TargetAttestation = serde_json::from_str(include_str!(
+        "../attestations/aarch64-unknown-linux-gnu.json"
+    ))
+    .expect("committed cross-build attestation decodes");
+    assert_eq!(cross.targets, ["aarch64-unknown-linux-gnu"]);
+    assert_eq!(cross.evidence, BuildEvidence::CrossBuilt);
+    assert_eq!(cross.registered_host, None);
+    assert_eq!(cross.validate(), Ok(()));
+    let false_physical = TargetAttestation {
+        evidence: BuildEvidence::Physical,
+        ..cross
+    };
+    assert!(false_physical.validate().is_err());
+}
+
+#[test]
+fn pure_product_closure_contains_no_pi_source_fact() {
+    for source in [
+        include_str!("../../sim-lib-platform/Cargo.toml"),
+        include_str!("../../sim-platform-model/Cargo.toml"),
+        include_str!("../../sim-platform-core/Cargo.toml"),
+    ] {
+        assert!(!source.contains("sim-platform-ubuntu-rpi"));
+        assert!(!source.contains("raspberry"));
+        assert!(!source.contains("/dev/"));
+    }
+}
+```
+
+### `feature/sim-platform/windows-capsule`
+
+Specimen `spec-test/sim-platform/crates/sim-platform-windows/tests/conformance` is checked by `cargo test`.
+
+Source `crates/sim-platform-windows/tests/conformance.rs`:
+
+```rust
+use sim_platform_windows::*;
+use std::{
+    collections::{BTreeMap, BTreeSet},
+    sync::{Arc, Mutex},
+};
+
+#[derive(Clone, Default)]
+struct Probe {
+    calls: Arc<Mutex<Vec<&'static str>>>,
+}
+impl NativeServices for Probe {
+    fn dispatch(&mut self, request: NativeRequest) -> Result<(), &'static str> {
+        self.calls.lock().unwrap().push(match request {
+            NativeRequest::Launch => "launch",
+            NativeRequest::Activate => "activate",
+            NativeRequest::Audio => "audio",
+            NativeRequest::Midi => "midi",
+            NativeRequest::Compute => "compute",
+            NativeRequest::PermissionRequest => "permission-request",
+            _ => "other",
+        });
+        Ok(())
+    }
+    fn cancel_process_tree(&mut self) {
+        self.calls.lock().unwrap().push("cancel-tree");
+    }
+    fn cleanup(&mut self) {
+        self.calls.lock().unwrap().push("cleanup");
+    }
+}
+fn profile(grants: &[&str]) -> WindowsProfile {
+    WindowsProfile {
+        preopened_dirs: BTreeMap::from([(
+            "workspace".into(),
+            r"C:\SIM\Workspace".encode_utf16().collect(),
+        )]),
+        grants: grants.iter().map(|s| (*s).into()).collect::<BTreeSet<_>>(),
+        max_processes: 8,
+        max_output_bytes: 65_536,
+    }
+}
+
+#[test]
+fn card_and_api_map_cover_every_required_service_without_portable_os_branch() {
+    let required = [
+        "filesystem",
+        "process",
+        "loader",
+        "socket",
+        "lifecycle",
+        "activation",
+        "permission-status",
+        "permission-request",
+        "clipboard",
+        "notification",
+        "audio",
+        "midi",
+        "compute",
+    ];
+    assert_eq!(
+        required,
+        SERVICES
+            .iter()
+            .map(|s| s.service)
+            .collect::<Vec<_>>()
+            .as_slice()
+    );
+    assert_eq!(platform_card().site.0, "platform/site/windows");
+    assert!(
+        SERVICES
+            .iter()
+            .all(|s| !s.api.is_empty() && !s.permission.is_empty())
+    );
+    let portable = [
+        include_str!("../../sim-platform-core/src/lib.rs"),
+        include_str!("../../sim-lib-platform/src/lib.rs"),
+    ]
+    .join("\n");
+    assert!(!portable.contains(".exe"));
+    assert!(!portable.contains("WindowsProfile"));
+}
+
+#[test]
+fn path_boundary_preserves_identity_and_contains_windows_spelling() {
+    let capsule = WindowsCapsule::new(Probe::default(), profile(&[])).unwrap();
+    let forward: Vec<u16> = "models/input.bin".encode_utf16().collect();
+    let path = capsule.resolve_preopen("workspace", &forward).unwrap();
+    assert_eq!(
+        String::from_utf16(path.api_units()).unwrap(),
+        r"models\input.bin"
+    );
+    assert_ne!(path.identity(), "");
+    let traversal: Vec<u16> = "..\\secret".encode_utf16().collect();
+    assert!(capsule.resolve_preopen("workspace", &traversal).is_err());
+    let drive: Vec<u16> = r"D:\escape".encode_utf16().collect();
+    assert!(capsule.resolve_preopen("workspace", &drive).is_err());
+}
+
+#[test]
+fn hostile_profiles_fail_closed_before_native_dispatch() {
+    assert!(matches!(
+        WindowsCapsule::new(
+            Probe::default(),
+            WindowsProfile {
+                max_processes: u32::MAX,
+                ..profile(&[])
+            }
+        ),
+        Err(CapsuleError::InvalidBudget)
+    ));
+    let probe = Probe::default();
+    let calls = probe.calls.clone();
+    let mut capsule =
+        WindowsCapsule::new(probe, profile(&["platform/activation", "platform/process"])).unwrap();
+    assert!(matches!(
+        capsule.request("audio", NativeRequest::Audio),
+        Err(CapsuleError::MissingCapability(_))
+    ));
+    capsule.activate().unwrap();
+    capsule.request("process", NativeRequest::Launch).unwrap();
+    capsule.cancel_process_tree().unwrap();
+    capsule.suspend().unwrap();
+    assert_eq!(
+        capsule.request("process", NativeRequest::Launch),
+        Err(CapsuleError::Suspended)
+    );
+    capsule.stop();
+    assert_eq!(
+        &*calls.lock().unwrap(),
+        &["activate", "launch", "cancel-tree", "cleanup"]
+    );
+}
+
+#[test]
+fn package_is_content_bound_and_shell_enters_only_the_existing_abi() {
+    let first = build_unsigned_package(b"rind".to_vec(), b"capsule".to_vec());
+    let second = build_unsigned_package(b"rind".to_vec(), b"capsule".to_vec());
+    assert_eq!(first, second);
+    assert_eq!(first.target, TARGET);
+    let shell = include_str!("../native/sim_native_abi.c");
+    assert!(shell.contains(NATIVE_ABI_ENTRY) && shell.contains("sim_bootstrap_rind"));
+    assert!(!shell.contains("LoadLibrary"));
+    let permissions = include_str!("../package/AppxManifest.xml");
+    for capability in [
+        "runFullTrust",
+        "broadFileSystemAccess",
+        "microphone",
+        "midi",
+    ] {
+        assert!(permissions.contains(capability));
+    }
+}
+
+#[test]
+fn recipes_derive_their_expected_service_set_from_the_card() {
+    let generated = generated_service_set();
+    assert_eq!(
+        include_str!("../recipes/generated-services.txt").trim(),
+        generated
+    );
+    for recipe in ["launch", "process-cancellation", "media"] {
+        assert!(include_str!("../recipes/01-basics/chapter.toml").contains(recipe));
+    }
+}
+
+#[test]
+fn import_attestation_is_cross_build_only_and_allowlisted() {
+    let value: serde_json::Value =
+        serde_json::from_str(include_str!("../attestations/x86_64-pc-windows-msvc.json")).unwrap();
+    assert_eq!(value["evidence"], "cross-built");
+    assert_eq!(value["execution"], "not-claimed");
+    let allowed = [
+        "KERNEL32.dll",
+        "USER32.dll",
+        "OLE32.dll",
+        "WS2_32.dll",
+        "MMDevAPI.dll",
+        "D3D12.dll",
+        "DXGI.dll",
+    ];
+    assert!(
+        value["imports"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .all(|v| allowed.contains(&v.as_str().unwrap()))
+    );
+}
+```
+
+### `feature/sim-platform/process-realization`
+
+Specimen `spec-test/sim-platform/crates/sim-platform-ubuntu-pc/tests/physical_attestation` is checked by `cargo test`.
+
+Source `crates/sim-platform-ubuntu-pc/tests/physical_attestation.rs`:
+
+```rust
+// conformance: process realization evidence is sanitized and independently verifiable.
+
+use sim_platform_ubuntu_pc::PhysicalAttestation;
+#[test]
+fn committed_physical_attestation_is_sanitized_and_offline_verifiable() {
+    let source = include_str!("../../../acceptance/ubuntu-pc.sx");
+    for forbidden in ["/home/", "hostname", "username", "serial", "@"] {
+        assert!(!source.contains(forbidden));
+    }
+    let value = PhysicalAttestation {
+        schema: "sim.platform-physical-attestation/v1".into(),
+        provider: "ubuntu-pc".into(),
+        registered_capability: "linux-x86_64".into(),
+        source_content: "fnv1a64:41fdd80c770ae9f2".into(),
+        artifact_content: "fnv1a64:018c6b634aafe833".into(),
+        card_content: "fnv1a64:4be8e55bd66dd4d9".into(),
+        result_content: "fnv1a64:6fc0b36648cf320d".into(),
+        source: "ubuntu-25.10|x86_64|registered-control-local".into(),
+        artifact: "sim-platform-ubuntu-pc|workspace-test-artifact".into(),
+        card: "ubuntu-pc|x86_64|desktop+headless".into(),
+        result: "clock+entropy+mount+headless-unsupported+cleanup|pass".into(),
+        checks: vec![
+            "clock".into(),
+            "entropy".into(),
+            "mount".into(),
+            "cleanup".into(),
+        ],
+    };
+    value.validate().unwrap();
+}
+```
 
 ### `feature/sim-platform/ubuntu-bwrap-sandbox`
 
@@ -497,6 +4361,2057 @@ mod tests {
         );
         assert!(args.iter().any(|v| v == hostile));
         assert!(!args.iter().any(|v| v == "/home" || v == "/workspace"));
+    }
+}
+```
+
+### `feature/sim-platform/transport-realization`
+
+Specimen `spec-test/sim-platform/crates/sim-platform-linux/tests/transport` is checked by `cargo test`.
+
+Source `crates/sim-platform-linux/tests/transport.rs`:
+
+```rust
+// conformance: Linux transport realizes typed socket, DNS, IPC, and clock ports.
+
+use sim_kernel::{Cx, DefaultFactory, EagerPolicy, HandleSeed};
+use sim_lib_server::{ServerAddress, ServerTransport, TcpServerTransport};
+use sim_platform_linux::{LinuxDnsPort, LinuxIpcPort, LinuxSocketPort, bind_transport_services};
+use sim_transport_ports::{
+    DnsPort, Half, IpcAddress, IpcPort, SocketAddress, SocketPort, TransportErrorKind,
+};
+use std::{
+    io::{Read, Write},
+    net::{IpAddr, Ipv4Addr},
+    sync::Arc,
+    time::Duration,
+};
+
+#[test]
+fn server_tcp_transport_uses_the_explicit_linux_capsule() {
+    bind_transport_services().unwrap();
+    let listener = TcpServerTransport::bind(ServerAddress::Tcp {
+        host: "127.0.0.1".to_owned(),
+        port: 0,
+    })
+    .unwrap();
+    let ServerAddress::Tcp { host, port } = listener.address() else {
+        panic!("expected the bound TCP address");
+    };
+    let client = LinuxSocketPort
+        .connect_tcp(&SocketAddress::Ip {
+            address: host.parse().unwrap(),
+            port: *port,
+        })
+        .unwrap();
+    let mut cx = Cx::new(
+        Arc::new(EagerPolicy),
+        Arc::new(DefaultFactory),
+        HandleSeed::new(0x5a4f_50a1_71a0_0001),
+    );
+    let _server = loop {
+        if let Some(connection) = listener
+            .accept_timeout(&mut cx, Duration::from_millis(25))
+            .unwrap()
+        {
+            break connection;
+        }
+    };
+    client.shutdown(Half::Both).unwrap();
+    listener.shutdown(&mut cx).unwrap();
+}
+
+#[test]
+fn tcp_udp_dns_and_native_errors_are_capsule_owned() {
+    let port = LinuxSocketPort;
+    let loopback = SocketAddress::Ip {
+        address: IpAddr::V4(Ipv4Addr::LOCALHOST),
+        port: 0,
+    };
+    let listener = port.listen_tcp(&loopback).unwrap();
+    let bound = listener.local_address().unwrap();
+    let mut client = port.connect_tcp(&bound).unwrap();
+    let mut server = loop {
+        if let Some(stream) = listener.accept().unwrap() {
+            break stream;
+        }
+    };
+    client.write_all(b"same-frame-bytes").unwrap();
+    let mut capture = [0; 16];
+    server.read_exact(&mut capture).unwrap();
+    assert_eq!(&capture, b"same-frame-bytes");
+
+    let udp = port.bind_udp(&loopback).unwrap();
+    assert_ne!(udp.local_address().unwrap(), loopback);
+    assert!(!LinuxDnsPort.resolve("localhost", 9).unwrap().is_empty());
+
+    let collision = port.listen_tcp(&bound).err().unwrap();
+    assert_eq!(collision.kind, TransportErrorKind::AddressInUse);
+}
+
+#[test]
+fn ipc_variants_do_not_share_a_path_contract() {
+    let error = LinuxIpcPort
+        .connect(&IpcAddress::WindowsPipe("sim-test".into()))
+        .err()
+        .unwrap();
+    assert_eq!(error.kind, TransportErrorKind::Unsupported);
+
+    #[cfg(unix)]
+    {
+        let path = std::env::temp_dir().join(format!("sim-platform-ipc-{}", std::process::id()));
+        let _ = std::fs::remove_file(&path);
+        let listener = LinuxIpcPort
+            .listen(&IpcAddress::UnixPath(path.clone()))
+            .unwrap();
+        let mut client = LinuxIpcPort
+            .connect(&IpcAddress::UnixPath(path.clone()))
+            .unwrap();
+        let mut server = loop {
+            if let Some(stream) = listener.accept().unwrap() {
+                break stream;
+            }
+        };
+        client.write_all(b"ipc").unwrap();
+        let mut bytes = [0; 3];
+        server.read_exact(&mut bytes).unwrap();
+        assert_eq!(&bytes, b"ipc");
+        listener.close().unwrap();
+        std::fs::remove_file(path).unwrap();
+    }
+}
+```
+
+### `feature/sim-platform/web-shell-realization`
+
+Specimen `spec-test/sim-platform/crates/sim-platform-web-shell/src/main` is checked by `cargo test`.
+
+Source `crates/sim-platform-web-shell/src/main.rs`:
+
+```rust
+//! Native Linux process capsule for the host-neutral SIM web shell.
+
+#![forbid(unsafe_code)]
+
+// conformance: the native web shell supplies only declared host-neutral services.
+
+use std::{
+    ffi::OsString,
+    fs::File,
+    io::{self, Read},
+    process::{Command, ExitCode},
+    sync::OnceLock,
+    time::{Duration, Instant},
+};
+
+use sim_platform_linux::{LinuxDnsPort, LinuxSocketPort};
+use sim_transport_ports::TransportServices;
+use sim_web_shell::ShellServices;
+
+struct LinuxWebShellServices {
+    start: Instant,
+}
+
+impl LinuxWebShellServices {
+    fn new() -> Self {
+        Self {
+            start: Instant::now(),
+        }
+    }
+}
+
+impl ShellServices for LinuxWebShellServices {
+    fn transport(&self) -> TransportServices {
+        TransportServices {
+            sockets: std::sync::Arc::new(LinuxSocketPort),
+            dns: std::sync::Arc::new(LinuxDnsPort),
+            ipc: None,
+        }
+    }
+
+    fn read_mount(&self, path: &str) -> io::Result<Vec<u8>> {
+        std::fs::read(path)
+    }
+
+    fn monotonic(&self) -> Duration {
+        self.start.elapsed()
+    }
+
+    fn fill_entropy(&self, bytes: &mut [u8]) -> io::Result<()> {
+        File::open("/dev/urandom")?.read_exact(bytes)
+    }
+
+    fn open_external(&self, url: &str) -> io::Result<()> {
+        let status = Command::new("xdg-open").arg(url).status()?;
+        if status.success() {
+            Ok(())
+        } else {
+            Err(io::Error::other(format!("xdg-open exited with {status}")))
+        }
+    }
+}
+
+fn main() -> ExitCode {
+    static SERVICES: OnceLock<std::sync::Arc<LinuxWebShellServices>> = OnceLock::new();
+    let services = SERVICES
+        .get_or_init(|| std::sync::Arc::new(LinuxWebShellServices::new()))
+        .clone();
+    let mut args: Vec<OsString> = ["sim-web-shell", "--codec", "lisp", "serve"]
+        .into_iter()
+        .map(OsString::from)
+        .collect();
+    args.extend(std::env::args_os().skip(1));
+    match sim_web_shell::web_bootloader_with_services(services).run(args) {
+        Ok(0) => ExitCode::SUCCESS,
+        Ok(code) => ExitCode::from(u8::try_from(code).unwrap_or(1)),
+        Err(error) => {
+            eprintln!("sim-web-shell: {error}");
+            ExitCode::from(2)
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::io::Write;
+
+    #[test]
+    fn linux_capsule_realizes_declared_shell_services() {
+        let services = LinuxWebShellServices::new();
+        assert!(services.monotonic() >= Duration::ZERO);
+        let mut entropy = [0_u8; 16];
+        services.fill_entropy(&mut entropy).unwrap();
+        assert_ne!(entropy, [0; 16]);
+
+        let root =
+            std::env::temp_dir().join(format!("sim-platform-web-shell-{}", std::process::id()));
+        let mut file = std::fs::File::create(&root).unwrap();
+        file.write_all(b"mounted").unwrap();
+        assert_eq!(
+            services.read_mount(root.to_str().unwrap()).unwrap(),
+            b"mounted"
+        );
+        std::fs::remove_file(root).unwrap();
+    }
+}
+```
+
+### `feature/sim-platform/browser-capsule`
+
+Specimen `spec-test/sim-platform/crates/sim-platform-browser/src/tests` is checked by `cargo test`.
+
+Source `crates/sim-platform-browser/src/tests.rs`:
+
+```rust
+// conformance: browser capability discovery and lifecycle fail closed.
+
+use super::*;
+
+fn full_apis() -> BrowserApis {
+    BrowserApis {
+        storage: true,
+        fetch: true,
+        websocket: true,
+        clipboard: true,
+        notification: true,
+        permissions: true,
+        wake_lock: true,
+    }
+}
+
+fn call(capsule: &mut Capsule, function: &str, input: &Input) -> Result<Output, String> {
+    let bytes = encode_input_frame(input)?;
+    decode_output_frame(&capsule.call_frame(function, &bytes)?)
+}
+
+#[test]
+fn card_is_capability_honest_and_has_no_surface_or_native_authority() {
+    let card = BrowserCard::from_apis(&BrowserApis {
+        fetch: true,
+        ..BrowserApis::default()
+    });
+    assert_eq!(
+        card.services,
+        [
+            "platform/lifecycle",
+            "platform/activation",
+            "transport/fetch"
+        ]
+    );
+    assert_eq!(card.presentation_owner, "sim-web");
+    let rendered = serde_json::to_string(&card).unwrap();
+    for forbidden in ["dom", "canvas", "webgpu", "render-tree"] {
+        assert!(!rendered.to_lowercase().contains(forbidden));
+    }
+    for omitted in [
+        "platform/process",
+        "loader/native-v1",
+        "storage/ambient-filesystem",
+    ] {
+        assert!(card.omitted_services.iter().any(|item| item == omitted));
+    }
+}
+
+#[test]
+fn window_worker_lifecycle_restarts_release_all_authority() {
+    for _context in ["window", "worker"] {
+        let mut capsule = Capsule::new(&full_apis());
+        call(
+            &mut capsule,
+            "platform/lifecycle",
+            &Input::Lifecycle {
+                state: Lifecycle::Active,
+            },
+        )
+        .unwrap();
+        let opened = call(
+            &mut capsule,
+            HOST_FUNCTION,
+            &Input::HostCall {
+                operation: HostOperation::StorageOpen {
+                    namespace: "offline".into(),
+                },
+            },
+        )
+        .unwrap();
+        let Output::HostCall { call_id, .. } = opened else {
+            panic!()
+        };
+        call(
+            &mut capsule,
+            COMPLETE_FUNCTION,
+            &Input::HostComplete {
+                call_id,
+                ok: true,
+                payload: vec![],
+                handle: Some(7),
+            },
+        )
+        .unwrap();
+        call(
+            &mut capsule,
+            "platform/lifecycle",
+            &Input::Lifecycle {
+                state: Lifecycle::Stopped,
+            },
+        )
+        .unwrap();
+        assert!(
+            call(
+                &mut capsule,
+                HOST_FUNCTION,
+                &Input::HostCall {
+                    operation: HostOperation::StorageRead {
+                        handle: 7,
+                        key: "lost".into()
+                    }
+                }
+            )
+            .is_err()
+        );
+        call(
+            &mut capsule,
+            "platform/lifecycle",
+            &Input::Lifecycle {
+                state: Lifecycle::Active,
+            },
+        )
+        .unwrap();
+        assert!(
+            call(
+                &mut capsule,
+                HOST_FUNCTION,
+                &Input::HostCall {
+                    operation: HostOperation::StorageRead {
+                        handle: 7,
+                        key: "lost".into()
+                    }
+                }
+            )
+            .is_err()
+        );
+    }
+}
+
+#[test]
+fn denied_missing_and_hostile_operations_fail_closed() {
+    let mut capsule = Capsule::new(&BrowserApis {
+        permissions: true,
+        ..BrowserApis::default()
+    });
+    assert!(
+        call(
+            &mut capsule,
+            HOST_FUNCTION,
+            &Input::HostCall {
+                operation: HostOperation::Fetch {
+                    url: "https://example.invalid".into(),
+                    method: "GET".into(),
+                    body: vec![]
+                }
+            }
+        )
+        .is_err()
+    );
+    let request = call(
+        &mut capsule,
+        HOST_FUNCTION,
+        &Input::HostCall {
+            operation: HostOperation::Permission {
+                name: "camera".into(),
+                request: true,
+            },
+        },
+    )
+    .unwrap();
+    let Output::HostCall { call_id, .. } = request else {
+        panic!()
+    };
+    assert_eq!(
+        call(
+            &mut capsule,
+            COMPLETE_FUNCTION,
+            &Input::HostComplete {
+                call_id,
+                ok: false,
+                payload: b"denied".to_vec(),
+                handle: None
+            }
+        )
+        .unwrap(),
+        Output::Completed {
+            call_id,
+            ok: false,
+            payload: b"denied".to_vec(),
+            handle: None
+        }
+    );
+    assert!(
+        call(
+            &mut capsule,
+            HOST_FUNCTION,
+            &Input::HostCall {
+                operation: HostOperation::ClipboardWrite {
+                    text: "x".repeat(MAX_HOST_PAYLOAD_BYTES + 1)
+                }
+            }
+        )
+        .is_err()
+    );
+    assert!(
+        call(
+            &mut capsule,
+            HOST_FUNCTION,
+            &Input::HostCall {
+                operation: HostOperation::Fetch {
+                    url: "file:///etc/passwd".into(),
+                    method: "GET".into(),
+                    body: vec![]
+                }
+            }
+        )
+        .is_err()
+    );
+    assert!(
+        Capsule::default()
+            .call_frame(CARD_FUNCTION, &vec![0; MAX_FRAME_BYTES + 1])
+            .is_err()
+    );
+}
+
+#[test]
+fn every_operation_uses_the_canonical_frame_and_named_call_surface() {
+    assert_eq!(NAMED_CALL_EXPORT, "sim_browser_named_call");
+    let mut capsule = Capsule::new(&full_apis());
+    let output = call(
+        &mut capsule,
+        HOST_FUNCTION,
+        &Input::HostCall {
+            operation: HostOperation::WakeLock { acquire: true },
+        },
+    )
+    .unwrap();
+    assert!(matches!(output, Output::HostCall { service, .. } if service == "platform/wake-lock"));
+    assert!(include_str!("../contract/wasm-imports.json").contains("sim_browser_named_call"));
+}
+```
+
+### `feature/sim-platform/wasi-capsule`
+
+Specimen `spec-test/sim-platform/crates/sim-platform-wasi/src/lib` is checked by `cargo test`.
+
+Source `crates/sim-platform-wasi/src/lib.rs`:
+
+```rust
+#![forbid(unsafe_code)]
+//! Least-authority WASI capsule.
+//!
+// conformance: WASI imports and authority remain closed and explicitly bound.
+//! WASI names are declarations at the artifact boundary. Each admitted import
+//! is paired with the existing SIM service it realizes; this crate does not
+//! introduce a filesystem, socket, clock, entropy, or process abstraction.
+
+use serde::{Deserialize, Serialize};
+use sim_platform_core::{
+    ContractProvenance, EvidenceLevel, FactPort, OpenSymbol, PlatformCard, ServiceOffer,
+    stable_digest,
+};
+use std::collections::{BTreeMap, BTreeSet};
+use wasmparser::{Parser, Payload};
+
+/// Content reference supplied by a bundle. There is no path-valued variant.
+#[derive(Clone, Debug, Deserialize, Serialize, Eq, Ord, PartialEq, PartialOrd)]
+#[serde(tag = "kind", rename_all = "kebab-case")]
+pub enum PreopenRef {
+    Table { table: String, key: String },
+    Dir { table: String, key: String },
+}
+
+/// Existing service reached by one admitted WASI import.
+#[derive(Clone, Copy, Debug, Eq, Ord, PartialEq, PartialOrd)]
+pub enum CanonicalService {
+    PreopenedDirectories,
+    WallClock,
+    MonotonicClock,
+    Entropy,
+    Sockets,
+    Lifecycle,
+}
+
+impl CanonicalService {
+    #[must_use]
+    pub const fn identity(self) -> &'static str {
+        match self {
+            Self::PreopenedDirectories => "storage/table-dir",
+            Self::WallClock => "platform/wall-clock",
+            Self::MonotonicClock => "platform/monotonic",
+            Self::Entropy => "platform/entropy",
+            Self::Sockets => "transport/socket",
+            Self::Lifecycle => "platform/lifecycle",
+        }
+    }
+
+    #[must_use]
+    pub const fn capability(self) -> &'static str {
+        match self {
+            Self::PreopenedDirectories => "storage/preopen",
+            Self::WallClock => "platform/wall-clock",
+            Self::MonotonicClock => "platform/monotonic",
+            Self::Entropy => "platform/entropy",
+            Self::Sockets => "transport/socket",
+            Self::Lifecycle => "platform/lifecycle",
+        }
+    }
+}
+
+/// One exact artifact import beside the canonical SIM service it realizes.
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub struct ImportDeclaration {
+    pub module: &'static str,
+    pub name: &'static str,
+    pub service: CanonicalService,
+}
+
+/// Closed component profile. Extending the WASI surface requires an explicit
+/// source change and therefore cannot happen through host feature discovery.
+pub const ALLOWED_IMPORTS: &[ImportDeclaration] = &[
+    ImportDeclaration {
+        module: "wasi:filesystem/preopens@0.2.0",
+        name: "get-directories",
+        service: CanonicalService::PreopenedDirectories,
+    },
+    ImportDeclaration {
+        module: "wasi:clocks/wall-clock@0.2.0",
+        name: "now",
+        service: CanonicalService::WallClock,
+    },
+    ImportDeclaration {
+        module: "wasi:clocks/monotonic-clock@0.2.0",
+        name: "now",
+        service: CanonicalService::MonotonicClock,
+    },
+    ImportDeclaration {
+        module: "wasi:random/random@0.2.0",
+        name: "get-random-bytes",
+        service: CanonicalService::Entropy,
+    },
+    ImportDeclaration {
+        module: "wasi:sockets/tcp@0.2.0",
+        name: "start-connect",
+        service: CanonicalService::Sockets,
+    },
+    ImportDeclaration {
+        module: "wasi:cli/exit@0.2.0",
+        name: "exit",
+        service: CanonicalService::Lifecycle,
+    },
+];
+
+/// The entire discoverable authority of one activation.
+#[derive(Clone, Debug, Deserialize, Serialize, Eq, PartialEq)]
+#[serde(deny_unknown_fields)]
+pub struct WasiProfile {
+    pub preopens: BTreeMap<String, PreopenRef>,
+    pub capabilities: BTreeSet<String>,
+    pub wall_clock_ticks: u64,
+    pub monotonic_ticks: u64,
+    pub entropy_seed: [u8; 32],
+    pub socket_endpoints: BTreeSet<String>,
+}
+
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub enum WasiRefusal {
+    MalformedArtifact(String),
+    UndeclaredImport { module: String, name: String },
+    CapabilityDenied { capability: &'static str },
+    UnsupportedService { service: String },
+    UnknownPreopen { name: String },
+    UnknownSocket { endpoint: String },
+}
+
+/// Inspect the complete core Wasm import section before instantiation.
+///
+/// # Errors
+/// Refuses malformed artifacts and the first import absent from
+/// [`ALLOWED_IMPORTS`].
+pub fn inspect_artifact(bytes: &[u8]) -> Result<Vec<ImportDeclaration>, WasiRefusal> {
+    let mut admitted = Vec::new();
+    for payload in Parser::new(0).parse_all(bytes) {
+        let payload = payload.map_err(|error| WasiRefusal::MalformedArtifact(error.to_string()))?;
+        if let Payload::ImportSection(section) = payload {
+            for import in section {
+                let import =
+                    import.map_err(|error| WasiRefusal::MalformedArtifact(error.to_string()))?;
+                let declaration = ALLOWED_IMPORTS
+                    .iter()
+                    .find(|item| item.module == import.module && item.name == import.name)
+                    .copied()
+                    .ok_or_else(|| WasiRefusal::UndeclaredImport {
+                        module: import.module.to_owned(),
+                        name: import.name.to_owned(),
+                    })?;
+                admitted.push(declaration);
+            }
+        }
+    }
+    Ok(admitted)
+}
+
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct WasiCapsule {
+    profile: WasiProfile,
+}
+
+impl WasiCapsule {
+    #[must_use]
+    pub fn new(profile: WasiProfile) -> Self {
+        Self { profile }
+    }
+
+    /// Resolve a named preopen without consulting cwd, environment, or host paths.
+    ///
+    /// # Errors
+    /// Refuses a missing preopen capability or a name absent from the bundle.
+    pub fn preopen(&self, name: &str) -> Result<&PreopenRef, WasiRefusal> {
+        self.require(CanonicalService::PreopenedDirectories)?;
+        self.profile
+            .preopens
+            .get(name)
+            .ok_or_else(|| WasiRefusal::UnknownPreopen {
+                name: name.to_owned(),
+            })
+    }
+
+    /// Resolve a declared endpoint; DNS and interface discovery are not exposed.
+    ///
+    /// # Errors
+    /// Refuses a missing socket capability or an undeclared endpoint.
+    pub fn connect(&self, endpoint: &str) -> Result<(), WasiRefusal> {
+        self.require(CanonicalService::Sockets)?;
+        self.profile
+            .socket_endpoints
+            .contains(endpoint)
+            .then_some(())
+            .ok_or_else(|| WasiRefusal::UnknownSocket {
+                endpoint: endpoint.to_owned(),
+            })
+    }
+
+    /// Capability-check a canonical service before its host adapter is invoked.
+    ///
+    /// # Errors
+    /// Refuses when the bundle does not carry the service's exact capability.
+    pub fn require(&self, service: CanonicalService) -> Result<(), WasiRefusal> {
+        let capability = service.capability();
+        self.profile
+            .capabilities
+            .contains(capability)
+            .then_some(())
+            .ok_or(WasiRefusal::CapabilityDenied { capability })
+    }
+
+    /// Typed refusal for services deliberately absent from the WASI Card.
+    pub fn unsupported(&self, service: impl Into<String>) -> WasiRefusal {
+        WasiRefusal::UnsupportedService {
+            service: service.into(),
+        }
+    }
+
+    /// Stable model result depending only on the explicit profile and request.
+    ///
+    /// # Panics
+    /// Panics only if serialization of the closed, data-only profile fails.
+    #[must_use]
+    pub fn model_digest(&self, request: &[u8]) -> String {
+        let mut bytes = serde_json::to_vec(&self.profile).expect("closed profile serializes");
+        bytes.extend_from_slice(request);
+        stable_digest(&bytes)
+    }
+}
+
+/// Card contains only the six canonical services. Process creation, native
+/// dynamic loading, UI, notifications, and devices are intentionally absent.
+///
+/// # Panics
+/// Panics only if serialization of the closed, data-only profile fails.
+#[must_use]
+pub fn platform_card(profile: &WasiProfile) -> PlatformCard {
+    let services = ALLOWED_IMPORTS
+        .iter()
+        .map(|declaration| {
+            let port = match declaration.service {
+                CanonicalService::WallClock => FactPort::WallClock,
+                CanonicalService::MonotonicClock => FactPort::MonotonicClock,
+                CanonicalService::Entropy => FactPort::Entropy,
+                CanonicalService::Lifecycle => FactPort::LifecyclePressure,
+                CanonicalService::PreopenedDirectories | CanonicalService::Sockets => {
+                    FactPort::MachineLimits
+                }
+            };
+            ServiceOffer {
+                service: OpenSymbol(declaration.service.identity().into()),
+                port,
+                evidence: EvidenceLevel::Modeled,
+            }
+        })
+        .collect();
+    let profile_bytes = serde_json::to_vec(profile).expect("closed profile serializes");
+    PlatformCard {
+        schema: OpenSymbol("platform/card-v1".into()),
+        site: OpenSymbol("platform/site/wasi".into()),
+        services,
+        provenance: ContractProvenance {
+            contract: OpenSymbol("contract/wasi-component-v1".into()),
+            content_digest: stable_digest(&profile_bytes),
+            issuer: OpenSymbol("issuer/sim-platform".into()),
+        },
+    }
+}
+
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub enum EvidenceGrade {
+    InMemory,
+    RealRuntime,
+}
+
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct FrameEvidence {
+    pub grade: EvidenceGrade,
+    pub cases: usize,
+    pub digest: String,
+}
+
+/// Run ABI value frames through the in-memory codec/runtime boundary.
+///
+/// # Errors
+/// Returns a codec error when a frame does not round-trip.
+pub fn run_in_memory_frame_corpus(
+    values: &[sim_wasm_abi::AbiValue],
+) -> Result<FrameEvidence, String> {
+    let mut evidence = Vec::new();
+    for value in values {
+        let encoded = sim_wasm_abi::encode_value_frame(value).map_err(|error| error.to_string())?;
+        let decoded =
+            sim_wasm_abi::decode_value_frame(&encoded).map_err(|error| error.to_string())?;
+        if &decoded != value {
+            return Err("ABI value frame changed during round-trip".into());
+        }
+        evidence.extend_from_slice(encoded.bytes());
+    }
+    Ok(FrameEvidence {
+        grade: EvidenceGrade::InMemory,
+        cases: values.len(),
+        digest: stable_digest(&evidence),
+    })
+}
+
+/// Pluggable hosted runner keeps a real-runtime result distinct from modeled proof.
+pub trait RealWasiRuntime {
+    /// Execute the corpus and return a content receipt from the hosted runtime.
+    ///
+    /// # Errors
+    /// Returns the hosted runtime's typed execution or frame-parity failure.
+    fn run_frame_corpus(&self, values: &[sim_wasm_abi::AbiValue]) -> Result<Vec<u8>, String>;
+}
+
+/// Execute the corpus through an injected real WASI runtime.
+///
+/// # Errors
+/// Returns the hosted runtime's execution or frame-parity failure.
+pub fn run_real_frame_corpus(
+    runtime: &dyn RealWasiRuntime,
+    values: &[sim_wasm_abi::AbiValue],
+) -> Result<FrameEvidence, String> {
+    let receipt = runtime.run_frame_corpus(values)?;
+    Ok(FrameEvidence {
+        grade: EvidenceGrade::RealRuntime,
+        cases: values.len(),
+        digest: stable_digest(&receipt),
+    })
+}
+
+pub const CAPSULE_MANIFEST: &str = include_str!("../component/wasi-capsule.toml");
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use sim_wasm_abi::{AbiValue, Handle};
+
+    fn profile() -> WasiProfile {
+        WasiProfile {
+            preopens: BTreeMap::from([(
+                "input".into(),
+                PreopenRef::Dir {
+                    table: "artifacts".into(),
+                    key: "input-v1".into(),
+                },
+            )]),
+            capabilities: ALLOWED_IMPORTS
+                .iter()
+                .map(|item| item.service.capability().to_owned())
+                .collect(),
+            wall_clock_ticks: 7,
+            monotonic_ticks: 11,
+            entropy_seed: [19; 32],
+            socket_endpoints: BTreeSet::from(["127.0.0.1:9443".into()]),
+        }
+    }
+
+    #[test]
+    fn artifact_inspection_admits_only_declared_imports() {
+        let admitted = wat::parse_str(
+            r#"(module
+          (import "wasi:clocks/monotonic-clock@0.2.0" "now" (func))
+          (import "wasi:random/random@0.2.0" "get-random-bytes" (func)))"#,
+        )
+        .unwrap();
+        assert_eq!(inspect_artifact(&admitted).unwrap().len(), 2);
+
+        let ambient = wat::parse_str(
+            r#"(module (import "wasi:cli/environment@0.2.0" "get-environment" (func)))"#,
+        )
+        .unwrap();
+        assert!(matches!(
+            inspect_artifact(&ambient),
+            Err(WasiRefusal::UndeclaredImport { .. })
+        ));
+    }
+
+    #[test]
+    fn component_manifest_declares_every_admitted_import_mapping() {
+        for declaration in ALLOWED_IMPORTS {
+            let row = format!(
+                "{}#{} => {}",
+                declaration.module,
+                declaration.name,
+                declaration.service.identity()
+            );
+            assert!(
+                CAPSULE_MANIFEST.contains(&row),
+                "missing manifest row: {row}"
+            );
+        }
+        for exclusion in [
+            "process-create",
+            "native-dynamic-load",
+            "ui",
+            "notification",
+            "device",
+        ] {
+            assert!(CAPSULE_MANIFEST.contains(exclusion));
+        }
+    }
+
+    #[test]
+    fn preopens_and_sockets_are_exact_bundle_authority() {
+        let capsule = WasiCapsule::new(profile());
+        assert!(matches!(
+            capsule.preopen("input"),
+            Ok(PreopenRef::Dir { .. })
+        ));
+        assert!(matches!(
+            capsule.preopen("ambient"),
+            Err(WasiRefusal::UnknownPreopen { .. })
+        ));
+        assert_eq!(capsule.connect("127.0.0.1:9443"), Ok(()));
+        assert!(matches!(
+            capsule.connect("example.com:443"),
+            Err(WasiRefusal::UnknownSocket { .. })
+        ));
+    }
+
+    #[test]
+    fn card_excludes_ambient_and_unsupported_services() {
+        let card = platform_card(&profile());
+        let offered: BTreeSet<_> = card
+            .services
+            .iter()
+            .map(|offer| offer.service.0.as_str())
+            .collect();
+        for absent in [
+            "process/create",
+            "loader/native",
+            "ui/window",
+            "platform/notification",
+            "device/discover",
+        ] {
+            assert!(!offered.contains(absent));
+        }
+        assert!(matches!(
+            WasiCapsule::new(profile()).unsupported("process/create"),
+            WasiRefusal::UnsupportedService { .. }
+        ));
+    }
+
+    #[test]
+    fn model_is_deterministic_and_profile_closed() {
+        let first = WasiCapsule::new(profile());
+        let second = WasiCapsule::new(profile());
+        assert_eq!(
+            first.model_digest(b"same request"),
+            second.model_digest(b"same request")
+        );
+        assert_ne!(
+            first.model_digest(b"same request"),
+            second.model_digest(b"other request")
+        );
+        assert!(serde_json::from_str::<WasiProfile>(r#"{"preopens":{},"capabilities":[],"wall_clock_ticks":0,"monotonic_ticks":0,"entropy_seed":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"socket_endpoints":[],"ambient_home":"/tmp"}"#).is_err());
+    }
+
+    struct Hosted;
+    impl RealWasiRuntime for Hosted {
+        fn run_frame_corpus(&self, values: &[AbiValue]) -> Result<Vec<u8>, String> {
+            let mut receipt = Vec::new();
+            for value in values {
+                let frame =
+                    sim_wasm_abi::encode_value_frame(value).map_err(|error| error.to_string())?;
+                let decoded =
+                    sim_wasm_abi::decode_value_frame(&frame).map_err(|error| error.to_string())?;
+                if decoded != *value {
+                    return Err("hosted runtime frame mismatch".into());
+                }
+                receipt.extend_from_slice(frame.bytes());
+            }
+            Ok(receipt)
+        }
+    }
+
+    #[test]
+    fn abi_corpus_retains_modeled_and_hosted_grades() {
+        let values = [
+            AbiValue::Handle(Handle(42)),
+            AbiValue::Error("typed refusal".into()),
+        ];
+        let modeled = run_in_memory_frame_corpus(&values).unwrap();
+        let hosted = run_real_frame_corpus(&Hosted, &values).unwrap();
+        assert_eq!(modeled.grade, EvidenceGrade::InMemory);
+        assert_eq!(hosted.grade, EvidenceGrade::RealRuntime);
+        assert_eq!(modeled.cases, hosted.cases);
+        assert_eq!(modeled.digest, hosted.digest);
+    }
+}
+```
+
+### `feature/sim-platform/native-compute-probing`
+
+Specimen `spec-test/sim-platform/crates/sim-platform-ubuntu-pc/src/compute` is checked by `cargo test`.
+
+Source `crates/sim-platform-ubuntu-pc/src/compute.rs`:
+
+```rust
+// conformance: native compute probing stays capsule-owned and fails closed.
+
+//! Native compute discovery owned by the Ubuntu platform capsule.
+
+use std::{process::Command, sync::mpsc};
+
+use sim_lib_compute_auto::{ComputeDeviceIdentity, ComputeEvidenceKind};
+use sim_lib_compute_cuda::{
+    CudaLoadError, CudaProbePort, CudaRuntimeLoader, CudaRuntimeProbe, DynamicCudaLoader,
+};
+use sim_lib_compute_rocm::{
+    DynamicRocmLoader, RocmLoadError, RocmProbePort, RocmRuntimeLoader, RocmRuntimeProbe,
+};
+use sim_lib_compute_wgpu::{
+    AllocationAttempt, ProbeEvidence, ProbePolicy, RequestedWgpuProfile, TransferEvidence,
+    WgpuAdapterEvidence, WgpuAdapterProbe, WgpuAdapterRuntime, WgpuCapabilityEvidence,
+    WgpuDiscoveryError, WgpuLimitEvidence, WgpuProbePort,
+};
+use wgpu::{
+    BufferDescriptor, BufferUsages, DeviceDescriptor, ExperimentalFeatures, Features, Instance,
+    Limits, MapMode, MemoryHints, PollType,
+};
+
+/// Ubuntu implementation of the compute probe membrane.
+#[derive(Clone, Debug)]
+pub struct UbuntuComputeProbe {
+    cuda: CudaRuntimeLoader,
+    rocm: RocmRuntimeLoader,
+}
+
+impl UbuntuComputeProbe {
+    /// Uses Ubuntu's normal native library and adapter search policy.
+    #[must_use]
+    pub fn new() -> Self {
+        Self {
+            cuda: CudaRuntimeLoader::new(),
+            rocm: RocmRuntimeLoader::new().with_observed_gfx_targets(observed_gfx_targets()),
+        }
+    }
+}
+
+impl Default for UbuntuComputeProbe {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
+fn observed_gfx_targets() -> Vec<String> {
+    let Ok(output) = Command::new("rocm_agent_enumerator").output() else {
+        return Vec::new();
+    };
+    if !output.status.success() {
+        return Vec::new();
+    }
+    let Ok(stdout) = String::from_utf8(output.stdout) else {
+        return Vec::new();
+    };
+    parse_gfx_targets(&stdout)
+}
+
+fn parse_gfx_targets(stdout: &str) -> Vec<String> {
+    let mut targets = stdout
+        .lines()
+        .map(str::trim)
+        .filter(|line| line.starts_with("gfx") && *line != "gfx000")
+        .map(ToOwned::to_owned)
+        .collect::<Vec<_>>();
+    targets.sort();
+    targets.dedup();
+    targets
+}
+
+impl CudaProbePort for UbuntuComputeProbe {
+    fn probe_cuda(&self) -> Result<CudaRuntimeProbe, CudaLoadError> {
+        self.cuda.discover()
+    }
+}
+
+impl RocmProbePort for UbuntuComputeProbe {
+    fn probe_rocm(&self) -> Result<RocmRuntimeProbe, RocmLoadError> {
+        self.rocm.discover()
+    }
+}
+
+impl WgpuProbePort for UbuntuComputeProbe {
+    fn probe_wgpu(
+        &self,
+        policy: &ProbePolicy,
+    ) -> Result<Vec<WgpuAdapterRuntime>, WgpuDiscoveryError> {
+        let instance = Instance::default();
+        let adapters = pollster::block_on(instance.enumerate_adapters(policy.backends));
+        let mut runtimes = adapters
+            .into_iter()
+            .filter_map(|adapter| probe_adapter(&adapter, policy).ok())
+            .collect::<Vec<_>>();
+        runtimes.sort_by(|left, right| {
+            left.probe()
+                .adapter
+                .sort_key()
+                .cmp(&right.probe().adapter.sort_key())
+        });
+        Ok(runtimes)
+    }
+}
+
+fn probe_adapter(
+    adapter: &wgpu::Adapter,
+    policy: &ProbePolicy,
+) -> Result<WgpuAdapterRuntime, WgpuDiscoveryError> {
+    let info = adapter.get_info();
+    let backend = format!("{:?}", info.backend);
+    let identity = ComputeDeviceIdentity::new(info.name.clone(), "wgpu", backend.clone());
+    let required_features = adapter.features() & (Features::TIMESTAMP_QUERY | Features::SHADER_F16);
+    let required_limits = Limits::downlevel_defaults().using_resolution(adapter.limits());
+    let descriptor = DeviceDescriptor {
+        label: Some("sim-platform-ubuntu-compute-probe"),
+        required_features,
+        required_limits: required_limits.clone(),
+        experimental_features: ExperimentalFeatures::disabled(),
+        memory_hints: MemoryHints::Performance,
+        trace: wgpu::Trace::default(),
+    };
+    let (device, queue) = pollster::block_on(adapter.request_device(&descriptor))
+        .map_err(|error| WgpuDiscoveryError::new(format!("wgpu request_device failed: {error}")))?;
+    let bytes = policy.transfer_bytes.max(4).next_multiple_of(4);
+    let payload = (0..bytes)
+        .map(|index| (index % 251) as u8)
+        .collect::<Vec<_>>();
+    let source = device.create_buffer(&BufferDescriptor {
+        label: Some("sim-platform-wgpu-probe"),
+        size: bytes,
+        usage: BufferUsages::COPY_SRC | BufferUsages::COPY_DST,
+        mapped_at_creation: false,
+    });
+    let readback = device.create_buffer(&BufferDescriptor {
+        label: Some("sim-platform-wgpu-readback-probe"),
+        size: bytes,
+        usage: BufferUsages::COPY_DST | BufferUsages::MAP_READ,
+        mapped_at_creation: false,
+    });
+    queue.write_buffer(&source, 0, &payload);
+    let mut encoder = device.create_command_encoder(&wgpu::CommandEncoderDescriptor {
+        label: Some("sim-platform-wgpu-transfer-probe"),
+    });
+    encoder.copy_buffer_to_buffer(&source, 0, &readback, 0, bytes);
+    queue.submit([encoder.finish()]);
+    let (sender, receiver) = mpsc::channel();
+    readback.slice(..).map_async(MapMode::Read, move |result| {
+        let _ = sender.send(result);
+    });
+    device
+        .poll(PollType::wait_indefinitely())
+        .map_err(|error| WgpuDiscoveryError::new(format!("wgpu poll failed: {error}")))?;
+    receiver
+        .recv()
+        .map_err(|error| WgpuDiscoveryError::new(format!("wgpu map callback failed: {error}")))?
+        .map_err(|error| WgpuDiscoveryError::new(format!("wgpu map failed: {error}")))?;
+    let mapping_ok = readback
+        .slice(..)
+        .get_mapped_range()
+        .map_err(|error| WgpuDiscoveryError::new(format!("wgpu mapped range failed: {error}")))?
+        .as_ref()
+        == payload.as_slice();
+    readback.unmap();
+    let ceiling = device
+        .limits()
+        .max_buffer_size
+        .min(policy.max_allocation_probe_bytes)
+        .max(4);
+    let allocation = device.create_buffer(&BufferDescriptor {
+        label: Some("sim-platform-wgpu-allocation-probe"),
+        size: ceiling,
+        usage: BufferUsages::COPY_DST,
+        mapped_at_creation: false,
+    });
+    drop(allocation);
+    let probe = WgpuAdapterProbe {
+        evidence_kind: ComputeEvidenceKind::PhysicalDevice,
+        claimed_identity: Some(identity.clone()),
+        observed_identity: Some(identity),
+        adapter: WgpuAdapterEvidence {
+            ordinal: 0,
+            name: info.name,
+            backend,
+            adapter_type: format!("{:?}", info.device_type),
+            vendor: info.vendor,
+            device: info.device,
+            requested: RequestedWgpuProfile::from_parts(required_limits, required_features),
+            granted_limits: WgpuLimitEvidence::from_limits(&device.limits()),
+            granted_features: WgpuCapabilityEvidence::from_features(device.features()),
+        },
+        probe: ProbeEvidence {
+            transfer: TransferEvidence {
+                bytes,
+                transfer_ok: true,
+                mapping_ok,
+            },
+            allocation_attempts: vec![AllocationAttempt {
+                bytes: ceiling,
+                success: true,
+            }],
+        },
+    };
+    Ok(WgpuAdapterRuntime::new(probe, device, queue))
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use sim_lib_compute_cuda::ComputeCudaLib;
+    use sim_lib_compute_rocm::ComputeRocmLib;
+    use sim_lib_compute_wgpu::ComputeWgpuLib;
+
+    struct EmptyWgpuProbe;
+
+    impl WgpuProbePort for EmptyWgpuProbe {
+        fn probe_wgpu(
+            &self,
+            _policy: &ProbePolicy,
+        ) -> Result<Vec<WgpuAdapterRuntime>, WgpuDiscoveryError> {
+            Ok(Vec::new())
+        }
+    }
+
+    #[test]
+    fn amd_target_observation_is_filtered_sorted_and_deduplicated() {
+        assert_eq!(
+            parse_gfx_targets("gfx1151\ngfx000\nnoise\ngfx1103\ngfx1151\n"),
+            vec!["gfx1103", "gfx1151"]
+        );
+    }
+
+    #[test]
+    fn absent_native_runtimes_export_no_provider() {
+        let probe = UbuntuComputeProbe {
+            cuda: CudaRuntimeLoader::with_search_dirs_only(Vec::new()),
+            rocm: RocmRuntimeLoader::with_search_dirs_only(Vec::new()),
+        };
+        assert!(ComputeCudaLib::from_probe_port(&probe).is_err());
+        assert!(ComputeRocmLib::from_probe_port(&probe).is_err());
+        let wgpu =
+            ComputeWgpuLib::from_probe_port(&EmptyWgpuProbe, &ProbePolicy::default()).unwrap();
+        assert!(sim_kernel::Lib::manifest(&wgpu).exports.is_empty());
+    }
+}
+```
+
+### `feature/sim-platform/native-media-realization`
+
+Specimen `spec-test/sim-platform/crates/sim-platform-audio/src/tests` is checked by `cargo test`.
+
+Source `crates/sim-platform-audio/src/tests.rs`:
+
+```rust
+// conformance: media realization exposes only explicit native bindings and bounded callbacks.
+
+use super::*;
+
+#[test]
+fn ubuntu_capsule_enumerates_explicit_bindings_and_refuses_absent_apis() {
+    let mut capsule = UbuntuMediaCapsule::default();
+    capsule.bind_audio(UbuntuAudioBinding {
+        api: AudioApi::PipeWire,
+        card: AudioDeviceCard {
+            id: NativeId("pw/0".into()),
+            label: "PipeWire 0".into(),
+            input_channels: 2,
+            output_channels: 2,
+            sample_rates: vec![48_000],
+            hotplug: true,
+        },
+    });
+    capsule.bind_plugin(UbuntuPluginBinding {
+        api: PluginApi::Clap,
+        card: PluginCard {
+            id: NativeId("clap/gain".into()),
+            label: "Gain".into(),
+            abi: 3,
+            audio_inputs: 2,
+            audio_outputs: 2,
+            isolated: true,
+        },
+    });
+    assert_eq!(AudioDevicePort::cards(&capsule).unwrap().len(), 1);
+    assert_eq!(NativePluginPort::cards(&capsule).unwrap().len(), 1);
+    assert!(matches!(
+        AudioDevicePort::open(
+            &capsule,
+            &NativeId("alsa/missing".into()),
+            48_000,
+            RealtimeBudget::strict(64, 2, 4)
+        ),
+        Err(NativeRefusal::Unsupported)
+    ));
+    assert!(matches!(
+        capsule.load(
+            &NativeId("vst3/missing".into()),
+            3,
+            RealtimeBudget::strict(64, 2, 4)
+        ),
+        Err(NativeRefusal::Unsupported)
+    ));
+    assert!(matches!(
+        capsule.load(
+            &NativeId("clap/gain".into()),
+            2,
+            RealtimeBudget::strict(64, 2, 4)
+        ),
+        Err(NativeRefusal::AbiMismatch {
+            expected: 2,
+            found: 3
+        })
+    ));
+    let mut stream = AudioDevicePort::open(
+        &capsule,
+        &NativeId("pw/0".into()),
+        48_000,
+        RealtimeBudget::strict(64, 2, 4),
+    )
+    .unwrap();
+    stream.close().unwrap();
+    assert_eq!(stream.close(), Err(NativeRefusal::AlreadyClosed));
+    let mut plugin = capsule
+        .load(
+            &NativeId("clap/gain".into()),
+            3,
+            RealtimeBudget::strict(64, 2, 4),
+        )
+        .unwrap();
+    plugin.process(64).unwrap();
+    assert_eq!(plugin.process(65), Err(NativeRefusal::BudgetExceeded));
+    plugin.unload().unwrap();
+    assert_eq!(plugin.unload(), Err(NativeRefusal::AlreadyClosed));
+}
+
+#[test]
+fn hotplug_is_deterministic_and_drained_once() {
+    let capsule = UbuntuMediaCapsule::default();
+    let id = NativeId("pw/new".into());
+    capsule
+        .record_hotplug(DeviceEvent::Removed(id.clone()))
+        .unwrap();
+    assert_eq!(
+        capsule.poll_hotplug().unwrap(),
+        vec![DeviceEvent::Removed(id)]
+    );
+    assert!(capsule.poll_hotplug().unwrap().is_empty());
+}
+```
+
+### `feature/sim-platform/host-directory-realization`
+
+Specimen `spec-test/sim-platform/crates/sim-table-fs/tests/host_dir_port` is checked by `cargo test`.
+
+Source `crates/sim-table-fs/tests/host_dir_port.rs`:
+
+```rust
+// conformance: modeled and Ubuntu host-directory ports share atomic bounded semantics.
+
+use sim_storage_port::{Cancellation, HostDirErrorKind, HostDirPort, HostEntryKind, NeverCancel};
+use sim_table_fs::{MemoryHostDirPort, UbuntuHostDirPort};
+use std::{
+    path::PathBuf,
+    sync::{
+        Arc, Barrier,
+        atomic::{AtomicBool, Ordering},
+    },
+};
+
+struct Flag(AtomicBool);
+impl Cancellation for Flag {
+    fn is_cancelled(&self) -> bool {
+        self.0.load(Ordering::SeqCst)
+    }
+}
+
+fn path(parts: &[&str]) -> Vec<String> {
+    parts.iter().map(|part| (*part).to_owned()).collect()
+}
+
+fn conformance(port: &dyn HostDirPort) {
+    port.create_dir(&path(&["nested"])).unwrap();
+    port.replace(&path(&["alpha.siml"]), b"old", &NeverCancel)
+        .unwrap();
+    port.replace(&path(&["alpha.siml"]), b"new", &NeverCancel)
+        .unwrap();
+    assert_eq!(port.read(&path(&["alpha.siml"])).unwrap(), b"new");
+    assert_eq!(
+        port.list(&[])
+            .unwrap()
+            .iter()
+            .map(|e| (&e.name, e.kind))
+            .collect::<Vec<_>>(),
+        vec![
+            (&"alpha.siml".to_owned(), HostEntryKind::File),
+            (&"nested".to_owned(), HostEntryKind::Directory)
+        ]
+    );
+    let child = port.child("nested").unwrap();
+    child
+        .replace(&path(&["leaf.siml"]), b"payload", &NeverCancel)
+        .unwrap();
+    assert_eq!(
+        port.read(&path(&["nested", "leaf.siml"])).unwrap(),
+        b"payload"
+    );
+    for bad in [
+        vec!["..".to_owned()],
+        vec!["a/b".to_owned()],
+        vec!["a\\b".to_owned()],
+    ] {
+        assert_eq!(
+            port.metadata(&bad).unwrap_err().kind,
+            HostDirErrorKind::Escape
+        );
+    }
+    let cancelled = Flag(AtomicBool::new(true));
+    assert_eq!(
+        port.replace(&path(&["cancelled"]), b"no", &cancelled)
+            .unwrap_err()
+            .kind,
+        HostDirErrorKind::Cancelled
+    );
+    assert!(port.metadata(&path(&["cancelled"])).unwrap().is_none());
+    port.remove_dir_all(&path(&["nested"])).unwrap();
+    assert!(port.metadata(&path(&["nested"])).unwrap().is_none());
+}
+
+fn cas_conformance(port: &dyn HostDirPort) {
+    let leaf = path(&["lease.siml"]);
+    let first = port
+        .compare_exchange(&leaf, None, Some(b"nil"), &NeverCancel)
+        .unwrap();
+    assert!(first.exchanged);
+    assert_eq!(first.observed, None);
+    let stale = port
+        .compare_exchange(&leaf, Some(b"wrong"), None, &NeverCancel)
+        .unwrap();
+    assert!(!stale.exchanged);
+    assert_eq!(stale.observed.as_deref(), Some(b"nil".as_slice()));
+    assert!(
+        port.compare_exchange(&leaf, Some(b"nil"), None, &NeverCancel)
+            .unwrap()
+            .exchanged
+    );
+    assert!(port.metadata(&leaf).unwrap().is_none());
+}
+
+fn concurrent_claimers(port: &Arc<dyn HostDirPort>) {
+    let barrier = Arc::new(Barrier::new(3));
+    let mut workers = Vec::new();
+    for value in [b"one".as_slice(), b"two".as_slice()] {
+        let port = Arc::clone(port);
+        let barrier = Arc::clone(&barrier);
+        let value = value.to_vec();
+        workers.push(std::thread::spawn(move || {
+            barrier.wait();
+            port.compare_exchange(&path(&["claim"]), None, Some(&value), &NeverCancel)
+                .unwrap()
+                .exchanged
+        }));
+    }
+    barrier.wait();
+    assert_eq!(
+        workers
+            .into_iter()
+            .map(|worker| worker.join().unwrap())
+            .filter(|won| *won)
+            .count(),
+        1
+    );
+}
+
+#[test]
+fn model_and_ubuntu_share_conformance() {
+    conformance(&MemoryHostDirPort::new("model", 4096));
+    cas_conformance(&MemoryHostDirPort::new("model-cas", 4096));
+    let model_port: Arc<dyn HostDirPort> = Arc::new(MemoryHostDirPort::new("model-race", 4096));
+    concurrent_claimers(&model_port);
+    let root = temp_root("ubuntu");
+    conformance(&UbuntuHostDirPort::open(root.clone()).unwrap());
+    cas_conformance(&UbuntuHostDirPort::open(root.clone()).unwrap());
+    let ubuntu_port: Arc<dyn HostDirPort> =
+        Arc::new(UbuntuHostDirPort::open(root.clone()).unwrap());
+    concurrent_claimers(&ubuntu_port);
+    std::fs::remove_dir_all(root).unwrap();
+}
+
+#[test]
+fn model_enforces_quota_without_partial_commit() {
+    let port = MemoryHostDirPort::new("quota", 3);
+    port.replace(&path(&["leaf"]), b"old", &NeverCancel)
+        .unwrap();
+    assert_eq!(
+        port.replace(&path(&["leaf"]), b"larger", &NeverCancel)
+            .unwrap_err()
+            .kind,
+        HostDirErrorKind::QuotaExceeded
+    );
+    assert_eq!(port.read(&path(&["leaf"])).unwrap(), b"old");
+}
+
+#[cfg(unix)]
+#[test]
+fn ubuntu_rejects_symlink_and_special_file_escape() {
+    use std::os::unix::fs::symlink;
+    let root = temp_root("escape");
+    let outside = temp_root("outside");
+    std::fs::create_dir_all(&root).unwrap();
+    std::fs::create_dir_all(&outside).unwrap();
+    symlink(&outside, root.join("link")).unwrap();
+    let port = UbuntuHostDirPort::open(root.clone()).unwrap();
+    assert_eq!(
+        port.metadata(&path(&["link"])).unwrap_err().kind,
+        HostDirErrorKind::SpecialFile
+    );
+    assert_eq!(
+        port.child("link")
+            .unwrap()
+            .metadata(&path(&["leaf"]))
+            .unwrap_err()
+            .kind,
+        HostDirErrorKind::Escape
+    );
+    std::fs::remove_dir_all(root).unwrap();
+    std::fs::remove_dir_all(outside).unwrap();
+}
+
+fn temp_root(name: &str) -> PathBuf {
+    std::env::temp_dir().join(format!(
+        "sim-host-dir-{name}-{}-{}",
+        std::process::id(),
+        std::time::SystemTime::now()
+            .duration_since(std::time::UNIX_EPOCH)
+            .unwrap()
+            .as_nanos()
+    ))
+}
+```
+
+### `feature/sim-platform/ledger-command-realization`
+
+Specimen `spec-test/sim-platform/crates/sim-table-fs/src/tests/authority` is checked by `cargo test`.
+
+Source `crates/sim-table-fs/src/tests/authority.rs`:
+
+```rust
+// conformance: preopened storage authority fails closed for command composition.
+
+use super::support::*;
+
+#[test]
+fn del_requires_read_before_returning_removed_value() {
+    let mut cx = cx();
+    grant(&mut cx, &[table_fs_write_capability()]);
+    let root = test_root("del-write-only");
+    let dir = FsDir::open(root.clone()).unwrap();
+    std::fs::write(root.join("note.siml"), "\"secret\"").unwrap();
+
+    let err = dir.del(&mut cx, Symbol::new("note")).unwrap_err();
+
+    assert!(matches!(
+        err,
+        sim_kernel::Error::CapabilityDenied { capability }
+            if capability == table_fs_read_capability()
+    ));
+    assert!(root.join("note.siml").exists());
+}
+
+#[test]
+fn del_decode_error_leaves_file_in_place() {
+    let mut cx = cx();
+    grant(
+        &mut cx,
+        &[table_fs_read_capability(), table_fs_write_capability()],
+    );
+    let root = test_root("del-bad-codec");
+    let dir = FsDir::open(root.clone()).unwrap();
+    std::fs::write(root.join("bad.siml"), "(").unwrap();
+
+    dir.del(&mut cx, Symbol::new("bad")).unwrap_err();
+
+    assert!(root.join("bad.siml").exists());
+}
+
+#[test]
+fn dir_edit_round_trips_with_fs_write() {
+    let mut cx = cx();
+    grant_edit_authority(&mut cx);
+    let root = test_root("dir-edit-roundtrip");
+    let dir = FsDir::open(root.clone()).unwrap();
+    write_value_with_codec(
+        &mut cx,
+        &root.join("note.siml"),
+        Symbol::qualified("codec", "lisp"),
+        "alpha beta",
+    );
+
+    dir.edit(&mut cx, Symbol::new("note"), "beta", "gamma", false)
+        .unwrap();
+
+    let value = dir.get(&mut cx, Symbol::new("note")).unwrap();
+    assert_eq!(
+        value.object().as_expr(&mut cx).unwrap(),
+        Expr::String("alpha gamma".to_owned())
+    );
+}
+
+#[test]
+fn dir_edit_lines_round_trips_with_fs_write() {
+    let mut cx = cx();
+    grant_edit_authority(&mut cx);
+    let root = test_root("dir-edit-lines");
+    let dir = FsDir::open(root.clone()).unwrap();
+    write_value_with_codec(
+        &mut cx,
+        &root.join("note.siml"),
+        Symbol::qualified("codec", "lisp"),
+        "a\nb\nc\n",
+    );
+
+    dir.edit_lines(&mut cx, Symbol::new("note"), 2, 2, "B\n")
+        .unwrap();
+
+    let value = dir.get(&mut cx, Symbol::new("note")).unwrap();
+    assert_eq!(
+        value.object().as_expr(&mut cx).unwrap(),
+        Expr::String("a\nB\nc\n".to_owned())
+    );
+}
+
+#[test]
+fn dir_edit_is_atomic_on_failure() {
+    let mut cx = cx();
+    grant_edit_authority(&mut cx);
+    let root = test_root("dir-edit-atomic");
+    let dir = FsDir::open(root.clone()).unwrap();
+    let path = root.join("note.siml");
+    write_value_with_codec(
+        &mut cx,
+        &path,
+        Symbol::qualified("codec", "lisp"),
+        "alpha beta",
+    );
+    let before = std::fs::read_to_string(&path).unwrap();
+
+    let err = dir
+        .edit(&mut cx, Symbol::new("note"), "missing", "gamma", false)
+        .unwrap_err();
+
+    assert!(err.to_string().contains("pattern not found"));
+    assert_eq!(std::fs::read_to_string(path).unwrap(), before);
+}
+
+#[test]
+fn dir_edit_requires_edit_capability() {
+    let mut cx = cx();
+    grant(
+        &mut cx,
+        &[table_fs_read_capability(), table_fs_write_capability()],
+    );
+    let root = test_root("dir-edit-cap");
+    let dir = FsDir::open(root.clone()).unwrap();
+    let path = root.join("note.siml");
+    write_value_with_codec(
+        &mut cx,
+        &path,
+        Symbol::qualified("codec", "lisp"),
+        "alpha beta",
+    );
+
+    let err = dir
+        .edit(&mut cx, Symbol::new("note"), "beta", "gamma", false)
+        .unwrap_err();
+
+    assert!(matches!(
+        err,
+        sim_kernel::Error::CapabilityDenied { capability }
+            if capability == table_fs_edit_capability()
+    ));
+    let value = dir.get(&mut cx, Symbol::new("note")).unwrap();
+    assert_eq!(
+        value.object().as_expr(&mut cx).unwrap(),
+        Expr::String("alpha beta".to_owned())
+    );
+}
+
+#[test]
+fn dir_edit_requires_write_capability() {
+    let mut cx = cx();
+    grant(
+        &mut cx,
+        &[table_fs_read_capability(), table_fs_edit_capability()],
+    );
+    let root = test_root("dir-edit-write-cap");
+    let dir = FsDir::open(root.clone()).unwrap();
+    write_value_with_codec(
+        &mut cx,
+        &root.join("note.siml"),
+        Symbol::qualified("codec", "lisp"),
+        "alpha beta",
+    );
+
+    let err = dir
+        .edit(&mut cx, Symbol::new("note"), "beta", "gamma", false)
+        .unwrap_err();
+
+    assert!(matches!(
+        err,
+        sim_kernel::Error::CapabilityDenied { capability }
+            if capability == table_fs_write_capability()
+    ));
+}
+```
+
+### `feature/sim-platform/product-membrane`
+
+Specimen `spec-test/sim-platform/crates/sim-lib-platform/src/runtime` is checked by `cargo test`.
+
+Source `crates/sim-lib-platform/src/runtime.rs`:
+
+```rust
+// conformance: product runtime composition keeps the platform membrane explicit.
+
+use std::{sync::Arc, time::Duration};
+
+use sim_kernel::{
+    AbiVersion, Args, Callable, CapabilityName, Consistency, Cx, Error, EvalMode, EvalRequest,
+    Export, Expr, Lib, LibManifest, LibTarget, Linker, LoadCx, Object, ObjectCompat, Result,
+    Symbol, Value, Version,
+};
+
+/// The lexical binding holding the platform site for the current realization.
+///
+/// The binding is deliberately neither a registry singleton nor a target lookup:
+/// child realizations can replace it without changing the loaded API.
+pub const ACTIVE_PLATFORM_SITE: &str = "active-site";
+
+/// The thirteen operations in the Small SIM API. This enum is intentionally closed.
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub enum PlatformFunctionKind {
+    Card,
+    Require,
+    Mounts,
+    Open,
+    Share,
+    Notify,
+    ClipboardRead,
+    ClipboardWrite,
+    PermissionStatus,
+    PermissionRequest,
+    KeepAwake,
+    Lifecycle,
+    Activations,
+}
+
+impl PlatformFunctionKind {
+    /// Every platform API operation, in the public contract order.
+    pub const ALL: [Self; 13] = [
+        Self::Card,
+        Self::Require,
+        Self::Mounts,
+        Self::Open,
+        Self::Share,
+        Self::Notify,
+        Self::ClipboardRead,
+        Self::ClipboardWrite,
+        Self::PermissionStatus,
+        Self::PermissionRequest,
+        Self::KeepAwake,
+        Self::Lifecycle,
+        Self::Activations,
+    ];
+
+    #[must_use]
+    pub fn symbol(self) -> Symbol {
+        Symbol::qualified(
+            "platform",
+            match self {
+                Self::Card => "card",
+                Self::Require => "require",
+                Self::Mounts => "mounts",
+                Self::Open => "open",
+                Self::Share => "share",
+                Self::Notify => "notify",
+                Self::ClipboardRead => "clipboard-read",
+                Self::ClipboardWrite => "clipboard-write",
+                Self::PermissionStatus => "permission-status",
+                Self::PermissionRequest => "permission-request",
+                Self::KeepAwake => "keep-awake",
+                Self::Lifecycle => "lifecycle",
+                Self::Activations => "activations",
+            },
+        )
+    }
+
+    fn arity(self) -> usize {
+        match self {
+            Self::Card | Self::Mounts | Self::Lifecycle | Self::Activations => 0,
+            Self::Require
+            | Self::Open
+            | Self::Share
+            | Self::Notify
+            | Self::ClipboardRead
+            | Self::ClipboardWrite
+            | Self::PermissionStatus
+            | Self::PermissionRequest
+            | Self::KeepAwake => 1,
+        }
+    }
+
+    fn capability(self, args: &[Expr]) -> Result<Option<CapabilityName>> {
+        let fixed = match self {
+            Self::Open => Some("platform.open"),
+            Self::Share => Some("platform.share"),
+            Self::Notify => Some("platform.notify"),
+            Self::ClipboardRead => Some("platform.clipboard.read"),
+            Self::ClipboardWrite => Some("platform.clipboard.write"),
+            Self::KeepAwake => Some("platform.power.keep-awake"),
+            _ => None,
+        };
+        if let Some(name) = fixed {
+            return Ok(Some(CapabilityName::new(name)));
+        }
+        if self == Self::PermissionRequest {
+            let Expr::Symbol(service) = &args[0] else {
+                return Err(Error::Eval(
+                    "platform/permission-request expects a service symbol".to_owned(),
+                ));
+            };
+            let name = service.to_string().replace(['/', '-'], ".");
+            return Ok(Some(CapabilityName::new(name)));
+        }
+        Ok(None)
+    }
+}
+
+/// Returns the exact public function symbols; useful to loaders and conformance tests.
+#[must_use]
+pub fn platform_function_symbols() -> Vec<Symbol> {
+    PlatformFunctionKind::ALL
+        .iter()
+        .map(|kind| kind.symbol())
+        .collect()
+}
+
+/// Loadable Small SIM API library.
+pub struct PlatformLib;
+
+impl Lib for PlatformLib {
+    fn manifest(&self) -> LibManifest {
+        LibManifest {
+            id: Symbol::qualified("sim", "platform"),
+            version: Version(env!("CARGO_PKG_VERSION").to_owned()),
+            abi: AbiVersion { major: 0, minor: 1 },
+            target: LibTarget::HostRegistered,
+            requires: Vec::new(),
+            capabilities: Vec::new(),
+            exports: platform_function_symbols()
+                .into_iter()
+                .map(|symbol| Export::Function {
+                    symbol,
+                    function_id: None,
+                })
+                .collect(),
+        }
+    }
+
+    fn load(&self, cx: &mut LoadCx, linker: &mut Linker<'_>) -> Result<()> {
+        for kind in PlatformFunctionKind::ALL {
+            linker.function_value(
+                kind.symbol(),
+                cx.factory().opaque(Arc::new(PlatformFunction(kind)))?,
+            )?;
+        }
+        Ok(())
+    }
+}
+
+/// Install the platform facade once in a context.
+///
+/// # Errors
+/// Returns a kernel load error when the manifest or one of its function exports
+/// cannot be registered atomically.
+pub fn install_platform_lib(cx: &mut Cx) -> Result<()> {
+    if cx
+        .registry()
+        .lib(&Symbol::qualified("sim", "platform"))
+        .is_none()
+    {
+        cx.load_lib(&PlatformLib)?;
+    }
+    Ok(())
+}
+
+/// One callable from the closed platform surface.
+#[derive(Clone, Copy, Debug)]
+pub struct PlatformFunction(pub PlatformFunctionKind);
+
+impl Object for PlatformFunction {
+    fn display(&self, _cx: &mut Cx) -> Result<String> {
+        Ok(format!("#<function {}>", self.0.symbol()))
+    }
+    fn as_any(&self) -> &dyn std::any::Any {
+        self
+    }
+}
+
+impl ObjectCompat for PlatformFunction {
+    fn as_callable(&self) -> Option<&dyn Callable> {
+        Some(self)
+    }
+}
+
+impl Callable for PlatformFunction {
+    fn call(&self, cx: &mut Cx, args: Args) -> Result<Value> {
+        let values = args.into_vec();
+        if values.len() != self.0.arity() {
+            return Err(Error::Eval(format!(
+                "{} expects {} argument(s), found {}",
+                self.0.symbol(),
+                self.0.arity(),
+                values.len()
+            )));
+        }
+        let exprs = values
+            .into_iter()
+            .map(|value| value.object().as_expr(cx))
+            .collect::<Result<Vec<_>>>()?;
+        // Capability precedes provider permission handling, so an unprivileged
+        // caller cannot use the OS prompt as a capability oracle.
+        if let Some(capability) = self.0.capability(&exprs)? {
+            cx.require(&capability)?;
+        }
+        let site = cx
+            .env()
+            .get(&Symbol::qualified("platform", ACTIVE_PLATFORM_SITE))
+            .ok_or_else(|| {
+                Error::Eval(
+                    "no PlatformSite is bound in the current realization environment".to_owned(),
+                )
+            })?;
+        let fabric = site.object().as_eval_fabric().ok_or(Error::TypeMismatch {
+            expected: "platform-site EvalFabric",
+            found: "non-eval-fabric",
+        })?;
+        let required_capabilities = self.0.capability(&exprs)?.into_iter().collect();
+        let reply = fabric.realize(
+            cx,
+            EvalRequest {
+                expr: Expr::Call {
+                    operator: Box::new(Expr::Symbol(self.0.symbol())),
+                    args: exprs,
+                },
+                result_shape: None,
+                required_capabilities,
+                deadline: Some(Duration::from_secs(30)),
+                consistency: Consistency::LocalOnly,
+                mode: EvalMode::Eval,
+                answer_limit: Some(1),
+                stream_buffer: None,
+                stream: false,
+                trace: true,
+            },
+        )?;
+        Ok(reply.value)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use sim_kernel::{EvalFabric, EvalReply};
+    use std::sync::Mutex;
+
+    struct RecordingSite(Mutex<Vec<Expr>>);
+    impl Object for RecordingSite {
+        fn display(&self, _: &mut Cx) -> Result<String> {
+            Ok("#<recording-platform-site>".into())
+        }
+        fn as_any(&self) -> &dyn std::any::Any {
+            self
+        }
+    }
+    impl ObjectCompat for RecordingSite {
+        fn as_eval_fabric(&self) -> Option<&dyn EvalFabric> {
+            Some(self)
+        }
+    }
+    impl EvalFabric for RecordingSite {
+        fn realize(&self, cx: &mut Cx, request: EvalRequest) -> Result<EvalReply> {
+            self.0.lock().unwrap().push(request.expr.clone());
+            Ok(EvalReply {
+                value: cx.factory().expr(request.expr)?,
+                diagnostics: Vec::new(),
+                trace: None,
+            })
+        }
+    }
+
+    fn cx_with(site: Arc<RecordingSite>) -> Cx {
+        let mut cx = sim_kernel::testing::bare_cx();
+        let value = cx.factory().opaque(site).unwrap();
+        cx.env_mut()
+            .define(Symbol::qualified("platform", ACTIVE_PLATFORM_SITE), value);
+        cx
+    }
+
+    #[test]
+    fn manifest_is_the_closed_thirteen_function_surface() {
+        let symbols = platform_function_symbols();
+        assert_eq!(symbols.len(), 13);
+        assert_eq!(
+            symbols.iter().map(ToString::to_string).collect::<Vec<_>>(),
+            vec![
+                "platform/card",
+                "platform/require",
+                "platform/mounts",
+                "platform/open",
+                "platform/share",
+                "platform/notify",
+                "platform/clipboard-read",
+                "platform/clipboard-write",
+                "platform/permission-status",
+                "platform/permission-request",
+                "platform/keep-awake",
+                "platform/lifecycle",
+                "platform/activations",
+            ]
+        );
+    }
+
+    #[test]
+    fn dispatch_uses_only_the_current_environment_site() {
+        let outer = Arc::new(RecordingSite(Mutex::new(Vec::new())));
+        let inner = Arc::new(RecordingSite(Mutex::new(Vec::new())));
+        let mut cx = cx_with(outer.clone());
+        let mut child = sim_kernel::Env::child(Arc::new(cx.env().clone()));
+        child.define(
+            Symbol::qualified("platform", ACTIVE_PLATFORM_SITE),
+            cx.factory().opaque(inner.clone()).unwrap(),
+        );
+        cx.with_env(child, |cx| {
+            PlatformFunction(PlatformFunctionKind::Card).call(cx, Args::default())
+        })
+        .unwrap();
+        assert!(outer.0.lock().unwrap().is_empty());
+        assert_eq!(inner.0.lock().unwrap().len(), 1);
+    }
+
+    #[test]
+    fn capability_is_checked_before_provider_permission_dispatch() {
+        let site = Arc::new(RecordingSite(Mutex::new(Vec::new())));
+        let mut cx = cx_with(site.clone());
+        let arg = cx
+            .factory()
+            .symbol(Symbol::qualified("platform", "clipboard-read"))
+            .unwrap();
+        let error = PlatformFunction(PlatformFunctionKind::PermissionRequest)
+            .call(&mut cx, Args::new(vec![arg]))
+            .unwrap_err();
+        assert!(matches!(error, Error::CapabilityDenied { .. }));
+        assert!(site.0.lock().unwrap().is_empty());
+        cx.grant_named("platform.clipboard.read");
+        let arg = cx
+            .factory()
+            .symbol(Symbol::qualified("platform", "clipboard-read"))
+            .unwrap();
+        PlatformFunction(PlatformFunctionKind::PermissionRequest)
+            .call(&mut cx, Args::new(vec![arg]))
+            .unwrap();
+        assert_eq!(site.0.lock().unwrap().len(), 1);
     }
 }
 ```
