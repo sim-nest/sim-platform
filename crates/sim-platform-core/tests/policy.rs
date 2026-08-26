@@ -182,7 +182,11 @@ fn records_round_trip_through_installed_general_expression_codecs() {
         })
         .collect(),
     );
-    let mut cx = Cx::new(Arc::new(EagerPolicy), Arc::new(DefaultFactory));
+    let mut cx = Cx::new(
+        Arc::new(EagerPolicy),
+        Arc::new(DefaultFactory),
+        sim_kernel::HandleSeed::new(0x504c_4154),
+    );
     let lisp = sim_codec_lisp::LispCodecLib::new(cx.registry_mut().fresh_codec_id()).unwrap();
     cx.load_lib(&lisp).unwrap();
     let json = sim_codec_json::JsonCodecLib::new(cx.registry_mut().fresh_codec_id());

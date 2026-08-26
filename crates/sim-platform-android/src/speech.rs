@@ -25,6 +25,8 @@ pub struct SpeechLanguage {
 
 /// Evidence produced by the Android shell. Optimistic configuration is insufficient.
 #[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
+// These are independent evidence claims whose conjunction is validated below.
+#[allow(clippy::struct_excessive_bools)]
 pub struct LocalSpeechEvidence {
     pub kind: SpeechKind,
     pub implementation: String,
@@ -156,7 +158,7 @@ impl AndroidSpeechState {
                 if pcm.len() > MAX_PCM_BYTES {
                     return Ok(self.stop_for(SpeechStopReason::OversizedInput));
                 }
-                self.start(SpeechKind::Transcribe, language)
+                Ok(self.start(SpeechKind::Transcribe, language))
             }
             SpeechInput::Speak { language, text } => {
                 if text.trim().is_empty() {
@@ -165,7 +167,7 @@ impl AndroidSpeechState {
                 if text.len() > MAX_SPEAK_BYTES {
                     return Ok(self.stop_for(SpeechStopReason::OversizedInput));
                 }
-                self.start(SpeechKind::Speak, language)
+                Ok(self.start(SpeechKind::Speak, language))
             }
             SpeechInput::Transcript { language, text } => {
                 if self.active != Some(SpeechKind::Transcribe) {
@@ -184,7 +186,7 @@ impl AndroidSpeechState {
         }
     }
 
-    fn start(&mut self, kind: SpeechKind, language: String) -> Result<SpeechOutput, String> {
+    fn start(&mut self, kind: SpeechKind, language: String) -> SpeechOutput {
         let supported = self.tiers.get(&kind).is_some_and(|evidence| {
             evidence
                 .languages
@@ -192,13 +194,13 @@ impl AndroidSpeechState {
                 .any(|item| item.tag == language && item.installed)
         });
         if !supported {
-            return Ok(SpeechOutput::Unsupported {
+            return SpeechOutput::Unsupported {
                 kind,
                 fallback: fallback(kind),
-            });
+            };
         }
         self.active = Some(kind);
-        Ok(SpeechOutput::Started { kind, language })
+        SpeechOutput::Started { kind, language }
     }
 
     fn stop_for(&mut self, reason: SpeechStopReason) -> SpeechOutput {

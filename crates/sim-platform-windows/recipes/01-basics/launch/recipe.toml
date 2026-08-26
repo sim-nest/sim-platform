@@ -1,4 +1,5 @@
 schema = "sim.recipe/v1"
 title = "Launch through the Windows activation port"
+purpose = "Exercise bounded process launch through the Windows activation capsule."
 setup = "setup.siml"
 expected = "expected.txt"

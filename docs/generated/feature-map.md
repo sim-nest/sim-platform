@@ -18,6 +18,7 @@
 | `sim-platform-macos` | `workspace` | 0 | 0 |
 | `sim-platform-midi` | `workspace` | 2 | 0 |
 | `sim-platform-model` | `workspace` | 0 | 0 |
+| `sim-platform-sqlite` | `workspace` | 0 | 0 |
 | `sim-platform-ubuntu-pc` | `workspace` | 0 | 0 |
 | `sim-platform-ubuntu-rpi` | `workspace` | 0 | 0 |
 | `sim-platform-wasi` | `workspace` | 0 | 0 |

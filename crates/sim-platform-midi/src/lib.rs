@@ -13,13 +13,13 @@ use std::{
 /// Native API selected explicitly by the containing platform capsule.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum NativeMidiApi {
-    /// Linux ALSA sequencer through RtMidi.
+    /// Linux ALSA sequencer through `RtMidi`.
     AlsaRtMidi,
-    /// macOS CoreMIDI through RtMidi.
+    /// macOS `CoreMIDI` through `RtMidi`.
     CoreMidiRtMidi,
-    /// Windows multimedia MIDI through RtMidi.
+    /// Windows multimedia MIDI through `RtMidi`.
     WinMmRtMidi,
-    /// Linux BLE-MIDI through BlueZ D-Bus and GATT.
+    /// Linux BLE-MIDI through `BlueZ` D-Bus and GATT.
     BluezBleMidi,
 }
 

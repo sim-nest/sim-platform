@@ -95,7 +95,7 @@ impl ProcessPort for UbuntuProcess {
         }
         let mut command = Command::new(program);
         command
-            .args(request.argv.iter().map(|v| v.as_str()))
+            .args(request.argv.iter().map(sim_lib_exec::ArgAtom::as_str))
             .current_dir(root)
             .env_clear()
             .envs(environment)
@@ -180,40 +180,7 @@ pub(crate) fn run_child(
             let Some(input) = input.take() else {
                 unreachable!("checked above")
             };
-            if let Err(e) = input {
-                return unknown(started, "stdin", &e);
-            }
-            let out = match out {
-                Ok(v) => v,
-                Err(e) => return unknown(started, "capture", &e),
-            };
-            let err = match err {
-                Ok(v) => v,
-                Err(e) => return unknown(started, "capture", &e),
-            };
-            let truncated = match budget.lock() {
-                Ok(v) => v.truncated,
-                Err(_) => return unknown(started, "capture", "output budget poisoned"),
-            };
-            let pgid = child.id();
-            if group_exists(pgid) {
-                if let Err(detail) = terminate_tree(child) {
-                    return unknown(started, "cleanup", &detail);
-                }
-            }
-            let elapsed_mono_ns = u64::try_from(started.elapsed().as_nanos()).unwrap_or(u64::MAX);
-            return ProcessAttempt::Completed {
-                receipt: ProcessReceipt {
-                    provider: "platform/site/ubuntu-pc".into(),
-                    elapsed_mono_ns,
-                    result: ProcResult {
-                        stdout: String::from_utf8_lossy(&out).into_owned(),
-                        stderr: String::from_utf8_lossy(&err).into_owned(),
-                        exit_code: status.code().unwrap_or(-1),
-                        truncated,
-                    },
-                },
-            };
+            return completed(child, started, status, out, err, input, &budget);
         }
         let cancelled = cancellation.is_cancelled();
         if cancelled || Instant::now() >= deadline {
@@ -242,6 +209,49 @@ pub(crate) fn run_child(
             };
         }
         thread::sleep(Duration::from_millis(2));
+    }
+}
+
+fn completed(
+    child: &mut Child,
+    started: Instant,
+    status: std::process::ExitStatus,
+    out: Result<Vec<u8>, String>,
+    err: Result<Vec<u8>, String>,
+    input: Result<(), String>,
+    budget: &Mutex<Budget>,
+) -> ProcessAttempt {
+    if let Err(error) = input {
+        return unknown(started, "stdin", &error);
+    }
+    let out = match out {
+        Ok(value) => value,
+        Err(error) => return unknown(started, "capture", &error),
+    };
+    let err = match err {
+        Ok(value) => value,
+        Err(error) => return unknown(started, "capture", &error),
+    };
+    let truncated = match budget.lock() {
+        Ok(value) => value.truncated,
+        Err(_) => return unknown(started, "capture", "output budget poisoned"),
+    };
+    if group_exists(child.id())
+        && let Err(detail) = terminate_tree(child)
+    {
+        return unknown(started, "cleanup", &detail);
+    }
+    ProcessAttempt::Completed {
+        receipt: ProcessReceipt {
+            provider: "platform/site/ubuntu-pc".into(),
+            elapsed_mono_ns: u64::try_from(started.elapsed().as_nanos()).unwrap_or(u64::MAX),
+            result: ProcResult {
+                stdout: String::from_utf8_lossy(&out).into_owned(),
+                stderr: String::from_utf8_lossy(&err).into_owned(),
+                exit_code: status.code().unwrap_or(-1),
+                truncated,
+            },
+        },
     }
 }
 fn reader<R: Read + Send + 'static>(

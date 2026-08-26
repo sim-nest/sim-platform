@@ -5,22 +5,22 @@
 | Card | Kind | Owner | Summary |
 | --- | --- | --- | --- |
 | `browse/catalog` | `browse-root` | `workspace` | root browse catalog |
-| `cookbook/sim-lib-platform` | `cookbook-recipe` | `sim-lib-platform` |  |
-| `cookbook/sim-platform-amazfit` | `cookbook-recipe` | `sim-platform-amazfit` |  |
-| `cookbook/sim-platform-android` | `cookbook-recipe` | `sim-platform-android` |  |
-| `cookbook/sim-platform-bootstrap` | `cookbook-recipe` | `sim-platform-bootstrap` |  |
-| `cookbook/sim-platform-browser` | `cookbook-recipe` | `sim-platform-browser` |  |
-| `cookbook/sim-platform-construction` | `cookbook-recipe` | `sim-platform-construction` |  |
-| `cookbook/sim-platform-core` | `cookbook-recipe` | `sim-platform-core` |  |
-| `cookbook/sim-platform-halo` | `cookbook-recipe` | `sim-platform-halo` |  |
-| `cookbook/sim-platform-ios` | `cookbook-recipe` | `sim-platform-ios` |  |
-| `cookbook/sim-platform-linux` | `cookbook-recipe` | `sim-platform-linux` |  |
-| `cookbook/sim-platform-macos` | `cookbook-recipe` | `sim-platform-macos` |  |
-| `cookbook/sim-platform-model` | `cookbook-recipe` | `sim-platform-model` |  |
-| `cookbook/sim-platform-ubuntu-pc` | `cookbook-recipe` | `sim-platform-ubuntu-pc` |  |
-| `cookbook/sim-platform-ubuntu-rpi` | `cookbook-recipe` | `sim-platform-ubuntu-rpi` |  |
-| `cookbook/sim-platform-wasi` | `cookbook-recipe` | `sim-platform-wasi` |  |
-| `cookbook/sim-platform-web-shell` | `cookbook-recipe` | `sim-platform-web-shell` |  |
-| `cookbook/sim-platform-windows` | `cookbook-recipe` | `sim-platform-windows` |  |
+| `cookbook/platform/amazfit` | `cookbook-recipe` | `sim-platform-amazfit` | Modeled and cross-built Amazfit capsule recipes. |
+| `cookbook/platform/android` | `cookbook-recipe` | `sim-platform-android` | Exercise bounded Android capsule services. |
+| `cookbook/platform/bootstrap` | `cookbook-recipe` | `sim-platform-bootstrap` | Compose explicit platform bootstrap inputs. |
+| `cookbook/platform/browser` | `cookbook-recipe` | `sim-platform-browser` | Exercise browser-owned platform services. |
+| `cookbook/platform/construction` | `cookbook-recipe` | `sim-platform-construction` | Realize construction integration ports at the platform boundary. |
+| `cookbook/platform/core` | `cookbook-recipe` | `sim-platform-core` | Compose and attest provider-neutral platform records. |
+| `cookbook/platform/halo` | `cookbook-recipe` | `sim-platform-halo` | One view-and-input flow across modeled, emulator, and physical placements. |
+| `cookbook/platform/ios` | `cookbook-recipe` | `sim-platform-ios` | Exercise bounded iOS capsule services. |
+| `cookbook/platform/lib` | `cookbook-recipe` | `sim-lib-platform` | Select platform capabilities through provider-neutral contracts. |
+| `cookbook/platform/linux` | `cookbook-recipe` | `sim-platform-linux` | Realize native Linux transport and process mechanics. |
+| `cookbook/platform/macos` | `cookbook-recipe` | `sim-platform-macos` | Exercise bounded macOS capsule services. |
+| `cookbook/platform/model` | `cookbook-recipe` | `sim-platform-model` | Run deterministic modeled platform services. |
+| `cookbook/platform/ubuntu-pc` | `cookbook-recipe` | `sim-platform-ubuntu-pc` | Realize Ubuntu PC compute, process, and sandbox services. |
+| `cookbook/platform/ubuntu-rpi` | `cookbook-recipe` | `sim-platform-ubuntu-rpi` | Exercise an explicitly profiled Ubuntu Raspberry Pi capsule. |
+| `cookbook/platform/wasi` | `cookbook-recipe` | `sim-platform-wasi` | Exercise bounded WASI capsule services. |
+| `cookbook/platform/web-shell` | `cookbook-recipe` | `sim-platform-web-shell` | Realize native services for the generic web shell. |
+| `cookbook/platform/windows` | `cookbook-recipe` | `sim-platform-windows` | Exercise bounded Windows capsule services. |
 | `cookbook/storage/table-fs` | `cookbook-recipe` | `sim-table-fs` | Host directory reads, writes, edits, and searches through the table surface. |
 | `registry/catalog` | `browse-registry` | `workspace` | registry catalog browse card |

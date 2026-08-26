@@ -100,6 +100,13 @@
       "summary": "Deterministic, host-free platform model and the standard platform site."
     },
     {
+      "crate_name": "sim_platform_sqlite",
+      "group": "workspace",
+      "manifest": "crates/sim-platform-sqlite/Cargo.toml",
+      "package": "sim-platform-sqlite",
+      "summary": "Attesting SQLite realization behind the provider-neutral relation site."
+    },
+    {
       "crate_name": "sim_platform_ubuntu_pc",
       "group": "workspace",
       "manifest": "crates/sim-platform-ubuntu-pc/Cargo.toml",

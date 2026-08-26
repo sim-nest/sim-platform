@@ -121,7 +121,7 @@ fn reconnect_suspend_and_consent_withdrawal_reap_state() {
 #[test]
 fn queue_and_surface_are_bounded_without_eviction() {
     let mut capsule = active(HostTransport::Android);
-    for sequence in 0..MAX_PENDING_EVENTS as u32 {
+    for sequence in 0..u32::try_from(MAX_PENDING_EVENTS).unwrap() {
         let frame = input(MessageKind::LinkState, sequence, vec![1]);
         assert_eq!(capsule.receive_fragment(&frame[0]), Ok(true));
     }

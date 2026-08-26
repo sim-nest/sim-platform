@@ -28,6 +28,7 @@ pub struct UbuntuComputeProbe {
 
 impl UbuntuComputeProbe {
     /// Uses Ubuntu's normal native library and adapter search policy.
+    #[must_use]
     pub fn new() -> Self {
         Self {
             cuda: CudaRuntimeLoader::new(),
@@ -88,7 +89,7 @@ impl WgpuProbePort for UbuntuComputeProbe {
         let adapters = pollster::block_on(instance.enumerate_adapters(policy.backends));
         let mut runtimes = adapters
             .into_iter()
-            .filter_map(|adapter| probe_adapter(adapter, policy).ok())
+            .filter_map(|adapter| probe_adapter(&adapter, policy).ok())
             .collect::<Vec<_>>();
         runtimes.sort_by(|left, right| {
             left.probe()
@@ -101,7 +102,7 @@ impl WgpuProbePort for UbuntuComputeProbe {
 }
 
 fn probe_adapter(
-    adapter: wgpu::Adapter,
+    adapter: &wgpu::Adapter,
     policy: &ProbePolicy,
 ) -> Result<WgpuAdapterRuntime, WgpuDiscoveryError> {
     let info = adapter.get_info();
@@ -115,7 +116,7 @@ fn probe_adapter(
         required_limits: required_limits.clone(),
         experimental_features: ExperimentalFeatures::disabled(),
         memory_hints: MemoryHints::Performance,
-        trace: Default::default(),
+        trace: wgpu::Trace::default(),
     };
     let (device, queue) = pollster::block_on(adapter.request_device(&descriptor))
         .map_err(|error| WgpuDiscoveryError::new(format!("wgpu request_device failed: {error}")))?;
@@ -208,6 +209,17 @@ mod tests {
     use sim_lib_compute_rocm::ComputeRocmLib;
     use sim_lib_compute_wgpu::ComputeWgpuLib;
 
+    struct EmptyWgpuProbe;
+
+    impl WgpuProbePort for EmptyWgpuProbe {
+        fn probe_wgpu(
+            &self,
+            _policy: &ProbePolicy,
+        ) -> Result<Vec<WgpuAdapterRuntime>, WgpuDiscoveryError> {
+            Ok(Vec::new())
+        }
+    }
+
     #[test]
     fn amd_target_observation_is_filtered_sorted_and_deduplicated() {
         assert_eq!(
@@ -217,14 +229,15 @@ mod tests {
     }
 
     #[test]
-    fn absent_native_runtimes_cross_membrane_once_and_export_no_provider() {
+    fn absent_native_runtimes_export_no_provider() {
         let probe = UbuntuComputeProbe {
             cuda: CudaRuntimeLoader::with_search_dirs_only(Vec::new()),
             rocm: RocmRuntimeLoader::with_search_dirs_only(Vec::new()),
         };
         assert!(ComputeCudaLib::from_probe_port(&probe).is_err());
         assert!(ComputeRocmLib::from_probe_port(&probe).is_err());
-        let wgpu = ComputeWgpuLib::from_probe_port(&probe, &ProbePolicy::default()).unwrap();
+        let wgpu =
+            ComputeWgpuLib::from_probe_port(&EmptyWgpuProbe, &ProbePolicy::default()).unwrap();
         assert!(sim_kernel::Lib::manifest(&wgpu).exports.is_empty());
     }
 }

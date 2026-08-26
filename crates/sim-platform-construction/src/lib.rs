@@ -17,6 +17,10 @@ pub struct UreqDaluxTransport {
 
 impl UreqDaluxTransport {
     /// Creates a transport with an explicit response-size budget.
+    ///
+    /// # Errors
+    ///
+    /// Returns an error when the response-size budget is zero.
     pub fn new(max_response_bytes: usize) -> Result<Self, String> {
         if max_response_bytes == 0 {
             return Err("Dalux response budget must be positive".to_owned());
@@ -39,8 +43,7 @@ impl DaluxTransport for UreqDaluxTransport {
             None => call.call(),
         };
         let response = match response {
-            Ok(response) => response,
-            Err(ureq::Error::Status(_, response)) => response,
+            Ok(response) | Err(ureq::Error::Status(_, response)) => response,
             Err(error) => return Err(format!("Dalux transport failed: {error}")),
         };
         let status = response.status();
@@ -66,6 +69,10 @@ pub struct PowerprojectBridge {
 
 impl PowerprojectBridge {
     /// Supplies the already-approved bridge executable; no environment discovery occurs.
+    ///
+    /// # Errors
+    ///
+    /// Returns an error when the executable path is empty.
     pub fn new(executable: PathBuf) -> Result<Self, String> {
         if executable.as_os_str().is_empty() {
             return Err("Powerproject bridge path is empty".to_owned());

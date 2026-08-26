@@ -1,3 +1,5 @@
+book = "platform/halo"
 title = "Halo proxy capsule"
-description = "One view-and-input flow across modeled, emulator, and physical placements."
+summary = "One view-and-input flow across modeled, emulator, and physical placements."
+order = 10
 chapters = ["01-basics"]

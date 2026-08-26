@@ -1,8 +1,17 @@
-# Amazfit proxy capsule
+# sim-platform-amazfit
 
-Model a possible consent-bound Amazfit proxy without claiming that the delivered
-watch shell reaches Android Rust. Versioned frames, reconnect sessions,
-duplicate suppression, and hard queue and payload limits make the model
-predictable and fail-closed; physical watch-provider and worn-view roles remain
-explicitly unsupported until the missing local handoff is implemented and
-attested offline.
+In one line: Bounded Amazfit and Zepp OS proxy capsule.
+
+## What it gives you
+
+Model a possible consent-bound Amazfit proxy without claiming that the delivered watch shell reaches Android Rust. Versioned frames, reconnect sessions, duplicate suppression, and hard queue and payload limits make the model predictable and fail-closed; physical watch-provider and worn-view roles remain explicitly unsupported until the missing local handoff is implemented and attested offline. The contract keeps inputs, outputs, limits, and refusal cases explicit, so callers can compose the capability without acquiring unrelated host, transport, or product authority. Stable records make the result suitable for tests, inspection, and deterministic integration.
+
+## Why you will be glad
+
+- The public contract makes supported behavior, limits, and typed failures visible before integration.
+- One owning crate prevents neighboring libraries from growing competing copies of the same policy.
+- Deterministic records and checked tests keep adapters reviewable when implementations evolve.
+
+## Where it fits
+
+Within SIM, sim-platform-amazfit owns only the focused contract described above. Adjacent runtime libraries, platform adapters, codecs, and user surfaces can build around it while retaining their own policy. That boundary keeps the kernel small, avoids competing implementations, and lets this capability evolve without forcing unrelated components to change.

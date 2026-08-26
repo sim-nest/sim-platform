@@ -1,4 +1,4 @@
-//! Attesting SQLite realization behind the provider-neutral relation site.
+//! Attesting `SQLite` realization behind the provider-neutral relation site.
 #![forbid(unsafe_code)]
 #![deny(missing_docs)]
 
@@ -28,6 +28,8 @@ use std::{
     time::Instant,
 };
 
+const HEX: &[u8; 16] = b"0123456789abcdef";
+
 /// Capsule-owned map from stable preopened names to private host paths.
 #[derive(Clone, Default)]
 pub struct PreopenedStores(Arc<BTreeMap<Symbol, PathBuf>>);
@@ -41,7 +43,7 @@ impl PreopenedStores {
     }
 }
 
-/// The sole SQLite driver, configured with admitted domains and preopened storage.
+/// The sole `SQLite` driver, configured with admitted domains and preopened storage.
 pub struct SqliteDriver {
     domains: Arc<DomainCatalog>,
     stores: PreopenedStores,
@@ -49,6 +51,7 @@ pub struct SqliteDriver {
 }
 impl SqliteDriver {
     /// Constructs the capsule driver.
+    #[must_use]
     pub fn new(domains: DomainCatalog, stores: PreopenedStores) -> Self {
         Self {
             domains: Arc::new(domains),
@@ -57,9 +60,14 @@ impl SqliteDriver {
         }
     }
     /// Constructs the canonical loadable site library.
-    pub fn library(self, locator: StorageLocator) -> Result<RelationSiteLib, SiteError> {
+    ///
+    /// # Errors
+    ///
+    /// Returns a registration refusal when the canonical driver manifest is
+    /// invalid.
+    pub fn library(self, locator: &StorageLocator) -> Result<RelationSiteLib, SiteError> {
         let manifest = DriverManifest::sqlite(site_symbol(), provider_symbol())?;
-        let datum = locator_datum(&locator);
+        let datum = locator_datum(locator);
         Ok(RelationSiteLib::new(RelationSite::new(
             RelationPlacement::new(manifest.site, datum),
             Arc::new(self),
@@ -68,14 +76,21 @@ impl SqliteDriver {
 }
 
 /// Canonical exported site symbol.
+#[must_use]
 pub fn site_symbol() -> Symbol {
     Symbol::qualified("relation/site", "sqlite")
 }
 /// Canonical provider identity.
+#[must_use]
 pub fn provider_symbol() -> Symbol {
     Symbol::qualified("relation/provider", "sqlite")
 }
-/// Verifies that a manifest declares exactly the SQLite kernel site export.
+/// Verifies that a manifest declares exactly the `SQLite` kernel site export.
+///
+/// # Errors
+///
+/// Returns [`SiteError::Registration`] unless exactly one canonical site export
+/// is declared.
 pub fn verify_manifest(manifest: &LibManifest) -> Result<(), SiteError> {
     let count = manifest.exports.iter().filter(|export| matches!(export, sim_kernel::Export::Site { symbol, .. } if symbol == &site_symbol())).count();
     if count == 1 {
@@ -123,7 +138,7 @@ impl Driver for SqliteDriver {
                 Connection::open_with_flags(path, flags)
             }
         }
-        .map_err(map_error)?;
+        .map_err(|error| map_error(&error))?;
         configure(&connection, self.busy_ms, limits)?;
         Ok(Box::new(SqliteSession {
             connection,
@@ -139,10 +154,10 @@ impl Driver for SqliteDriver {
 fn configure(connection: &Connection, busy_ms: u32, limits: &Limits) -> Result<(), SiteError> {
     connection
         .pragma_update(None, "foreign_keys", "ON")
-        .map_err(map_error)?;
+        .map_err(|error| map_error(&error))?;
     connection
         .busy_timeout(std::time::Duration::from_millis(u64::from(busy_ms)))
-        .map_err(map_error)?;
+        .map_err(|error| map_error(&error))?;
     let started = Instant::now();
     let deadline = limits.deadline;
     connection.progress_handler(
@@ -177,17 +192,21 @@ impl SqliteSession {
         let mut statement = self
             .connection
             .prepare_cached(prepared.text())
-            .map_err(map_error)?;
+            .map_err(|error| map_error(&error))?;
         if prepared.cache_key().output_row_type.fields().is_empty() {
-            let affected = statement.execute(refs.as_slice()).map_err(map_error)? as u64;
+            let affected = statement
+                .execute(refs.as_slice())
+                .map_err(|error| map_error(&error))? as u64;
             return Ok(ProviderStats {
                 work: affected.max(1),
                 affected,
             });
         }
-        let mut rows = statement.query(refs.as_slice()).map_err(map_error)?;
+        let mut rows = statement
+            .query(refs.as_slice())
+            .map_err(|error| map_error(&error))?;
         let mut work = 0u64;
-        while let Some(row) = rows.next().map_err(map_error)? {
+        while let Some(row) = rows.next().map_err(|error| map_error(&error))? {
             work = work
                 .checked_add(1)
                 .ok_or(SiteError::Limit(sim_relation_site::LimitKind::Work))?;
@@ -202,7 +221,7 @@ impl SqliteSession {
                 .enumerate()
                 .map(|(index, field)| {
                     decode_cell(
-                        row.get_ref(index).map_err(map_error)?,
+                        row.get_ref(index).map_err(|error| map_error(&error))?,
                         &field.domain,
                         &self.domains,
                     )
@@ -228,7 +247,7 @@ impl SqliteSession {
             .map_err(|_| SiteError::Provider)?;
         self.connection
             .execute_batch("BEGIN IMMEDIATE")
-            .map_err(map_error)?;
+            .map_err(|error| map_error(&error))?;
         let result = (|| {
             let empty = sim_relation_core::RowType::new([]).map_err(|_| SiteError::Provider)?;
             let bindings = Bindings::new(&empty, []).map_err(|_| SiteError::Provider)?;
@@ -244,7 +263,9 @@ impl SqliteSession {
         })();
         match result {
             Ok(stats) => {
-                self.connection.execute_batch("COMMIT").map_err(map_error)?;
+                self.connection
+                    .execute_batch("COMMIT")
+                    .map_err(|error| map_error(&error))?;
                 self.invalidate();
                 Ok(stats)
             }
@@ -255,7 +276,7 @@ impl SqliteSession {
         }
     }
     fn write_attestation(&self, program: &CheckedProgram) -> Result<(), SiteError> {
-        self.connection.execute_batch("CREATE TABLE IF NOT EXISTS __sim_relation_attestation (singleton INTEGER PRIMARY KEY CHECK(singleton=1), logical_schema TEXT NOT NULL, physical_schema TEXT NOT NULL, revision TEXT NOT NULL)").map_err(map_error)?;
+        self.connection.execute_batch("CREATE TABLE IF NOT EXISTS __sim_relation_attestation (singleton INTEGER PRIMARY KEY CHECK(singleton=1), logical_schema TEXT NOT NULL, physical_schema TEXT NOT NULL, revision TEXT NOT NULL)").map_err(|error| map_error(&error))?;
         let physical = self.introspect(
             RevisionName::new(Symbol::new("current")).map_err(|_| SiteError::Conversion)?,
         )?;
@@ -272,7 +293,7 @@ impl SqliteSession {
                 "INSERT OR REPLACE INTO __sim_relation_attestation VALUES (1, ?1, ?2, ?3)",
                 (&logical, relation_id_text(&physical_id), revision),
             )
-            .map_err(map_error)?;
+            .map_err(|error| map_error(&error))?;
         Ok(())
     }
     fn invalidate(&mut self) {
@@ -326,9 +347,12 @@ impl Session for SqliteSession {
     ) -> Result<(), SiteError> {
         self.connection
             .execute_batch("BEGIN IMMEDIATE")
-            .map_err(map_error)?;
+            .map_err(|error| map_error(&error))?;
         match body(self) {
-            Ok(()) => self.connection.execute_batch("COMMIT").map_err(map_error),
+            Ok(()) => self
+                .connection
+                .execute_batch("COMMIT")
+                .map_err(|error| map_error(&error)),
             Err(error) => {
                 let _ = self.connection.execute_batch("ROLLBACK");
                 Err(error)
@@ -370,7 +394,7 @@ impl Session for SqliteSession {
         };
         self.connection
             .execute("ATTACH DATABASE ?1 AS ?2", (&uri, name.name.as_ref()))
-            .map_err(map_error)?;
+            .map_err(|error| map_error(&error))?;
         self.invalidate();
         Ok(ProviderStats {
             work: 1,
@@ -387,12 +411,12 @@ impl Transaction for SqliteSession {
         let name = format!("sim_savepoint_{}", self.savepoint);
         self.connection
             .execute_batch(&format!("SAVEPOINT {name}"))
-            .map_err(map_error)?;
+            .map_err(|error| map_error(&error))?;
         match body(self) {
             Ok(()) => self
                 .connection
                 .execute_batch(&format!("RELEASE {name}"))
-                .map_err(map_error),
+                .map_err(|error| map_error(&error)),
             Err(error) => {
                 let _ = self
                     .connection
@@ -498,15 +522,21 @@ fn valid_source(value: &Symbol) -> bool {
 }
 fn relation_id_text(value: &sim_relation_core::RelationId) -> String {
     let content = value.content_id();
-    let digest: String = content
-        .bytes
-        .iter()
-        .map(|byte| format!("{byte:02x}"))
-        .collect();
+    let mut digest = String::with_capacity(content.bytes.len() * 2);
+    for byte in content.bytes {
+        digest.push(char::from(HEX[usize::from(byte >> 4)]));
+        digest.push(char::from(HEX[usize::from(byte & 0x0f)]));
+    }
     format!("{}:{digest}", content.algorithm)
 }
-fn map_error(error: rusqlite::Error) -> SiteError {
-    use rusqlite::{Error::SqliteFailure, ffi::ErrorCode::*};
+fn map_error(error: &rusqlite::Error) -> SiteError {
+    use rusqlite::{
+        Error::SqliteFailure,
+        ffi::ErrorCode::{
+            ConstraintViolation, DatabaseBusy, DatabaseCorrupt, DatabaseLocked, NotADatabase,
+            OperationInterrupted, ReadOnly,
+        },
+    };
     match error {
         SqliteFailure(inner, _) => match inner.code {
             ConstraintViolation => SiteError::Constraint,
@@ -522,17 +552,22 @@ fn map_error(error: rusqlite::Error) -> SiteError {
     }
 }
 
-/// Normalizes the main SQLite catalog, excluding capsule metadata.
+/// Normalizes the main `SQLite` catalog, excluding capsule metadata.
+///
+/// # Errors
+///
+/// Returns a typed site refusal when catalog queries fail or observed names,
+/// domains, columns, indexes, or revisions cannot be normalized.
 pub fn introspect_connection(
     connection: &Connection,
     revision: RevisionName,
 ) -> Result<PhysicalSchema, SiteError> {
-    let mut tables_stmt = connection.prepare("SELECT name FROM sqlite_schema WHERE type='table' AND name NOT LIKE 'sqlite_%' AND name NOT LIKE '__sim_%' ORDER BY name").map_err(map_error)?;
+    let mut tables_stmt = connection.prepare("SELECT name FROM sqlite_schema WHERE type='table' AND name NOT LIKE 'sqlite_%' AND name NOT LIKE '__sim_%' ORDER BY name").map_err(|error| map_error(&error))?;
     let names = tables_stmt
         .query_map([], |row| row.get::<_, String>(0))
-        .map_err(map_error)?
+        .map_err(|error| map_error(&error))?
         .collect::<Result<Vec<_>, _>>()
-        .map_err(map_error)?;
+        .map_err(|error| map_error(&error))?;
     let mut tables = Vec::new();
     for name in names {
         if !valid_source(&Symbol::new(name.as_str())) {
@@ -543,7 +578,7 @@ pub fn introspect_connection(
                 "PRAGMA table_info(\"{}\")",
                 name.replace('"', "\"\"")
             ))
-            .map_err(map_error)?;
+            .map_err(|error| map_error(&error))?;
         let columns = columns_stmt
             .query_map([], |row| {
                 Ok((
@@ -553,9 +588,9 @@ pub fn introspect_connection(
                     row.get::<_, i64>(3)?,
                 ))
             })
-            .map_err(map_error)?
+            .map_err(|error| map_error(&error))?
             .map(|result| {
-                let (ordinal, name, ty, notnull) = result.map_err(map_error)?;
+                let (ordinal, name, ty, notnull) = result.map_err(|error| map_error(&error))?;
                 let (domain, storage) = affinity(&ty);
                 Ok(PhysicalColumn {
                     name: ColumnName::new(Symbol::new(name)).map_err(|_| SiteError::Conversion)?,
@@ -571,14 +606,14 @@ pub fn introspect_connection(
                 "PRAGMA index_list(\"{}\")",
                 name.replace('"', "\"\"")
             ))
-            .map_err(map_error)?;
+            .map_err(|error| map_error(&error))?;
         let index_rows = indexes_stmt
             .query_map([], |row| {
                 Ok((row.get::<_, String>(1)?, row.get::<_, i64>(2)?))
             })
-            .map_err(map_error)?
+            .map_err(|error| map_error(&error))?
             .collect::<Result<Vec<_>, _>>()
-            .map_err(map_error)?;
+            .map_err(|error| map_error(&error))?;
         let mut indexes = Vec::new();
         for (index_name, unique) in index_rows {
             if index_name.starts_with("sqlite_") {
@@ -589,12 +624,12 @@ pub fn introspect_connection(
                     "PRAGMA index_info(\"{}\")",
                     index_name.replace('"', "\"\"")
                 ))
-                .map_err(map_error)?;
+                .map_err(|error| map_error(&error))?;
             let keys = info
                 .query_map([], |row| row.get::<_, String>(2))
-                .map_err(map_error)?
+                .map_err(|error| map_error(&error))?
                 .map(|v| {
-                    ColumnName::new(Symbol::new(v.map_err(map_error)?))
+                    ColumnName::new(Symbol::new(v.map_err(|error| map_error(&error))?))
                         .map_err(|_| SiteError::Conversion)
                 })
                 .collect::<Result<Vec<_>, _>>()?;
@@ -623,6 +658,12 @@ pub fn introspect_connection(
 ///
 /// Adoption cannot bless drift: the authored physical identity must equal a
 /// fresh normalized catalog observation before metadata is written.
+///
+/// # Errors
+///
+/// Returns a typed site refusal when introspection fails, retained attestation
+/// metadata disagrees, adoption proof is absent or invalid, or the metadata
+/// transaction cannot commit atomically.
 pub fn verify_or_adopt(
     connection: &mut Connection,
     logical_schema: sim_relation_core::RelationId,
@@ -652,8 +693,10 @@ pub fn verify_or_adopt(
             .ok_or(SiteError::Drift)?
             .verify(&physical_schema)
             .map_err(|_| SiteError::Drift)?;
-        let transaction = connection.transaction().map_err(map_error)?;
-        transaction.execute_batch("CREATE TABLE __sim_relation_attestation (singleton INTEGER PRIMARY KEY CHECK(singleton=1), logical_schema TEXT NOT NULL, physical_schema TEXT NOT NULL, revision TEXT NOT NULL)").map_err(map_error)?;
+        let transaction = connection
+            .transaction()
+            .map_err(|error| map_error(&error))?;
+        transaction.execute_batch("CREATE TABLE __sim_relation_attestation (singleton INTEGER PRIMARY KEY CHECK(singleton=1), logical_schema TEXT NOT NULL, physical_schema TEXT NOT NULL, revision TEXT NOT NULL)").map_err(|error| map_error(&error))?;
         transaction
             .execute(
                 "INSERT INTO __sim_relation_attestation VALUES (1, ?1, ?2, ?3)",
@@ -663,8 +706,8 @@ pub fn verify_or_adopt(
                     relation_id_text(&revision),
                 ),
             )
-            .map_err(map_error)?;
-        transaction.commit().map_err(map_error)?;
+            .map_err(|error| map_error(&error))?;
+        transaction.commit().map_err(|error| map_error(&error))?;
     }
     Ok(SchemaAttestation {
         logical_schema,
@@ -711,7 +754,7 @@ mod tests {
         ])
         .unwrap();
         let lib = SqliteDriver::new(domains, PreopenedStores::default())
-            .library(StorageLocator::Memory)
+            .library(&StorageLocator::Memory)
             .unwrap();
         verify_manifest(&lib.manifest()).unwrap();
         assert_eq!(lib.manifest().exports.len(), 1);
@@ -786,7 +829,9 @@ mod tests {
             "kept"
         );
         assert!(matches!(
-            read_only.execute("DELETE FROM item", []).map_err(map_error),
+            read_only
+                .execute("DELETE FROM item", [])
+                .map_err(|error| map_error(&error)),
             Err(SiteError::ReadOnly)
         ));
     }
@@ -824,11 +869,11 @@ mod tests {
         assert!(matches!(
             connection
                 .execute("INSERT INTO unique_value VALUES(1)", [])
-                .map_err(map_error),
+                .map_err(|error| map_error(&error)),
             Err(SiteError::Constraint)
         ));
         assert!(matches!(
-            Connection::open(&dir).map_err(map_error),
+            Connection::open(&dir).map_err(|error| map_error(&error)),
             Err(SiteError::Provider)
         ));
     }
@@ -912,7 +957,7 @@ mod tests {
             |row| row.get::<_, i64>(0),
         );
         assert!(matches!(
-            interrupted.map_err(map_error),
+            interrupted.map_err(|error| map_error(&error)),
             Err(SiteError::Interrupted)
         ));
     }

@@ -532,6 +532,7 @@ pub enum BundleRefusal {
     MissingAttestation(OpenSymbol),
     DuplicateAttestation(OpenSymbol),
     UndeclaredArtifact(OpenSymbol),
+    InvalidCardEncoding(OpenSymbol),
     EvidenceContentMismatch(OpenSymbol),
     CapabilityEscalation {
         content: OpenSymbol,
@@ -551,6 +552,12 @@ impl std::error::Error for BundleRefusal {}
 /// Composes one selected capsule with an explicit application and library
 /// closure. No substitute capsule is considered when the selected Card is
 /// absent or invalid.
+///
+/// # Errors
+///
+/// Returns a typed, fail-closed refusal when the selected capsule evidence,
+/// declared artifacts, required services, content closure, or capability
+/// envelope is invalid.
 pub fn compose_bundle(input: BundleComposition<'_>) -> Result<ComposedBundle, BundleRefusal> {
     let matching_cards = input
         .cards
@@ -575,7 +582,9 @@ pub fn compose_bundle(input: BundleComposition<'_>) -> Result<ComposedBundle, Bu
     let Some(artifact_digest) = input.declared_artifacts.get(input.capsule) else {
         return Err(BundleRefusal::UndeclaredArtifact(input.capsule.clone()));
     };
-    let card_digest = stable_digest(&serde_json::to_vec(card).expect("platform Card serializes"));
+    let card_bytes = serde_json::to_vec(card)
+        .map_err(|_| BundleRefusal::InvalidCardEncoding(input.capsule.clone()))?;
+    let card_digest = stable_digest(&card_bytes);
     if attestation.artifact_digest != *artifact_digest || attestation.card_digest != card_digest {
         return Err(BundleRefusal::EvidenceContentMismatch(
             input.capsule.clone(),
@@ -634,6 +643,7 @@ pub struct PlatformSupportRow {
 
 /// Generates support rows without consulting target names or hand-maintained
 /// support lists.
+#[must_use]
 pub fn platform_support_matrix(bundles: &[ComposedBundle]) -> Vec<PlatformSupportRow> {
     let mut rows = bundles
         .iter()

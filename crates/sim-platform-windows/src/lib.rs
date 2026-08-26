@@ -136,11 +136,21 @@ impl<N: NativeServices> WindowsCapsule<N> {
         self.native.cancel_process_tree();
         Ok(())
     }
+    /// Suspends an active capsule without discarding its bounded state.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`CapsuleError::Stopped`] after terminal shutdown.
     pub fn suspend(&mut self) -> Result<(), CapsuleError> {
         self.ensure_running()?;
         self.lifecycle = Lifecycle::Suspended;
         Ok(())
     }
+    /// Resumes a suspended capsule into its ready lifecycle.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`CapsuleError::Stopped`] after terminal shutdown.
     pub fn resume(&mut self) -> Result<(), CapsuleError> {
         if self.lifecycle == Lifecycle::Suspended {
             self.lifecycle = Lifecycle::Ready;

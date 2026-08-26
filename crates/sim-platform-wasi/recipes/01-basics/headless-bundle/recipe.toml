@@ -1,4 +1,5 @@
 name = "headless-wasi-bundle"
+title = "Activate a headless WASI bundle"
 purpose = "Activate a headless WASI component whose complete authority is declared in its bundle."
 setup = "setup.siml"
 expected = "expected.txt"

@@ -93,7 +93,11 @@ fn site_binds_only_explicit_services_and_shape_checks_result() {
         BTreeMap::from([(service_symbol.clone(), service)]),
         vec![],
     );
-    let mut cx = Cx::new(Arc::new(EagerPolicy), Arc::new(DefaultFactory));
+    let mut cx = Cx::new(
+        Arc::new(EagerPolicy),
+        Arc::new(DefaultFactory),
+        sim_kernel::HandleSeed::new(0x504c_4154),
+    );
     let request = EvalRequest {
         expr: Expr::Symbol(service_symbol),
         result_shape: None,

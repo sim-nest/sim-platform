@@ -28,6 +28,12 @@ pub enum RoutingContract {
 }
 
 impl RoutingContract {
+    /// Selects the bounded Android routing contract for `api_level`.
+    ///
+    /// # Errors
+    ///
+    /// Returns an error outside the explicitly supported API 28 through 35
+    /// range.
     pub fn for_api(api_level: u16) -> Result<Self, String> {
         match api_level {
             28..=30 => Ok(Self::Api28To30CommunicationMode),
@@ -79,6 +85,8 @@ pub struct RouteObservation {
 }
 
 #[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
+// These are independent attested route conditions, not a hidden state machine.
+#[allow(clippy::struct_excessive_bools)]
 pub struct AudioRouteReceipt {
     pub turn_content_id: String,
     pub capture: Vec<AudioRouteClass>,

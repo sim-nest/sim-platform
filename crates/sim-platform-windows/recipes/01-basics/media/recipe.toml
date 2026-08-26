@@ -1,4 +1,5 @@
 schema = "sim.recipe/v1"
 title = "Select Windows media services"
+purpose = "Select explicit Windows media service bindings."
 setup = "setup.siml"
 expected = "expected.txt"

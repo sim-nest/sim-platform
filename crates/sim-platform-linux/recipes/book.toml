@@ -1,2 +1,5 @@
+book = "platform/linux"
 title = "Linux capsule mechanics"
+summary = "Realize native Linux transport and process mechanics."
+order = 10
 chapters = []

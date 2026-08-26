@@ -1,2 +1,5 @@
+book = "platform/macos"
 title = "macOS capsule recipes"
-chapters = ["01-basics/chapter.toml"]
+summary = "Exercise bounded macOS capsule services."
+order = 10
+chapters = ["01-basics"]

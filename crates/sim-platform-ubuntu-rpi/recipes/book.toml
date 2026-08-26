@@ -1,2 +1,5 @@
+book = "platform/ubuntu-rpi"
 title = "Ubuntu Raspberry Pi capsule"
-chapters = ["01-basics/chapter.toml"]
+summary = "Exercise an explicitly profiled Ubuntu Raspberry Pi capsule."
+order = 10
+chapters = ["01-basics"]

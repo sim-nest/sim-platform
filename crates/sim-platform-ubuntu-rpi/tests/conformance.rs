@@ -10,9 +10,9 @@ fn hostile_profile_observed_services_exactly_equal_card() {
     let observed = PiService::ALL
         .into_iter()
         .filter(|service| profile.require(*service).is_ok())
-        .map(|service| service.symbol())
+        .map(PiService::symbol)
         .collect::<BTreeSet<_>>();
-    let registered = register(profile.clone());
+    let registered = register(profile.clone()).unwrap();
     let card = registered
         .card
         .services
@@ -40,7 +40,7 @@ fn ubuntu_derivation_does_not_inherit_linux_services() {
     let profile = sim_platform_ubuntu_rpi::UbuntuRpiProfile::from_ubuntu_headless("c03115");
     assert!(profile.bindings.is_empty());
     assert!(profile.permissions.is_empty());
-    assert_eq!(register(profile).card.services, Vec::new());
+    assert_eq!(register(profile).unwrap().card.services, Vec::new());
 }
 
 #[test]

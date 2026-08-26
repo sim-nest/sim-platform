@@ -82,6 +82,7 @@ fn compute_acceptance(args: Vec<String>) -> Result<(), String> {
     let (mut cx, seat) = sim_kernel::Cx::new_seated(
         Arc::new(sim_kernel::EagerPolicy),
         Arc::new(sim_kernel::DefaultFactory),
+        sim_kernel::HandleSeed::new(0x504c_4154),
     );
     seat.grant(
         &mut cx,

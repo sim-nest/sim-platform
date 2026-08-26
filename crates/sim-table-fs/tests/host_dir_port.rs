@@ -87,11 +87,11 @@ fn cas_conformance(port: &dyn HostDirPort) {
     assert!(port.metadata(&leaf).unwrap().is_none());
 }
 
-fn concurrent_claimers(port: Arc<dyn HostDirPort>) {
+fn concurrent_claimers(port: &Arc<dyn HostDirPort>) {
     let barrier = Arc::new(Barrier::new(3));
     let mut workers = Vec::new();
     for value in [b"one".as_slice(), b"two".as_slice()] {
-        let port = Arc::clone(&port);
+        let port = Arc::clone(port);
         let barrier = Arc::clone(&barrier);
         let value = value.to_vec();
         workers.push(std::thread::spawn(move || {
@@ -116,11 +116,14 @@ fn concurrent_claimers(port: Arc<dyn HostDirPort>) {
 fn model_and_ubuntu_share_conformance() {
     conformance(&MemoryHostDirPort::new("model", 4096));
     cas_conformance(&MemoryHostDirPort::new("model-cas", 4096));
-    concurrent_claimers(Arc::new(MemoryHostDirPort::new("model-race", 4096)));
+    let model_port: Arc<dyn HostDirPort> = Arc::new(MemoryHostDirPort::new("model-race", 4096));
+    concurrent_claimers(&model_port);
     let root = temp_root("ubuntu");
     conformance(&UbuntuHostDirPort::open(root.clone()).unwrap());
     cas_conformance(&UbuntuHostDirPort::open(root.clone()).unwrap());
-    concurrent_claimers(Arc::new(UbuntuHostDirPort::open(root.clone()).unwrap()));
+    let ubuntu_port: Arc<dyn HostDirPort> =
+        Arc::new(UbuntuHostDirPort::open(root.clone()).unwrap());
+    concurrent_claimers(&ubuntu_port);
     std::fs::remove_dir_all(root).unwrap();
 }
 

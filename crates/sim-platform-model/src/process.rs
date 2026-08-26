@@ -182,7 +182,7 @@ mod tests {
             panic!()
         };
         assert_eq!(receipt.result.exit_code, 7);
-        assert!(receipt.result.truncated)
+        assert!(receipt.result.truncated);
     }
     #[test]
     fn stopped_outcomes_assert_cleanup() {
@@ -197,6 +197,6 @@ mod tests {
         assert!(matches!(
             model.run(&request(), &ProcessCancellation::default()),
             ProcessAttempt::StoppedAfterCancel { .. }
-        ))
+        ));
     }
 }

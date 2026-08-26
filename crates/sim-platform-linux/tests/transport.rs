@@ -1,11 +1,49 @@
-use sim_platform_linux::{LinuxDnsPort, LinuxIpcPort, LinuxSocketPort};
+use sim_kernel::{Cx, DefaultFactory, EagerPolicy, HandleSeed};
+use sim_lib_server::{ServerAddress, ServerTransport, TcpServerTransport};
+use sim_platform_linux::{LinuxDnsPort, LinuxIpcPort, LinuxSocketPort, bind_transport_services};
 use sim_transport_ports::{
-    DnsPort, IpcAddress, IpcPort, SocketAddress, SocketPort, TransportErrorKind,
+    DnsPort, Half, IpcAddress, IpcPort, SocketAddress, SocketPort, TransportErrorKind,
 };
 use std::{
     io::{Read, Write},
     net::{IpAddr, Ipv4Addr},
+    sync::Arc,
+    time::Duration,
 };
+
+#[test]
+fn server_tcp_transport_uses_the_explicit_linux_capsule() {
+    bind_transport_services().unwrap();
+    let listener = TcpServerTransport::bind(ServerAddress::Tcp {
+        host: "127.0.0.1".to_owned(),
+        port: 0,
+    })
+    .unwrap();
+    let ServerAddress::Tcp { host, port } = listener.address() else {
+        panic!("expected the bound TCP address");
+    };
+    let client = LinuxSocketPort
+        .connect_tcp(&SocketAddress::Ip {
+            address: host.parse().unwrap(),
+            port: *port,
+        })
+        .unwrap();
+    let mut cx = Cx::new(
+        Arc::new(EagerPolicy),
+        Arc::new(DefaultFactory),
+        HandleSeed::new(0x5a4f_50a1_71a0_0001),
+    );
+    let _server = loop {
+        if let Some(connection) = listener
+            .accept_timeout(&mut cx, Duration::from_millis(25))
+            .unwrap()
+        {
+            break connection;
+        }
+    };
+    client.shutdown(Half::Both).unwrap();
+    listener.shutdown(&mut cx).unwrap();
+}
 
 #[test]
 fn tcp_udp_dns_and_native_errors_are_capsule_owned() {

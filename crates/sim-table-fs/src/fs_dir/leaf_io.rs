@@ -70,11 +70,11 @@ impl FsDir {
     }
 
     pub(crate) fn decode_leaf_bytes(cx: &mut Cx, ext: &str, bytes: &[u8]) -> Result<Expr> {
-        Ok(match decode_expr_for_ext(ext, &bytes) {
+        Ok(match decode_expr_for_ext(ext, bytes) {
             Some(expr) => expr?,
             None => {
                 let codec = Self::codec_for_ext(ext)?;
-                Self::decode_expr_bytes(cx, &codec, &bytes)?
+                Self::decode_expr_bytes(cx, &codec, bytes)?
             }
         })
     }

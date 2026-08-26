@@ -1,5 +1,5 @@
+book = "platform/lib"
 title = "sim-lib-platform recipes"
-
-[[chapter]]
-path = "01-basics/chapter.toml"
-
+summary = "Select platform capabilities through provider-neutral contracts."
+order = 10
+chapters = ["01-basics"]

@@ -68,7 +68,7 @@ pub enum ProxyError {
     QueueFull,
 }
 
-/// Companion-owned proxy. Domain consumers see only WATCH_8 contracts produced by the host adapter.
+/// Companion-owned proxy. Domain consumers see only `WATCH_8` contracts produced by the host adapter.
 pub struct AmazfitCapsule {
     lifecycle: Lifecycle,
     consent: bool,
@@ -106,6 +106,12 @@ impl AmazfitCapsule {
         }
     }
 
+    /// Activates a consented capsule for `session`.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`ProxyError::ConsentRequired`] without consent or
+    /// [`ProxyError::Inactive`] unless the capsule lifecycle is active.
     pub fn connect(&mut self, session: u64) -> Result<(), ProxyError> {
         if !self.consent {
             return Err(ProxyError::ConsentRequired);
@@ -126,6 +132,12 @@ impl AmazfitCapsule {
         self.pending.clear();
     }
 
+    /// Accepts one bounded event frame from the companion transport.
+    ///
+    /// # Errors
+    ///
+    /// Returns a typed refusal for malformed, oversized, stale,
+    /// unauthorized, inactive, or over-capacity input.
     pub fn receive(&mut self, frame: &[u8]) -> Result<bool, ProxyError> {
         if frame.len() > MAX_FRAME_BYTES {
             return Err(ProxyError::Oversized);
@@ -160,6 +172,12 @@ impl AmazfitCapsule {
         self.pending.pop_front()
     }
 
+    /// Encodes one host command into the bounded companion wire format.
+    ///
+    /// # Errors
+    ///
+    /// Returns a typed refusal when the capsule is unauthorized or inactive,
+    /// the command is invalid, or the encoded frame exceeds protocol bounds.
     pub fn encode_command(
         &self,
         sequence: u64,

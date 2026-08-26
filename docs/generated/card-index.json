@@ -8,106 +8,106 @@
       "summary": "root browse catalog"
     },
     {
-      "id": "cookbook/sim-lib-platform",
-      "kind": "cookbook-recipe",
-      "owner": "sim-lib-platform",
-      "summary": ""
-    },
-    {
-      "id": "cookbook/sim-platform-amazfit",
+      "id": "cookbook/platform/amazfit",
       "kind": "cookbook-recipe",
       "owner": "sim-platform-amazfit",
-      "summary": ""
+      "summary": "Modeled and cross-built Amazfit capsule recipes."
     },
     {
-      "id": "cookbook/sim-platform-android",
+      "id": "cookbook/platform/android",
       "kind": "cookbook-recipe",
       "owner": "sim-platform-android",
-      "summary": ""
+      "summary": "Exercise bounded Android capsule services."
     },
     {
-      "id": "cookbook/sim-platform-bootstrap",
+      "id": "cookbook/platform/bootstrap",
       "kind": "cookbook-recipe",
       "owner": "sim-platform-bootstrap",
-      "summary": ""
+      "summary": "Compose explicit platform bootstrap inputs."
     },
     {
-      "id": "cookbook/sim-platform-browser",
+      "id": "cookbook/platform/browser",
       "kind": "cookbook-recipe",
       "owner": "sim-platform-browser",
-      "summary": ""
+      "summary": "Exercise browser-owned platform services."
     },
     {
-      "id": "cookbook/sim-platform-construction",
+      "id": "cookbook/platform/construction",
       "kind": "cookbook-recipe",
       "owner": "sim-platform-construction",
-      "summary": ""
+      "summary": "Realize construction integration ports at the platform boundary."
     },
     {
-      "id": "cookbook/sim-platform-core",
+      "id": "cookbook/platform/core",
       "kind": "cookbook-recipe",
       "owner": "sim-platform-core",
-      "summary": ""
+      "summary": "Compose and attest provider-neutral platform records."
     },
     {
-      "id": "cookbook/sim-platform-halo",
+      "id": "cookbook/platform/halo",
       "kind": "cookbook-recipe",
       "owner": "sim-platform-halo",
-      "summary": ""
+      "summary": "One view-and-input flow across modeled, emulator, and physical placements."
     },
     {
-      "id": "cookbook/sim-platform-ios",
+      "id": "cookbook/platform/ios",
       "kind": "cookbook-recipe",
       "owner": "sim-platform-ios",
-      "summary": ""
+      "summary": "Exercise bounded iOS capsule services."
     },
     {
-      "id": "cookbook/sim-platform-linux",
+      "id": "cookbook/platform/lib",
+      "kind": "cookbook-recipe",
+      "owner": "sim-lib-platform",
+      "summary": "Select platform capabilities through provider-neutral contracts."
+    },
+    {
+      "id": "cookbook/platform/linux",
       "kind": "cookbook-recipe",
       "owner": "sim-platform-linux",
-      "summary": ""
+      "summary": "Realize native Linux transport and process mechanics."
     },
     {
-      "id": "cookbook/sim-platform-macos",
+      "id": "cookbook/platform/macos",
       "kind": "cookbook-recipe",
       "owner": "sim-platform-macos",
-      "summary": ""
+      "summary": "Exercise bounded macOS capsule services."
     },
     {
-      "id": "cookbook/sim-platform-model",
+      "id": "cookbook/platform/model",
       "kind": "cookbook-recipe",
       "owner": "sim-platform-model",
-      "summary": ""
+      "summary": "Run deterministic modeled platform services."
     },
     {
-      "id": "cookbook/sim-platform-ubuntu-pc",
+      "id": "cookbook/platform/ubuntu-pc",
       "kind": "cookbook-recipe",
       "owner": "sim-platform-ubuntu-pc",
-      "summary": ""
+      "summary": "Realize Ubuntu PC compute, process, and sandbox services."
     },
     {
-      "id": "cookbook/sim-platform-ubuntu-rpi",
+      "id": "cookbook/platform/ubuntu-rpi",
       "kind": "cookbook-recipe",
       "owner": "sim-platform-ubuntu-rpi",
-      "summary": ""
+      "summary": "Exercise an explicitly profiled Ubuntu Raspberry Pi capsule."
     },
     {
-      "id": "cookbook/sim-platform-wasi",
+      "id": "cookbook/platform/wasi",
       "kind": "cookbook-recipe",
       "owner": "sim-platform-wasi",
-      "summary": ""
+      "summary": "Exercise bounded WASI capsule services."
     },
     {
-      "id": "cookbook/sim-platform-web-shell",
+      "id": "cookbook/platform/web-shell",
       "kind": "cookbook-recipe",
       "owner": "sim-platform-web-shell",
-      "summary": ""
+      "summary": "Realize native services for the generic web shell."
     },
     {
-      "id": "cookbook/sim-platform-windows",
+      "id": "cookbook/platform/windows",
       "kind": "cookbook-recipe",
       "owner": "sim-platform-windows",
-      "summary": ""
+      "summary": "Exercise bounded Windows capsule services."
     },
     {
       "id": "cookbook/storage/table-fs",

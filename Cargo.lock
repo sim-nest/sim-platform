@@ -3,6 +3,24 @@
 version = 4
 
 [[package]]
+name = "adler2"
+version = "2.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "320119579fcad9c21884f5c4861d16174d0e06250625266f50fe6898340abefa"
+
+[[package]]
+name = "ahash"
+version = "0.8.12"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5a15f179cd60c4584b8a8c596927aadc462e27f2ca70c04e0071964a73ba7a75"
+dependencies = [
+ "cfg-if",
+ "once_cell",
+ "version_check",
+ "zerocopy",
+]
+
+[[package]]
 name = "aho-corasick"
 version = "1.1.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -10,6 +28,12 @@ checksum = "c982642fa9e8606056828ee9a8505737230110bb1099153c79efe865c59d12ba"
 dependencies = [
  "memchr",
 ]
+
+[[package]]
+name = "allocator-api2"
+version = "0.2.21"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "683d7910e743518b0e34f1186f92494becacb047c7b6bf616c96772180fef923"
 
 [[package]]
 name = "alsa"
@@ -40,6 +64,39 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f9fc9904ad2ad097c3c1cfe2eacaaf0fc24710936fa9ed941cb310b7c6ed2ab7"
 dependencies = [
  "windows-sys 0.52.0",
+]
+
+[[package]]
+name = "android_system_properties"
+version = "0.1.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ae221649c9976a6f6c56ae1facf410f3ddb33cc661c4b7b61020a912d4237fbc"
+dependencies = [
+ "libc",
+]
+
+[[package]]
+name = "arbitrary"
+version = "1.4.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c3d036a3c4ab069c7b410a2ce876bd74808d2d0888a82667669f8e783a898bf1"
+dependencies = [
+ "derive_arbitrary",
+]
+
+[[package]]
+name = "arrayvec"
+version = "0.7.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d3fb67a6e08acf24fdeccbac2cb6ac4305825bd1f117462e0e6f2f193345ad56"
+
+[[package]]
+name = "ash"
+version = "0.38.0+1.3.281"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0bb44936d800fea8f016d7f2311c6a4f97aebd5dc86f09906139ec848cf3a46f"
+dependencies = [
+ "libloading 0.8.9",
 ]
 
 [[package]]
@@ -186,6 +243,27 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f2032f911046de80f0a198e0901378627c33f59ea0ac00e363d481118bd70a53"
 
 [[package]]
+name = "base64"
+version = "0.22.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "72b3254f16251a8381aa12e40e3c4d2f0199f8c6508fbecb9d91f575e0fbb8c6"
+
+[[package]]
+name = "bit-set"
+version = "0.10.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "09ec2f926cc3060f09db9ebc5b52823d85268d24bb917e472c0c4bea35780a7d"
+dependencies = [
+ "bit-vec",
+]
+
+[[package]]
+name = "bit-vec"
+version = "0.9.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b71798fca2c1fe1086445a7258a4bc81e6e49dcd24c8d0dd9a1e57395b603f51"
+
+[[package]]
 name = "bitflags"
 version = "2.13.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -239,6 +317,26 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "72f5acc6cb2ba439de613abc23857ec3d78374d8ed5ac84e9d11336e87da8649"
 
 [[package]]
+name = "bytemuck"
+version = "1.25.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "95832e849adfb21180ccb6826a99da14e5d266ae5c2e668e1602cf234f153797"
+dependencies = [
+ "bytemuck_derive",
+]
+
+[[package]]
+name = "bytemuck_derive"
+version = "1.12.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fc0e56a716f1e132ff6bf4bdac1c944a3fcdc1cae65f70a4a2a1ac3b401d2d1f"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 3.0.3",
+]
+
+[[package]]
 name = "bytes"
 version = "1.12.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -265,6 +363,23 @@ name = "cfg-if"
 version = "1.0.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9330f8b2ff13f34540b44e946ef35111825727b38d33286ef986142615121801"
+
+[[package]]
+name = "cfg_aliases"
+version = "0.2.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f079e83a288787bcd14a6aea84cee5c87a67c5a3e660c30f557a3d24761b3527"
+
+[[package]]
+name = "codespan-reporting"
+version = "0.13.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "af491d569909a7e4dee0ad7db7f5341fef5c614d5b8ec8cf765732aba3cff681"
+dependencies = [
+ "serde",
+ "termcolor",
+ "unicode-width",
+]
 
 [[package]]
 name = "combine"
@@ -332,6 +447,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "crc32fast"
+version = "1.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9481c1c90cbf2ac953f07c8d4a58aa3945c425b7185c9154d67a65e4230da511"
+dependencies = [
+ "cfg-if",
+]
+
+[[package]]
 name = "crossbeam-utils"
 version = "0.8.22"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -354,6 +478,23 @@ dependencies = [
 ]
 
 [[package]]
+name = "deranged"
+version = "0.5.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7cd812cc2bc1d69d4764bd80df88b4317eaef9e773c75226407d9bc0876b211c"
+
+[[package]]
+name = "derive_arbitrary"
+version = "1.4.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1e567bd82dcff979e4b03460c307b3cdc9e96fde3d73bed1496d2bc75d9dd62a"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 2.0.119",
+]
+
+[[package]]
 name = "digest"
 version = "0.10.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -364,6 +505,36 @@ dependencies = [
 ]
 
 [[package]]
+name = "dispatch2"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1e0e367e4e7da84520dedcac1901e4da967309406d1e51017ae1abfb97adbd38"
+dependencies = [
+ "bitflags",
+ "objc2",
+]
+
+[[package]]
+name = "displaydoc"
+version = "0.2.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c6232dd377dcc64799954cbd3a9bb882e9cdc1308ccd87b1c098f1fb2eaf82a8"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 3.0.3",
+]
+
+[[package]]
+name = "dlib"
+version = "0.5.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ab8ecd87370524b461f8557c119c405552c396ed91fc0a8eec68679eab26f94a"
+dependencies = [
+ "libloading 0.8.9",
+]
+
+[[package]]
 name = "dlopen2"
 version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -371,6 +542,15 @@ checksum = "60768c353d76ba6dd1b6332a5dbbdd3bc2dddadc2935f4cc6a9d0f17ca8ecb6a"
 dependencies = [
  "libc",
  "windows-sys 0.61.2",
+]
+
+[[package]]
+name = "document-features"
+version = "0.2.12"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d4b8a88685455ed29a21542a33abd9cb6510b6b129abadabdcef0f4c55bc8f61"
+dependencies = [
+ "litrs",
 ]
 
 [[package]]
@@ -438,6 +618,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "fallible-iterator"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2acce4a10f12dc2fb14a218589d4f1f62ef011b2d0cc4b3cb1bba8e94da14649"
+
+[[package]]
+name = "fallible-streaming-iterator"
+version = "0.1.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7360491ce676a36bf9bb3c56c1aa791658183a54d2744120f27285738d90465a"
+
+[[package]]
 name = "fastrand"
 version = "2.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -450,10 +642,35 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d45db016d36b838f563236e9193d0ee6ce38f3f68b6c94e914b4929c96bbb890"
 
 [[package]]
+name = "flate2"
+version = "1.1.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "843fba2746e448b37e26a819579957415c8cef339bf08564fe8b7ddbd959573c"
+dependencies = [
+ "crc32fast",
+ "miniz_oxide",
+]
+
+[[package]]
 name = "foldhash"
 version = "0.1.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d9c4f5dac5e15c24eb999c26181a6ca40b39fe946cbe4c263c7209467bc83af2"
+
+[[package]]
+name = "foldhash"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "77ce24cb58228fbb8aa041425bb1050850ac19177686ea6e0f41a70416f56fdb"
+
+[[package]]
+name = "form_urlencoded"
+version = "1.2.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cb4cb245038516f5f85277875cdaa4f7d2c9a0fa0468de06ed190163b1581fcf"
+dependencies = [
+ "percent-encoding",
+]
 
 [[package]]
 name = "futures-core"
@@ -510,6 +727,17 @@ dependencies = [
 
 [[package]]
 name = "getrandom"
+version = "0.2.17"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ff2abc00be7fca6ebc474524697ae276ad847ad0a6b3faa4bcb027e9a4614ad0"
+dependencies = [
+ "cfg-if",
+ "libc",
+ "wasi",
+]
+
+[[package]]
+name = "getrandom"
 version = "0.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "300e883d756b2e4ec94e02791f39b04b522276138852cfc41d9fb7e904106099"
@@ -517,6 +745,17 @@ dependencies = [
  "cfg-if",
  "libc",
  "r-efi",
+]
+
+[[package]]
+name = "gl_generator"
+version = "0.14.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1a95dfc23a2b4a9a2f5ab41d194f8bfda3cabec42af4e39f08c339eb2a0c124d"
+dependencies = [
+ "khronos_api",
+ "log",
+ "xml-rs",
 ]
 
 [[package]]
@@ -539,6 +778,41 @@ dependencies = [
 ]
 
 [[package]]
+name = "glow"
+version = "0.17.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "29038e1c483364cc6bb3cf78feee1816002e127c331a1eec55a4d202b9e1adb5"
+dependencies = [
+ "js-sys",
+ "slotmap",
+ "wasm-bindgen",
+ "web-sys",
+]
+
+[[package]]
+name = "glutin_wgl_sys"
+version = "0.6.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2c4ee00b289aba7a9e5306d57c2d05499b2e5dc427f84ac708bd2c090212cf3e"
+dependencies = [
+ "gl_generator",
+]
+
+[[package]]
+name = "gpu-allocator"
+version = "0.28.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "51255ea7cfaadb6c5f1528d43e92a82acb2b96c43365989a28b2d44ee38f8795"
+dependencies = [
+ "ash",
+ "hashbrown 0.16.1",
+ "log",
+ "presser",
+ "thiserror 2.0.20",
+ "windows",
+]
+
+[[package]]
 name = "half"
 version = "2.7.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -546,7 +820,17 @@ checksum = "6ea2d84b969582b4b1864a92dc5d27cd2b77b622a8d79306834f1be5ba20d84b"
 dependencies = [
  "cfg-if",
  "crunchy",
+ "num-traits",
  "zerocopy",
+]
+
+[[package]]
+name = "hashbrown"
+version = "0.14.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e5274423e17b7c9fc20b6e7e208532f9b19825d82dfd615708b70edd83df41f1"
+dependencies = [
+ "ahash",
 ]
 
 [[package]]
@@ -555,7 +839,19 @@ version = "0.15.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9229cfe53dfd69f0609a49f65461bd93001ea1ef889cd5529dd176593f5338a1"
 dependencies = [
- "foldhash",
+ "foldhash 0.1.5",
+ "serde",
+]
+
+[[package]]
+name = "hashbrown"
+version = "0.16.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "841d1cc9bed7f9236f321df977030373f4a4163ae1a7dbfe1a51a2c1a51d9100"
+dependencies = [
+ "allocator-api2",
+ "equivalent",
+ "foldhash 0.2.0",
 ]
 
 [[package]]
@@ -563,6 +859,18 @@ name = "hashbrown"
 version = "0.17.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ed5909b6e89a2db4456e54cd5f673791d7eca6732202bbf2a9cc504fe2f9b84a"
+dependencies = [
+ "foldhash 0.2.0",
+]
+
+[[package]]
+name = "hashlink"
+version = "0.9.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6ba4ff7128dee98c7dc9794b6a411377e1404dba1c97deb8d1a55297bd25d8af"
+dependencies = [
+ "hashbrown 0.14.5",
+]
 
 [[package]]
 name = "hermit-abi"
@@ -577,6 +885,109 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7f24254aa9a54b5c858eaee2f5bccdb46aaf0e486a595ed5fd8f86ba55232a70"
 
 [[package]]
+name = "icu_collections"
+version = "2.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2984d1cd16c883d7935b9e07e44071dca8d917fd52ecc02c04d5fa0b5a3f191c"
+dependencies = [
+ "displaydoc",
+ "potential_utf",
+ "utf8_iter",
+ "yoke",
+ "zerofrom",
+ "zerovec",
+]
+
+[[package]]
+name = "icu_locale_core"
+version = "2.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "92219b62b3e2b4d88ac5119f8904c10f8f61bf7e95b640d25ba3075e6cac2c29"
+dependencies = [
+ "displaydoc",
+ "litemap",
+ "tinystr",
+ "writeable",
+ "zerovec",
+]
+
+[[package]]
+name = "icu_normalizer"
+version = "2.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c56e5ee99d6e3d33bd91c5d85458b6005a22140021cc324cea84dd0e72cff3b4"
+dependencies = [
+ "icu_collections",
+ "icu_normalizer_data",
+ "icu_properties",
+ "icu_provider",
+ "smallvec",
+ "zerovec",
+]
+
+[[package]]
+name = "icu_normalizer_data"
+version = "2.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "da3be0ae77ea334f4da67c12f149704f19f81d1adf7c51cf482943e84a2bad38"
+
+[[package]]
+name = "icu_properties"
+version = "2.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bee3b67d0ea5c2cca5003417989af8996f8604e34fb9ddf96208a033901e70de"
+dependencies = [
+ "icu_collections",
+ "icu_locale_core",
+ "icu_properties_data",
+ "icu_provider",
+ "zerotrie",
+ "zerovec",
+]
+
+[[package]]
+name = "icu_properties_data"
+version = "2.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8e2bbb201e0c04f7b4b3e14382af113e17ba4f63e2c9d2ee626b720cbce54a14"
+
+[[package]]
+name = "icu_provider"
+version = "2.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "139c4cf31c8b5f33d7e199446eff9c1e02decfc2f0eec2c8d71f65befa45b421"
+dependencies = [
+ "displaydoc",
+ "icu_locale_core",
+ "writeable",
+ "yoke",
+ "zerofrom",
+ "zerotrie",
+ "zerovec",
+]
+
+[[package]]
+name = "idna"
+version = "1.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3b0875f23caa03898994f6ddc501886a45c7d3d62d04d2d90788d47be1b1e4de"
+dependencies = [
+ "idna_adapter",
+ "smallvec",
+ "utf8_iter",
+]
+
+[[package]]
+name = "idna_adapter"
+version = "1.2.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cb68373c0d6620ef8105e855e7745e18b0d00d3bdb07fb532e434244cdb9a714"
+dependencies = [
+ "icu_normalizer",
+ "icu_properties",
+]
+
+[[package]]
 name = "indexmap"
 version = "2.14.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -584,6 +995,8 @@ checksum = "d466e9454f08e4a911e14806c24e16fba1b4c121d1ea474396f396069cf949d9"
 dependencies = [
  "equivalent",
  "hashbrown 0.17.1",
+ "serde",
+ "serde_core",
 ]
 
 [[package]]
@@ -623,7 +1036,7 @@ dependencies = [
  "jni-sys 0.3.1",
  "libloading 0.7.4",
  "log",
- "thiserror",
+ "thiserror 1.0.69",
  "walkdir",
  "windows-sys 0.45.0",
 ]
@@ -683,6 +1096,23 @@ dependencies = [
 ]
 
 [[package]]
+name = "khronos-egl"
+version = "6.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6aae1df220ece3c0ada96b8153459b67eebe9ae9212258bb0134ae60416fdf76"
+dependencies = [
+ "libc",
+ "libloading 0.8.9",
+ "pkg-config",
+]
+
+[[package]]
+name = "khronos_api"
+version = "3.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e2db585e1d738fc771bf08a151420d3ed193d9d895a36df7f6f8a9456b911ddc"
+
+[[package]]
 name = "leb128fmt"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -721,10 +1151,33 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b6d2cec3eae94f9f509c767b45932f1ada8350c4bdb85af2fcab4a3c14807981"
 
 [[package]]
+name = "libsqlite3-sys"
+version = "0.28.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0c10584274047cb335c23d3e61bcef8e323adae7c5c8c760540f73610177fc3f"
+dependencies = [
+ "cc",
+ "pkg-config",
+ "vcpkg",
+]
+
+[[package]]
 name = "linux-raw-sys"
 version = "0.12.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "32a66949e030da00e8c7d4434b251670a91556f4144941d37452769c25d58a53"
+
+[[package]]
+name = "litemap"
+version = "0.8.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "92daf443525c4cce67b150400bc2316076100ce0b3686209eb8cf3c31612e6f0"
+
+[[package]]
+name = "litrs"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "11d3d7f243d5c5a8b9bb5d6dd2b1602c0cb0b9db1621bafc7ed66e35ff9fe092"
 
 [[package]]
 name = "lock_api"
@@ -778,10 +1231,67 @@ dependencies = [
 ]
 
 [[package]]
+name = "miniz_oxide"
+version = "0.8.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1fa76a2c86f704bdb222d66965fb3d63269ce38518b83cb0575fca855ebb6316"
+dependencies = [
+ "adler2",
+ "simd-adler32",
+]
+
+[[package]]
+name = "naga"
+version = "30.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "23bf0a141a9ab6f07dbb492db53245e464bc9db42f407772d9ae03d83a2c1033"
+dependencies = [
+ "arrayvec",
+ "bit-set",
+ "bitflags",
+ "cfg-if",
+ "cfg_aliases",
+ "codespan-reporting",
+ "half",
+ "hashbrown 0.17.1",
+ "indexmap",
+ "libm",
+ "log",
+ "naga-types",
+ "num-traits",
+ "once_cell",
+ "rustc-hash",
+ "spirv",
+ "thiserror 2.0.20",
+ "unicode-ident",
+]
+
+[[package]]
+name = "naga-types"
+version = "30.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "658200ddc25c6c7b860747516d132d1b284c0fafb7a380233acee9a72fb30e11"
+dependencies = [
+ "hashbrown 0.17.1",
+ "indexmap",
+ "rustc-hash",
+ "thiserror 2.0.20",
+]
+
+[[package]]
 name = "ndk-context"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "27b02d87554356db9e9a873add8782d4ea6e3e58ea071a9adb9a2e8ddb884a8b"
+
+[[package]]
+name = "ndk-sys"
+version = "0.6.0+11769913"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ee6cda3051665f1fb8d9e08fc35c96d5a244fb1be711a03b71118828afc9a873"
+dependencies = [
+ "jni-sys 0.3.1",
+]
 
 [[package]]
 name = "num-bigint"
@@ -792,6 +1302,12 @@ dependencies = [
  "num-integer",
  "num-traits",
 ]
+
+[[package]]
+name = "num-conv"
+version = "0.2.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "521739c6d2bac4aa25192232afe6841231376b2b26d4d9fae5ecf8ca5772e441"
 
 [[package]]
 name = "num-integer"
@@ -820,6 +1336,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "071dfc062690e90b734c0b2273ce72ad0ffa95f0c74596bc250dcfd960262841"
 dependencies = [
  "autocfg",
+ "libm",
 ]
 
 [[package]]
@@ -832,16 +1349,96 @@ dependencies = [
 ]
 
 [[package]]
+name = "objc2-core-foundation"
+version = "0.3.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2a180dd8642fa45cdb7dd721cd4c11b1cadd4929ce112ebd8b9f5803cc79d536"
+dependencies = [
+ "bitflags",
+ "dispatch2",
+ "objc2",
+]
+
+[[package]]
+name = "objc2-core-graphics"
+version = "0.3.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e022c9d066895efa1345f8e33e584b9f958da2fd4cd116792e15e07e4720a807"
+dependencies = [
+ "dispatch2",
+ "objc2",
+ "objc2-core-foundation",
+ "objc2-io-surface",
+]
+
+[[package]]
 name = "objc2-encode"
 version = "4.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ef25abbcd74fb2609453eb695bd2f860d389e457f67dc17cafc8b8cbc89d0c33"
 
 [[package]]
+name = "objc2-foundation"
+version = "0.3.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e3e0adef53c21f888deb4fa59fc59f7eb17404926ee8a6f59f5df0fd7f9f3272"
+dependencies = [
+ "bitflags",
+ "objc2",
+ "objc2-core-foundation",
+]
+
+[[package]]
+name = "objc2-io-surface"
+version = "0.3.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "180788110936d59bab6bd83b6060ffdfffb3b922ba1396b312ae795e1de9d81d"
+dependencies = [
+ "bitflags",
+ "objc2",
+ "objc2-core-foundation",
+]
+
+[[package]]
+name = "objc2-metal"
+version = "0.3.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a0125f776a10d00af4152d74616409f0d4a2053a6f57fa5b7d6aa2854ac04794"
+dependencies = [
+ "bitflags",
+ "block2",
+ "objc2",
+ "objc2-foundation",
+]
+
+[[package]]
+name = "objc2-quartz-core"
+version = "0.3.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "96c1358452b371bf9f104e21ec536d37a650eb10f7ee379fff67d2e08d537f1f"
+dependencies = [
+ "bitflags",
+ "objc2",
+ "objc2-core-foundation",
+ "objc2-core-graphics",
+ "objc2-foundation",
+ "objc2-metal",
+]
+
+[[package]]
 name = "once_cell"
 version = "1.21.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9f7c3e4beb33f85d45ae3e3a1792185706c8e16d043238c593331cc7cd313b50"
+
+[[package]]
+name = "ordered-float"
+version = "5.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b7d950ca161dc355eaf28f82b11345ed76c6e1f6eb1f4f4479e0323b9e2fbd0e"
+dependencies = [
+ "num-traits",
+]
 
 [[package]]
 name = "ordered-stream"
@@ -883,6 +1480,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "percent-encoding"
+version = "2.3.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9b4f627cb1b25917193a259e49bdad08f671f8d9708acfd5fe0a8c1455d87220"
+
+[[package]]
 name = "pin-project-lite"
 version = "0.2.17"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -920,6 +1523,48 @@ dependencies = [
 ]
 
 [[package]]
+name = "pollster"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2f3a9f18d041e6d0e102a0a46750538147e5e8992d3b4873aaafee2520b00ce3"
+
+[[package]]
+name = "portable-atomic"
+version = "1.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "05c8b63e8d9609db387f0324918f81d68fe27748f084ef092fb35954d0539a85"
+
+[[package]]
+name = "portable-atomic-util"
+version = "0.2.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c2a106d1259c23fac8e543272398ae0e3c0b8d33c88ed73d0cc71b0f1d902618"
+dependencies = [
+ "portable-atomic",
+]
+
+[[package]]
+name = "potential_utf"
+version = "0.1.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0103b1cef7ec0cf76490e969665504990193874ea05c85ff9bab8b911d0a0564"
+dependencies = [
+ "zerovec",
+]
+
+[[package]]
+name = "powerfmt"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "439ee305def115ba05938db6eb1644ff94165c5ab5e9420d1c1bcedbba909391"
+
+[[package]]
+name = "presser"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e8cf8e6a8aa66ce33f63993ffc4ea4271eb5b0530a9002db8455ea6050c77bfa"
+
+[[package]]
 name = "proc-macro-crate"
 version = "3.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -948,6 +1593,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "profiling"
+version = "1.0.18"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3d595e54a326bc53c1c197b32d295e14b169e3cfeaa8dc82b529f947fba6bcf5"
+
+[[package]]
 name = "quote"
 version = "1.0.47"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -961,6 +1612,30 @@ name = "r-efi"
 version = "6.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f8dcc9c7d52a811697d2151c701e0d08956f92b0e24136cf4cf27b57a6a0d9bf"
+
+[[package]]
+name = "range-alloc"
+version = "0.1.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ca45419789ae5a7899559e9512e58ca889e41f04f1f2445e9f4b290ceccd1d08"
+
+[[package]]
+name = "raw-window-handle"
+version = "0.6.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "20675572f6f24e9e76ef639bc5552774ed45f1c30e2951e1e99c59888861c539"
+
+[[package]]
+name = "raw-window-metal"
+version = "1.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "40d213455a5f1dc59214213c7330e074ddf8114c9a42411eb890c767357ce135"
+dependencies = [
+ "objc2",
+ "objc2-core-foundation",
+ "objc2-foundation",
+ "objc2-quartz-core",
+]
 
 [[package]]
 name = "redox_syscall"
@@ -1001,6 +1676,26 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d6f6ff9a378485b298a5286656da665ba74413d36db0979633275d2e708145d4"
 
 [[package]]
+name = "renderdoc-sys"
+version = "1.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "19b30a45b0cd0bcca8037f3d0dc3421eaf95327a17cad11964fb8179b4fc4832"
+
+[[package]]
+name = "ring"
+version = "0.17.14"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a4689e6c2294d81e88dc6261c768b63bc4fcdb852be6d1352498b114f61383b7"
+dependencies = [
+ "cc",
+ "cfg-if",
+ "getrandom 0.2.17",
+ "libc",
+ "untrusted",
+ "windows-sys 0.52.0",
+]
+
+[[package]]
 name = "roxmltree"
 version = "0.21.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1008,6 +1703,26 @@ checksum = "f1964b10c76125c36f8afe190065a4bf9a87bf324842c05701330bba9f1cacbb"
 dependencies = [
  "memchr",
 ]
+
+[[package]]
+name = "rusqlite"
+version = "0.31.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b838eba278d213a8beaf485bd313fd580ca4505a00d5871caeb1457c55322cae"
+dependencies = [
+ "bitflags",
+ "fallible-iterator",
+ "fallible-streaming-iterator",
+ "hashlink",
+ "libsqlite3-sys",
+ "smallvec",
+]
+
+[[package]]
+name = "rustc-hash"
+version = "1.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "08d43f7aa6b08d49f382cde6a7982047c3426db949b1424bc4b7ec9ae12c6ce2"
 
 [[package]]
 name = "rustix"
@@ -1020,6 +1735,41 @@ dependencies = [
  "libc",
  "linux-raw-sys",
  "windows-sys 0.61.2",
+]
+
+[[package]]
+name = "rustls"
+version = "0.23.43"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0283386ce02abc0151e1761d08802dfe86c173b0b494af5cbc086574e453da06"
+dependencies = [
+ "log",
+ "once_cell",
+ "ring",
+ "rustls-pki-types",
+ "rustls-webpki",
+ "subtle",
+ "zeroize",
+]
+
+[[package]]
+name = "rustls-pki-types"
+version = "1.15.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2f4925028c7eb5d1fcdaf196971378ed9d2c1c4efc7dc5d011256f76c99c0a96"
+dependencies = [
+ "zeroize",
+]
+
+[[package]]
+name = "rustls-webpki"
+version = "0.103.14"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0527518605e68109d875e248ea259b6758801cf165e4b2c2733ae3b51f12535a"
+dependencies = [
+ "ring",
+ "rustls-pki-types",
+ "untrusted",
 ]
 
 [[package]]
@@ -1042,6 +1792,12 @@ name = "scopeguard"
 version = "1.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "94143f37725109f92c262ed2cf5e59bce7498c01bcc1502d7b9afe439a4e9f49"
+
+[[package]]
+name = "semver"
+version = "1.0.28"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8a7852d02fc848982e0c167ef163aaff9cd91dc640ba85e263cb1ce46fae51cd"
 
 [[package]]
 name = "serde"
@@ -1139,10 +1895,16 @@ name = "sim-audio-ports"
 version = "0.1.0"
 
 [[package]]
+name = "sim-cancel"
+version = "0.1.0"
+dependencies = [
+ "sim-cookbook",
+ "sim-cookbook-build",
+]
+
+[[package]]
 name = "sim-citizen"
 version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "be0642ec328afcbb0ac615a0f7550846bd1df9f79820de624f45ea640a4a5e5e"
 dependencies = [
  "inventory",
  "sim-kernel",
@@ -1152,8 +1914,6 @@ dependencies = [
 [[package]]
 name = "sim-citizen-derive"
 version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3a1d8410aba0b26fb2e41555aa65ee953c9fdbe6c1c0f3ad9aaefc0542b97dfe"
 dependencies = [
  "proc-macro-crate",
  "proc-macro2",
@@ -1168,20 +1928,7 @@ dependencies = [
  "sim-citizen",
  "sim-citizen-derive",
  "sim-cookbook",
- "sim-kernel",
- "sim-lib-net-core",
- "sim-shape",
-]
-
-[[package]]
-name = "sim-codec"
-version = "0.1.8"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "045961bf4c66c142118977df61b8fb8ea2b774674d4048040a3b2666e26cb8d4"
-dependencies = [
- "sim-citizen",
- "sim-citizen-derive",
- "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
  "sim-lib-net-core",
  "sim-shape",
@@ -1190,13 +1937,12 @@ dependencies = [
 [[package]]
 name = "sim-codec-algol"
 version = "0.1.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "827a8ce96389e695149ecea6cae837c771969c9e6c8b841856eb09e246b8b701"
 dependencies = [
- "sim-codec 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
+ "sim-codec",
  "sim-codec-lisp",
  "sim-codec-pratt",
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
  "sim-shape",
 ]
@@ -1205,20 +1951,9 @@ dependencies = [
 name = "sim-codec-binary"
 version = "0.2.1"
 dependencies = [
- "sim-codec 0.1.8",
+ "sim-codec",
  "sim-cookbook",
- "sim-kernel",
- "sim-value",
-]
-
-[[package]]
-name = "sim-codec-binary"
-version = "0.2.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ca33bfc30d379f0931e2110719c578a8274653ba1a58b75f2ecef61dd8d9940d"
-dependencies = [
- "sim-codec 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
- "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
  "sim-value",
 ]
@@ -1226,12 +1961,11 @@ dependencies = [
 [[package]]
 name = "sim-codec-binary-base64"
 version = "0.1.5"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "050bad9e14a7100441bc0cf7112c256ffdfa547753918cf7589067c248f2e92d"
 dependencies = [
- "sim-codec 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
- "sim-codec-binary 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "sim-codec",
+ "sim-codec-binary",
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
  "sim-value",
 ]
@@ -1239,30 +1973,39 @@ dependencies = [
 [[package]]
 name = "sim-codec-chat"
 version = "0.2.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e50f7b855120096f058a5ecb41047adddf6fb11477ca7deac99c3a892724fe4f"
 dependencies = [
  "serde_json",
- "sim-codec 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
+ "sim-codec",
  "sim-codec-binary-base64",
  "sim-codec-json",
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
  "sim-shape",
  "sim-value",
 ]
 
 [[package]]
+name = "sim-codec-config"
+version = "0.1.2"
+dependencies = [
+ "sim-codec",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+]
+
+[[package]]
 name = "sim-codec-json"
 version = "0.2.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "73cacc760b1ba5902affa176518738df6fee54d0409ae57f16ff68cdaaaf5293"
 dependencies = [
  "serde",
  "serde_json",
- "sim-codec 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
+ "sha2",
+ "sim-codec",
  "sim-codec-binary-base64",
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
  "sim-shape",
 ]
@@ -1270,32 +2013,52 @@ dependencies = [
 [[package]]
 name = "sim-codec-lisp"
 version = "0.2.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3072205ef346d168090bbb2422480dd29de951a94e27d445bd983106c4ed1e62"
 dependencies = [
  "proc-macro2",
- "sim-codec 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
+ "sim-codec",
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
  "sim-shape",
 ]
 
 [[package]]
+name = "sim-codec-mspdi"
+version = "0.1.0"
+dependencies = [
+ "roxmltree",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-doc-core",
+ "sim-lib-gantt",
+ "time",
+]
+
+[[package]]
 name = "sim-codec-pratt"
 version = "0.1.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8241904cd3b567959eb53b656537370100d10d5e5b235de37126e2f5ec474f22"
 dependencies = [
- "sim-codec 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
+ "sim-codec",
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
+]
+
+[[package]]
+name = "sim-codec-sql"
+version = "0.1.0"
+dependencies = [
+ "sim-kernel",
+ "sim-relation-core",
+ "sim-relation-migrate",
+ "sim-relation-plan",
+ "sim-relation-schema",
 ]
 
 [[package]]
 name = "sim-config"
 version = "0.1.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "025d34aef91d904517ba9dba379c38e577f6796b07a6236f7682f754b4ab381c"
 dependencies = [
  "sim-kernel",
  "sim-table-core",
@@ -1305,8 +2068,6 @@ dependencies = [
 [[package]]
 name = "sim-cookbook"
 version = "0.2.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5c2e45a5b7847f7c185df4005c2b01c0b5c79112a719f29e713cc0ad859ab3c2"
 dependencies = [
  "sim-config",
  "sim-kernel",
@@ -1314,23 +2075,177 @@ dependencies = [
 ]
 
 [[package]]
-name = "sim-kernel"
-version = "0.2.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "87fec60f730fdf6f3ec3e0d125ef698f317922c6d3161e7cb0c2d1620d213794"
+name = "sim-cookbook-build"
+version = "0.1.0"
 dependencies = [
- "thiserror",
+ "sim-cookbook",
 ]
 
 [[package]]
-name = "sim-lib-core"
-version = "0.1.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "79882513278f663641edeedeb0d3a4cc4e9f8563235ab5db854a027329cdf475"
+name = "sim-host-core"
+version = "0.1.0"
 dependencies = [
- "sim-codec 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
- "sim-cookbook",
  "sim-kernel",
+]
+
+[[package]]
+name = "sim-incremental-core"
+version = "0.1.2"
+
+[[package]]
+name = "sim-kernel"
+version = "0.2.1"
+dependencies = [
+ "thiserror 1.0.69",
+]
+
+[[package]]
+name = "sim-lib-agent-runner-core"
+version = "0.2.0"
+dependencies = [
+ "sim-citizen",
+ "sim-citizen-derive",
+ "sim-codec-chat",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-shape",
+ "sim-value",
+]
+
+[[package]]
+name = "sim-lib-binding"
+version = "0.1.4"
+dependencies = [
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+]
+
+[[package]]
+name = "sim-lib-compute-auto"
+version = "0.3.0"
+dependencies = [
+ "sim-citizen",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-compute-model",
+ "sim-lib-numbers-tensor",
+]
+
+[[package]]
+name = "sim-lib-compute-cli"
+version = "0.2.0"
+dependencies = [
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-compute-auto",
+ "sim-lib-compute-cuda",
+ "sim-lib-compute-model",
+ "sim-lib-compute-rocm",
+ "sim-lib-compute-wgpu",
+]
+
+[[package]]
+name = "sim-lib-compute-cuda"
+version = "0.2.0"
+dependencies = [
+ "libloading 0.8.9",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-numbers-tensor",
+]
+
+[[package]]
+name = "sim-lib-compute-model"
+version = "0.3.0"
+dependencies = [
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-numbers-tensor",
+ "sim-table-core",
+]
+
+[[package]]
+name = "sim-lib-compute-rocm"
+version = "0.1.1"
+dependencies = [
+ "libloading 0.8.9",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-numbers-tensor",
+]
+
+[[package]]
+name = "sim-lib-compute-wgpu"
+version = "0.2.0"
+dependencies = [
+ "half",
+ "pollster",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-compute-auto",
+ "sim-lib-numbers-tensor",
+ "wgpu",
+]
+
+[[package]]
+name = "sim-lib-control"
+version = "0.1.6"
+dependencies = [
+ "sim-citizen",
+ "sim-citizen-derive",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-core",
+ "sim-lib-mutation",
+]
+
+[[package]]
+name = "sim-lib-cookbook"
+version = "0.1.16"
+dependencies = [
+ "sim-citizen",
+ "sim-citizen-derive",
+ "sim-codec",
+ "sim-codec-algol",
+ "sim-codec-json",
+ "sim-codec-lisp",
+ "sim-config",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-agent-runner-core",
+ "sim-lib-binding",
+ "sim-lib-control",
+ "sim-lib-core",
+ "sim-lib-discrete",
+ "sim-lib-dispatch",
+ "sim-lib-lang-scheme",
+ "sim-lib-midi-core",
+ "sim-lib-numbers-arith",
+ "sim-lib-numbers-bigint",
+ "sim-lib-numbers-bool",
+ "sim-lib-numbers-cas",
+ "sim-lib-numbers-complex",
+ "sim-lib-numbers-f64",
+ "sim-lib-numbers-func",
+ "sim-lib-numbers-i64",
+ "sim-lib-numbers-rational",
+ "sim-lib-numbers-tensor",
+ "sim-lib-numbers-tensor-bcast",
+ "sim-lib-numbers-tensor-cmplxf",
+ "sim-lib-numbers-tensor-rat64",
+ "sim-lib-pattern",
+ "sim-lib-sequence",
+ "sim-lib-stream-core",
  "sim-shape",
  "sim-value",
 ]
@@ -1338,84 +2253,125 @@ dependencies = [
 [[package]]
 name = "sim-lib-core"
 version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f91cc2691ec91d73380a4e2f32284fd7462f98e4650f281c0728645dbeb18ca2"
 dependencies = [
- "sim-codec 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
+ "sim-codec",
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
  "sim-shape",
  "sim-value",
+]
+
+[[package]]
+name = "sim-lib-discrete"
+version = "0.1.5"
+dependencies = [
+ "sim-codec",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-core",
+ "sim-lib-discrete-algebra",
+ "sim-lib-discrete-comb",
+ "sim-lib-discrete-graph",
+ "sim-lib-discrete-spectral",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
 name = "sim-lib-discrete-algebra"
 version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "078fba5cff142be2c40cc2ecb3fa31f1d1e2909cfce2594b67d2769f8da13b2f"
 dependencies = [
  "num-bigint",
  "sim-cookbook",
- "thiserror",
+ "sim-cookbook-build",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
 name = "sim-lib-discrete-comb"
 version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fe2bb5bcfb88385e0c367e267335f4b8e472e9512e334979c0b00dd130fd48b5"
 dependencies = [
  "num-bigint",
  "sim-cookbook",
- "thiserror",
+ "sim-cookbook-build",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
 name = "sim-lib-discrete-graph"
 version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6dbf9879f2ff9b11ff11a47327d909a787edf3e3ea098e52b148cdb3ababba3b"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-lib-discrete-algebra",
- "thiserror",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
 name = "sim-lib-discrete-rank"
 version = "0.1.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "feb8d97483c2ce379043ee09a960ea21dcd4f1c72e5a0a12fe04c8ad6b66b3d4"
 dependencies = [
  "num-bigint",
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-lib-discrete-algebra",
  "sim-lib-discrete-comb",
  "sim-lib-discrete-graph",
  "sim-lib-discrete-spectral",
  "sim-lib-rank",
- "thiserror",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
 name = "sim-lib-discrete-search"
 version = "0.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "79f5c58a9a51ca9217681140e844c47ecfd678e986b9fc1cda02950ec9b071c5"
 dependencies = [
  "sim-cookbook",
- "thiserror",
+ "sim-cookbook-build",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
 name = "sim-lib-discrete-spectral"
 version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b54f9db747d49c9622023e486c37360f05440430bde94f8d2cb24d7c752fd535"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-lib-discrete-algebra",
- "thiserror",
+ "thiserror 1.0.69",
+]
+
+[[package]]
+name = "sim-lib-dispatch"
+version = "0.1.4"
+dependencies = [
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-shape",
+]
+
+[[package]]
+name = "sim-lib-doc-core"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "zip",
+]
+
+[[package]]
+name = "sim-lib-doc-site"
+version = "0.1.0"
+dependencies = [
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-doc-core",
+ "sim-value",
 ]
 
 [[package]]
@@ -1423,7 +2379,56 @@ name = "sim-lib-exec"
 version = "0.2.0"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
+]
+
+[[package]]
+name = "sim-lib-gantt"
+version = "0.1.0"
+dependencies = [
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-discrete-graph",
+ "sim-platform-sqlite",
+ "sim-relation-core",
+ "sim-relation-migrate",
+ "sim-relation-plan",
+ "sim-relation-schema",
+ "sim-relation-site",
+ "thiserror 1.0.69",
+ "time",
+]
+
+[[package]]
+name = "sim-lib-intent"
+version = "0.2.0"
+dependencies = [
+ "sim-citizen",
+ "sim-citizen-derive",
+ "sim-codec",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-shape",
+ "sim-value",
+]
+
+[[package]]
+name = "sim-lib-lang-scheme"
+version = "0.1.7"
+dependencies = [
+ "sim-codec",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-binding",
+ "sim-lib-control",
+ "sim-lib-pattern",
+ "sim-lib-sequence",
+ "sim-lib-standard-core",
+ "sim-shape",
 ]
 
 [[package]]
@@ -1431,50 +2436,60 @@ name = "sim-lib-midi-core"
 version = "0.1.5"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
- "sim-lib-core 0.2.0",
+ "sim-lib-core",
  "sim-lib-stream-clock",
- "thiserror",
+ "thiserror 1.0.69",
+]
+
+[[package]]
+name = "sim-lib-midi-live"
+version = "0.1.3"
+dependencies = [
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-core",
+ "sim-lib-midi-core",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
 name = "sim-lib-midi-shapes"
 version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e5be059d4def43a4f6e9c187995938842bb9c22eedbf310df960a6a82bc543f4"
 dependencies = [
  "sim-citizen",
  "sim-citizen-derive",
- "sim-codec 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
+ "sim-codec",
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
  "sim-lib-midi-core",
  "sim-lib-midi-smf",
  "sim-shape",
  "sim-value",
- "thiserror",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
 name = "sim-lib-midi-smf"
 version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "61b6b7ff7a91c3c97caddcdbf158fc1bb90d84f2b6fc332ededc8c5babbdf4d9"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-lib-midi-core",
- "thiserror",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
 name = "sim-lib-music-analysis"
 version = "0.1.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9a79973f39298e67e82eb03bf42879a634d73f753813a4d0f255a9b702ce7374"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
- "sim-lib-core 0.2.0",
+ "sim-lib-core",
  "sim-lib-discrete-graph",
  "sim-lib-discrete-search",
  "sim-lib-music-core",
@@ -1485,17 +2500,16 @@ dependencies = [
  "sim-lib-pitch-namer-riemann",
  "sim-lib-pitch-set",
  "sim-shape",
- "thiserror",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
 name = "sim-lib-music-core"
 version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "719bf8f3697ab7c91cc424cfe6434dcb9ad2e47a14a32597ed4cfc5cd2ff6b27"
 dependencies = [
  "num-rational",
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
  "sim-lib-midi-core",
  "sim-lib-midi-smf",
@@ -1503,19 +2517,18 @@ dependencies = [
  "sim-lib-stream-core",
  "sim-lib-topology",
  "sim-value",
- "thiserror",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
 name = "sim-lib-music-lift"
 version = "0.1.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "36b9c2e4f0f4e8c52e14d231e07c80fc9ad2d898d1ebdb6df69763af529cac8a"
 dependencies = [
  "num-rational",
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
- "sim-lib-core 0.2.0",
+ "sim-lib-core",
  "sim-lib-midi-core",
  "sim-lib-midi-smf",
  "sim-lib-music-analysis",
@@ -1523,49 +2536,46 @@ dependencies = [
  "sim-lib-pitch-core",
  "sim-lib-pitch-namer",
  "sim-lib-pitch-scale",
- "thiserror",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
 name = "sim-lib-music-lower"
 version = "0.1.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "19570d42be6cfb047cded53ca73275e12124c1e67a3e84e31e10c496780c3f31"
 dependencies = [
  "num-rational",
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-lib-midi-core",
  "sim-lib-midi-smf",
  "sim-lib-music-core",
  "sim-lib-pitch-core",
- "thiserror",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
 name = "sim-lib-music-notation"
-version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6b5ba0dfcb0ca9441d298ad79b693208d5c21dd158e5c9e9be1b97dacf5aca65"
+version = "0.2.1"
 dependencies = [
  "num-rational",
  "roxmltree",
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
- "sim-lib-core 0.1.4",
+ "sim-lib-core",
  "sim-lib-music-core",
  "sim-lib-music-shapes",
  "sim-lib-pitch-core",
  "sim-shape",
- "thiserror",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
 name = "sim-lib-music-serial"
 version = "0.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3c23f1ef7add0d97d2733f810a91a760f21af9802efed1cce0bf5cc7e5e3a7b8"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-lib-discrete-search",
  "sim-lib-music-core",
  "sim-lib-music-lower",
@@ -1579,19 +2589,18 @@ dependencies = [
  "sim-lib-pitch-set",
  "sim-lib-serial-core",
  "sim-lib-sound-tuning",
- "thiserror",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
 name = "sim-lib-music-shapes"
 version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6c092c4578459011c73191ef98b10efae6eb76ee4399269e94030ab2419bde5d"
 dependencies = [
  "sim-citizen",
  "sim-citizen-derive",
- "sim-codec 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
+ "sim-codec",
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
  "sim-lib-midi-shapes",
  "sim-lib-music-analysis",
@@ -1606,17 +2615,16 @@ dependencies = [
  "sim-lib-serial-core",
  "sim-shape",
  "sim-value",
- "thiserror",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
 name = "sim-lib-music-transform"
 version = "0.1.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c935aeb52a3e92476ff03e3441560804fdde2cda3b2abe71b7afa17cd66ff5d4"
 dependencies = [
  "num-rational",
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
  "sim-lib-discrete-graph",
  "sim-lib-music-core",
@@ -1625,88 +2633,279 @@ dependencies = [
  "sim-lib-pitch-core",
  "sim-lib-pitch-scale",
  "sim-lib-pitch-serial",
- "thiserror",
+ "thiserror 1.0.69",
+]
+
+[[package]]
+name = "sim-lib-mutation"
+version = "0.1.5"
+dependencies = [
+ "sim-citizen",
+ "sim-citizen-derive",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
 ]
 
 [[package]]
 name = "sim-lib-net-core"
 version = "0.2.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c322c6e9cc203fca63291b584b241d8a0bd3029986abfdfb151b57e2d20233a8"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
+]
+
+[[package]]
+name = "sim-lib-net-http"
+version = "0.1.0"
+dependencies = [
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-lib-net-core",
+]
+
+[[package]]
+name = "sim-lib-numbers-arith"
+version = "0.3.1"
+dependencies = [
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-numbers-core",
+ "sim-shape",
+]
+
+[[package]]
+name = "sim-lib-numbers-bigint"
+version = "0.3.1"
+dependencies = [
+ "num-bigint",
+ "sim-citizen",
+ "sim-citizen-derive",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-numbers-core",
+ "sim-shape",
+]
+
+[[package]]
+name = "sim-lib-numbers-bool"
+version = "0.3.1"
+dependencies = [
+ "sim-citizen",
+ "sim-citizen-derive",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-numbers-core",
+ "sim-shape",
+]
+
+[[package]]
+name = "sim-lib-numbers-cas"
+version = "0.3.1"
+dependencies = [
+ "sim-citizen",
+ "sim-citizen-derive",
+ "sim-codec",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-numbers-core",
+ "sim-shape",
+]
+
+[[package]]
+name = "sim-lib-numbers-cas-eval"
+version = "0.3.1"
+dependencies = [
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-numbers-cas",
+ "sim-lib-numbers-core",
+]
+
+[[package]]
+name = "sim-lib-numbers-complex"
+version = "0.3.1"
+dependencies = [
+ "sim-citizen",
+ "sim-citizen-derive",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-numbers-core",
+ "sim-shape",
 ]
 
 [[package]]
 name = "sim-lib-numbers-core"
 version = "0.3.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ed5e3d8ee6ba32a84e0e3aa15edfc478411ef255eba7a4c928dd98d73306a9b7"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
+ "sim-shape",
+]
+
+[[package]]
+name = "sim-lib-numbers-f64"
+version = "0.3.1"
+dependencies = [
+ "sim-citizen",
+ "sim-citizen-derive",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-numbers-core",
+ "sim-shape",
+]
+
+[[package]]
+name = "sim-lib-numbers-func"
+version = "0.3.1"
+dependencies = [
+ "sim-citizen",
+ "sim-citizen-derive",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-numbers-cas",
+ "sim-lib-numbers-cas-eval",
+ "sim-lib-numbers-core",
+ "sim-shape",
+]
+
+[[package]]
+name = "sim-lib-numbers-i64"
+version = "0.3.1"
+dependencies = [
+ "num-bigint",
+ "sim-citizen",
+ "sim-citizen-derive",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-numbers-core",
+ "sim-shape",
+]
+
+[[package]]
+name = "sim-lib-numbers-method"
+version = "0.1.0"
+dependencies = [
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-numbers-core",
+]
+
+[[package]]
+name = "sim-lib-numbers-rational"
+version = "0.3.1"
+dependencies = [
+ "num-bigint",
+ "sim-citizen",
+ "sim-citizen-derive",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-numbers-core",
  "sim-shape",
 ]
 
 [[package]]
 name = "sim-lib-numbers-signal"
 version = "0.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8451e4cdcbd6ce81bea7eac9332a3dcb99d5fa2e43496eca33ad8d46b8f1b22c"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
  "sim-lib-numbers-tensor",
  "sim-lib-numbers-tensor-cmplxf",
+ "sim-lib-numbers-tensor-decomp",
  "sim-lib-numbers-tensor-f64",
  "sim-lib-numbers-tensor-linalg",
 ]
 
 [[package]]
-name = "sim-lib-numbers-stats"
-version = "0.4.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1f3b5e8c3afe9af35d87f1210be009531d9495020cd62bded448533188ac4120"
+name = "sim-lib-numbers-special"
+version = "0.1.0"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+]
+
+[[package]]
+name = "sim-lib-numbers-stats"
+version = "0.4.0"
+dependencies = [
+ "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
  "sim-lib-numbers-core",
+ "sim-lib-numbers-special",
  "sim-value",
 ]
 
 [[package]]
 name = "sim-lib-numbers-tensor"
 version = "0.2.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c74a10369ab1b163ef76e9e4c8a27a488e7546fee62c358ae1b65c08c59e10af"
 dependencies = [
  "half",
  "sim-citizen",
  "sim-citizen-derive",
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
  "sim-lib-numbers-core",
  "sim-shape",
 ]
 
 [[package]]
-name = "sim-lib-numbers-tensor-cmplxf"
+name = "sim-lib-numbers-tensor-bcast"
 version = "0.3.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "28a6026f2fa966492f0f7cca3e63db3cad8228d6aea74fcdcbf395fb9f1334cf"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-numbers-core",
+ "sim-lib-numbers-tensor",
+]
+
+[[package]]
+name = "sim-lib-numbers-tensor-cmplxf"
+version = "0.3.1"
+dependencies = [
+ "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
  "sim-lib-numbers-tensor",
 ]
 
 [[package]]
-name = "sim-lib-numbers-tensor-f64"
-version = "0.3.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f19542c61403d969aa8e62e73e3d98618821b42b669f54098cbbbbb93e188cab"
+name = "sim-lib-numbers-tensor-decomp"
+version = "0.1.0"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-numbers-complex",
+ "sim-lib-numbers-core",
+ "sim-lib-numbers-method",
+ "sim-lib-numbers-tensor",
+ "sim-lib-numbers-tensor-linalg",
+]
+
+[[package]]
+name = "sim-lib-numbers-tensor-f64"
+version = "0.3.0"
+dependencies = [
+ "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
  "sim-lib-numbers-tensor",
 ]
@@ -1714,22 +2913,43 @@ dependencies = [
 [[package]]
 name = "sim-lib-numbers-tensor-linalg"
 version = "0.3.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c26561d3b88c24dcf7ee0dc0c2878867207a44f0ba1cfbc9446da70984620790"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
  "sim-lib-numbers-core",
  "sim-lib-numbers-tensor",
 ]
 
 [[package]]
-name = "sim-lib-pitch-chord"
-version = "0.2.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1a95f2b1640a118ab836f73cb88cd328507ee3a2587c46aff1cb4256b2fef629"
+name = "sim-lib-numbers-tensor-rat64"
+version = "0.3.1"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-numbers-tensor",
+]
+
+[[package]]
+name = "sim-lib-pattern"
+version = "0.2.0"
+dependencies = [
+ "sim-citizen",
+ "sim-citizen-derive",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-shape",
+ "sim-text",
+]
+
+[[package]]
+name = "sim-lib-pitch-chord"
+version = "0.2.1"
+dependencies = [
+ "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
  "sim-lib-discrete-graph",
  "sim-lib-discrete-search",
@@ -1740,28 +2960,26 @@ dependencies = [
  "sim-lib-pitch-scale",
  "sim-lib-pitch-set",
  "sim-value",
- "thiserror",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
 name = "sim-lib-pitch-core"
 version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d126ac5da1959dcd4a96c5519a0bc1aea972a1bc51d214e9fcd71274c97a0221"
 dependencies = [
  "sim-cookbook",
- "thiserror",
+ "sim-cookbook-build",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
 name = "sim-lib-pitch-dissonance"
 version = "0.1.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "62b10a97904ecb8efdb58d1be31c2cb90fd672a8a4035851061c3a5f8cd61a70"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
- "sim-lib-core 0.2.0",
+ "sim-lib-core",
  "sim-lib-pitch-core",
  "sim-lib-pitch-namer",
  "sim-lib-pitch-ratio",
@@ -1772,12 +2990,11 @@ dependencies = [
 [[package]]
 name = "sim-lib-pitch-namer"
 version = "0.1.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "713b2957de04233b68f74a77b3a88463bdb4977b76ec8abca5b3fd8ae32460d8"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
- "sim-lib-core 0.2.0",
+ "sim-lib-core",
  "sim-lib-pitch-chord",
  "sim-lib-pitch-core",
  "sim-lib-pitch-namer-forte",
@@ -1786,39 +3003,36 @@ dependencies = [
  "sim-lib-pitch-namer-roman",
  "sim-lib-pitch-scale",
  "sim-lib-pitch-set",
- "thiserror",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
 name = "sim-lib-pitch-namer-forte"
 version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0ebdaba6f53b54026bdae346a489efa3be184aca2f8208591f152480b46879fe"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-lib-pitch-set",
 ]
 
 [[package]]
 name = "sim-lib-pitch-namer-jazz"
 version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3cac9989c0a5684f81afa3ef82deb507d66463da6d0431cf9959d2fc7e5a3a78"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-lib-pitch-chord",
  "sim-lib-pitch-core",
  "sim-lib-pitch-set",
- "thiserror",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
 name = "sim-lib-pitch-namer-riemann"
 version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "aa50afe66b03c586a0d1411a7f9a202668e56696d8c4e6a49d2d04a2bbd8a19a"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-lib-pitch-core",
  "sim-lib-pitch-set",
 ]
@@ -1826,10 +3040,9 @@ dependencies = [
 [[package]]
 name = "sim-lib-pitch-namer-roman"
 version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fb2d93e1b55ec8e73317362afba0d199cda370899a7f8578c108dca12e6aa6f8"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-lib-pitch-core",
  "sim-lib-pitch-scale",
  "sim-lib-pitch-set",
@@ -1838,55 +3051,51 @@ dependencies = [
 [[package]]
 name = "sim-lib-pitch-ratio"
 version = "0.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3854650f9745b80bc41d238ce4f8cff431233ccf3364674d14bf2ea1117cbedf"
 dependencies = [
  "num-bigint",
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-lib-discrete-comb",
  "sim-lib-discrete-search",
- "thiserror",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
 name = "sim-lib-pitch-scale"
 version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f87cc883bab257428879a6640e67fe52cad15164317aec83af7d151b49ef5b7f"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-lib-discrete-search",
  "sim-lib-pitch-core",
  "sim-lib-pitch-set",
- "thiserror",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
 name = "sim-lib-pitch-serial"
 version = "0.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2d648f3c30cb8ab2468f940bfc1b17526e4fc23a0d31592dd23003185e835a60"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-lib-discrete-comb",
  "sim-lib-pitch-core",
  "sim-lib-pitch-namer-forte",
  "sim-lib-pitch-set",
  "sim-lib-serial-core",
- "thiserror",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
 name = "sim-lib-pitch-set"
 version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "caf07cd92168d71495cda7e0d1eaab86504209f00d2f451ab14481a61d9a7c25"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-lib-discrete-graph",
  "sim-lib-discrete-search",
  "sim-lib-pitch-core",
- "thiserror",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
@@ -1900,39 +3109,101 @@ dependencies = [
 [[package]]
 name = "sim-lib-rank"
 version = "0.1.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "25982b6d5b66bb805639780ce246f4008bc165a5ae38b5858dfa07dbfeeace6c"
 dependencies = [
  "num-bigint",
  "sim-citizen",
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
- "sim-lib-core 0.2.0",
+ "sim-lib-core",
  "sim-lib-stream-core",
+]
+
+[[package]]
+name = "sim-lib-scene"
+version = "0.2.0"
+dependencies = [
+ "sim-citizen",
+ "sim-citizen-derive",
+ "sim-codec",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-shape",
+ "sim-value",
+]
+
+[[package]]
+name = "sim-lib-sequence"
+version = "0.1.4"
+dependencies = [
+ "sim-citizen",
+ "sim-citizen-derive",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
 ]
 
 [[package]]
 name = "sim-lib-serial-core"
 version = "0.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f7021b1a8e076e41776c4188f5cadcb1441c5010b5b1d4a416b897df5403ebc7"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-lib-discrete-rank",
  "sim-lib-rank",
- "thiserror",
+ "thiserror 1.0.69",
+]
+
+[[package]]
+name = "sim-lib-server"
+version = "0.1.12"
+dependencies = [
+ "sim-cancel",
+ "sim-citizen",
+ "sim-citizen-derive",
+ "sim-codec",
+ "sim-codec-binary",
+ "sim-codec-binary-base64",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-host-core",
+ "sim-kernel",
+ "sim-lib-cookbook",
+ "sim-lib-core",
+ "sim-lib-net-core",
+ "sim-lib-net-http",
+ "sim-lib-stream-core",
+ "sim-shape",
+ "sim-transport-ports",
+ "sim-value",
+ "sim-wasm-abi",
+]
+
+[[package]]
+name = "sim-lib-sheet"
+version = "0.1.0"
+dependencies = [
+ "num-bigint",
+ "serde",
+ "serde_json",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-incremental-core",
+ "sim-kernel",
+ "sim-lib-doc-core",
+ "sim-lib-numbers-rational",
 ]
 
 [[package]]
 name = "sim-lib-sound-audio-lift"
 version = "0.1.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "decfa49285e634f475f2c456fc6cc41023cb5ffb83785bdff89f953f86ece1c9"
 dependencies = [
  "num-rational",
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
- "sim-lib-core 0.2.0",
+ "sim-lib-core",
  "sim-lib-discrete-graph",
  "sim-lib-music-analysis",
  "sim-lib-numbers-signal",
@@ -1941,46 +3212,43 @@ dependencies = [
  "sim-lib-sound-spectrum",
  "sim-lib-sound-tuning",
  "sim-shape",
- "thiserror",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
 name = "sim-lib-sound-bridge"
 version = "0.1.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d30d27d165cd3ef1ef517cd710c6f5461afd3897d7f0cd99e1e23820ab6a98a7"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
- "sim-lib-core 0.2.0",
+ "sim-lib-core",
  "sim-lib-midi-core",
  "sim-lib-pitch-core",
  "sim-lib-sound-core",
  "sim-lib-sound-timbre",
  "sim-lib-sound-tuning",
- "thiserror",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
 name = "sim-lib-sound-core"
 version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "26c72583ec611c5f0f650deba08a7fe3172362b6965a432095937ed13ed92ef2"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-lib-pitch-core",
- "thiserror",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
 name = "sim-lib-sound-dissonance"
 version = "0.1.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3c9af2733efd8ba7ab4499916a8edadeadd0911609ccc027a63f9f8b78a9ebb4"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
- "sim-lib-core 0.2.0",
+ "sim-lib-core",
  "sim-lib-discrete-search",
  "sim-lib-pitch-core",
  "sim-lib-pitch-dissonance",
@@ -1988,36 +3256,34 @@ dependencies = [
  "sim-lib-pitch-set",
  "sim-lib-sound-core",
  "sim-lib-sound-spectrum",
- "thiserror",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
 name = "sim-lib-sound-render"
 version = "0.1.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a3aa390b2340bd97c8239c662054a351d20ad68ec9bb94391dfb2178799250f7"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
- "sim-lib-core 0.2.0",
+ "sim-lib-core",
  "sim-lib-numbers-signal",
  "sim-lib-sound-audio-lift",
  "sim-lib-sound-bridge",
  "sim-lib-sound-core",
  "sim-lib-sound-timbre",
- "thiserror",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
 name = "sim-lib-sound-shapes"
 version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9e10274d9f1f7cd4149e09531d2b3a4fb8c2dfcf5d55b5a3ebdc843ae7a11eb5"
 dependencies = [
  "sim-citizen",
  "sim-citizen-derive",
- "sim-codec 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
+ "sim-codec",
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
  "sim-lib-pitch-core",
  "sim-lib-sound-audio-lift",
@@ -2030,16 +3296,15 @@ dependencies = [
  "sim-lib-sound-tuning",
  "sim-shape",
  "sim-value",
- "thiserror",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
 name = "sim-lib-sound-spectrum"
 version = "0.1.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fe3d1321020a1ab663e43ecb47232ce0d78af12b14dffcf21498bb71349871a1"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-lib-numbers-signal",
  "sim-lib-sound-core",
 ]
@@ -2047,12 +3312,11 @@ dependencies = [
 [[package]]
 name = "sim-lib-sound-timbre"
 version = "0.1.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3b2368b9a611c54ab71c3ed29b1d3395aed27320bc2af541c69fa3064288df73"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
- "sim-lib-core 0.2.0",
+ "sim-lib-core",
  "sim-lib-discrete-search",
  "sim-lib-sound-core",
 ]
@@ -2060,26 +3324,37 @@ dependencies = [
 [[package]]
 name = "sim-lib-sound-tuning"
 version = "0.2.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e9d0e5c5a23c146ef096f3f77fe0acf7c22d94ce9672a8e735fdfd85de25151a"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
- "sim-lib-core 0.2.0",
+ "sim-lib-core",
  "sim-lib-pitch-core",
  "sim-lib-sound-core",
- "thiserror",
+ "thiserror 1.0.69",
+]
+
+[[package]]
+name = "sim-lib-standard-core"
+version = "0.1.5"
+dependencies = [
+ "indexmap",
+ "sim-citizen",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-core",
+ "sim-value",
 ]
 
 [[package]]
 name = "sim-lib-stream-clock"
 version = "0.1.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "432e03516f8aa7093626c4e06b76db5909514bfa120ec3ecd78611ef3c37fd74"
 dependencies = [
  "sim-citizen",
  "sim-citizen-derive",
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
  "sim-lib-stream-core",
  "sim-value",
@@ -2088,32 +3363,137 @@ dependencies = [
 [[package]]
 name = "sim-lib-stream-core"
 version = "0.1.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a4c46d25e67770bf27e6fffc44751efea9f676c01febb1fe45c32e2e90576b45"
 dependencies = [
  "sim-citizen",
  "sim-citizen-derive",
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
  "sim-shape",
  "sim-value",
 ]
 
 [[package]]
+name = "sim-lib-stream-fabric"
+version = "0.2.1"
+dependencies = [
+ "sim-codec-binary",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-server",
+ "sim-lib-stream-core",
+ "sim-run-core",
+ "sim-value",
+]
+
+[[package]]
+name = "sim-lib-stream-host"
+version = "0.1.7"
+dependencies = [
+ "sim-config",
+ "sim-kernel",
+ "sim-lib-midi-core",
+ "sim-lib-midi-live",
+ "sim-lib-stream-core",
+ "sim-lib-view-device",
+ "sim-value",
+]
+
+[[package]]
 name = "sim-lib-topology"
 version = "0.1.5"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7cea8d14fc2d71eaf4156573b2dbe52d6ff641bf7f6ffabe56506d9bec4e619e"
 dependencies = [
  "sim-citizen",
  "sim-citizen-derive",
- "sim-codec 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
+ "sim-codec",
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
- "sim-lib-core 0.2.0",
+ "sim-lib-core",
  "sim-lib-stream-core",
  "sim-shape",
  "sim-value",
+]
+
+[[package]]
+name = "sim-lib-view"
+version = "0.2.0"
+dependencies = [
+ "sim-citizen",
+ "sim-citizen-derive",
+ "sim-codec",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-intent",
+ "sim-lib-scene",
+ "sim-shape",
+ "sim-value",
+]
+
+[[package]]
+name = "sim-lib-view-device"
+version = "0.1.2"
+dependencies = [
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-scene",
+ "sim-lib-view",
+ "sim-value",
+]
+
+[[package]]
+name = "sim-lib-view-spatial"
+version = "0.1.1"
+dependencies = [
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-intent",
+ "sim-lib-scene",
+ "sim-lib-view",
+ "sim-lib-view-device",
+ "sim-table-core",
+ "sim-value",
+]
+
+[[package]]
+name = "sim-lib-web-bridge"
+version = "0.1.3"
+dependencies = [
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-intent",
+ "sim-lib-scene",
+ "sim-lib-server",
+ "sim-lib-stream-core",
+ "sim-lib-stream-fabric",
+ "sim-lib-view",
+ "sim-lib-view-device",
+ "sim-lib-view-spatial",
+ "sim-value",
+]
+
+[[package]]
+name = "sim-platform-amazfit"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "sim-platform-android"
+version = "0.1.0"
+dependencies = [
+ "jni-sys 0.3.1",
+ "serde",
+ "serde_json",
+ "sim-codec-binary",
+ "sim-kernel",
 ]
 
 [[package]]
@@ -2135,14 +3515,22 @@ dependencies = [
 ]
 
 [[package]]
-name = "sim-platform-android"
+name = "sim-platform-browser"
 version = "0.1.0"
 dependencies = [
- "jni-sys 0.3.1",
  "serde",
  "serde_json",
- "sim-codec-binary 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "sim-codec-binary",
  "sim-kernel",
+]
+
+[[package]]
+name = "sim-platform-construction"
+version = "0.1.0"
+dependencies = [
+ "sim-site-dalux",
+ "sim-site-powerproject",
+ "ureq",
 ]
 
 [[package]]
@@ -2151,8 +3539,8 @@ version = "0.1.0"
 dependencies = [
  "serde",
  "serde_json",
- "sim-codec 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
- "sim-codec-binary 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "sim-codec",
+ "sim-codec-binary",
  "sim-codec-json",
  "sim-codec-lisp",
  "sim-kernel",
@@ -2160,10 +3548,26 @@ dependencies = [
 ]
 
 [[package]]
+name = "sim-platform-halo"
+version = "0.1.0"
+
+[[package]]
+name = "sim-platform-ios"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "serde_json",
+ "sim-codec-binary",
+ "sim-kernel",
+]
+
+[[package]]
 name = "sim-platform-linux"
 version = "0.1.0"
 dependencies = [
  "serde",
+ "sim-kernel",
+ "sim-lib-server",
  "sim-platform-core",
  "sim-transport-ports",
 ]
@@ -2200,27 +3604,38 @@ dependencies = [
 ]
 
 [[package]]
+name = "sim-platform-sqlite"
+version = "0.1.0"
+dependencies = [
+ "rusqlite",
+ "sim-codec-sql",
+ "sim-kernel",
+ "sim-relation-core",
+ "sim-relation-migrate",
+ "sim-relation-plan",
+ "sim-relation-schema",
+ "sim-relation-site",
+]
+
+[[package]]
 name = "sim-platform-ubuntu-pc"
 version = "0.1.0"
 dependencies = [
+ "pollster",
  "serde",
  "serde_json",
  "sim-kernel",
+ "sim-lib-compute-auto",
+ "sim-lib-compute-cuda",
+ "sim-lib-compute-rocm",
+ "sim-lib-compute-wgpu",
  "sim-lib-exec",
  "sim-platform-core",
  "sim-platform-linux",
  "sim-platform-model",
  "sim-run-loaders",
  "sim-wasm-abi",
-]
-
-[[package]]
-name = "sim-platform-windows"
-version = "0.1.0"
-dependencies = [
- "serde",
- "serde_json",
- "sim-platform-core",
+ "wgpu",
 ]
 
 [[package]]
@@ -2233,12 +3648,101 @@ dependencies = [
 ]
 
 [[package]]
+name = "sim-platform-wasi"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "serde_json",
+ "sim-kernel",
+ "sim-platform-core",
+ "sim-wasm-abi",
+ "wasmparser 0.228.0",
+ "wat",
+]
+
+[[package]]
+name = "sim-platform-web-shell"
+version = "0.1.0"
+dependencies = [
+ "sim-platform-linux",
+ "sim-transport-ports",
+ "sim-web-shell",
+]
+
+[[package]]
+name = "sim-platform-windows"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "serde_json",
+ "sim-platform-core",
+]
+
+[[package]]
+name = "sim-relation-core"
+version = "0.1.0"
+dependencies = [
+ "sim-kernel",
+]
+
+[[package]]
+name = "sim-relation-migrate"
+version = "0.1.0"
+dependencies = [
+ "sim-kernel",
+ "sim-relation-core",
+ "sim-relation-plan",
+ "sim-relation-schema",
+]
+
+[[package]]
+name = "sim-relation-plan"
+version = "0.1.0"
+dependencies = [
+ "sim-kernel",
+ "sim-relation-core",
+ "sim-relation-schema",
+]
+
+[[package]]
+name = "sim-relation-schema"
+version = "0.1.0"
+dependencies = [
+ "sim-kernel",
+ "sim-relation-core",
+]
+
+[[package]]
+name = "sim-relation-site"
+version = "0.1.0"
+dependencies = [
+ "sim-kernel",
+ "sim-relation-core",
+ "sim-relation-migrate",
+ "sim-relation-plan",
+]
+
+[[package]]
+name = "sim-run-core"
+version = "0.3.2"
+dependencies = [
+ "sim-codec-config",
+ "sim-config",
+ "sim-kernel",
+ "sim-lib-net-http",
+ "sim-lib-stream-host",
+ "sim-platform-bootstrap",
+ "sim-platform-core",
+ "sim-run-loaders",
+]
+
+[[package]]
 name = "sim-run-loaders"
 version = "0.2.0"
 dependencies = [
  "libloading 0.8.9",
- "sim-codec 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
- "sim-codec-binary 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "sim-codec",
+ "sim-codec-binary",
  "sim-kernel",
  "sim-value",
  "sim-wasm-abi",
@@ -2247,12 +3751,37 @@ dependencies = [
 [[package]]
 name = "sim-shape"
 version = "0.2.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bbed218763537f3da4c31f12cebf4d7a038720fbb9dcd9d4d129564e369fe9d8"
 dependencies = [
  "sim-citizen",
  "sim-citizen-derive",
  "sim-kernel",
+]
+
+[[package]]
+name = "sim-site-dalux"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "serde_json",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-doc-core",
+ "sim-lib-doc-site",
+ "sim-lib-sheet",
+]
+
+[[package]]
+name = "sim-site-powerproject"
+version = "0.1.0"
+dependencies = [
+ "sim-codec-mspdi",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-doc-core",
+ "sim-lib-doc-site",
+ "sim-lib-gantt",
 ]
 
 [[package]]
@@ -2262,8 +3791,6 @@ version = "0.1.0"
 [[package]]
 name = "sim-table-core"
 version = "0.1.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f51854ebd3bf05c3d7036e88419002c22b090c892aa0a58b3275b5c369348b6d"
 dependencies = [
  "sim-kernel",
  "sim-value",
@@ -2275,16 +3802,18 @@ version = "0.1.4"
 dependencies = [
  "globset",
  "regex",
+ "rustix",
  "sim-citizen",
  "sim-citizen-derive",
- "sim-codec 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
+ "sim-codec",
  "sim-codec-algol",
- "sim-codec-binary 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "sim-codec-binary",
  "sim-codec-binary-base64",
  "sim-codec-chat",
  "sim-codec-json",
  "sim-codec-lisp",
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
  "sim-lib-midi-shapes",
  "sim-lib-midi-smf",
@@ -2303,14 +3832,19 @@ dependencies = [
 [[package]]
 name = "sim-test-support"
 version = "0.1.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8037b315a0acdb0897ae757600a6fdcb57d5b8350dee14619ad77ec81a5f7c7d"
 dependencies = [
  "sim-citizen",
  "sim-citizen-derive",
- "sim-codec 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
+ "sim-codec",
  "sim-kernel",
  "sim-value",
+]
+
+[[package]]
+name = "sim-text"
+version = "0.1.0"
+dependencies = [
+ "sim-kernel",
 ]
 
 [[package]]
@@ -2320,26 +3854,66 @@ version = "0.1.0"
 [[package]]
 name = "sim-value"
 version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a5a3ca34efc2b8cd76bf8a99164b12984adffac302f910989acbb0378f20e04f"
 dependencies = [
  "sim-kernel",
+]
+
+[[package]]
+name = "sim-viture-ffi"
+version = "0.1.0"
+dependencies = [
+ "libloading 0.8.9",
 ]
 
 [[package]]
 name = "sim-wasm-abi"
 version = "0.3.0"
 dependencies = [
- "sim-codec-binary 0.2.1",
+ "sim-codec-binary",
  "sim-kernel",
  "wasmi",
 ]
+
+[[package]]
+name = "sim-web-shell"
+version = "0.1.13"
+dependencies = [
+ "serde_json",
+ "sim-codec-algol",
+ "sim-codec-binary",
+ "sim-codec-chat",
+ "sim-codec-json",
+ "sim-codec-lisp",
+ "sim-kernel",
+ "sim-lib-net-core",
+ "sim-lib-server",
+ "sim-lib-stream-core",
+ "sim-lib-view",
+ "sim-lib-web-bridge",
+ "sim-run-core",
+ "sim-transport-ports",
+]
+
+[[package]]
+name = "simd-adler32"
+version = "0.3.10"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3a219298ac11a56ea9a6d2120044824d6f01aeb034955e7af7bc16858527deea"
 
 [[package]]
 name = "slab"
 version = "0.4.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0c790de23124f9ab44544d7ac05d60440adc586479ce501c1d6d7da3cd8c9cf5"
+
+[[package]]
+name = "slotmap"
+version = "1.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bdd58c3c93c3d278ca835519292445cb4b0d4dc59ccfdf7ceadaab3f8aeb4038"
+dependencies = [
+ "version_check",
+]
 
 [[package]]
 name = "smallvec"
@@ -2354,6 +3928,27 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3763264f6b73151db08c50ff20d7d8a0b8796e021cdea7ceedad07b80155fa0e"
 
 [[package]]
+name = "spirv"
+version = "0.4.0+sdk-1.4.341.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d9571ea910ebd84c86af4b3ed27f9dbdc6ad06f17c5f96146b2b671e2976744f"
+dependencies = [
+ "bitflags",
+]
+
+[[package]]
+name = "stable_deref_trait"
+version = "1.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6ce2be8dc25455e1f91df71bfa12ad37d7af1092ae736f3a6cd0e37bc7810596"
+
+[[package]]
+name = "static_assertions"
+version = "1.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a2eb9349b6444b326872e140eb1cf5e7c522154d69e7a0ffb0fb81c06b37543f"
+
+[[package]]
 name = "string-interner"
 version = "0.19.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2362,6 +3957,12 @@ dependencies = [
  "hashbrown 0.15.5",
  "serde",
 ]
+
+[[package]]
+name = "subtle"
+version = "2.6.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "13c2bddecc57b384dee18652358fb23172facb8a2c51ccc10d74c157bdea3292"
 
 [[package]]
 name = "syn"
@@ -2386,16 +3987,36 @@ dependencies = [
 ]
 
 [[package]]
+name = "synstructure"
+version = "0.13.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "728a70f3dbaf5bab7f0c4b1ac8d7ae5ea60a4b5549c8a5914361c99147a709d2"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 2.0.119",
+]
+
+[[package]]
 name = "tempfile"
 version = "3.27.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "32497e9a4c7b38532efcdebeef879707aa9f794296a4f0244f6f69e9bc8574bd"
 dependencies = [
  "fastrand",
- "getrandom",
+ "getrandom 0.4.3",
  "once_cell",
  "rustix",
  "windows-sys 0.61.2",
+]
+
+[[package]]
+name = "termcolor"
+version = "1.4.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "06794f8f6c5c898b3275aebefa6b8a1cb24cd2c6c79397ab15774837a0bc5755"
+dependencies = [
+ "winapi-util",
 ]
 
 [[package]]
@@ -2404,7 +4025,16 @@ version = "1.0.69"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b6aaf5339b578ea85b50e080feb250a3e8ae8cfcdff9a461c9ec2904bc923f52"
 dependencies = [
- "thiserror-impl",
+ "thiserror-impl 1.0.69",
+]
+
+[[package]]
+name = "thiserror"
+version = "2.0.20"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ec86235f5fcc2a73650310756d2ac5b138a5780bbbdfae3eeccec992c435ba4f"
+dependencies = [
+ "thiserror-impl 2.0.20",
 ]
 
 [[package]]
@@ -2416,6 +4046,46 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn 2.0.119",
+]
+
+[[package]]
+name = "thiserror-impl"
+version = "2.0.20"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bc04cd3e1236dd4a98afca4569f2deb3f120e5422a4023be2cb683f8486292af"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 3.0.3",
+]
+
+[[package]]
+name = "time"
+version = "0.3.55"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cdb87b95ec50ddfa440816d227a17b2ccbdda963a316a727fda0fc4334f7d134"
+dependencies = [
+ "deranged",
+ "num-conv",
+ "powerfmt",
+ "serde_core",
+ "time-core",
+]
+
+[[package]]
+name = "time-core"
+version = "0.1.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9e1c906769ad99c88eaa54e728060edef082f8e358ff32030cb7c7d315e81109"
+
+[[package]]
+name = "tinystr"
+version = "0.8.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c8323304221c2a851516f22236c5722a72eaa19749016521d6dff0824447d96d"
+dependencies = [
+ "displaydoc",
+ "zerovec",
 ]
 
 [[package]]
@@ -2550,6 +4220,46 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b4ac048d71ede7ee76d585517add45da530660ef4390e49b098733c6e897f254"
 
 [[package]]
+name = "untrusted"
+version = "0.9.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8ecb6da28b8a351d773b68d5825ac39017e680750f980f3a1a85cd8dd28a47c1"
+
+[[package]]
+name = "ureq"
+version = "2.12.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "02d1a66277ed75f640d608235660df48c8e3c19f3b4edb6a263315626cc3c01d"
+dependencies = [
+ "base64",
+ "flate2",
+ "log",
+ "once_cell",
+ "rustls",
+ "rustls-pki-types",
+ "url",
+ "webpki-roots 0.26.11",
+]
+
+[[package]]
+name = "url"
+version = "2.5.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ff67a8a4397373c3ef660812acab3268222035010ab8680ec4215f38ba3d0eed"
+dependencies = [
+ "form_urlencoded",
+ "idna",
+ "percent-encoding",
+ "serde",
+]
+
+[[package]]
+name = "utf8_iter"
+version = "1.0.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b6c140620e7ffbb22c2dee59cafe6084a59b5ffc27a8859a5f0d494b5d52b6be"
+
+[[package]]
 name = "uuid"
 version = "1.24.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2559,6 +4269,12 @@ dependencies = [
  "serde_core",
  "wasm-bindgen",
 ]
+
+[[package]]
+name = "vcpkg"
+version = "0.2.15"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "accd4ea62f7bb7a82fe23066fb0957d48ef677f6eeb8215f372f52e48bb32426"
 
 [[package]]
 name = "version_check"
@@ -2577,6 +4293,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "wasi"
+version = "0.11.1+wasi-snapshot-preview1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ccf3ec651a847eb01de73ccad15eb7d99f80485de043efb2f370cd654f4ea44b"
+
+[[package]]
 name = "wasm-bindgen"
 version = "0.2.127"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2587,6 +4309,16 @@ dependencies = [
  "rustversion",
  "wasm-bindgen-macro",
  "wasm-bindgen-shared",
+]
+
+[[package]]
+name = "wasm-bindgen-futures"
+version = "0.4.77"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6b7777d5cc23d0e91404e53ce2d5e8ec7acae3026b16233dba62cd3246457950"
+dependencies = [
+ "js-sys",
+ "wasm-bindgen",
 ]
 
 [[package]]
@@ -2679,7 +4411,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4abf1132c1fdf747d56bbc1bb52152400c70f336870f968b85e89ea422198ae3"
 dependencies = [
  "bitflags",
+ "hashbrown 0.15.5",
  "indexmap",
+ "semver",
+ "serde",
 ]
 
 [[package]]
@@ -2690,6 +4425,7 @@ checksum = "d92fc335fb6d48f46bda1d8b26b69e28320c15ac3272208333833d6e217e2b4a"
 dependencies = [
  "bitflags",
  "indexmap",
+ "semver",
 ]
 
 [[package]]
@@ -2715,6 +4451,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "wayland-sys"
+version = "0.31.11"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d8eab23fefc9e41f8e841df4a9c707e8a8c4ed26e944ef69297184de2785e3be"
+dependencies = [
+ "dlib",
+ "log",
+ "once_cell",
+ "pkg-config",
+]
+
+[[package]]
 name = "web-sys"
 version = "0.3.104"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2722,6 +4470,197 @@ checksum = "c435338968042f4f59a557f690a253676d47ce13ceb55d70100e7facf6620a30"
 dependencies = [
  "js-sys",
  "wasm-bindgen",
+]
+
+[[package]]
+name = "webpki-roots"
+version = "0.26.11"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "521bc38abb08001b01866da9f51eb7c5d647a19260e00054a8c7fd5f9e57f7a9"
+dependencies = [
+ "webpki-roots 1.0.9",
+]
+
+[[package]]
+name = "webpki-roots"
+version = "1.0.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7dcd9d09a39985f5344844e66b0c530a33843579125f23e21e9f0f220850f22a"
+dependencies = [
+ "rustls-pki-types",
+]
+
+[[package]]
+name = "wgpu"
+version = "30.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6d8f4bd44d92da5270f03409dba9f952dab24f128e05d6a554926101d1bf9114"
+dependencies = [
+ "arrayvec",
+ "bitflags",
+ "bytemuck",
+ "cfg-if",
+ "cfg_aliases",
+ "document-features",
+ "hashbrown 0.17.1",
+ "js-sys",
+ "log",
+ "naga",
+ "parking_lot",
+ "portable-atomic",
+ "profiling",
+ "raw-window-handle",
+ "smallvec",
+ "static_assertions",
+ "wasm-bindgen",
+ "wasm-bindgen-futures",
+ "web-sys",
+ "wgpu-core",
+ "wgpu-hal",
+ "wgpu-types",
+]
+
+[[package]]
+name = "wgpu-core"
+version = "30.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "08763620e76fc980bca7bf84de82568614487a53172dd968d89187282eb87fa2"
+dependencies = [
+ "arrayvec",
+ "bit-set",
+ "bit-vec",
+ "bitflags",
+ "bytemuck",
+ "cfg_aliases",
+ "document-features",
+ "hashbrown 0.17.1",
+ "indexmap",
+ "log",
+ "naga",
+ "naga-types",
+ "once_cell",
+ "parking_lot",
+ "portable-atomic",
+ "profiling",
+ "raw-window-handle",
+ "rustc-hash",
+ "smallvec",
+ "thiserror 2.0.20",
+ "wgpu-core-deps-apple",
+ "wgpu-core-deps-emscripten",
+ "wgpu-core-deps-windows-linux-android",
+ "wgpu-hal",
+ "wgpu-naga-bridge",
+ "wgpu-types",
+]
+
+[[package]]
+name = "wgpu-core-deps-apple"
+version = "30.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3283b6da70d7fc892de95840215aa36381b5d0cbc479e88ee2b173c7b992b225"
+dependencies = [
+ "wgpu-hal",
+]
+
+[[package]]
+name = "wgpu-core-deps-emscripten"
+version = "30.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "85dcf2b2e5c2afb9eda64c570a87a4e570304bf39e52eddbaaf222d655b656ad"
+dependencies = [
+ "wgpu-hal",
+]
+
+[[package]]
+name = "wgpu-core-deps-windows-linux-android"
+version = "30.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f76bc9c1c186ff3d9054e0d224c93c8c1c79d6653907c5249a5c1ea1a2cb1e43"
+dependencies = [
+ "wgpu-hal",
+]
+
+[[package]]
+name = "wgpu-hal"
+version = "30.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cf765132d8d5f50e192e7880464890c13f4e7457aafe8e5466e8174586e9f101"
+dependencies = [
+ "android_system_properties",
+ "arrayvec",
+ "ash",
+ "bit-set",
+ "bitflags",
+ "block2",
+ "bytemuck",
+ "cfg-if",
+ "cfg_aliases",
+ "glow",
+ "glutin_wgl_sys",
+ "gpu-allocator",
+ "hashbrown 0.17.1",
+ "js-sys",
+ "khronos-egl",
+ "libc",
+ "libloading 0.8.9",
+ "log",
+ "naga",
+ "naga-types",
+ "ndk-sys",
+ "objc2",
+ "objc2-core-foundation",
+ "objc2-core-graphics",
+ "objc2-foundation",
+ "objc2-metal",
+ "objc2-quartz-core",
+ "once_cell",
+ "ordered-float",
+ "parking_lot",
+ "portable-atomic",
+ "portable-atomic-util",
+ "profiling",
+ "range-alloc",
+ "raw-window-handle",
+ "raw-window-metal",
+ "renderdoc-sys",
+ "smallvec",
+ "static_assertions",
+ "thiserror 2.0.20",
+ "wasm-bindgen",
+ "wayland-sys",
+ "web-sys",
+ "wgpu-naga-bridge",
+ "wgpu-types",
+ "windows",
+ "windows-core",
+ "windows-result",
+]
+
+[[package]]
+name = "wgpu-naga-bridge"
+version = "30.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c9eaac644e5008925c78567d272b9d66ef83da55a53cc17fc7daade7bb6e66e5"
+dependencies = [
+ "naga",
+ "wgpu-types",
+]
+
+[[package]]
+name = "wgpu-types"
+version = "30.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1a9c93c2b35edde326df60ffdee4c0f5864eac3011d6768b70d43f028ad93565"
+dependencies = [
+ "bitflags",
+ "bytemuck",
+ "js-sys",
+ "log",
+ "naga-types",
+ "raw-window-handle",
+ "static_assertions",
+ "web-sys",
 ]
 
 [[package]]
@@ -3032,8 +4971,47 @@ dependencies = [
 ]
 
 [[package]]
+name = "writeable"
+version = "0.6.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1ffae5123b2d3fc086436f8834ae3ab053a283cfac8fe0a0b8eaae044768a4c4"
+
+[[package]]
+name = "xml-rs"
+version = "0.8.29"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e450f9b2ed1dff33c94c12589a87338689467b9c4f5d8a5710bd09a847d2c8a7"
+
+[[package]]
 name = "xtask"
 version = "0.0.0"
+dependencies = [
+ "sim-kernel",
+ "sim-lib-compute-cli",
+]
+
+[[package]]
+name = "yoke"
+version = "0.8.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "709fe23a0424b6a435d82152b1bd3fdfb0833487d5fa90d05d42762a9891fef5"
+dependencies = [
+ "stable_deref_trait",
+ "yoke-derive",
+ "zerofrom",
+]
+
+[[package]]
+name = "yoke-derive"
+version = "0.8.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "de844c262c8848816172cef550288e7dc6c7b7814b4ee56b3e1553f275f1858e"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 2.0.119",
+ "synstructure",
+]
 
 [[package]]
 name = "zbus"
@@ -3117,10 +5095,99 @@ dependencies = [
 ]
 
 [[package]]
+name = "zerofrom"
+version = "0.1.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0ec05a11813ea801ff6d75110ad09cd0824ddba17dfe17128ea0d5f68e6c5272"
+dependencies = [
+ "zerofrom-derive",
+]
+
+[[package]]
+name = "zerofrom-derive"
+version = "0.1.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "11532158c46691caf0f2593ea8358fed6bbf68a0315e80aae9bd41fbade684a1"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 2.0.119",
+ "synstructure",
+]
+
+[[package]]
+name = "zeroize"
+version = "1.9.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e13c156562582aa81c60cb29407084cdb54c4164760106ab78e6c5b0858cf64e"
+
+[[package]]
+name = "zerotrie"
+version = "0.2.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0f9152d31db0792fa83f70fb2f83148effb5c1f5b8c7686c3459e361d9bc20bf"
+dependencies = [
+ "displaydoc",
+ "yoke",
+ "zerofrom",
+]
+
+[[package]]
+name = "zerovec"
+version = "0.11.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "90f911cbc359ab6af17377d242225f4d75119aec87ea711a880987b18cd7b239"
+dependencies = [
+ "yoke",
+ "zerofrom",
+ "zerovec-derive",
+]
+
+[[package]]
+name = "zerovec-derive"
+version = "0.11.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "625dc425cab0dca6dc3c3319506e6593dcb08a9f387ea3b284dbd52a92c40555"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 2.0.119",
+]
+
+[[package]]
+name = "zip"
+version = "2.4.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fabe6324e908f85a1c52063ce7aa26b68dcb7eb6dbc83a2d148403c9bc3eba50"
+dependencies = [
+ "arbitrary",
+ "crc32fast",
+ "crossbeam-utils",
+ "displaydoc",
+ "flate2",
+ "indexmap",
+ "memchr",
+ "thiserror 2.0.20",
+ "zopfli",
+]
+
+[[package]]
 name = "zmij"
 version = "1.0.23"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "29666d0abbfad1e3dc4dcf6144730dd3a3ab225bbbdac83319345b1b44ccfc1b"
+
+[[package]]
+name = "zopfli"
+version = "0.8.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f05cd8797d63865425ff89b5c4a48804f35ba0ce8d125800027ad6017d2b5249"
+dependencies = [
+ "bumpalo",
+ "crc32fast",
+ "log",
+ "simd-adler32",
+]
 
 [[package]]
 name = "zvariant"
@@ -3161,3 +5228,1155 @@ dependencies = [
  "syn 2.0.119",
  "winnow 1.0.4",
 ]
+
+[[patch.unused]]
+name = "sim-ledger"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-deck"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-doc-store"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-doc-surface"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-ledger"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-index-core"
+version = "0.2.0"
+
+[[patch.unused]]
+name = "sim-index-core"
+version = "0.2.0"
+
+[[patch.unused]]
+name = "sim-ledger"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-ledger"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-index-core"
+version = "0.2.0"
+
+[[patch.unused]]
+name = "sim-index-core"
+version = "0.2.0"
+
+[[patch.unused]]
+name = "sim-ledger"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-deck"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-doc-store"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-doc-surface"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-deck"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-doc-store"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-doc-surface"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-ledger"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-codec-doc"
+version = "0.1.4"
+
+[[patch.unused]]
+name = "sim-codec-index"
+version = "0.2.1"
+
+[[patch.unused]]
+name = "sim-codec-index-vault"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-codec-mcp"
+version = "0.1.5"
+
+[[patch.unused]]
+name = "sim-index-core"
+version = "0.2.0"
+
+[[patch.unused]]
+name = "sim-index-vault-core"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-ledger"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-ledger-store-port"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-ledger-test-support"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-audio-dsp"
+version = "0.1.4"
+
+[[patch.unused]]
+name = "sim-lib-audio-graph-core"
+version = "0.1.2"
+
+[[patch.unused]]
+name = "sim-lib-audio-graph-live"
+version = "0.1.3"
+
+[[patch.unused]]
+name = "sim-lib-construction-office"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-construction-project"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-daw-session"
+version = "0.1.5"
+
+[[patch.unused]]
+name = "sim-lib-deck"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-doc-store"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-doc-surface"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-machine"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-midi-sysex"
+version = "0.1.2"
+
+[[patch.unused]]
+name = "sim-lib-music-synth"
+version = "0.1.7"
+
+[[patch.unused]]
+name = "sim-lib-numbers-cas-diff"
+version = "0.3.1"
+
+[[patch.unused]]
+name = "sim-lib-numbers-codec"
+version = "0.3.0"
+
+[[patch.unused]]
+name = "sim-lib-numbers-float"
+version = "0.3.1"
+
+[[patch.unused]]
+name = "sim-lib-numbers-numeric"
+version = "0.3.0"
+
+[[patch.unused]]
+name = "sim-lib-numbers-rk"
+version = "0.3.0"
+
+[[patch.unused]]
+name = "sim-lib-plugin-core"
+version = "0.1.3"
+
+[[patch.unused]]
+name = "sim-lib-stream-audio"
+version = "0.1.2"
+
+[[patch.unused]]
+name = "sim-lib-stream-midi"
+version = "0.1.3"
+
+[[patch.unused]]
+name = "sim-lib-view-agent"
+version = "0.1.3"
+
+[[patch.unused]]
+name = "sim-lib-view-codec"
+version = "0.1.3"
+
+[[patch.unused]]
+name = "sim-lib-view-daw"
+version = "0.1.2"
+
+[[patch.unused]]
+name = "sim-lib-view-doc"
+version = "0.1.4"
+
+[[patch.unused]]
+name = "sim-lib-view-math"
+version = "0.1.3"
+
+[[patch.unused]]
+name = "sim-macros"
+version = "0.2.2"
+
+[[patch.unused]]
+name = "sim-table-hash"
+version = "0.1.3"
+
+[[patch.unused]]
+name = "sim-view-tty"
+version = "0.1.3"
+
+[[patch.unused]]
+name = "sim-auto"
+version = "0.2.1"
+
+[[patch.unused]]
+name = "sim-codec-bitwise"
+version = "0.1.5"
+
+[[patch.unused]]
+name = "sim-codec-bitwise-base64"
+version = "0.1.5"
+
+[[patch.unused]]
+name = "sim-codec-bridge"
+version = "0.1.3"
+
+[[patch.unused]]
+name = "sim-codec-classfile"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-codec-compare"
+version = "0.1.2"
+
+[[patch.unused]]
+name = "sim-codec-feed"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-codec-javascript"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-codec-lua"
+version = "0.1.3"
+
+[[patch.unused]]
+name = "sim-codec-odf"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-codec-ooxml"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-codec-python"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-codec-robots"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-codec-search-searxng"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-codec-typescript"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-codec-uds"
+version = "0.1.1"
+
+[[patch.unused]]
+name = "sim-conformance"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-estate-acceptance"
+version = "0.0.0"
+
+[[patch.unused]]
+name = "sim-estate-core"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-estate-project"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-expr-tree"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-expr-tree-calc"
+version = "0.2.0"
+
+[[patch.unused]]
+name = "sim-expr-tree-core"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-ledger-cli"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-ledger-odb"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-agent"
+version = "0.1.18"
+
+[[patch.unused]]
+name = "sim-lib-agent-conduct"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-agent-conduct-core"
+version = "0.1.1"
+
+[[patch.unused]]
+name = "sim-lib-agent-runner-http"
+version = "0.2.0"
+
+[[patch.unused]]
+name = "sim-lib-agent-runner-local"
+version = "0.1.5"
+
+[[patch.unused]]
+name = "sim-lib-agent-runner-process"
+version = "0.1.5"
+
+[[patch.unused]]
+name = "sim-lib-auto-core"
+version = "0.2.0"
+
+[[patch.unused]]
+name = "sim-lib-auto-diag"
+version = "0.1.1"
+
+[[patch.unused]]
+name = "sim-lib-auto-info"
+version = "0.1.1"
+
+[[patch.unused]]
+name = "sim-lib-auto-order"
+version = "0.1.1"
+
+[[patch.unused]]
+name = "sim-lib-auto-parts"
+version = "0.1.1"
+
+[[patch.unused]]
+name = "sim-lib-auto-vehicle"
+version = "0.1.1"
+
+[[patch.unused]]
+name = "sim-lib-auto-vendor"
+version = "0.2.0"
+
+[[patch.unused]]
+name = "sim-lib-bridge"
+version = "0.1.7"
+
+[[patch.unused]]
+name = "sim-lib-capability-pack"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-class"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-compute-femm"
+version = "0.2.0"
+
+[[patch.unused]]
+name = "sim-lib-continuity"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-doc-ledger"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-doc-markup"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-doc-web"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-estate"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-estate-book"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-estate-serve"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-expedition-book"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-expr-tree"
+version = "0.2.0"
+
+[[patch.unused]]
+name = "sim-lib-expr-tree-serve"
+version = "0.1.1"
+
+[[patch.unused]]
+name = "sim-lib-expr-tree-server"
+version = "0.2.0"
+
+[[patch.unused]]
+name = "sim-lib-femm-assembly"
+version = "0.3.0"
+
+[[patch.unused]]
+name = "sim-lib-femm-codec"
+version = "0.2.0"
+
+[[patch.unused]]
+name = "sim-lib-femm-core"
+version = "0.3.0"
+
+[[patch.unused]]
+name = "sim-lib-femm-field"
+version = "0.2.0"
+
+[[patch.unused]]
+name = "sim-lib-femm-fixtures"
+version = "0.2.0"
+
+[[patch.unused]]
+name = "sim-lib-femm-flow"
+version = "0.3.0"
+
+[[patch.unused]]
+name = "sim-lib-femm-function"
+version = "0.2.0"
+
+[[patch.unused]]
+name = "sim-lib-femm-geometry"
+version = "0.3.0"
+
+[[patch.unused]]
+name = "sim-lib-femm-material"
+version = "0.3.0"
+
+[[patch.unused]]
+name = "sim-lib-femm-mesh"
+version = "0.3.0"
+
+[[patch.unused]]
+name = "sim-lib-femm-ode"
+version = "0.2.0"
+
+[[patch.unused]]
+name = "sim-lib-femm-physics"
+version = "0.3.0"
+
+[[patch.unused]]
+name = "sim-lib-femm-post"
+version = "0.3.0"
+
+[[patch.unused]]
+name = "sim-lib-femm-prelude"
+version = "0.2.0"
+
+[[patch.unused]]
+name = "sim-lib-femm-query"
+version = "0.2.0"
+
+[[patch.unused]]
+name = "sim-lib-femm-sensitiv"
+version = "0.2.0"
+
+[[patch.unused]]
+name = "sim-lib-femm-solve"
+version = "0.3.0"
+
+[[patch.unused]]
+name = "sim-lib-femm-space"
+version = "0.3.0"
+
+[[patch.unused]]
+name = "sim-lib-femm-tape"
+version = "0.2.0"
+
+[[patch.unused]]
+name = "sim-lib-forge"
+version = "0.1.3"
+
+[[patch.unused]]
+name = "sim-lib-function"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-gc-tracing"
+version = "0.1.2"
+
+[[patch.unused]]
+name = "sim-lib-hotload"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-incremental"
+version = "0.1.3"
+
+[[patch.unused]]
+name = "sim-lib-index"
+version = "0.3.1"
+
+[[patch.unused]]
+name = "sim-lib-interference-compute"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-interference-core"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-interference-physics"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-interference-runtime"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-interference-solve"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-journal"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-lang-cl"
+version = "0.1.6"
+
+[[patch.unused]]
+name = "sim-lib-lang-clojure"
+version = "0.1.6"
+
+[[patch.unused]]
+name = "sim-lib-lang-genconf"
+version = "0.1.4"
+
+[[patch.unused]]
+name = "sim-lib-lang-islisp"
+version = "0.1.6"
+
+[[patch.unused]]
+name = "sim-lib-lang-javascript"
+version = "0.2.0"
+
+[[patch.unused]]
+name = "sim-lib-lang-julia"
+version = "0.1.5"
+
+[[patch.unused]]
+name = "sim-lib-lang-jvm"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-lang-lua"
+version = "0.2.1"
+
+[[patch.unused]]
+name = "sim-lib-lang-matrix"
+version = "0.1.5"
+
+[[patch.unused]]
+name = "sim-lib-lang-prolog"
+version = "0.1.5"
+
+[[patch.unused]]
+name = "sim-lib-lang-python"
+version = "0.2.1"
+
+[[patch.unused]]
+name = "sim-lib-lang-ruby"
+version = "0.1.4"
+
+[[patch.unused]]
+name = "sim-lib-lang-typed-lazy"
+version = "0.1.5"
+
+[[patch.unused]]
+name = "sim-lib-lang-typescript"
+version = "0.1.1"
+
+[[patch.unused]]
+name = "sim-lib-ledger-books"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-ledger-close"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-logic"
+version = "0.1.5"
+
+[[patch.unused]]
+name = "sim-lib-mail"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-mcp"
+version = "0.1.9"
+
+[[patch.unused]]
+name = "sim-lib-mcp-client"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-mcp-http"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-mcp-legacy"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-mcp-stdio"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-midi-ble"
+version = "0.1.5"
+
+[[patch.unused]]
+name = "sim-lib-midi-rtmidi"
+version = "0.1.7"
+
+[[patch.unused]]
+name = "sim-lib-midi-wasm-frame"
+version = "0.1.5"
+
+[[patch.unused]]
+name = "sim-lib-model-test"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-model-test-packs"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-music-combinators"
+version = "0.1.3"
+
+[[patch.unused]]
+name = "sim-lib-music-consonance"
+version = "0.1.1"
+
+[[patch.unused]]
+name = "sim-lib-music-counterpoint"
+version = "0.1.1"
+
+[[patch.unused]]
+name = "sim-lib-music-wasm-frame"
+version = "0.1.3"
+
+[[patch.unused]]
+name = "sim-lib-namespace"
+version = "0.2.0"
+
+[[patch.unused]]
+name = "sim-lib-numbers-ad"
+version = "0.2.1"
+
+[[patch.unused]]
+name = "sim-lib-numbers-continuation"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-numbers-exotic"
+version = "0.3.0"
+
+[[patch.unused]]
+name = "sim-lib-numbers-extended"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-numbers-fixed"
+version = "0.3.0"
+
+[[patch.unused]]
+name = "sim-lib-numbers-implicit"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-numbers-interval"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-numbers-optimize"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-numbers-poly"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-numbers-prelude"
+version = "0.3.1"
+
+[[patch.unused]]
+name = "sim-lib-numbers-quad"
+version = "0.3.0"
+
+[[patch.unused]]
+name = "sim-lib-numbers-quantity"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-numbers-root"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-numbers-tensor-bit"
+version = "0.3.0"
+
+[[patch.unused]]
+name = "sim-lib-numbers-tensor-f32"
+version = "0.2.0"
+
+[[patch.unused]]
+name = "sim-lib-numbers-tensor-half"
+version = "0.2.0"
+
+[[patch.unused]]
+name = "sim-lib-numbers-tensor-i64"
+version = "0.3.0"
+
+[[patch.unused]]
+name = "sim-lib-oauth-core"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-oauth-http"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-oauth-jose"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-office-pack"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-openai-server"
+version = "0.3.1"
+
+[[patch.unused]]
+name = "sim-lib-operation-gate"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-physics-adapter"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-physics-audit"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-physics-core"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-physics-findings"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-physics-influence"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-physics-power"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-physics-proof"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-physics-runtime"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-physics-study"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-pitch-shapes"
+version = "0.2.0"
+
+[[patch.unused]]
+name = "sim-lib-pitch-wasm-frame"
+version = "0.1.2"
+
+[[patch.unused]]
+name = "sim-lib-plugin-clap"
+version = "0.1.3"
+
+[[patch.unused]]
+name = "sim-lib-plugin-lv2"
+version = "0.1.3"
+
+[[patch.unused]]
+name = "sim-lib-plugin-vst3"
+version = "0.1.3"
+
+[[patch.unused]]
+name = "sim-lib-plugin-wasm"
+version = "0.1.3"
+
+[[patch.unused]]
+name = "sim-lib-protected-state"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-provider"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-provider-cli"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-relation-cli"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-repl"
+version = "0.3.1"
+
+[[patch.unused]]
+name = "sim-lib-roadmap"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-roadmap-runner"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-search"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-search-core"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-search-http"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-skill"
+version = "0.2.1"
+
+[[patch.unused]]
+name = "sim-lib-sound-gm"
+version = "0.1.2"
+
+[[patch.unused]]
+name = "sim-lib-sound-wasm-frame"
+version = "0.1.2"
+
+[[patch.unused]]
+name = "sim-lib-stream-alsa"
+version = "0.1.3"
+
+[[patch.unused]]
+name = "sim-lib-stream-asio"
+version = "0.1.2"
+
+[[patch.unused]]
+name = "sim-lib-stream-bridge"
+version = "0.1.3"
+
+[[patch.unused]]
+name = "sim-lib-stream-combinators"
+version = "0.1.3"
+
+[[patch.unused]]
+name = "sim-lib-stream-coreaudio"
+version = "0.1.3"
+
+[[patch.unused]]
+name = "sim-lib-stream-cpal"
+version = "0.1.4"
+
+[[patch.unused]]
+name = "sim-lib-stream-device"
+version = "0.1.2"
+
+[[patch.unused]]
+name = "sim-lib-stream-file"
+version = "0.1.3"
+
+[[patch.unused]]
+name = "sim-lib-stream-halo"
+version = "0.1.1"
+
+[[patch.unused]]
+name = "sim-lib-stream-jack"
+version = "0.1.2"
+
+[[patch.unused]]
+name = "sim-lib-stream-jack-provider"
+version = "0.2.0"
+
+[[patch.unused]]
+name = "sim-lib-stream-pipewire"
+version = "0.1.3"
+
+[[patch.unused]]
+name = "sim-lib-stream-portaudio"
+version = "0.1.2"
+
+[[patch.unused]]
+name = "sim-lib-stream-prelude"
+version = "0.2.1"
+
+[[patch.unused]]
+name = "sim-lib-stream-viture"
+version = "0.2.0"
+
+[[patch.unused]]
+name = "sim-lib-stream-wrist"
+version = "0.1.2"
+
+[[patch.unused]]
+name = "sim-lib-stream-wristbridge"
+version = "0.1.2"
+
+[[patch.unused]]
+name = "sim-lib-stream-xr"
+version = "0.1.2"
+
+[[patch.unused]]
+name = "sim-lib-study"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-surface-card"
+version = "0.1.4"
+
+[[patch.unused]]
+name = "sim-lib-view-bay"
+version = "0.2.0"
+
+[[patch.unused]]
+name = "sim-lib-view-bridge"
+version = "0.1.2"
+
+[[patch.unused]]
+name = "sim-lib-view-continuity-phone"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-view-estate"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-view-expr-tree"
+version = "0.2.0"
+
+[[patch.unused]]
+name = "sim-lib-view-interference"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-view-search"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-view-wasm-frame"
+version = "0.1.3"
+
+[[patch.unused]]
+name = "sim-lib-view-worktable"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-view-wrist"
+version = "0.1.1"
+
+[[patch.unused]]
+name = "sim-lib-web-core"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-web-fetch"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-web-layout"
+version = "0.1.3"
+
+[[patch.unused]]
+name = "sim-list-cell"
+version = "0.1.3"
+
+[[patch.unused]]
+name = "sim-list-lazy"
+version = "0.1.3"
+
+[[patch.unused]]
+name = "sim-mcp-server"
+version = "0.1.3"
+
+[[patch.unused]]
+name = "sim-mutual-projection"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-nest"
+version = "0.2.2"
+
+[[patch.unused]]
+name = "sim-relation-shape"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-roadmap-core"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-roadmap-exec-core"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-roadmap-plan"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-roadmap-refine"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-run"
+version = "0.3.2"
+
+[[patch.unused]]
+name = "sim-site-estate-ansible"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-site-estate-command"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-site-estate-model"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-site-libreoffice"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-site-msgraph"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-site-sharepoint"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-source-deck"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-study-core"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-table-db"
+version = "0.1.2"
+
+[[patch.unused]]
+name = "sim-table-http"
+version = "0.1.1"
+
+[[patch.unused]]
+name = "sim-table-lazy"
+version = "0.1.3"
+
+[[patch.unused]]
+name = "sim-table-mount"
+version = "0.1.1"
+
+[[patch.unused]]
+name = "sim-table-override"
+version = "0.1.1"
+
+[[patch.unused]]
+name = "sim-table-relation"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-table-remote"
+version = "0.1.2"
+
+[[patch.unused]]
+name = "sim-table-sealed"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "xtask"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-deck"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-doc-store"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "sim-lib-doc-surface"
+version = "0.1.0"

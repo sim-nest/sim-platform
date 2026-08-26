@@ -88,6 +88,11 @@
     {
       "features": [],
       "group": "workspace",
+      "package": "sim-platform-sqlite"
+    },
+    {
+      "features": [],
+      "group": "workspace",
       "package": "sim-platform-ubuntu-pc"
     },
     {

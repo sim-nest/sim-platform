@@ -1,5 +1,5 @@
+book = "platform/core"
 title = "sim-platform-core recipes"
-
-[[chapter]]
-path = "01-basics/chapter.toml"
-
+summary = "Compose and attest provider-neutral platform records."
+order = 10
+chapters = ["01-basics"]

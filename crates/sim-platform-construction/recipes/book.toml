@@ -1,2 +1,5 @@
+book = "platform/construction"
 title = "Construction platform adapters"
-chapters = ["01-basics/chapter.toml"]
+summary = "Realize construction integration ports at the platform boundary."
+order = 10
+chapters = ["01-basics"]

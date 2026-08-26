@@ -1,4 +1,5 @@
 schema = "sim.recipe/v1"
 title = "Launch, open, and share through the macOS capsule"
+purpose = "Exercise bounded macOS desktop activation actions."
 setup = "setup.siml"
 expected = "expected.txt"

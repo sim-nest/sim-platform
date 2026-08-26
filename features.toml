@@ -229,7 +229,7 @@ summary = "Inspect a closed WASI import surface and realize it through explicit 
 owner = "crate/sim-platform-wasi"
 audiences = ["code", "framework"]
 guidance = "Admit a component only after every import matches the capsule declaration, then activate it with the complete authority bundle: named Table/Dir refs, explicit clocks and entropy, declared socket endpoints, lifecycle, and matching capabilities. Treat in-memory and hosted-runtime frame results as separate evidence grades. Unsupported process creation, native loading, UI, notification, and device services remain absent and refuse without probing."
-claims_anchors = ["anchor/crate/sim-platform-wasi", "anchor/card/cookbook/sim-platform-wasi"]
+claims_anchors = ["anchor/crate/sim-platform-wasi", "anchor/card/cookbook/platform/wasi"]
 supports = ["feature/sim-platform/platform-owner", "feature/sim-platform/platform-policy"]
 
 [[route]]

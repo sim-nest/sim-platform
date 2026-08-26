@@ -93,6 +93,11 @@ impl UbuntuRpiProfile {
     }
 
     /// Resolve a declared domain service without probing or fallback.
+    ///
+    /// # Errors
+    ///
+    /// Returns a typed refusal when the service has no binding or its binding
+    /// lacks an explicit permission profile.
     pub fn require(&self, service: PiService) -> Result<&Binding, PiRefusal> {
         let binding = self
             .bindings
@@ -109,6 +114,7 @@ impl UbuntuRpiProfile {
 pub enum PiRefusal {
     Unsupported { service: PiService },
     PermissionProfileMissing { service: PiService },
+    ProfileEncoding,
 }
 
 /// Registration output pairs the immutable profile and its exact observed Card.
@@ -118,8 +124,13 @@ pub struct RegisteredPiCard {
     pub card: PlatformCard,
 }
 
-#[must_use]
-pub fn register(profile: UbuntuRpiProfile) -> RegisteredPiCard {
+/// Registers a profile and derives its exact, content-bound platform Card.
+///
+/// # Errors
+///
+/// Returns [`PiRefusal::ProfileEncoding`] if the closed profile cannot be
+/// serialized for content binding.
+pub fn register(profile: UbuntuRpiProfile) -> Result<RegisteredPiCard, PiRefusal> {
     let services = PiService::ALL
         .into_iter()
         .filter(|service| profile.bindings.contains_key(service))
@@ -129,8 +140,8 @@ pub fn register(profile: UbuntuRpiProfile) -> RegisteredPiCard {
             evidence: EvidenceLevel::Declared,
         })
         .collect();
-    let bytes = serde_json::to_vec(&profile).expect("closed Pi profile serializes");
-    RegisteredPiCard {
+    let bytes = serde_json::to_vec(&profile).map_err(|_| PiRefusal::ProfileEncoding)?;
+    Ok(RegisteredPiCard {
         card: PlatformCard {
             schema: OpenSymbol("platform/card-v1".into()),
             site: OpenSymbol("platform/site/ubuntu-rpi-headless".into()),
@@ -142,7 +153,7 @@ pub fn register(profile: UbuntuRpiProfile) -> RegisteredPiCard {
             },
         },
         profile,
-    }
+    })
 }
 
 /// Deterministic hostile profile: only bindings explicitly inserted exist.
@@ -263,6 +274,12 @@ pub struct TargetAttestation {
 }
 
 impl TargetAttestation {
+    /// Validates that build evidence is non-empty and physically attributable.
+    ///
+    /// # Errors
+    ///
+    /// Returns a static refusal when no target was built or physical evidence
+    /// lacks a registered host.
     pub fn validate(&self) -> Result<(), &'static str> {
         if self.targets.is_empty() {
             return Err("no declared target was built");

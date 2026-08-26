@@ -18,6 +18,7 @@
 | `sim-platform-macos` | `workspace` | macOS capsule policy, packaging, and testable native membrane. |
 | `sim-platform-midi` | `workspace` | Capsule-owned native MIDI selection and realization. |
 | `sim-platform-model` | `workspace` | Deterministic, host-free platform model and the standard platform site. |
+| `sim-platform-sqlite` | `workspace` | Attesting SQLite realization behind the provider-neutral relation site. |
 | `sim-platform-ubuntu-pc` | `workspace` | Ubuntu PC capsule registration and sanitized evidence contracts. |
 | `sim-platform-ubuntu-rpi` | `workspace` | Headless Ubuntu Raspberry Pi capsule with profile-owned native facts. |
 | `sim-platform-wasi` | `workspace` | Least-authority WASI capsule. |

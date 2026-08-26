@@ -1,5 +1,5 @@
+book = "platform/bootstrap"
 title = "sim-platform-bootstrap recipes"
-
-[[chapter]]
-path = "01-basics/chapter.toml"
-
+summary = "Compose explicit platform bootstrap inputs."
+order = 10
+chapters = ["01-basics"]

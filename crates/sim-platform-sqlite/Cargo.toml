@@ -14,13 +14,13 @@ reason = "Real-file adoption, migration, attach, and bounded execution are check
 
 [dependencies]
 rusqlite = { version = "0.31", features = ["bundled", "hooks"] }
-sim-kernel = { version = "0.2.1", path = "../../../sim-kernel" }
-sim-codec-sql = { version = "0.1.0", path = "../../../sim-codecs/crates/sim-codec-sql" }
-sim-relation-core = { version = "0.1.0", path = "../../../sim-foundation/crates/sim-relation-core" }
-sim-relation-migrate = { version = "0.1.0", path = "../../../sim-foundation/crates/sim-relation-migrate" }
-sim-relation-plan = { version = "0.1.0", path = "../../../sim-foundation/crates/sim-relation-plan" }
-sim-relation-schema = { version = "0.1.0", path = "../../../sim-foundation/crates/sim-relation-schema" }
-sim-relation-site = { version = "0.1.0", path = "../../../sim-storage/crates/sim-relation-site" }
+sim-kernel = { version = "0.2.1" }
+sim-codec-sql = { version = "0.1.0" }
+sim-relation-core = { version = "0.1.0" }
+sim-relation-migrate = { version = "0.1.0" }
+sim-relation-plan = { version = "0.1.0" }
+sim-relation-schema = { version = "0.1.0" }
+sim-relation-site = { version = "0.1.0" }
 
 [lints]
 workspace = true

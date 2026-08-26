@@ -18,7 +18,9 @@ fn native(error: std::io::Error) -> TransportError {
         std::io::ErrorKind::Interrupted => TransportErrorKind::Cancelled,
         _ => TransportErrorKind::ProviderFault,
     };
-    TransportError::new(kind, error.to_string())
+    let message = error.to_string();
+    drop(error);
+    TransportError::new(kind, message)
 }
 fn socket(address: &SocketAddress) -> std::net::SocketAddr {
     match address {
@@ -130,6 +132,11 @@ impl DnsPort for LinuxDnsPort {
 pub struct LinuxIpcPort;
 
 /// Explicitly bind the Linux capsule's native transport realization.
+///
+/// # Errors
+///
+/// Returns the transport registry refusal when another realization was already
+/// bound.
 pub fn bind_transport_services() -> Result<()> {
     sim_transport_ports::bind_services(sim_transport_ports::TransportServices {
         sockets: std::sync::Arc::new(LinuxSocketPort),
@@ -139,7 +146,7 @@ pub fn bind_transport_services() -> Result<()> {
 }
 #[cfg(unix)]
 mod unix {
-    use super::*;
+    use super::{Duration, Half, IpcListener, Read, Result, Shutdown, Stream, Write, native};
     use std::os::unix::net::{UnixListener, UnixStream};
     pub(super) struct UListener(pub UnixListener);
     pub(super) struct UStream(pub UnixStream);

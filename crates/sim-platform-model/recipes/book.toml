@@ -1,5 +1,5 @@
+book = "platform/model"
 title = "sim-platform-model recipes"
-
-[[chapter]]
-path = "01-basics/chapter.toml"
-
+summary = "Run deterministic modeled platform services."
+order = 10
+chapters = ["01-basics"]

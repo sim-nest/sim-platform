@@ -1,2 +1,5 @@
+book = "platform/windows"
 title = "Windows capsule recipes"
-chapters = ["01-basics/chapter.toml"]
+summary = "Exercise bounded Windows capsule services."
+order = 10
+chapters = ["01-basics"]

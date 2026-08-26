@@ -1,4 +1,5 @@
+book = "platform/web-shell"
 title = "Native web shell capsule"
-
-[[chapter]]
-path = "01-basics/chapter.toml"
+summary = "Realize native services for the generic web shell."
+order = 10
+chapters = ["01-basics"]

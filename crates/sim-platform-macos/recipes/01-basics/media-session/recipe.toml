@@ -1,4 +1,5 @@
 schema = "sim.recipe/v1"
 title = "Select CoreAudio and CoreMIDI capsule bindings"
+purpose = "Select explicit macOS audio and MIDI capsule bindings."
 setup = "setup.siml"
 expected = "expected.txt"

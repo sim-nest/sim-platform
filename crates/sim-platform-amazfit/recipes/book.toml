@@ -1,3 +1,5 @@
+book = "platform/amazfit"
 title = "Amazfit proxy capsule"
-description = "Modeled and cross-built Amazfit capsule recipes."
+summary = "Modeled and cross-built Amazfit capsule recipes."
+order = 10
 chapters = ["01-basics"]

@@ -1,3 +1,5 @@
+// conformance: Ubuntu sandbox realization refuses undeclared authority before spawning.
+
 use sim_lib_exec::{
     BindingValue, MountAccess, ProcessAttempt, ProcessBudget, ProcessCancellation, ProcessRequest,
     ProgramRef, ProjectRootRef, SandboxAttempt, SandboxControl, SandboxEvidence, SandboxLauncher,
@@ -19,6 +21,7 @@ pub struct BwrapLauncher {
 }
 impl BwrapLauncher {
     /// Creates a boot-configured launcher. Paths are authority supplied, never request supplied.
+    #[must_use]
     pub fn new(
         bwrap: PathBuf,
         prlimit: PathBuf,
@@ -104,7 +107,7 @@ impl BwrapLauncher {
             .arg(format!("--nproc={}", limits.process_count))
             .arg(format!("--fsize={}", limits.file_bytes))
             .args(["--", "/sim-program"])
-            .args(request.argv.iter().map(|a| a.as_str()))
+            .args(request.argv.iter().map(sim_lib_exec::ArgAtom::as_str))
             .stdin(Stdio::piped())
             .stdout(Stdio::piped())
             .stderr(Stdio::piped());
@@ -112,7 +115,7 @@ impl BwrapLauncher {
     }
 }
 impl SandboxLauncher for BwrapLauncher {
-    fn id(&self) -> &str {
+    fn id(&self) -> &'static str {
         "platform/sandbox/ubuntu-bwrap"
     }
     fn launch(
@@ -189,7 +192,7 @@ fn report(request: &SandboxRequest, outcome: ProcessAttempt) -> SandboxAttempt {
         ProcessAttempt::Completed { receipt } => {
             let mut hits = vec![];
             if receipt.result.truncated {
-                hits.push("output_bytes".into())
+                hits.push("output_bytes".into());
             }
             SandboxAttempt::Completed(SandboxResult {
                 stdout: receipt.result.stdout.into_bytes(),
@@ -293,7 +296,7 @@ mod tests {
         )
         .unwrap();
         assert!(matches!(
-            launcher.launch(&request, &Default::default()),
+            launcher.launch(&request, &ProcessCancellation::default()),
             SandboxAttempt::Refused(_)
         ));
     }

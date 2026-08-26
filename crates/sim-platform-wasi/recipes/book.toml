@@ -1,3 +1,5 @@
+book = "platform/wasi"
 title = "WASI capsule recipes"
-
-chapters = ["01-basics/chapter.toml"]
+summary = "Exercise bounded WASI capsule services."
+order = 10
+chapters = ["01-basics"]

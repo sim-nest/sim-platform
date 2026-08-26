@@ -2,7 +2,7 @@
 //! Host-owned Halo proxy over the official SDK transport model.
 //!
 //! The crate owns application framing and lifecycle only. Consumers continue to
-//! use the GLASSES_8 Device/Stream and Surface contracts; the device runs no SIM
+//! use the `GLASSES_8` Device/Stream and Surface contracts; the device runs no SIM
 //! evaluator or routing policy.
 
 use std::collections::{BTreeSet, VecDeque};
@@ -19,7 +19,7 @@ pub const MAX_FRAGMENT_BYTES: usize = 180;
 pub const MAX_FRAGMENTS: usize = 16;
 /// Maximum queued normalized input events.
 pub const MAX_PENDING_EVENTS: usize = 32;
-/// GLASSES_8 profile consumed by the host adapter.
+/// `GLASSES_8` profile consumed by the host adapter.
 pub const DEVICE_PROFILE: &str = "GLASSES_8";
 /// Existing output protocol consumed by the host adapter.
 pub const OUTPUT_PROTOCOL: &str = "Surface";
@@ -69,7 +69,7 @@ impl TryFrom<u8> for MessageKind {
     }
 }
 
-/// Input normalized for the delivered GLASSES_8 Device/Stream adapter.
+/// Input normalized for the delivered `GLASSES_8` Device/Stream adapter.
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum GlassesInput {
     Button { name: String, pressed: bool },
@@ -132,6 +132,7 @@ pub struct HaloCapsule {
 
 impl HaloCapsule {
     /// Creates a capsule for one explicitly selected official host route.
+    #[must_use]
     pub fn new(transport: HostTransport) -> Self {
         Self {
             transport,
@@ -145,6 +146,8 @@ impl HaloCapsule {
         }
     }
 
+    /// Returns the explicitly selected official host route.
+    #[must_use]
     pub fn transport(&self) -> HostTransport {
         self.transport
     }
@@ -163,6 +166,12 @@ impl HaloCapsule {
         }
     }
 
+    /// Activates a consented capsule for `session`.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`ProxyError::ConsentRequired`] without consent or
+    /// [`ProxyError::Inactive`] unless the capsule lifecycle is active.
     pub fn connect(&mut self, session: u32) -> Result<(), ProxyError> {
         if !self.consent {
             return Err(ProxyError::ConsentRequired);
@@ -186,6 +195,11 @@ impl HaloCapsule {
     }
 
     /// Accepts one ordered official-link notification fragment.
+    ///
+    /// # Errors
+    ///
+    /// Returns a typed refusal for malformed, oversized, stale, replayed,
+    /// unauthorized, inactive, out-of-order, or over-capacity input.
     pub fn receive_fragment(&mut self, bytes: &[u8]) -> Result<bool, ProxyError> {
         self.require_active()?;
         let fragment = decode_fragment(bytes)?;
@@ -225,7 +239,9 @@ impl HaloCapsule {
         if assembly.next != assembly.count {
             return Ok(false);
         }
-        let message = self.assembly.take().expect("assembly is present");
+        let Some(message) = self.assembly.take() else {
+            return Err(ProxyError::FragmentOrder);
+        };
         if message.payload.len() != message.total {
             return Err(ProxyError::Malformed);
         }
@@ -243,6 +259,11 @@ impl HaloCapsule {
     }
 
     /// Encodes one Surface command into canonical fragments for any host SDK.
+    ///
+    /// # Errors
+    ///
+    /// Returns a typed refusal when the capsule is unauthorized or inactive,
+    /// or when the encoded command exceeds protocol bounds.
     pub fn encode_surface(
         &self,
         sequence: u32,
@@ -280,6 +301,11 @@ struct Fragment<'a> {
 }
 
 /// Canonical BLE application codec shared by Android, iOS, and Web Bluetooth.
+///
+/// # Errors
+///
+/// Returns [`ProxyError::Oversized`] when the message or resulting fragment
+/// count exceeds the bounded wire format.
 pub fn encode_message(message: &Message) -> Result<Vec<Vec<u8>>, ProxyError> {
     if message.payload.len() > MAX_MESSAGE_BYTES {
         return Err(ProxyError::Oversized);

@@ -1,5 +1,6 @@
 id = "amazfit-bounded-proxy"
 title = "Exercise the modeled Amazfit proxy"
+purpose = "Verify consent, sessions, bounded queues, and glance commands offline."
 description = "Checks consent, session, bounded queue, and glance command behavior without hardware."
 entry = "cargo test -p sim-platform-amazfit"
 expected = "all proxy conformance tests pass"

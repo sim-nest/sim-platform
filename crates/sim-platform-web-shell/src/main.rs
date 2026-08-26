@@ -70,7 +70,7 @@ fn main() -> ExitCode {
     args.extend(std::env::args_os().skip(1));
     match sim_web_shell::web_bootloader_with_services(services).run(args) {
         Ok(0) => ExitCode::SUCCESS,
-        Ok(code) => ExitCode::from(code as u8),
+        Ok(code) => ExitCode::from(u8::try_from(code).unwrap_or(1)),
         Err(error) => {
             eprintln!("sim-web-shell: {error}");
             ExitCode::from(2)

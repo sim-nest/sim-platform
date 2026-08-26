@@ -100,6 +100,7 @@ fn admits_only_the_named_adjacent_content_bound_artifact() {
     let (mut cx, _) = Cx::new_seated(
         Arc::new(sim_kernel::NoopEvalPolicy),
         Arc::new(sim_kernel::DefaultFactory),
+        sim_kernel::HandleSeed::new(0x504c_4154),
     );
     let booted = bootstrap(&executable, envelope, &policy, &mut cx, &loader).unwrap();
     assert_eq!(booted.envelope.capsule_card.provider, "fictional-desktop");
@@ -116,6 +117,7 @@ fn refuses_changed_and_over_capable_capsules_without_fallback() {
     let (mut cx, _) = Cx::new_seated(
         Arc::new(sim_kernel::NoopEvalPolicy),
         Arc::new(sim_kernel::DefaultFactory),
+        sim_kernel::HandleSeed::new(0x504c_4154),
     );
     assert!(matches!(
         bootstrap(&executable, envelope.clone(), &policy, &mut cx, &loader),

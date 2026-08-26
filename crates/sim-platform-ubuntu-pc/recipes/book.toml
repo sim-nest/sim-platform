@@ -1,2 +1,5 @@
+book = "platform/ubuntu-pc"
 title = "Ubuntu PC capsule"
+summary = "Realize Ubuntu PC compute, process, and sandbox services."
+order = 10
 chapters = []
