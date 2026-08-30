@@ -12,9 +12,9 @@ role = "platform-bootstrap"
 
 [dependencies]
 sha2 = "0.10"
-sim-kernel = "0.2.1"
+sim-kernel = "0.3.0"
 sim-platform-core = { version = "0.1.0", path = "../sim-platform-core" }
-sim-run-loaders = { version = "0.2.0", features = ["dynamic-native"] }
+sim-run-loaders = { version = "0.3.0", features = ["dynamic-native"] }
 
 [dev-dependencies]
 tempfile = "3"

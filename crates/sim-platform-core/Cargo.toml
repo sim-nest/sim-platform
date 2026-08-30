@@ -13,11 +13,11 @@ serde_json = "1"
 toml = "0.8"
 
 [dev-dependencies]
-sim-codec = "0.1.0"
-sim-codec-binary = "0.2.0"
-sim-codec-json = "0.2.0"
-sim-codec-lisp = "0.2.0"
-sim-kernel = { version = "0.2.0", features = ["test-support"] }
+sim-codec = "0.2.0"
+sim-codec-binary = "0.3.0"
+sim-codec-json = "0.3.0"
+sim-codec-lisp = "0.3.0"
+sim-kernel = { version = "0.3.0", features = ["test-support"] }
 
 [lints]
 workspace = true

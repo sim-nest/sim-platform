@@ -12,9 +12,9 @@ role = "platform-capsule"
 
 [dependencies]
 serde = { version = "1", features = ["derive"] }
-sim-kernel = { version = "0.2.0" }
+sim-kernel = { version = "0.3.0" }
 sim-platform-core = { path = "../sim-platform-core" }
-sim-lib-server = { version = "0.1.12" }
+sim-lib-server = { version = "0.2.0" }
 sim-transport-ports = { version = "0.1.0" }
 
 [lints]

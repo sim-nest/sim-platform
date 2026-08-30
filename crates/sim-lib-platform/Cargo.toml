@@ -8,11 +8,11 @@ description = "Pure loadable-facing platform manifest API"
 publish = false
 
 [dependencies]
-sim-kernel = "0.2.0"
+sim-kernel = "0.3.0"
 sim-platform-core = { path = "../sim-platform-core" }
 
 [dev-dependencies]
-sim-kernel = { version = "0.2.0", features = ["test-support"] }
+sim-kernel = { version = "0.3.0", features = ["test-support"] }
 
 [lints]
 workspace = true

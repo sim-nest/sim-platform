@@ -16,19 +16,19 @@ serde_json = "1"
 sim-platform-core = { path = "../sim-platform-core" }
 sim-platform-linux = { path = "../sim-platform-linux" }
 sim-lib-exec = "0.2.0"
-sim-kernel = "0.2.1"
-sim-run-loaders = { version = "0.2.0", features = ["codec-binary", "codec-lisp", "dynamic-native", "wasm"] }
-sim-wasm-abi = "0.3.0"
-sim-lib-compute-cuda = "0.2.0"
-sim-lib-compute-rocm = "0.1.1"
-sim-lib-compute-wgpu = "0.2.0"
+sim-kernel = "0.3.0"
+sim-run-loaders = { version = "0.3.0", features = ["codec-binary", "codec-lisp", "dynamic-native", "wasm"] }
+sim-wasm-abi = "0.4.0"
+sim-lib-compute-cuda = "0.3.0"
+sim-lib-compute-rocm = "0.2.0"
+sim-lib-compute-wgpu = "0.3.0"
 pollster = "0.4"
 wgpu = "30"
-sim-lib-compute-auto = "0.3.0"
+sim-lib-compute-auto = "0.4.0"
 
 [dev-dependencies]
 sim-platform-model = { path = "../sim-platform-model" }
-sim-kernel = { version = "0.2.1", features = ["test-support"] }
+sim-kernel = { version = "0.3.0", features = ["test-support"] }
 
 [lints]
 workspace = true

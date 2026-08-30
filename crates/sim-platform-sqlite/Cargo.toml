@@ -14,7 +14,7 @@ reason = "Real-file adoption, migration, attach, and bounded execution are check
 
 [dependencies]
 rusqlite = { version = "0.31", features = ["bundled", "hooks"] }
-sim-kernel = { version = "0.2.1" }
+sim-kernel = { version = "0.3.0" }
 sim-codec-sql = { version = "0.1.0" }
 sim-relation-core = { version = "0.1.0" }
 sim-relation-migrate = { version = "0.1.0" }
