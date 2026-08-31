@@ -4,7 +4,8 @@ mode=${1:---check}
 case "$mode" in --capture|--check) ;; *) exit 64 ;; esac
 root=$(CDPATH='' cd -- "$(dirname -- "$0")/../../.." && pwd)
 crate="$root/crates/sim-platform-ios"
-rustc=/home/bo/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc
+toolchain=stable-x86_64-unknown-linux-gnu
+rustc=$(rustup which --toolchain "$toolchain" rustc)
 targets="aarch64-apple-ios aarch64-apple-ios-sim x86_64-apple-ios"
 actual=$(mktemp -d /tmp/sim-platform-ios-targets.XXXXXX)
 trap 'rm -rf "$actual"' EXIT HUP INT TERM
@@ -26,10 +27,10 @@ printf '%s\n' '[workspace]' 'resolver = "3"' 'members = ["ios"]' '' \
   '[workspace.lints.clippy]' 'pedantic = "warn"' > "$workspace/Cargo.toml"
 # The owner proof builds the static archive through the isolated package check;
 # Apple SDK linking and simulator execution are hosted-closeout evidence.
-cargo=/home/bo/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo
-RUSTUP_TOOLCHAIN=stable-x86_64-unknown-linux-gnu "$cargo" generate-lockfile --manifest-path "$workspace/Cargo.toml" --offline
+cargo=$(rustup which --toolchain "$toolchain" cargo)
+RUSTUP_TOOLCHAIN="$toolchain" "$cargo" generate-lockfile --manifest-path "$workspace/Cargo.toml" --offline
 for target in $targets; do
-    RUSTUP_TOOLCHAIN=stable-x86_64-unknown-linux-gnu RUSTC_BOOTSTRAP=1 CARGO_TARGET_DIR="$workspace/target" RUSTFLAGS="--remap-path-prefix=$workspace=." \
+    RUSTUP_TOOLCHAIN="$toolchain" RUSTC_BOOTSTRAP=1 CARGO_TARGET_DIR="$workspace/target" RUSTFLAGS="--remap-path-prefix=$workspace=." \
       "$cargo" rustc --manifest-path "$workspace/Cargo.toml" -Z build-std=std,panic_abort \
       -p sim-platform-ios --locked --release --target "$target" --offline -- --crate-type staticlib
     archive="$workspace/target/$target/release/libsim_platform_ios.a"

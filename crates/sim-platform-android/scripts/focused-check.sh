@@ -30,23 +30,24 @@ printf '%s\n' \
   "sim-cookbook-build = { path = \"$root/../sim-foundation/crates/sim-cookbook-build\" }" \
   > "$scratch/Cargo.toml"
 
-toolchain=/home/bo/.rustup/toolchains/stable-x86_64-unknown-linux-gnu
+toolchain=stable-x86_64-unknown-linux-gnu
+cargo=$(rustup which --toolchain "$toolchain" cargo)
 case "$mode" in
   all|test)
-    RUSTUP_TOOLCHAIN=stable-x86_64-unknown-linux-gnu "$toolchain/bin/cargo" \
+    RUSTUP_TOOLCHAIN="$toolchain" "$cargo" \
       test --manifest-path "$scratch/Cargo.toml" -p sim-platform-android --offline
     ;;
 esac
 case "$mode" in
   all|compile)
-    RUSTUP_TOOLCHAIN=stable-x86_64-unknown-linux-gnu "$toolchain/bin/cargo" \
+    RUSTUP_TOOLCHAIN="$toolchain" "$cargo" \
       clippy --manifest-path "$scratch/Cargo.toml" --locked -p sim-platform-android \
       --all-targets --offline -- -D warnings
     ;;
 esac
 case "$mode" in
   all|doc)
-    RUSTUP_TOOLCHAIN=stable-x86_64-unknown-linux-gnu "$toolchain/bin/cargo" \
+    RUSTUP_TOOLCHAIN="$toolchain" "$cargo" \
       doc --manifest-path "$scratch/Cargo.toml" -p sim-platform-android --no-deps --offline
     ;;
 esac

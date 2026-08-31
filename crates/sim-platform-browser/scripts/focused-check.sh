@@ -10,11 +10,12 @@ printf '%s\n' '[workspace]' 'resolver = "3"' 'members = ["browser"]' '' \
   'repository = "https://github.com/sim-nest/sim-platform"' '' \
   '[workspace.lints.rust]' 'unsafe_code = "forbid"' '' \
   '[workspace.lints.clippy]' 'pedantic = "warn"' > "$scratch/Cargo.toml"
-cargo=/home/bo/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo
-RUSTUP_TOOLCHAIN=stable-x86_64-unknown-linux-gnu "$cargo" generate-lockfile --manifest-path "$scratch/Cargo.toml" --offline
-RUSTUP_TOOLCHAIN=stable-x86_64-unknown-linux-gnu "$cargo" test --manifest-path "$scratch/Cargo.toml" -p sim-platform-browser --locked --offline
-RUSTUP_TOOLCHAIN=stable-x86_64-unknown-linux-gnu CARGO="$cargo" /home/bo/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo-clippy clippy --manifest-path "$scratch/Cargo.toml" -p sim-platform-browser --all-targets --locked --offline -- -D warnings
-RUSTUP_TOOLCHAIN=stable-x86_64-unknown-linux-gnu "$cargo" doc --manifest-path "$scratch/Cargo.toml" -p sim-platform-browser --no-deps --locked --offline
+toolchain=stable-x86_64-unknown-linux-gnu
+cargo=$(rustup which --toolchain "$toolchain" cargo)
+RUSTUP_TOOLCHAIN="$toolchain" "$cargo" generate-lockfile --manifest-path "$scratch/Cargo.toml" --offline
+RUSTUP_TOOLCHAIN="$toolchain" "$cargo" test --manifest-path "$scratch/Cargo.toml" -p sim-platform-browser --locked --offline
+RUSTUP_TOOLCHAIN="$toolchain" "$cargo" clippy --manifest-path "$scratch/Cargo.toml" -p sim-platform-browser --all-targets --locked --offline -- -D warnings
+RUSTUP_TOOLCHAIN="$toolchain" "$cargo" doc --manifest-path "$scratch/Cargo.toml" -p sim-platform-browser --no-deps --locked --offline
 node "$root/shell/browser/browser-capsule.test.mjs"
 test "$(jq -r '.semantic_exports | join(" ")' "$root/crates/sim-platform-browser/contract/wasm-imports.json")" = sim_browser_named_call
 test "$(jq '.imports | length' "$root/crates/sim-platform-browser/contract/wasm-imports.json")" -eq 0
