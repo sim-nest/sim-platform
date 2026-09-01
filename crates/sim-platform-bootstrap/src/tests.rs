@@ -143,14 +143,14 @@ fn refuses_changed_and_over_capable_capsules_without_fallback() {
 
 #[test]
 fn fictional_desktop_is_entirely_fixture_data() {
-    let source = include_str!("lib.rs");
+    let source = include_str!("bootstrap.rs");
     assert!(!source.contains("fictional-desktop"));
     assert!(!source.contains("platform/display"));
 }
 
 #[test]
 fn bootstrap_source_has_no_ambient_or_domain_discovery() {
-    let source = include_str!("lib.rs");
+    let source = include_str!("bootstrap.rs");
     for forbidden in [
         "current_",
         "std::env",

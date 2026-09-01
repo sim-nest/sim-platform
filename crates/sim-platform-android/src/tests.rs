@@ -7,6 +7,10 @@ use std::ffi::CString;
 use sim_kernel::{NativeAbiBorrowedBytes, NativeAbiCallResponse, NativeLibAbiV1};
 
 use super::*;
+use crate::{
+    AudioRouteClass, AudioSessionSpec, AudioStopReason, PcmContract, RouteEvidence,
+    RouteObservation, RoutingContract, StaticAbiCapsule, sim_native_abi_v1,
+};
 
 fn send(capsule: &mut Capsule, function: &str, input: &Input) -> Output {
     let frame = encode_input_frame(input).unwrap();

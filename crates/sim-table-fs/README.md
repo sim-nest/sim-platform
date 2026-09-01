@@ -7,13 +7,9 @@ SIM workspace package for sim table fs.
 ## Package Metadata
 
 - Manifest: `crates/sim-table-fs/Cargo.toml`
-- `FsDir` contains portable Table/Dir and codec policy. All filesystem
-  realization is injected through storage-owned `HostDirPort`; use
-  `MemoryHostDirPort` for deterministic tests and `UbuntuHostDirPort` only in
-  the platform capsule.
 - Publish: `true`
-- Targets: `custom-build, lib`
+- Targets: `custom-build, lib, test`
 
 ## Crate Documentation
 
-Filesystem-backed table store for SIM.
+SIM workspace package for sim table fs.

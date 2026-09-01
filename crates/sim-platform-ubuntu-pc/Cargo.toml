@@ -3,6 +3,7 @@ name = "sim-platform-ubuntu-pc"
 version = "0.1.0"
 edition.workspace = true
 license.workspace = true
+readme = "README.md"
 repository.workspace = true
 description = "Ubuntu PC reference platform capsule"
 publish = true
