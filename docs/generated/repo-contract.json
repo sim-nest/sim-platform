@@ -176,7 +176,7 @@
       "group": "workspace",
       "manifest": "crates/sim-lib-platform/Cargo.toml",
       "name": "sim-lib-platform",
-      "publish": "false",
+      "publish": "true",
       "root": "crates/sim-lib-platform",
       "rustdoc_summary": "The closed, provider-neutral platform API.",
       "target_kinds": [
@@ -382,7 +382,7 @@
       "group": "workspace",
       "manifest": "crates/sim-platform-core/Cargo.toml",
       "name": "sim-platform-core",
-      "publish": "false",
+      "publish": "true",
       "root": "crates/sim-platform-core",
       "rustdoc_summary": "Pure, fail-closed manifest contracts for the sole SIM platform owner.",
       "target_kinds": [
@@ -493,12 +493,12 @@
           "target": null
         }
       ],
-      "description": "Private bounded Linux mechanics for SIM platform capsules",
+      "description": "Bounded Linux mechanics for SIM platform capsules",
       "features": [],
       "group": "workspace",
       "manifest": "crates/sim-platform-linux/Cargo.toml",
       "name": "sim-platform-linux",
-      "publish": "false",
+      "publish": "true",
       "root": "crates/sim-platform-linux",
       "rustdoc_summary": "Bounded Linux mechanics. Native paths and portal calls cannot escape this package.",
       "target_kinds": [
@@ -631,7 +631,7 @@
       "group": "workspace",
       "manifest": "crates/sim-platform-model/Cargo.toml",
       "name": "sim-platform-model",
-      "publish": "false",
+      "publish": "true",
       "root": "crates/sim-platform-model",
       "rustdoc_summary": "Deterministic, host-free platform model and the standard platform site.",
       "target_kinds": [
@@ -729,7 +729,7 @@
       "group": "workspace",
       "manifest": "crates/sim-platform-ubuntu-pc/Cargo.toml",
       "name": "sim-platform-ubuntu-pc",
-      "publish": "false",
+      "publish": "true",
       "root": "crates/sim-platform-ubuntu-pc",
       "rustdoc_summary": "Ubuntu PC capsule registration and sanitized evidence contracts.",
       "target_kinds": [
@@ -1109,10 +1109,10 @@
     "generated_by": "cargo run -p xtask -- simdoc",
     "generation_timestamp": "2026-08-21T22:21:04+02:00",
     "generator": "xtask repo-contract v1",
-    "git_commit": "c1579cbf875ac1b820281f87c79f0d0e0ccb0824",
+    "git_commit": "9fa64f961c48cfcdcb763cc18ff822daf25c95b6",
     "repo": "sim-platform",
     "schema": "sim.provenance.v1",
-    "source_commit": "c1579cbf875ac1b820281f87c79f0d0e0ccb0824",
+    "source_commit": "9fa64f961c48cfcdcb763cc18ff822daf25c95b6",
     "source_remote": "https://github.com/sim-nest/sim-platform",
     "validation_commands": [
       "cargo fmt --all --check",
@@ -1125,7 +1125,7 @@
       "cargo run -p xtask -- validation-matrix --check --repo .",
       "cargo run -p xtask -- crate-catalog --check --repo ."
     ],
-    "workspace_hash": "785abd56e3011dd0",
+    "workspace_hash": "8fc828f4bdbb56d7",
     "workspace_hash_algorithm": "fnv1a64",
     "workspace_hash_input_count": 141,
     "workspace_hash_inputs": [

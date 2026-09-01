@@ -5,10 +5,10 @@ edition.workspace = true
 license.workspace = true
 repository.workspace = true
 description = "Fictional platform records for deterministic SIM tests"
-publish = false
+publish = true
 
 [dependencies]
-sim-platform-core = { path = "../sim-platform-core" }
+sim-platform-core = { version = "0.1.0", path = "../sim-platform-core" }
 sim-kernel = "0.3.0"
 sim-lib-exec = "0.2.0"
 sim-run-loaders = "0.3.0"

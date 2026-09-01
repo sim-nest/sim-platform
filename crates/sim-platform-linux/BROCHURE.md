@@ -1,6 +1,6 @@
 # sim-platform-linux
 
-In one line: Private bounded Linux mechanics for SIM platform capsules.
+In one line: Bounded Linux mechanics for SIM platform capsules.
 
 ## What it gives you
 

@@ -5,7 +5,7 @@ edition.workspace = true
 license.workspace = true
 repository.workspace = true
 description = "Ubuntu PC reference platform capsule"
-publish = false
+publish = true
 
 [package.metadata.sim]
 role = "platform-capsule"
@@ -13,8 +13,8 @@ role = "platform-capsule"
 [dependencies]
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-sim-platform-core = { path = "../sim-platform-core" }
-sim-platform-linux = { path = "../sim-platform-linux" }
+sim-platform-core = { version = "0.1.0", path = "../sim-platform-core" }
+sim-platform-linux = { version = "0.1.0", path = "../sim-platform-linux" }
 sim-lib-exec = "0.2.0"
 sim-kernel = "0.3.0"
 sim-run-loaders = { version = "0.3.0", features = ["codec-binary", "codec-lisp", "dynamic-native", "wasm"] }
@@ -27,7 +27,7 @@ wgpu = "30"
 sim-lib-compute-auto = "0.4.0"
 
 [dev-dependencies]
-sim-platform-model = { path = "../sim-platform-model" }
+sim-platform-model = { version = "0.1.0", path = "../sim-platform-model" }
 sim-kernel = { version = "0.3.0", features = ["test-support"] }
 
 [lints]
