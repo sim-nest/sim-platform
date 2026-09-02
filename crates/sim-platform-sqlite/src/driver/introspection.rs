@@ -1,4 +1,8 @@
-use super::*;
+use super::{
+    AdoptionManifest, BaseDomain, ColumnName, Connection, IndexName, PhysicalColumn, PhysicalIndex,
+    PhysicalSchema, PhysicalTable, ProviderName, RevisionName, SchemaAttestation, SchemaName,
+    SiteError, Symbol, TableName, map_error, provider_symbol, relation_id_text, valid_source,
+};
 
 /// Normalizes the main `SQLite` catalog, excluding capsule metadata.
 ///
