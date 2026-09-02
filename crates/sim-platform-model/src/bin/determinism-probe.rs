@@ -1,3 +1,4 @@
+// bin-boot-exempt: deterministic model probe with no SIM runtime or product CLI.
 use sim_platform_core::{FactPort, Lifecycle, OpenSymbol};
 use sim_platform_model::{LifecycleStep, MachineLimits, ModelConfig, ModelRequest, SeededPlatform};
 use std::collections::BTreeMap;

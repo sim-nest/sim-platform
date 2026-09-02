@@ -1,0 +1,297 @@
+{
+  "generator": "xtask crate-catalog v1",
+  "package_count": 23,
+  "packages": [
+    {
+      "description": "Pure loadable-facing platform manifest API.",
+      "generated_readme": false,
+      "manifest": "crates/sim-lib-platform/Cargo.toml",
+      "name": "sim-lib-platform",
+      "publish": "true",
+      "readme": "crates/sim-lib-platform/README.md",
+      "root": "crates/sim-lib-platform",
+      "target_kinds": [
+        "lib"
+      ]
+    },
+    {
+      "description": "Bounded Amazfit and Zepp OS proxy capsule.",
+      "generated_readme": false,
+      "manifest": "crates/sim-platform-amazfit/Cargo.toml",
+      "name": "sim-platform-amazfit",
+      "publish": "false",
+      "readme": "crates/sim-platform-amazfit/README.md",
+      "root": "crates/sim-platform-amazfit",
+      "target_kinds": [
+        "lib"
+      ]
+    },
+    {
+      "description": "Android AOT platform capsule and thin shell contract.",
+      "generated_readme": false,
+      "manifest": "crates/sim-platform-android/Cargo.toml",
+      "name": "sim-platform-android",
+      "publish": "false",
+      "readme": "crates/sim-platform-android/README.md",
+      "root": "crates/sim-platform-android",
+      "target_kinds": [
+        "cdylib",
+        "rlib",
+        "staticlib"
+      ]
+    },
+    {
+      "description": "Ubuntu native audio and plugin capsule adapters for SIM.",
+      "generated_readme": false,
+      "manifest": "crates/sim-platform-audio/Cargo.toml",
+      "name": "sim-platform-audio",
+      "publish": "true",
+      "readme": "crates/sim-platform-audio/README.md",
+      "root": "crates/sim-platform-audio",
+      "target_kinds": [
+        "lib"
+      ]
+    },
+    {
+      "description": "Bounded bootstrap rind for one content-bound SIM platform capsule.",
+      "generated_readme": false,
+      "manifest": "crates/sim-platform-bootstrap/Cargo.toml",
+      "name": "sim-platform-bootstrap",
+      "publish": "true",
+      "readme": "crates/sim-platform-bootstrap/README.md",
+      "root": "crates/sim-platform-bootstrap",
+      "target_kinds": [
+        "lib"
+      ]
+    },
+    {
+      "description": "Capability-honest browser Wasm capsule and byte-frame host membrane.",
+      "generated_readme": false,
+      "manifest": "crates/sim-platform-browser/Cargo.toml",
+      "name": "sim-platform-browser",
+      "publish": "false",
+      "readme": "crates/sim-platform-browser/README.md",
+      "root": "crates/sim-platform-browser",
+      "target_kinds": [
+        "cdylib",
+        "rlib"
+      ]
+    },
+    {
+      "description": "Platform capsule realization for construction integration ports.",
+      "generated_readme": false,
+      "manifest": "crates/sim-platform-construction/Cargo.toml",
+      "name": "sim-platform-construction",
+      "publish": "false",
+      "readme": "crates/sim-platform-construction/README.md",
+      "root": "crates/sim-platform-construction",
+      "target_kinds": [
+        "lib"
+      ]
+    },
+    {
+      "description": "Pure manifest and package-role contracts for SIM platform capsules.",
+      "generated_readme": false,
+      "manifest": "crates/sim-platform-core/Cargo.toml",
+      "name": "sim-platform-core",
+      "publish": "true",
+      "readme": "crates/sim-platform-core/README.md",
+      "root": "crates/sim-platform-core",
+      "target_kinds": [
+        "lib",
+        "test"
+      ]
+    },
+    {
+      "description": "Official-contract bounded Halo proxy capsule.",
+      "generated_readme": false,
+      "manifest": "crates/sim-platform-halo/Cargo.toml",
+      "name": "sim-platform-halo",
+      "publish": "false",
+      "readme": "crates/sim-platform-halo/README.md",
+      "root": "crates/sim-platform-halo",
+      "target_kinds": [
+        "lib"
+      ]
+    },
+    {
+      "description": "iOS AOT platform capsule and thin shell contract.",
+      "generated_readme": false,
+      "manifest": "crates/sim-platform-ios/Cargo.toml",
+      "name": "sim-platform-ios",
+      "publish": "false",
+      "readme": "crates/sim-platform-ios/README.md",
+      "root": "crates/sim-platform-ios",
+      "target_kinds": [
+        "cdylib",
+        "rlib",
+        "staticlib"
+      ]
+    },
+    {
+      "description": "Bounded Linux mechanics for SIM platform capsules.",
+      "generated_readme": false,
+      "manifest": "crates/sim-platform-linux/Cargo.toml",
+      "name": "sim-platform-linux",
+      "publish": "true",
+      "readme": "crates/sim-platform-linux/README.md",
+      "root": "crates/sim-platform-linux",
+      "target_kinds": [
+        "lib",
+        "test"
+      ]
+    },
+    {
+      "description": "macOS platform capsule and deterministic unsigned bundle.",
+      "generated_readme": false,
+      "manifest": "crates/sim-platform-macos/Cargo.toml",
+      "name": "sim-platform-macos",
+      "publish": "false",
+      "readme": "crates/sim-platform-macos/README.md",
+      "root": "crates/sim-platform-macos",
+      "target_kinds": [
+        "lib",
+        "test"
+      ]
+    },
+    {
+      "description": "Native MIDI realization for SIM platform capsules.",
+      "generated_readme": false,
+      "manifest": "crates/sim-platform-midi/Cargo.toml",
+      "name": "sim-platform-midi",
+      "publish": "true",
+      "readme": "crates/sim-platform-midi/README.md",
+      "root": "crates/sim-platform-midi",
+      "target_kinds": [
+        "lib"
+      ]
+    },
+    {
+      "description": "Fictional platform records for deterministic SIM tests.",
+      "generated_readme": false,
+      "manifest": "crates/sim-platform-model/Cargo.toml",
+      "name": "sim-platform-model",
+      "publish": "true",
+      "readme": "crates/sim-platform-model/README.md",
+      "root": "crates/sim-platform-model",
+      "target_kinds": [
+        "bin",
+        "lib",
+        "test"
+      ]
+    },
+    {
+      "description": "Attesting SQLite relation capsule for SIM.",
+      "generated_readme": false,
+      "manifest": "crates/sim-platform-sqlite/Cargo.toml",
+      "name": "sim-platform-sqlite",
+      "publish": "true",
+      "readme": "crates/sim-platform-sqlite/README.md",
+      "root": "crates/sim-platform-sqlite",
+      "target_kinds": [
+        "lib"
+      ]
+    },
+    {
+      "description": "Ubuntu PC reference platform capsule.",
+      "generated_readme": false,
+      "manifest": "crates/sim-platform-ubuntu-pc/Cargo.toml",
+      "name": "sim-platform-ubuntu-pc",
+      "publish": "true",
+      "readme": "crates/sim-platform-ubuntu-pc/README.md",
+      "root": "crates/sim-platform-ubuntu-pc",
+      "target_kinds": [
+        "lib",
+        "test"
+      ]
+    },
+    {
+      "description": "Ubuntu Raspberry Pi platform capsule.",
+      "generated_readme": false,
+      "manifest": "crates/sim-platform-ubuntu-rpi/Cargo.toml",
+      "name": "sim-platform-ubuntu-rpi",
+      "publish": "false",
+      "readme": "crates/sim-platform-ubuntu-rpi/README.md",
+      "root": "crates/sim-platform-ubuntu-rpi",
+      "target_kinds": [
+        "lib",
+        "test"
+      ]
+    },
+    {
+      "description": "Least-authority WASI component capsule for SIM.",
+      "generated_readme": false,
+      "manifest": "crates/sim-platform-wasi/Cargo.toml",
+      "name": "sim-platform-wasi",
+      "publish": "false",
+      "readme": "crates/sim-platform-wasi/README.md",
+      "root": "crates/sim-platform-wasi",
+      "target_kinds": [
+        "lib"
+      ]
+    },
+    {
+      "description": "Native Linux process capsule for the host-neutral SIM web shell.",
+      "generated_readme": false,
+      "manifest": "crates/sim-platform-web-shell/Cargo.toml",
+      "name": "sim-platform-web-shell",
+      "publish": "false",
+      "readme": "crates/sim-platform-web-shell/README.md",
+      "root": "crates/sim-platform-web-shell",
+      "target_kinds": [
+        "bin"
+      ]
+    },
+    {
+      "description": "Windows platform capsule and content-bound package.",
+      "generated_readme": false,
+      "manifest": "crates/sim-platform-windows/Cargo.toml",
+      "name": "sim-platform-windows",
+      "publish": "false",
+      "readme": "crates/sim-platform-windows/README.md",
+      "root": "crates/sim-platform-windows",
+      "target_kinds": [
+        "lib",
+        "test"
+      ]
+    },
+    {
+      "description": "SIM workspace package for sim table fs.",
+      "generated_readme": true,
+      "manifest": "crates/sim-table-fs/Cargo.toml",
+      "name": "sim-table-fs",
+      "publish": "true",
+      "readme": "crates/sim-table-fs/README.md",
+      "root": "crates/sim-table-fs",
+      "target_kinds": [
+        "custom-build",
+        "lib",
+        "test"
+      ]
+    },
+    {
+      "description": "Unsafe-isolated dynamic loader for VITURE glasses SDK entry points.",
+      "generated_readme": false,
+      "manifest": "crates/sim-viture-ffi/Cargo.toml",
+      "name": "sim-viture-ffi",
+      "publish": "true",
+      "readme": "crates/sim-viture-ffi/README.md",
+      "root": "crates/sim-viture-ffi",
+      "target_kinds": [
+        "lib"
+      ]
+    },
+    {
+      "description": "Repository-local structural gates.",
+      "generated_readme": true,
+      "manifest": "xtask/Cargo.toml",
+      "name": "xtask",
+      "publish": "false",
+      "readme": "xtask/README.md",
+      "root": "xtask",
+      "target_kinds": [
+        "bin"
+      ]
+    }
+  ]
+}
