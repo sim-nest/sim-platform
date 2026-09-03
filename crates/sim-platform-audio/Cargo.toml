@@ -10,7 +10,7 @@ description = "Ubuntu native audio and plugin capsule adapters for SIM."
 publish = true
 
 [dependencies]
-sim-audio-ports = "0.1.0"
+sim-audio-ports = "0.1.1"
 
 [lints]
 workspace = true

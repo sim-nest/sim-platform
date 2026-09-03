@@ -20,12 +20,12 @@ sim = { package = "sim-nest", version = "0.2.2", features = [
   "cookbook-all",
   "standard-gc-tracing",
 ] }
-sim-lib-cookbook = { version = "0.2.0" }
-sim-lib-server = { version = "0.2.0" }
+sim-lib-cookbook = { version = "0.3.0" }
+sim-lib-server = { version = "0.3.0" }
 sim-platform-linux = { path = "../sim-platform-linux" }
-sim-run-core = { version = "0.4.0" }
-sim-transport-ports = { version = "0.1.0" }
-sim-web-shell = { version = "0.2.0" }
+sim-run-core = { version = "0.5.0" }
+sim-transport-ports = { version = "0.2.0" }
+sim-web-shell = { version = "0.3.0" }
 
 [lints]
 workspace = true
