@@ -1,6 +1,6 @@
 [package]
 name = "sim-lib-platform"
-version = "0.1.0"
+version = "0.1.1"
 edition.workspace = true
 license.workspace = true
 readme = "README.md"
@@ -9,11 +9,11 @@ description = "Pure loadable-facing platform manifest API"
 publish = true
 
 [dependencies]
-sim-kernel = "0.3.0"
-sim-platform-core = { version = "0.1.0", path = "../sim-platform-core" }
+sim-kernel = "0.4.0"
+sim-platform-core = { version = "0.2.0", path = "../sim-platform-core" }
 
 [dev-dependencies]
-sim-kernel = { version = "0.3.0", features = ["test-support"] }
+sim-kernel = { version = "0.4.0", features = ["test-support"] }
 
 [lints]
 workspace = true

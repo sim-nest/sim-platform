@@ -1,6 +1,6 @@
 [package]
 name = "sim-table-fs"
-version = "0.2.0"
+version = "0.2.1"
 edition = "2024"
 license = "MPL-2.0"
 description = "SIM workspace package for sim table fs."
@@ -13,34 +13,34 @@ homepage = "https://github.com/sim-nest/sim-platform"
 globset = { version = "0.4" }
 regex = { version = "1" }
 rustix = { version = "1.1.4", features = ["fs"] }
-sim-citizen = { version = "0.3.0" }
-sim-citizen-derive = { version = "0.3.0" }
-sim-codec = { version = "0.2.0" }
-sim-cookbook = { version = "0.3.0" }
-sim-kernel = { version = "0.3.0" }
-sim-lib-midi-shapes = { version = "0.3.0", optional = true }
-sim-lib-midi-smf = { version = "0.3.0", optional = true }
-sim-lib-music-core = { version = "0.3.0", optional = true }
-sim-lib-music-notation = { version = "0.3.0", optional = true }
-sim-lib-music-shapes = { version = "0.3.0", optional = true }
-sim-lib-pitch-core = { version = "0.3.0", optional = true }
-sim-lib-sound-core = { version = "0.3.0", optional = true }
-sim-lib-sound-shapes = { version = "0.3.0", optional = true }
-sim-lib-sound-tuning = { version = "0.3.0", optional = true }
-sim-table-core = { version = "0.2.0" }
-sim-storage-port = { version = "0.1.0" }
+sim-citizen = { version = "0.4.0" }
+sim-citizen-derive = { version = "0.4.0" }
+sim-codec = { version = "0.3.0" }
+sim-cookbook = { version = "0.4.0" }
+sim-kernel = { version = "0.4.0" }
+sim-lib-midi-shapes = { version = "0.4.0", optional = true }
+sim-lib-midi-smf = { version = "0.4.0", optional = true }
+sim-lib-music-core = { version = "0.4.0", optional = true }
+sim-lib-music-notation = { version = "0.4.0", optional = true }
+sim-lib-music-shapes = { version = "0.4.0", optional = true }
+sim-lib-pitch-core = { version = "0.4.0", optional = true }
+sim-lib-sound-core = { version = "0.4.0", optional = true }
+sim-lib-sound-shapes = { version = "0.4.0", optional = true }
+sim-lib-sound-tuning = { version = "0.4.0", optional = true }
+sim-table-core = { version = "0.3.0" }
+sim-storage-port = { version = "0.2.0" }
 
 [build-dependencies]
-sim-cookbook-build = { version = "0.1.0" }
+sim-cookbook-build = { version = "0.2.0" }
 
 [dev-dependencies]
-sim-codec-algol = { version = "0.2.0" }
-sim-codec-binary = { version = "0.3.0" }
-sim-codec-binary-base64 = { version = "0.2.0" }
-sim-codec-chat = { version = "0.3.0" }
-sim-codec-json = { version = "0.3.0" }
-sim-codec-lisp = { version = "0.3.0" }
-sim-kernel = { version = "0.3.0", features = ["test-support"] }
+sim-codec-algol = { version = "0.3.0" }
+sim-codec-binary = { version = "0.4.0" }
+sim-codec-binary-base64 = { version = "0.3.0" }
+sim-codec-chat = { version = "0.4.0" }
+sim-codec-json = { version = "0.4.0" }
+sim-codec-lisp = { version = "0.4.0" }
+sim-kernel = { version = "0.4.0", features = ["test-support"] }
 sim-test-support = { version = "0.1.0" }
 
 [features]

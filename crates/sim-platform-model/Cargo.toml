@@ -9,10 +9,10 @@ description = "Fictional platform records for deterministic SIM tests"
 publish = true
 
 [dependencies]
-sim-platform-core = { version = "0.1.0", path = "../sim-platform-core" }
-sim-kernel = "0.3.0"
-sim-lib-exec = "0.2.0"
-sim-run-loaders = "0.3.0"
+sim-platform-core = { version = "0.2.0", path = "../sim-platform-core" }
+sim-kernel = "0.4.0"
+sim-lib-exec = "0.3.0"
+sim-run-loaders = "0.4.0"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 
