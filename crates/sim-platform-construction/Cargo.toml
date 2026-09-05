@@ -12,8 +12,8 @@ publish = false
 role = "platform-capsule"
 
 [dependencies]
-sim-site-dalux = { version = "0.1.0", git = "https://github.com/sim-nest/sim-construction", rev = "06bdd024393593ef0b6e6bc1621e3454a6c47ffe" }
-sim-site-powerproject = { version = "0.1.0", git = "https://github.com/sim-nest/sim-construction", rev = "06bdd024393593ef0b6e6bc1621e3454a6c47ffe" }
+sim-site-dalux = { version = "0.1.0", git = "https://github.com/sim-nest/sim-construction", rev = "77bf36cd608f1473d10e7d740a4bb9351adc6f99" }
+sim-site-powerproject = { version = "0.1.0", git = "https://github.com/sim-nest/sim-construction", rev = "77bf36cd608f1473d10e7d740a4bb9351adc6f99" }
 ureq = "2"
 
 [lints]

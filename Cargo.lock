@@ -2389,7 +2389,7 @@ dependencies = [
 
 [[package]]
 name = "sim-lib-compute-wgpu"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "half",
  "pollster",
@@ -5236,7 +5236,7 @@ dependencies = [
 
 [[package]]
 name = "sim-platform-ubuntu-pc"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "pollster",
  "serde",
@@ -5372,7 +5372,7 @@ dependencies = [
 
 [[package]]
 name = "sim-shape"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "sim-citizen",
  "sim-citizen-derive",
@@ -5420,7 +5420,7 @@ dependencies = [
 
 [[package]]
 name = "sim-table-fs"
-version = "0.2.1"
+version = "0.2.2"
 dependencies = [
  "globset",
  "regex",

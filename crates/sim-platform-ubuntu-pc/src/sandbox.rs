@@ -302,10 +302,11 @@ mod tests {
     }
     #[test]
     fn command_is_anonymous_networkless_and_keeps_hostile_argument_literal() {
+        let executable = std::env::current_exe().unwrap();
         let launcher = BwrapLauncher::new(
-            "/usr/bin/bwrap".into(),
-            "/usr/bin/prlimit".into(),
-            BTreeMap::from([(ProgramRef::new("tool").unwrap(), PathBuf::from("/bin/true"))]),
+            executable.clone(),
+            executable.clone(),
+            BTreeMap::from([(ProgramRef::new("tool").unwrap(), executable)]),
             BTreeMap::from([("input".into(), PathBuf::from("/tmp"))]),
         );
         let hostile = "$(cat /etc/shadow); nc 127.0.0.1 1";
