@@ -60,6 +60,14 @@ fn with_roadmap11_exts(exts: Vec<&'static str>) -> Vec<&'static str> {
 }
 
 pub(crate) fn decode_expr_for_ext(ext: &str, bytes: &[u8]) -> Option<sim_kernel::Result<Expr>> {
+    #[cfg(not(any(
+        feature = "midi",
+        feature = "music",
+        feature = "sound",
+        feature = "tuning",
+        feature = "notation"
+    )))]
+    let _ = bytes;
     match ext {
         #[cfg(feature = "midi")]
         "mid" => Some(decode_midi(bytes)),
@@ -114,6 +122,14 @@ pub(crate) fn infer_ext_from_expr(expr: &Expr) -> Option<&'static str> {
 }
 
 pub(crate) fn encode_expr_for_ext(ext: &str, expr: &Expr) -> Option<sim_kernel::Result<Vec<u8>>> {
+    #[cfg(not(any(
+        feature = "midi",
+        feature = "music",
+        feature = "sound",
+        feature = "tuning",
+        feature = "notation"
+    )))]
+    let _ = expr;
     match ext {
         #[cfg(feature = "midi")]
         "mid" => Some(encode_midi(expr)),

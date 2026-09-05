@@ -151,9 +151,9 @@ dependencies = [
 
 [[package]]
 name = "sim-citizen"
-version = "0.2.0"
+version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "be0642ec328afcbb0ac615a0f7550846bd1df9f79820de624f45ea640a4a5e5e"
+checksum = "a52c62d3141ddd13e0121af87a92dc6a42f21b2b74328f90cd9d4d94fd71927f"
 dependencies = [
  "inventory",
  "sim-kernel",
@@ -162,9 +162,9 @@ dependencies = [
 
 [[package]]
 name = "sim-citizen-derive"
-version = "0.2.0"
+version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3a1d8410aba0b26fb2e41555aa65ee953c9fdbe6c1c0f3ad9aaefc0542b97dfe"
+checksum = "7c77b848261d3b70e371b2a220121161dc373965278368ce97c2a94085bd4b81"
 dependencies = [
  "proc-macro-crate",
  "proc-macro2",
@@ -174,13 +174,14 @@ dependencies = [
 
 [[package]]
 name = "sim-codec"
-version = "0.1.8"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "045961bf4c66c142118977df61b8fb8ea2b774674d4048040a3b2666e26cb8d4"
+checksum = "6ccdce8aa28266c6e50595b9af6540370cf524aececab3b731fec3cf3d5e2a03"
 dependencies = [
  "sim-citizen",
  "sim-citizen-derive",
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
  "sim-lib-net-core",
  "sim-shape",
@@ -188,21 +189,22 @@ dependencies = [
 
 [[package]]
 name = "sim-codec-binary"
-version = "0.2.1"
+version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ca33bfc30d379f0931e2110719c578a8274653ba1a58b75f2ecef61dd8d9940d"
+checksum = "496dd95f711b145756a691e62239960afced1ed857c94047a171161edcc8d1f5"
 dependencies = [
  "sim-codec",
  "sim-cookbook",
+ "sim-cookbook-build",
  "sim-kernel",
  "sim-value",
 ]
 
 [[package]]
 name = "sim-config"
-version = "0.1.4"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "025d34aef91d904517ba9dba379c38e577f6796b07a6236f7682f754b4ab381c"
+checksum = "96d58b7e6d9d9cd6e32ebaceb41570e0b31839ec81d50063f19f6d1899b328ca"
 dependencies = [
  "sim-kernel",
  "sim-table-core",
@@ -211,9 +213,9 @@ dependencies = [
 
 [[package]]
 name = "sim-cookbook"
-version = "0.2.1"
+version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5c2e45a5b7847f7c185df4005c2b01c0b5c79112a719f29e713cc0ad859ab3c2"
+checksum = "5c9d80745dd0af202fff4dcd8b2b97bef65c9f1c2cdb6ebb517eb1134ff1e463"
 dependencies = [
  "sim-config",
  "sim-kernel",
@@ -221,21 +223,31 @@ dependencies = [
 ]
 
 [[package]]
-name = "sim-kernel"
-version = "0.2.1"
+name = "sim-cookbook-build"
+version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "87fec60f730fdf6f3ec3e0d125ef698f317922c6d3161e7cb0c2d1620d213794"
+checksum = "7bcd0f21478bdf42358a8ad8c7843e59b38171a4f83afc82ed08ae463777e3c1"
+dependencies = [
+ "sim-cookbook",
+]
+
+[[package]]
+name = "sim-kernel"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d3bbd6552b9da9dea42301c9144d57f976b7373d3dac76b9dbb807df0602d4de"
 dependencies = [
  "thiserror",
 ]
 
 [[package]]
 name = "sim-lib-net-core"
-version = "0.2.1"
+version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c322c6e9cc203fca63291b584b241d8a0bd3029986abfdfb151b57e2d20233a8"
+checksum = "fdea535dad5b956aeef063d111c566c7116bc727164e439104ccc49105a60cbc"
 dependencies = [
  "sim-cookbook",
+ "sim-cookbook-build",
 ]
 
 [[package]]
@@ -251,9 +263,9 @@ dependencies = [
 
 [[package]]
 name = "sim-shape"
-version = "0.2.4"
+version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bbed218763537f3da4c31f12cebf4d7a038720fbb9dcd9d4d129564e369fe9d8"
+checksum = "c90532f86e344faf67c82851385b300bd676db467e56f7434a862903d0f60263"
 dependencies = [
  "sim-citizen",
  "sim-citizen-derive",
@@ -262,9 +274,9 @@ dependencies = [
 
 [[package]]
 name = "sim-table-core"
-version = "0.1.4"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f51854ebd3bf05c3d7036e88419002c22b090c892aa0a58b3275b5c369348b6d"
+checksum = "28dbf711555e6ca8e947b7b3076809570adab6413a7771a01b092673bae5609d"
 dependencies = [
  "sim-kernel",
  "sim-value",
@@ -272,9 +284,9 @@ dependencies = [
 
 [[package]]
 name = "sim-value"
-version = "0.2.0"
+version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a5a3ca34efc2b8cd76bf8a99164b12984adffac302f910989acbb0378f20e04f"
+checksum = "f121b454c7419c1857d9370e3b6e81f77c5f91e5c04dfd3c2726c8e15a96996b"
 dependencies = [
  "sim-kernel",
 ]
