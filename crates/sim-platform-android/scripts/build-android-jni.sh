@@ -52,11 +52,11 @@ do
         -p sim-platform-android --target "$target"
     library="$CARGO_TARGET_DIR/$target/release/libsim_platform_android.so"
     test -s "$library"
-    "$toolchain/llvm-nm" --defined-only --dynamic "$library" | rg -q 'sim_native_abi_v1$'
-    "$toolchain/llvm-nm" --defined-only --dynamic "$library" | rg -q \
+    "$toolchain/llvm-nm" --defined-only --dynamic "$library" | grep -q 'sim_native_abi_v1$'
+    "$toolchain/llvm-nm" --defined-only --dynamic "$library" | grep -q \
         'Java_org_simnest_shell_SimActivity_nativeCall$'
     "$toolchain/llvm-readobj" --needed-libs "$library" > "$CARGO_TARGET_DIR/$target.needed-libs.txt"
-    if rg -i 'libandroid|libnativewindow|libcamera2ndk|libmediandk' \
+    if grep -Ei 'libandroid|libnativewindow|libcamera2ndk|libmediandk' \
         "$CARGO_TARGET_DIR/$target.needed-libs.txt"; then
         echo "Android capsule linked framework behavior outside its JNI shell" >&2
         exit 1
