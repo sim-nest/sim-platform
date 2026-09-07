@@ -217,6 +217,37 @@ claims_specimens = ["spec-test/sim-platform/crates/sim-platform-ubuntu-pc/src/sa
 supports = ["feature/sim-platform/process-realization", "feature/sim-runtime/sandbox-exec"]
 
 [[feature]]
+id = "feature/sim-platform/real-local-check-adapter"
+title = "Durable real local checker adapter"
+summary = "Execute installed exact build commands through the Ubuntu process membrane and reconcile declared outputs under the full fenced operation lifecycle."
+owner = "crate/sim-platform-ubuntu-pc"
+audiences = ["code", "framework"]
+guidance = "Register LocalCheckAdapter at boot with exact CommandSpec values, the selected ProcessPort and SandboxLauncher implementations, and native roots for every opaque resource. Portable checker code calls LocalCheckPort with a LocalCheckRequest naming only an installed CommandId. Use the bwrap route for absent networking and positive confinement evidence; a host process route needs a separate scoped network grant and cannot by itself prove descendant cleanup. Keep actual owner-checkout integration outside this adapter until its separately qualified landing phase."
+claims_anchors = ["anchor/crate/sim-platform-ubuntu-pc"]
+claims_specimens = [
+  "spec-test/sim-platform/crates/sim-platform-ubuntu-pc/src/local_check",
+  "spec-test/sim-platform/crates/sim-platform-ubuntu-pc/src/process",
+  "spec-test/sim-platform/crates/sim-platform-ubuntu-pc/src/sandbox",
+]
+supports = [
+  "feature/sim-platform/process-realization",
+  "feature/sim-platform/ubuntu-bwrap-sandbox",
+  "feature/sim-runtime/local-check-contract",
+  "feature/sim-runtime/guarded-operations",
+]
+
+[[route]]
+id = "route/run-qualified-local-check"
+task = "Run an exact local owner check through durable confined effects"
+audiences = ["code", "framework"]
+steps = [
+  { feature = "feature/sim-runtime/local-check-contract", why = "The portable contract binds unchanged command bytes, resources, limits, output, cleanup, network authority, and replay policy into the installed CommandId." },
+  { feature = "feature/sim-runtime/guarded-operations", why = "The lifecycle records intent, grant, fenced lease, performer-bound dispatch, receipt, independent observation, and truthful outcome." },
+  { feature = "feature/sim-platform/real-local-check-adapter", why = "The Ubuntu capsule resolves only boot-authorized resources and composes the real process and bwrap boundaries without exposing native command construction to packet tooling." },
+  { specimen = "spec-test/sim-platform/crates/sim-platform-ubuntu-pc/src/local_check", why = "The runnable specimen observes formatting and deliberate failure, executes a real networkless bwrap command, removes scratch state, and rejects command substitution." },
+]
+
+[[feature]]
 id = "feature/sim-platform/transport-realization"
 title = "Ubuntu socket, DNS, and local IPC realization"
 summary = "Realize agent-net transport ports inside the Linux capsule with typed native failures and explicit platform-specific IPC identities."

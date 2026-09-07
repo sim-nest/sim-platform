@@ -145,7 +145,7 @@ impl SandboxLauncher for BwrapLauncher {
             Err(e) => return self.refuse(format!("bubblewrap spawn failed: {e}")),
         };
         let outcome = super::process::run_child(&mut child, &process_request, cancellation);
-        report(request, outcome)
+        report(request, outcome, &self.sources)
     }
 }
 fn canonical(path: &Path) -> Result<PathBuf, String> {
@@ -159,14 +159,24 @@ fn canonical_file(path: &Path) -> Result<PathBuf, String> {
     }
     Ok(path)
 }
-fn report(request: &SandboxRequest, outcome: ProcessAttempt) -> SandboxAttempt {
+fn report(
+    request: &SandboxRequest,
+    outcome: ProcessAttempt,
+    sources: &BTreeMap<String, PathBuf>,
+) -> SandboxAttempt {
+    let usage = writable_usage(request, sources);
+    let usage_observed = usage.is_ok();
+    let (files, bytes) = usage.unwrap_or((u64::MAX, u64::MAX));
     let controls = request
         .policy
         .requirements()
         .keys()
         .map(|control| SandboxEvidence {
             control: *control,
-            achieved: true,
+            achieved: !matches!(
+                control,
+                SandboxControl::FileCount | SandboxControl::FileBytes
+            ) || usage_observed,
             detail: match control {
                 SandboxControl::Network => "bubblewrap network namespace has no interfaces",
                 SandboxControl::Mounts => "only canonical boot-resolved mounts were bound",
@@ -177,10 +187,14 @@ fn report(request: &SandboxRequest, outcome: ProcessAttempt) -> SandboxAttempt {
                 SandboxControl::Memory => "RLIMIT_AS applied by prlimit",
                 SandboxControl::WallTime => "capsule monotonic deadline",
                 SandboxControl::ProcessCount => "RLIMIT_NPROC applied by prlimit",
-                SandboxControl::FileCount => {
-                    "writable roots are declaration-bounded and inspected at completion"
+                SandboxControl::FileCount if usage_observed => {
+                    "writable roots were inspected recursively at completion"
                 }
-                SandboxControl::FileBytes => "RLIMIT_FSIZE applied by prlimit",
+                SandboxControl::FileCount => "writable-root file count could not be observed",
+                SandboxControl::FileBytes if usage_observed => {
+                    "RLIMIT_FSIZE plus recursive writable-root byte inspection"
+                }
+                SandboxControl::FileBytes => "writable-root file bytes could not be observed",
                 SandboxControl::Output => "shared bounded capture",
                 SandboxControl::Stdin => "validated bounded pipe",
                 SandboxControl::ProcessTree => "new session killed and reaped by capsule",
@@ -193,6 +207,16 @@ fn report(request: &SandboxRequest, outcome: ProcessAttempt) -> SandboxAttempt {
             let mut hits = vec![];
             if receipt.result.truncated {
                 hits.push("output_bytes".into());
+            }
+            if usage_observed {
+                if files > request.policy.limits().file_count {
+                    hits.push("file_count".into());
+                }
+                if bytes > request.policy.limits().file_bytes {
+                    hits.push("file_bytes".into());
+                }
+            } else {
+                hits.push("writable_root_observation".into());
             }
             SandboxAttempt::Completed(SandboxResult {
                 stdout: receipt.result.stdout.into_bytes(),
@@ -220,17 +244,61 @@ fn report(request: &SandboxRequest, outcome: ProcessAttempt) -> SandboxAttempt {
         }),
         ProcessAttempt::NotDispatched { refusal } => SandboxAttempt::Refused(SandboxRefusal {
             launcher: "platform/sandbox/ubuntu-bwrap".into(),
-            reason: format!("{refusal:?}"),
+            reason: match refusal {
+                sim_lib_exec::ProcessRefusal::Invalid(detail) => format!("invalid: {detail}"),
+                sim_lib_exec::ProcessRefusal::Refused(detail) => format!("refused: {detail}"),
+                sim_lib_exec::ProcessRefusal::SpawnFailed(detail) => {
+                    format!("spawn failed: {detail}")
+                }
+            },
             report: None,
         }),
         ProcessAttempt::UnknownAfterDispatch { evidence } => {
             SandboxAttempt::Unknown(SandboxRefusal {
                 launcher: "platform/sandbox/ubuntu-bwrap".into(),
-                reason: format!("{evidence:?}"),
+                reason: format!("{}: {}", evidence.stage, evidence.detail),
                 report: None,
             })
         }
     }
+}
+
+fn writable_usage(
+    request: &SandboxRequest,
+    sources: &BTreeMap<String, PathBuf>,
+) -> Result<(u64, u64), String> {
+    let mut total = (0u64, 0u64);
+    for mount in request
+        .policy
+        .mounts()
+        .iter()
+        .filter(|mount| mount.access == MountAccess::Writable)
+    {
+        let root = canonical(
+            sources
+                .get(&mount.source)
+                .ok_or("writable mount source is not boot-authorized")?,
+        )?;
+        accumulate_usage(&root, &mut total)?;
+    }
+    Ok(total)
+}
+
+fn accumulate_usage(path: &Path, total: &mut (u64, u64)) -> Result<(), String> {
+    for entry in std::fs::read_dir(path).map_err(|error| format!("writable root: {error}"))? {
+        let entry = entry.map_err(|error| format!("writable entry: {error}"))?;
+        let metadata = std::fs::symlink_metadata(entry.path())
+            .map_err(|error| format!("writable metadata: {error}"))?;
+        if metadata.file_type().is_symlink() {
+            total.0 = total.0.saturating_add(1);
+        } else if metadata.is_dir() {
+            accumulate_usage(&entry.path(), total)?;
+        } else {
+            total.0 = total.0.saturating_add(1);
+            total.1 = total.1.saturating_add(metadata.len());
+        }
+    }
+    Ok(())
 }
 
 #[cfg(test)]

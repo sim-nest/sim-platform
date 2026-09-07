@@ -6,11 +6,15 @@ In one line: Ubuntu PC reference platform capsule.
 
 One bounded, physically evidenced membrane for Ubuntu desktop and headless PCs. The contract keeps inputs, outputs, limits, and refusal cases explicit, so callers can compose the capability without acquiring unrelated host, transport, or product authority. Stable records make the result suitable for tests, inspection, and deterministic integration.
 
+The capsule's `LocalCheckAdapter` connects exact runtime `CommandSpec` entries to the durable M5 operation lifecycle. It supports trusted `ProcessPort` mechanics and fully confined `BwrapLauncher` execution, while the released checker-facing port exposes no native paths or command construction. Each run binds an owned checkout, explicit inputs, outputs and scratch roots, a sealed environment, time and output limits, descendant cleanup, and an independent postcondition observation.
+
 ## Why you will be glad
 
 - The public contract makes supported behavior, limits, and typed failures visible before integration.
 - One owning crate prevents neighboring libraries from growing competing copies of the same policy.
 - Deterministic records and checked tests keep adapters reviewable when implementations evolve.
+- Real bubblewrap conformance proves an anonymous root, absent networking, literal command bytes, output observation, and zero retained scratch entries.
+- Timeout and cancellation kill the owned process group, escalate from `TERM` to `KILL` when required, and refuse completion if descendants remain.
 
 ## Where it fits
 

@@ -1,0 +1,7 @@
+id = "local-check"
+title = "Run exact owner checks without ambient authority"
+purpose = "Exercise formatter, test, validation, and documentation commands through the networkless durable local-check adapter."
+description = "Builds a disposable tiny crate, admits literal command specifications, and verifies independent output and cleanup observations."
+entry = "cargo test -p sim-platform-ubuntu-pc --test local_check"
+expected = "formatter mutation, intentional test failure, validation, docs, and scratch cleanup are all observed through one portable adapter"
+tags = ["local-check", "operation", "bubblewrap", "sandbox", "networkless", "exact-command"]

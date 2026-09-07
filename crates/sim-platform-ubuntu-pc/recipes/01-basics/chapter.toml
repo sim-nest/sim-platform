@@ -1,0 +1,3 @@
+title = "Local checks"
+description = "Exact owner commands through the durable Ubuntu local-check adapter."
+order = ["local-check"]
