@@ -313,7 +313,8 @@ fn terminate_tree(child: &mut Child) -> Result<String, String> {
         }
         thread::sleep(Duration::from_millis(5));
     }
-    let kill = signal_group(pgid, "KILL");
+    let escalated = child.try_wait().ok().flatten().is_none() || group_exists(pgid);
+    let kill = escalated.then(|| signal_group(pgid, "KILL"));
     let wait = child.wait().map(|_| ()).map_err(|e| format!("wait: {e}"));
     let cleanup_deadline = Instant::now() + Duration::from_millis(500);
     while group_exists(pgid) && Instant::now() < cleanup_deadline {
@@ -323,11 +324,17 @@ fn terminate_tree(child: &mut Child) -> Result<String, String> {
     if leaked {
         return Err(term
             .err()
-            .or_else(|| kill.err())
+            .or_else(|| kill.and_then(Result::err))
             .or_else(|| wait.err())
             .unwrap_or_else(|| "descendants remained after bounded cleanup".into()));
     }
-    wait.map(|()| "process group killed and reaped".into())
+    wait.map(|()| {
+        if escalated {
+            "process group received TERM, escalated to KILL, and was reaped".into()
+        } else {
+            "process group received TERM and was reaped without escalation".into()
+        }
+    })
 }
 fn signal_group(pgid: u32, signal: &str) -> Result<(), String> {
     let status = Command::new("kill")
@@ -452,6 +459,27 @@ mod tests {
             process.run(&request, &token),
             ProcessAttempt::StoppedAfterCancel { .. }
         ));
+        fs::remove_dir_all(root).unwrap();
+    }
+    #[test]
+    fn native_conformance_escalates_ignored_term_and_proves_group_reaped() {
+        let root = root("signal-escalation");
+        let (process, mut request) = fixture(&root, "/bin/sh");
+        request.argv = ["-c", "trap '' TERM; while :; do :; done"]
+            .into_iter()
+            .map(|value| ArgAtom::new(value).unwrap())
+            .collect();
+        request.budget.timeout_ms = 20;
+        let ProcessAttempt::StoppedAfterTimeout { receipt } =
+            process.run(&request, &ProcessCancellation::default())
+        else {
+            panic!("expected timeout with proven cleanup")
+        };
+        assert!(
+            receipt.cleanup.contains("escalated to KILL"),
+            "{}",
+            receipt.cleanup
+        );
         fs::remove_dir_all(root).unwrap();
     }
 }

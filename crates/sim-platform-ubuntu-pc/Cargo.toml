@@ -1,6 +1,6 @@
 [package]
 name = "sim-platform-ubuntu-pc"
-version = "0.1.1"
+version = "0.2.0"
 edition.workspace = true
 license.workspace = true
 readme = "README.md"
@@ -14,9 +14,12 @@ role = "platform-capsule"
 [dependencies]
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
+thiserror = "2"
 sim-platform-core = { version = "0.2.0", path = "../sim-platform-core" }
 sim-platform-linux = { version = "0.1.0", path = "../sim-platform-linux" }
-sim-lib-exec = "0.3.0"
+sim-lib-exec = "0.4.0"
+sim-lib-operation-gate = "0.4.0"
+sim-lib-journal = "0.3.1"
 sim-kernel = "0.4.0"
 sim-run-loaders = { version = "0.4.0", features = ["codec-binary", "codec-lisp", "dynamic-native", "wasm"] }
 sim-wasm-abi = "0.5.0"
