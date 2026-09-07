@@ -784,6 +784,16 @@
           "kind": [
             "test"
           ],
+          "name": "local_check",
+          "src": "crates/sim-platform-ubuntu-pc/tests/local_check.rs"
+        },
+        {
+          "crate_types": [
+            "bin"
+          ],
+          "kind": [
+            "test"
+          ],
           "name": "physical_attestation",
           "src": "crates/sim-platform-ubuntu-pc/tests/physical_attestation.rs"
         }
@@ -1109,10 +1119,10 @@
     "generated_by": "cargo run -p xtask -- simdoc",
     "generation_timestamp": "2026-08-21T22:21:04+02:00",
     "generator": "xtask repo-contract v1",
-    "git_commit": "c458303b82eb2c1514664ec819e8482366ade0d3",
+    "git_commit": "79bba78286242197b33ac003490dfca6b7046a75",
     "repo": "sim-platform",
     "schema": "sim.provenance.v1",
-    "source_commit": "c458303b82eb2c1514664ec819e8482366ade0d3",
+    "source_commit": "79bba78286242197b33ac003490dfca6b7046a75",
     "source_remote": "https://github.com/sim-nest/sim-platform",
     "validation_commands": [
       "cargo fmt --all --check",
@@ -1125,9 +1135,9 @@
       "cargo run -p xtask -- validation-matrix --check --repo .",
       "cargo run -p xtask -- crate-catalog --check --repo ."
     ],
-    "workspace_hash": "cceb201f4b0a276b",
+    "workspace_hash": "da8b9bb866327e65",
     "workspace_hash_algorithm": "fnv1a64",
-    "workspace_hash_input_count": 158,
+    "workspace_hash_input_count": 161,
     "workspace_hash_inputs": [
       "Cargo.toml",
       "crates/sim-lib-platform/Cargo.toml",
@@ -1220,15 +1230,18 @@
       "crates/sim-platform-sqlite/src/lib.rs",
       "crates/sim-platform-sqlite/src/tests.rs",
       "crates/sim-platform-ubuntu-pc/Cargo.toml",
+      "crates/sim-platform-ubuntu-pc/recipes/01-basics/local-check/recipe.toml",
       "crates/sim-platform-ubuntu-pc/recipes/book.toml",
       "crates/sim-platform-ubuntu-pc/src/compute.rs",
       "crates/sim-platform-ubuntu-pc/src/lib.rs",
       "crates/sim-platform-ubuntu-pc/src/loader.rs",
+      "crates/sim-platform-ubuntu-pc/src/local_check.rs",
       "crates/sim-platform-ubuntu-pc/src/process.rs",
       "crates/sim-platform-ubuntu-pc/src/sandbox.rs",
       "crates/sim-platform-ubuntu-pc/tests/bundle_closure.rs",
       "crates/sim-platform-ubuntu-pc/tests/conformance.rs",
       "crates/sim-platform-ubuntu-pc/tests/descriptor_boot.rs",
+      "crates/sim-platform-ubuntu-pc/tests/local_check.rs",
       "crates/sim-platform-ubuntu-pc/tests/physical_attestation.rs",
       "crates/sim-platform-ubuntu-rpi/Cargo.toml",
       "crates/sim-platform-ubuntu-rpi/recipes/01-basics/gpio-to-stream/recipe.toml",
@@ -1517,8 +1530,17 @@
       "card_id": "cookbook/platform/ubuntu-pc",
       "group": "workspace",
       "package": "sim-platform-ubuntu-pc",
-      "recipe_count": 0,
-      "recipes": [],
+      "recipe_count": 1,
+      "recipes": [
+        {
+          "card_id": "platform/ubuntu-pc/01-basics/local-check",
+          "codec": "",
+          "id": "local-check",
+          "package": "sim-platform-ubuntu-pc",
+          "recipe_toml": "crates/sim-platform-ubuntu-pc/recipes/01-basics/local-check/recipe.toml",
+          "title": "Run exact owner checks without ambient authority"
+        }
+      ],
       "summary": "Realize Ubuntu PC compute, process, and sandbox services.",
       "title": "Ubuntu PC capsule"
     },

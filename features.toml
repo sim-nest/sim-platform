@@ -223,11 +223,12 @@ summary = "Execute installed exact build commands through the Ubuntu process mem
 owner = "crate/sim-platform-ubuntu-pc"
 audiences = ["code", "framework"]
 guidance = "Register LocalCheckAdapter at boot with exact CommandSpec values, the selected ProcessPort and SandboxLauncher implementations, and native roots for every opaque resource. Portable checker code calls LocalCheckPort with a LocalCheckRequest naming only an installed CommandId. Use the bwrap route for absent networking and positive confinement evidence; a host process route needs a separate scoped network grant and cannot by itself prove descendant cleanup. Keep actual owner-checkout integration outside this adapter until its separately qualified landing phase."
-claims_anchors = ["anchor/crate/sim-platform-ubuntu-pc"]
+claims_anchors = [
+  "anchor/rustdoc/sim-platform-ubuntu-pc/local_check/local-check-adapter",
+  "anchor/rustdoc/sim-platform-ubuntu-pc/local_check/request_check",
+]
 claims_specimens = [
-  "spec-test/sim-platform/crates/sim-platform-ubuntu-pc/src/local_check",
-  "spec-test/sim-platform/crates/sim-platform-ubuntu-pc/src/process",
-  "spec-test/sim-platform/crates/sim-platform-ubuntu-pc/src/sandbox",
+  "spec-test/sim-platform/crates/sim-platform-ubuntu-pc/tests/local_check",
 ]
 supports = [
   "feature/sim-platform/process-realization",
@@ -244,7 +245,7 @@ steps = [
   { feature = "feature/sim-runtime/local-check-contract", why = "The portable contract binds unchanged command bytes, resources, limits, output, cleanup, network authority, and replay policy into the installed CommandId." },
   { feature = "feature/sim-runtime/guarded-operations", why = "The lifecycle records intent, grant, fenced lease, performer-bound dispatch, receipt, independent observation, and truthful outcome." },
   { feature = "feature/sim-platform/real-local-check-adapter", why = "The Ubuntu capsule resolves only boot-authorized resources and composes the real process and bwrap boundaries without exposing native command construction to packet tooling." },
-  { specimen = "spec-test/sim-platform/crates/sim-platform-ubuntu-pc/src/local_check", why = "The runnable specimen observes formatting and deliberate failure, executes a real networkless bwrap command, removes scratch state, and rejects command substitution." },
+  { specimen = "spec-test/sim-platform/crates/sim-platform-ubuntu-pc/tests/local_check", why = "The runnable specimen observes formatting and deliberate failure, executes a real networkless bwrap command, removes scratch state, and rejects command substitution." },
 ]
 
 [[feature]]
