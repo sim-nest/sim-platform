@@ -5758,7 +5758,7 @@ dependencies = [
 
 [[package]]
 name = "sim-platform-ubuntu-pc"
-version = "0.2.0"
+version = "0.2.1"
 dependencies = [
  "pollster",
  "serde",
