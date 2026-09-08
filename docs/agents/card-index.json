@@ -58,6 +58,8 @@
     "crates/sim-platform-macos/recipes/book.toml",
     "crates/sim-platform-model/recipes/01-basics/chapter.toml",
     "crates/sim-platform-model/recipes/book.toml",
+    "crates/sim-platform-ubuntu-pc/recipes/01-basics/chapter.toml",
+    "crates/sim-platform-ubuntu-pc/recipes/01-basics/local-check/recipe.toml",
     "crates/sim-platform-ubuntu-pc/recipes/book.toml",
     "crates/sim-platform-ubuntu-rpi/recipes/01-basics/chapter.toml",
     "crates/sim-platform-ubuntu-rpi/recipes/01-basics/gpio-to-stream/expected.txt",

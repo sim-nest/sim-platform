@@ -55,6 +55,8 @@
 {"kind":"recipe","path":"crates/sim-platform-macos/recipes/book.toml"}
 {"kind":"recipe","path":"crates/sim-platform-model/recipes/01-basics/chapter.toml"}
 {"kind":"recipe","path":"crates/sim-platform-model/recipes/book.toml"}
+{"kind":"recipe","path":"crates/sim-platform-ubuntu-pc/recipes/01-basics/chapter.toml"}
+{"kind":"recipe","path":"crates/sim-platform-ubuntu-pc/recipes/01-basics/local-check/recipe.toml"}
 {"kind":"recipe","path":"crates/sim-platform-ubuntu-pc/recipes/book.toml"}
 {"kind":"recipe","path":"crates/sim-platform-ubuntu-rpi/recipes/01-basics/chapter.toml"}
 {"kind":"recipe","path":"crates/sim-platform-ubuntu-rpi/recipes/01-basics/gpio-to-stream/expected.txt"}
