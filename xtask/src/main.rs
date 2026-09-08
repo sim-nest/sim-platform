@@ -4,6 +4,8 @@
 use std::path::Path;
 use std::sync::Arc;
 
+mod simdoc;
+
 const REQUIRED: &[&str] = &[
     "README.md",
     "BROCHURE.md",
@@ -29,6 +31,13 @@ fn main() {
     }
     if command.as_deref() == Some("compute-acceptance") {
         if let Err(error) = compute_acceptance(std::env::args().collect()) {
+            eprintln!("{error}");
+            std::process::exit(1);
+        }
+        return;
+    }
+    if command.as_deref() == Some("simdoc") {
+        if let Err(error) = simdoc::run(&std::env::args().collect::<Vec<_>>()) {
             eprintln!("{error}");
             std::process::exit(1);
         }
