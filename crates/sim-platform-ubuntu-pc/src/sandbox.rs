@@ -19,6 +19,23 @@ pub struct BwrapLauncher {
     programs: BTreeMap<ProgramRef, PathBuf>,
     sources: BTreeMap<String, PathBuf>,
 }
+
+/// Live readiness of the Ubuntu bubblewrap effect membrane.
+///
+/// This evidence certifies only bounded-effect confinement. It deliberately
+/// cannot represent projector purity or source qualification: bubblewrap
+/// exposes `/proc` and `/dev`, and declared mounts may contain semantic inputs
+/// outside a projector's selected immutable view.
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct BwrapConfinementStatus {
+    /// Stable membrane implementation identity.
+    pub membrane: &'static str,
+    /// Whether both boot-authorized executables exist as files now.
+    pub available: bool,
+    /// Human-readable readiness detail.
+    pub detail: String,
+}
+
 impl BwrapLauncher {
     /// Creates a boot-configured launcher. Paths are authority supplied, never request supplied.
     #[must_use]
@@ -33,6 +50,18 @@ impl BwrapLauncher {
             prlimit,
             programs,
             sources,
+        }
+    }
+
+    /// Probes the exact boot-resolved membrane executables without dispatch.
+    #[must_use]
+    pub fn confinement_status(&self) -> BwrapConfinementStatus {
+        let bwrap = self.bwrap.is_file();
+        let prlimit = self.prlimit.is_file();
+        BwrapConfinementStatus {
+            membrane: "platform/sandbox/ubuntu-bwrap",
+            available: bwrap && prlimit,
+            detail: format!("bwrap-file={bwrap};prlimit-file={prlimit};purity-qualified=false"),
         }
     }
     fn refuse(&self, reason: impl Into<String>) -> SandboxAttempt {
@@ -354,6 +383,10 @@ mod tests {
             BTreeMap::new(),
             BTreeMap::new(),
         );
+        let status = launcher.confinement_status();
+        assert!(!status.available);
+        assert_eq!(status.membrane, "platform/sandbox/ubuntu-bwrap");
+        assert!(status.detail.contains("purity-qualified=false"));
         assert_eq!(launcher.id(), "platform/sandbox/ubuntu-bwrap");
         let request = SandboxRequest::new(
             ProgramRef::new("tool").unwrap(),

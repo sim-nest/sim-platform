@@ -212,7 +212,7 @@ title = "Ubuntu bubblewrap sandbox realization"
 summary = "Realize the runtime sandbox contract with an anonymous root, network namespace, declared mounts, rlimits, bounded pipes, and proven process-tree cleanup."
 owner = "crate/sim-platform-ubuntu-pc"
 audiences = ["code", "framework"]
-guidance = "Register BwrapLauncher only from boot-authorized bwrap, prlimit, program, input, toolchain, and writable-root paths. Missing mechanics or resource identities refuse before spawn. The launcher clears the environment, exposes no ambient home or workspace, binds only canonical declared sources, applies CPU/address-space/process/file-size limits, and composes the Ubuntu process-group monitor for wall time, cancellation, capture, and descendant cleanup."
+guidance = "Register BwrapLauncher only from boot-authorized bwrap, prlimit, program, input, toolchain, and writable-root paths. Missing mechanics or resource identities refuse before spawn. The launcher clears the environment, exposes no ambient home or workspace, binds only canonical declared sources, applies CPU/address-space/process/file-size limits, and composes the Ubuntu process-group monitor for wall time, cancellation, capture, and descendant cleanup. Use confinement_status when provider admission needs a typed live membrane probe. It always reports purity-qualified=false: the mounted inputs, /proc, /dev, and remaining process observations make bwrap bounded-effect confinement, never trusted-native functional-purity evidence."
 claims_specimens = ["spec-test/sim-platform/crates/sim-platform-ubuntu-pc/src/sandbox"]
 supports = ["feature/sim-platform/process-realization", "feature/sim-runtime/sandbox-exec"]
 
