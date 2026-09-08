@@ -21,7 +21,7 @@ pub use local_check::{LocalCheckAdapter, LocalCheckError, request_check};
 mod process;
 mod sandbox;
 pub use process::UbuntuProcess;
-pub use sandbox::BwrapLauncher;
+pub use sandbox::{BwrapConfinementStatus, BwrapLauncher};
 
 /// Owned process-entry facts captured by the Ubuntu capsule.
 ///
