@@ -4321,7 +4321,7 @@ dependencies = [
 
 [[package]]
 name = "sim-lib-skill"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "sim-citizen",
  "sim-citizen-derive",
@@ -5244,7 +5244,7 @@ dependencies = [
 
 [[package]]
 name = "sim-platform-model"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "serde",
  "serde_json",
