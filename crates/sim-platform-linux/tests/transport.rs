@@ -1,3 +1,8 @@
+// SPDX-License-Identifier: MPL-2.0
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
 // conformance: Linux transport realizes typed socket, DNS, IPC, and clock ports.
 
 use sim_kernel::{Cx, DefaultFactory, EagerPolicy, HandleSeed};
@@ -69,7 +74,7 @@ fn tcp_udp_dns_and_native_errors_are_capsule_owned() {
 
     let udp = port.bind_udp(&loopback).unwrap();
     assert_ne!(udp.local_address().unwrap(), loopback);
-    assert!(!LinuxDnsPort.resolve("localhost", 9).unwrap().is_empty());
+    assert_ne!(LinuxDnsPort.resolve("localhost", 9).unwrap().len(), 0);
 
     let collision = port.listen_tcp(&bound).err().unwrap();
     assert_eq!(collision.kind, TransportErrorKind::AddressInUse);

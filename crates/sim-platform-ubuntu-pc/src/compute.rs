@@ -1,3 +1,8 @@
+// SPDX-License-Identifier: MPL-2.0
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
 // conformance: native compute probing stays capsule-owned and fails closed.
 
 //! Native compute discovery owned by the Ubuntu platform capsule.
@@ -240,6 +245,6 @@ mod tests {
         assert!(ComputeRocmLib::from_probe_port(&probe).is_err());
         let wgpu =
             ComputeWgpuLib::from_probe_port(&EmptyWgpuProbe, &ProbePolicy::default()).unwrap();
-        assert!(sim_kernel::Lib::manifest(&wgpu).exports.is_empty());
+        assert_eq!(sim_kernel::Lib::manifest(&wgpu).exports.len(), 0);
     }
 }

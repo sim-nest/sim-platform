@@ -1,3 +1,8 @@
+// SPDX-License-Identifier: MPL-2.0
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
 #![forbid(unsafe_code)]
 //! Ubuntu PC capsule registration and sanitized evidence contracts.
 use serde::{Deserialize, Serialize};
@@ -21,7 +26,7 @@ pub use local_check::{LocalCheckAdapter, LocalCheckError, request_check};
 mod process;
 mod sandbox;
 pub use process::UbuntuProcess;
-pub use sandbox::{BwrapConfinementStatus, BwrapLauncher};
+pub use sandbox::{BwrapConfinementStatus, BwrapLauncher, ReadOnlyTreeLimits};
 
 /// Owned process-entry facts captured by the Ubuntu capsule.
 ///

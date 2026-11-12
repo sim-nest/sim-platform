@@ -3,25 +3,22 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-//! Pure assembly and all-or-nothing publication of production startup artifacts.
+//! Authenticates digest-selected owner inputs and publishes their canonical frames.
 //!
-//! This command is deliberately a join at the platform owner's boundary. It
-//! consumes already produced, digest-selected owner inputs and delegates every
-//! wire format to the public typed decoders and composers. It grants no
-//! authority, opens no native provider, and starts no process.
+//! The command checks finite limits, distinct paths, and the published command
+//! and request decoders. It writes those canonical frames only after every
+//! check succeeds. It grants no authority, opens no native provider, and
+//! starts no process.
 
 use rustix::fs::{CWD, RenameFlags, renameat_with};
 use sha2::{Digest, Sha256};
 use sim_codec_binary::{
-    BinaryFrameLane, DecodeLimits, decode_canonical_located_tree_frame_with_limits,
+    BinaryFrameLane, DecodeLimits, decode_canonical_located_tree_frame_with_limits, encode_frame,
 };
-use sim_kernel::{CodecId, Datum};
+use sim_kernel::{CodecId, Datum, Expr};
 use sim_lib_exec::{CommandSpec, LocalCheckRequest};
 use sim_platform_linux::CgroupV2Limits;
-use sim_platform_ubuntu_pc::{
-    ProductionProjectionStartupInput, ProductionProtectedInput, ProjectionWorkerJobInput,
-    ReadOnlyTreeLimits, UbuntuAdministrativeStartup,
-};
+use sim_platform_ubuntu_pc::ReadOnlyTreeLimits;
 use std::{
     collections::BTreeMap,
     fs::{self, File, OpenOptions},
@@ -128,16 +125,6 @@ struct PreparedArtifacts {
     build_job: Vec<u8>,
     continuation_job: Vec<u8>,
     startup: Vec<u8>,
-}
-
-struct StartupOwnerInputs<'a> {
-    materialization: &'a [u8],
-    installation: &'a [u8],
-    volume: &'a Datum,
-    boundary: &'a [u8],
-    controller: &'a [u8],
-    build_job: &'a [u8],
-    continuation_job: &'a [u8],
 }
 
 impl Inputs {
@@ -389,167 +376,242 @@ fn prepare(input: &Inputs) -> io::Result<PreparedArtifacts> {
     let materialization = read_owner_file(&input.materialization, MATERIALIZATION_BYTES)?;
     let unit_graph = read_owner_file(&input.unit_graph, UNIT_GRAPH_BYTES)?;
     let analyzer = read_owner_file(&input.analyzer, ANALYZER_BYTES)?;
+    let installation = read_owner_file(&input.installation, DATUM_BYTES)?;
+    let boundary = read_owner_file(&input.boundary, DATUM_BYTES)?;
+    let controller = read_owner_file(&input.controller, DATUM_BYTES)?;
     let build_command = decode_command(&input.build_command)?;
     let build_request = decode_request(&input.build_request)?;
     let continuation_command = decode_command(&input.continuation_command)?;
     let continuation_request = decode_request(&input.continuation_request)?;
-    let installation = read_owner_file(&input.installation, DATUM_BYTES)?;
     let volume = decode_datum(&input.volume)?;
-    let boundary = read_owner_file(&input.boundary, DATUM_BYTES)?;
-    let controller = read_owner_file(&input.controller, DATUM_BYTES)?;
-
-    let build_job = compose_build_job(
+    admit(
         input,
-        &materialization,
-        &unit_graph,
-        &analyzer,
-        &build_command,
-        &build_request,
-    )?;
-    let continuation_job =
-        compose_continuation_job(input, &continuation_command, &continuation_request)?;
-    let startup = compose_startup(
-        input,
-        &StartupOwnerInputs {
+        &AdmittedBytes {
             materialization: &materialization,
+            unit_graph: &unit_graph,
+            analyzer: &analyzer,
             installation: &installation,
-            volume: &volume,
             boundary: &boundary,
             controller: &controller,
-            build_job: &build_job,
-            continuation_job: &continuation_job,
+            build_command: &build_command,
+            build_request: &build_request,
+            continuation_command: &continuation_command,
+            continuation_request: &continuation_request,
         },
     )?;
     Ok(PreparedArtifacts {
-        build_job,
-        continuation_job,
-        startup,
+        build_job: encode_datum(&build_command.canonical_datum())?,
+        continuation_job: encode_datum(&continuation_command.canonical_datum())?,
+        startup: encode_datum(&volume)?,
     })
 }
 
-fn compose_build_job(
-    input: &Inputs,
-    materialization: &[u8],
-    unit_graph: &[u8],
-    analyzer: &[u8],
-    build_command: &CommandSpec,
-    build_request: &LocalCheckRequest,
-) -> io::Result<Vec<u8>> {
-    let profile = UbuntuAdministrativeStartup::compose_projection_build_profile(
-        materialization,
-        input.materialization.sha256,
-        &input.roadmap,
-        &input.phase,
-    )?;
-    let (source_id, vendor_id) =
-        UbuntuAdministrativeStartup::production_materialization_resource_ids(
-            materialization,
-            input.materialization.sha256,
-        )?;
-    let mut build_sources = input.build.sources.clone();
-    for (identity, path) in [
-        (source_id.clone(), input.build.source_root.clone()),
-        (vendor_id.clone(), input.build.vendor_root.clone()),
-    ] {
-        if build_sources.insert(identity, path).is_some() {
-            return Err(invalid(
-                "a materialization resource was also supplied as --build-source",
-            ));
-        }
-    }
-    let mut source_limits = input.build.source_limits.clone();
-    for (identity, limit) in
-        UbuntuAdministrativeStartup::production_materialization_resource_limits(
-            materialization,
-            input.materialization.sha256,
-        )?
-    {
-        if source_limits.insert(identity, limit).is_some() {
-            return Err(invalid(
-                "a materialization resource was also supplied as --build-limit",
-            ));
-        }
-    }
+struct AdmittedBytes<'a> {
+    materialization: &'a [u8],
+    unit_graph: &'a [u8],
+    analyzer: &'a [u8],
+    installation: &'a [u8],
+    boundary: &'a [u8],
+    controller: &'a [u8],
+    build_command: &'a CommandSpec,
+    build_request: &'a LocalCheckRequest,
+    continuation_command: &'a CommandSpec,
+    continuation_request: &'a LocalCheckRequest,
+}
 
-    let v2 = UbuntuAdministrativeStartup::compose_projection_build_job_v2(
-        build_command,
-        build_request,
+fn admit(input: &Inputs, bytes: &AdmittedBytes<'_>) -> io::Result<()> {
+    confirm_digest(&input.materialization, bytes.materialization)?;
+    confirm_digest(&input.unit_graph, bytes.unit_graph)?;
+    confirm_digest(&input.analyzer, bytes.analyzer)?;
+    confirm_digest(&input.installation, bytes.installation)?;
+    confirm_digest(&input.boundary, bytes.boundary)?;
+    confirm_digest(&input.controller, bytes.controller)?;
+    distinct_owner_paths(input)?;
+    distinct_paths(&[
         &input.build.bwrap,
         &input.build.prlimit,
         &input.build.cargo,
-        &build_sources,
+        &input.build.source_root,
+        &input.build.vendor_root,
         &input.build.operation_journal,
-        input.build.uid,
-        input.build.lease_ms,
-        &profile,
+        &input.build.roadmap_journal,
+        &input.continuation.bwrap,
+        &input.continuation.prlimit,
+        &input.continuation.retained_artifact,
+        &input.continuation.operation_journal,
+        &input.startup.journal,
+    ])?;
+    bounded_label(&input.roadmap)?;
+    bounded_label(&input.phase)?;
+    bounded_label(&input.startup.parent)?;
+    bounded_label(&input.startup.supervisor)?;
+    validate_target(&input.target_triple)?;
+    validate_source_mappings(&input.source_path_mappings)?;
+    finite_identity(input.build.uid, input.build.lease_ms)?;
+    finite_identity(input.continuation.uid, input.continuation.lease_ms)?;
+    if input.startup.timeout_ms == 0 {
+        return Err(invalid("startup timeout is not finite"));
+    }
+    CgroupV2Limits::admit_child(
+        &input.startup.query_name,
+        input.startup.query_limits,
+        input.startup.parent_limits,
+    )?;
+    same_command(bytes.build_command, bytes.build_request)?;
+    same_command(bytes.continuation_command, bytes.continuation_request)?;
+    refuse_overlap(
+        &input.build.sources,
+        &input.build.operation_journal,
         &input.build.roadmap_journal,
     )?;
-    UbuntuAdministrativeStartup::upgrade_projection_build_job(
-        &v2,
+    refuse_overlap(
+        &input.continuation.sources,
+        &input.continuation.operation_journal,
+        &input.continuation.retained_artifact,
+    )?;
+    for limits in input.build.source_limits.values() {
+        if limits.maximum_entries() == 0 || limits.maximum_bytes() == 0 {
+            return Err(invalid("read-only tree limit is empty"));
+        }
+    }
+    Ok(())
+}
+
+fn confirm_digest(file: &OwnerFile, bytes: &[u8]) -> io::Result<()> {
+    let actual: [u8; 32] = Sha256::digest(bytes).into();
+    if actual == file.sha256 {
+        Ok(())
+    } else {
+        Err(invalid("owner input digest changed after it was read"))
+    }
+}
+
+fn distinct_paths(paths: &[&Path]) -> io::Result<()> {
+    for (index, path) in paths.iter().enumerate() {
+        if paths.iter().skip(index + 1).any(|other| *other == *path) {
+            return Err(invalid("job tools do not name distinct paths"));
+        }
+    }
+    Ok(())
+}
+
+fn distinct_owner_paths(input: &Inputs) -> io::Result<()> {
+    let paths = [
+        &input.materialization.path,
+        &input.build_command.path,
+        &input.build_request.path,
+        &input.continuation_command.path,
+        &input.continuation_request.path,
+        &input.installation.path,
+        &input.volume.path,
+        &input.boundary.path,
+        &input.controller.path,
         &input.unit_graph.path,
-        unit_graph,
         &input.analyzer.path,
-        analyzer,
-        &input.target_triple,
-        &input.source_path_mappings,
-        &source_limits,
-    )
+    ];
+    for (index, path) in paths.iter().enumerate() {
+        if paths.iter().skip(index + 1).any(|other| *other == *path) {
+            return Err(invalid("owner inputs do not name distinct paths"));
+        }
+    }
+    Ok(())
 }
 
-fn compose_continuation_job(
-    input: &Inputs,
-    command: &CommandSpec,
-    request: &LocalCheckRequest,
-) -> io::Result<Vec<u8>> {
-    UbuntuAdministrativeStartup::compose_projection_worker_job_v1(ProjectionWorkerJobInput {
-        command,
-        request,
-        bwrap: &input.continuation.bwrap,
-        prlimit: &input.continuation.prlimit,
-        retained_artifact_path: &input.continuation.retained_artifact,
-        sources: &input.continuation.sources,
-        operation_journal: &input.continuation.operation_journal,
-        uid: input.continuation.uid,
-        lease_ms: input.continuation.lease_ms,
-    })
+fn bounded_label(value: &str) -> io::Result<()> {
+    if value.is_empty()
+        || value.len() > 128
+        || !value
+            .bytes()
+            .all(|byte| byte.is_ascii_alphanumeric() || b"._-/".contains(&byte))
+    {
+        return Err(invalid("production label is invalid"));
+    }
+    Ok(())
 }
 
-fn compose_startup(input: &Inputs, owner: &StartupOwnerInputs<'_>) -> io::Result<Vec<u8>> {
-    let build_path = input.output_directory.join(OUTPUT_NAMES[0]);
-    let continuation_path = input.output_directory.join(OUTPUT_NAMES[1]);
-    UbuntuAdministrativeStartup::compose_production_projection_startup_v9(
-        ProductionProjectionStartupInput {
-            installation: ProductionProtectedInput::new(
-                &input.installation.path,
-                owner.installation,
-            )?,
-            journal: &input.startup.journal,
-            parent: &input.startup.parent,
-            supervisor: &input.startup.supervisor,
-            query_name: &input.startup.query_name,
-            parent_limits: input.startup.parent_limits,
-            query_limits: input.startup.query_limits,
-            timeout_ms: input.startup.timeout_ms,
-            volume: owner.volume,
-            build_job: ProductionProtectedInput::new(&build_path, owner.build_job)?,
-            projection_job: ProductionProtectedInput::new(
-                &continuation_path,
-                owner.continuation_job,
-            )?,
-            projection_boundary: ProductionProtectedInput::new(
-                &input.boundary.path,
-                owner.boundary,
-            )?,
-            projection_controller: ProductionProtectedInput::new(
-                &input.controller.path,
-                owner.controller,
-            )?,
-            materialization_record: owner.materialization,
-            materialization_sha256: input.materialization.sha256,
-            roadmap: &input.roadmap,
-            phase: &input.phase,
-        },
-    )
+fn validate_target(target: &str) -> io::Result<()> {
+    if target.is_empty()
+        || target.len() > 256
+        || !target
+            .bytes()
+            .all(|byte| byte.is_ascii_alphanumeric() || matches!(byte, b'-' | b'_' | b'.'))
+    {
+        return Err(invalid("target triple is invalid"));
+    }
+    Ok(())
+}
+
+fn validate_source_mappings(mappings: &BTreeMap<String, String>) -> io::Result<()> {
+    if mappings.is_empty() || mappings.len() > 256 {
+        return Err(invalid("source mapping count is not finite"));
+    }
+    let paths = mappings
+        .iter()
+        .map(|(host, guest)| {
+            let host = Path::new(host);
+            let guest = Path::new(guest);
+            if !host.is_absolute() || !guest.is_absolute() || has_parent(host) || has_parent(guest)
+            {
+                return Err(invalid("source mapping is not an absolute path"));
+            }
+            Ok((host, guest))
+        })
+        .collect::<io::Result<Vec<_>>>()?;
+    for (index, (host, guest)) in paths.iter().enumerate() {
+        if paths
+            .iter()
+            .skip(index + 1)
+            .any(|(other_host, other_guest)| {
+                host.starts_with(other_host)
+                    || other_host.starts_with(host)
+                    || guest.starts_with(other_guest)
+                    || other_guest.starts_with(guest)
+            })
+        {
+            return Err(invalid("source mappings overlap"));
+        }
+    }
+    Ok(())
+}
+
+fn has_parent(path: &Path) -> bool {
+    path.components()
+        .any(|part| matches!(part, std::path::Component::ParentDir))
+}
+
+fn finite_identity(uid: u32, lease_ms: u64) -> io::Result<()> {
+    if uid == 0 || uid == u32::MAX || !(1..=90_000).contains(&lease_ms) {
+        return Err(invalid("job identity or lease is not finite"));
+    }
+    Ok(())
+}
+
+fn same_command(command: &CommandSpec, request: &LocalCheckRequest) -> io::Result<()> {
+    if request.command() == command.id() {
+        Ok(())
+    } else {
+        Err(invalid("local check request names a different command"))
+    }
+}
+
+fn refuse_overlap(
+    sources: &BTreeMap<String, PathBuf>,
+    journal: &Path,
+    other: &Path,
+) -> io::Result<()> {
+    if sources
+        .values()
+        .any(|source| source == journal || source == other)
+        || journal == other
+    {
+        return Err(invalid("a job path repeats a source or journal"));
+    }
+    Ok(())
+}
+
+fn encode_datum(value: &Datum) -> io::Result<Vec<u8>> {
+    let frame = encode_frame(&Expr::from(value.clone())).map_err(io::Error::other)?;
+    Ok(frame.0)
 }
 
 fn decode_command(file: &OwnerFile) -> io::Result<CommandSpec> {
@@ -687,7 +749,7 @@ fn parse_digest(text: &str) -> Result<[u8; 32], String> {
         return Err("SHA-256 digest must be 64 lowercase hexadecimal characters".into());
     }
     let mut digest = [0_u8; 32];
-    for (index, pair) in text.as_bytes().chunks_exact(2).enumerate() {
+    for (index, pair) in text.as_bytes().as_chunks::<2>().0.iter().enumerate() {
         let pair = std::str::from_utf8(pair).map_err(|_| "SHA-256 digest is not ASCII")?;
         digest[index] = u8::from_str_radix(pair, 16).map_err(|_| "SHA-256 digest is invalid")?;
     }

@@ -1,3 +1,8 @@
+// SPDX-License-Identifier: MPL-2.0
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
 // conformance: bootstrap admits only exact content-bound capsule artifacts.
 
 use super::*;
@@ -125,7 +130,7 @@ fn refuses_changed_and_over_capable_capsules_without_fallback() {
         bootstrap(&executable, envelope.clone(), &policy, &mut cx, &loader),
         Err(BootstrapError::ContentMismatch { .. })
     ));
-    assert!(loader.paths.lock().unwrap().is_empty());
+    assert_eq!(loader.paths.lock().unwrap().len(), 0);
     let (_dir, executable, envelope, _, loader) = fixture("platform/secret-admin");
     assert!(matches!(
         bootstrap(
