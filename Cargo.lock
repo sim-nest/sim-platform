@@ -1930,6 +1930,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "sim-cli-core"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1e0bc26a8017b59321a58dcaca61eceed4a38b4023fcecd549dc3d4577786c61"
+dependencies = [
+ "sim-kernel",
+]
+
+[[package]]
 name = "sim-codec"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1946,9 +1955,9 @@ dependencies = [
 
 [[package]]
 name = "sim-codec-algol"
-version = "0.3.0"
+version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "38932e0ee1be148a23e7af141121a33491551e4b11dd8071aaa81c83d5873af9"
+checksum = "5bfb616673aa0c235d5fe6d6ad858384860b03c6bc28123fe97de6f56d273f4a"
 dependencies = [
  "sim-codec",
  "sim-codec-lisp",
@@ -1961,9 +1970,9 @@ dependencies = [
 
 [[package]]
 name = "sim-codec-binary"
-version = "0.4.0"
+version = "0.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "496dd95f711b145756a691e62239960afced1ed857c94047a171161edcc8d1f5"
+checksum = "2e9ac9bf1b030f965a05faf0b7ada0958ff28d9ea76cca5c48c255fbd7f9cab3"
 dependencies = [
  "sim-codec",
  "sim-cookbook",
@@ -1974,9 +1983,9 @@ dependencies = [
 
 [[package]]
 name = "sim-codec-binary-base64"
-version = "0.3.0"
+version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "824fe3240bd1a8280bcda7f15f002ff65d2781f31f7998412b7a3d8b73c68623"
+checksum = "e932d3194565201670ff846aa3ffc97b95b61b7b219777b54a363aa5f6ac22dc"
 dependencies = [
  "sim-codec",
  "sim-codec-binary",
@@ -2001,9 +2010,9 @@ dependencies = [
 
 [[package]]
 name = "sim-codec-bitwise-base64"
-version = "0.1.7"
+version = "0.1.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "23a3f63667813a2ea1f0e2e81dfe47810fbdeb1ff0357a97fee2d0f3942d17d5"
+checksum = "e6174c9068d6e2d24b2018e95598f3db17f756526e01ddd98575154565db1f2d"
 dependencies = [
  "sim-codec",
  "sim-codec-binary-base64",
@@ -2031,9 +2040,9 @@ dependencies = [
 
 [[package]]
 name = "sim-codec-chat"
-version = "0.4.0"
+version = "0.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "480bb5d39cbec1e625bf129b4ec9ed6a4ce35789311a13099c082d8f21ff3ef1"
+checksum = "d64fcc735c49b8b1394ede5f3f97f89780c68e9627b159fcaeef8c95ae68bb28"
 dependencies = [
  "serde_json",
  "sim-codec",
@@ -2073,9 +2082,9 @@ dependencies = [
 
 [[package]]
 name = "sim-codec-json"
-version = "0.4.0"
+version = "0.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "363997acc942d9e10ad8ab16e78ffe846303bd6295c435b13c07996c2496d24a"
+checksum = "207beeac5a69579b007df66178896c5dd0f7b641248c72edb85a4ba0c46b469f"
 dependencies = [
  "serde",
  "serde_json",
@@ -2090,9 +2099,9 @@ dependencies = [
 
 [[package]]
 name = "sim-codec-lisp"
-version = "0.4.0"
+version = "0.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "930c7cabd4a35c162b82b735e97063abd3d60dc70c9f0205c41fffae79770de7"
+checksum = "a2867ab0d599a19a7a84e792d643afdf0447cc7a2a88296535df831e163c39f2"
 dependencies = [
  "proc-macro2",
  "sim-codec",
@@ -2750,6 +2759,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "sim-lib-exec"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6cf59a23747018220f307a4d7079612a68b4d7edc01170465527d8c8421aaa7f"
+dependencies = [
+ "sim-cli-core",
+ "sim-cookbook",
+ "sim-cookbook-build",
+ "sim-kernel",
+ "sim-lib-operation-gate 0.5.0",
+ "sim-storage-port",
+]
+
+[[package]]
 name = "sim-lib-femm-assembly"
 version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3183,9 +3206,9 @@ dependencies = [
 
 [[package]]
 name = "sim-lib-journal"
-version = "0.3.1"
+version = "0.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "01c235f461131b5c2f831ca0dcf1f8fbb8abb8cc07168fa9f75ec3f0ccc66572"
+checksum = "f9ee9b22ce3802dead3c68f86faf9cfe505ae50a694bdd66c367b470c84cc7e1"
 dependencies = [
  "sha2",
  "sim-kernel",
@@ -4265,6 +4288,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "sim-lib-operation-gate"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1303ab3e464d3c779770b90490ef25e5a3fb1e8078ac365dee899c093133e551"
+dependencies = [
+ "sim-kernel",
+ "sim-lib-journal",
+ "thiserror 2.0.20",
+]
+
+[[package]]
 name = "sim-lib-pattern"
 version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4637,9 +4671,9 @@ dependencies = [
 
 [[package]]
 name = "sim-lib-server"
-version = "0.3.0"
+version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e2085c3dcc3b22b0310b1f85daed2513935a06e19373110e2fb481acddbb3380"
+checksum = "e0dfb52d9de645bf988363bdda753af1491e7ac55ca2d9ce0f10e1b318af7961"
 dependencies = [
  "sim-cancel",
  "sim-citizen",
@@ -5686,7 +5720,7 @@ dependencies = [
 
 [[package]]
 name = "sim-platform-linux"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "serde",
  "sim-kernel",
@@ -5716,12 +5750,12 @@ dependencies = [
 
 [[package]]
 name = "sim-platform-model"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "serde",
  "serde_json",
  "sim-kernel",
- "sim-lib-exec 0.3.0",
+ "sim-lib-exec 0.4.0",
  "sim-platform-core 0.2.0",
  "sim-run-loaders",
 ]
@@ -5758,7 +5792,7 @@ dependencies = [
 
 [[package]]
 name = "sim-platform-ubuntu-pc"
-version = "0.3.0"
+version = "0.3.1"
 dependencies = [
  "pollster",
  "serde",
@@ -5770,7 +5804,7 @@ dependencies = [
  "sim-lib-compute-wgpu",
  "sim-lib-exec 0.4.0",
  "sim-lib-journal",
- "sim-lib-operation-gate",
+ "sim-lib-operation-gate 0.4.0",
  "sim-platform-core 0.2.0",
  "sim-platform-linux",
  "sim-platform-model",
@@ -5896,9 +5930,9 @@ dependencies = [
 
 [[package]]
 name = "sim-run-loaders"
-version = "0.4.0"
+version = "0.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e5485bf7f7d8d1cc1269527c5dba61eee7dcd58e74955dd1aed69282537ff364"
+checksum = "98e1070ab10bd7580164166452541f2fd5486d4c5196a112fadada8244e4ed0a"
 dependencies = [
  "libloading 0.8.9",
  "sim-codec",
@@ -5911,9 +5945,9 @@ dependencies = [
 
 [[package]]
 name = "sim-shape"
-version = "0.4.1"
+version = "0.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9365144451a91d2759e13ac180a7e529d6ef434299f34c06640a29f975ed453f"
+checksum = "d55bdd6ce4a868de84f447895d5d8885b61a10661614569e79f4ee368d148b85"
 dependencies = [
  "sim-citizen",
  "sim-citizen-derive",
@@ -5951,9 +5985,9 @@ dependencies = [
 
 [[package]]
 name = "sim-storage-port"
-version = "0.2.0"
+version = "0.2.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b82d35fa52aaf3ac6576f098ddd740954874d72746d769bd025e42e444ed6734"
+checksum = "a0f5a2b7d2a322994616932b8a13e25c99397c9d4a7342bb903f51faf83f5884"
 
 [[package]]
 name = "sim-table-core"
@@ -7235,8 +7269,14 @@ checksum = "e450f9b2ed1dff33c94c12589a87338689467b9c4f5d8a5710bd09a847d2c8a7"
 name = "xtask"
 version = "0.0.0"
 dependencies = [
+ "rustix",
+ "sha2",
+ "sim-codec-binary",
  "sim-kernel",
  "sim-lib-compute-cli",
+ "sim-lib-exec 0.5.0",
+ "sim-platform-linux",
+ "sim-platform-ubuntu-pc",
 ]
 
 [[package]]

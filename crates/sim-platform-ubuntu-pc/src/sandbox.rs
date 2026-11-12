@@ -1,3 +1,8 @@
+// SPDX-License-Identifier: MPL-2.0
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
 // conformance: Ubuntu sandbox realization refuses undeclared authority before spawning.
 
 use sim_lib_exec::{
@@ -7,6 +12,7 @@ use sim_lib_exec::{
 };
 use std::{
     collections::BTreeMap,
+    io,
     path::{Path, PathBuf},
     process::{Command, Stdio},
 };
@@ -330,6 +336,58 @@ fn accumulate_usage(path: &Path, total: &mut (u64, u64)) -> Result<(), String> {
     Ok(())
 }
 
+/// Finite owner-selected ceiling for one immutable prepared resource tree.
+///
+/// The ceiling is installation input, not an observed usage claim.
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub struct ReadOnlyTreeLimits {
+    maximum_entries: usize,
+    maximum_bytes: usize,
+}
+
+impl ReadOnlyTreeLimits {
+    /// Selects one ceiling within the protected-tree hard maximum.
+    ///
+    /// # Errors
+    /// Refuses an empty ceiling or one above the shared protected-tree maximum.
+    pub fn new(maximum_entries: usize, maximum_bytes: usize) -> io::Result<Self> {
+        if maximum_entries == 0
+            || maximum_entries > sim_platform_linux::MAXIMUM_PINNED_BOOT_TREE_ENTRIES
+            || maximum_bytes == 0
+            || maximum_bytes > sim_platform_linux::MAXIMUM_PINNED_BOOT_TREE_BYTES
+        {
+            return Err(io::Error::new(
+                io::ErrorKind::InvalidInput,
+                "read-only tree limits exceed the protected hard maximum",
+            ));
+        }
+        Ok(Self {
+            maximum_entries,
+            maximum_bytes,
+        })
+    }
+
+    /// Selects a ceiling for an owner-materialized production input.
+    ///
+    /// # Errors
+    /// Refuses an empty ceiling or one above the shared protected-tree maximum.
+    pub fn production_input(maximum_entries: usize, maximum_bytes: usize) -> io::Result<Self> {
+        Self::new(maximum_entries, maximum_bytes)
+    }
+
+    /// Maximum directories plus files retained for this exact resource.
+    #[must_use]
+    pub const fn maximum_entries(self) -> usize {
+        self.maximum_entries
+    }
+
+    /// Maximum logical file bytes retained for this exact resource.
+    #[must_use]
+    pub const fn maximum_bytes(self) -> usize {
+        self.maximum_bytes
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -429,5 +487,14 @@ mod tests {
         );
         assert!(args.iter().any(|v| v == hostile));
         assert!(!args.iter().any(|v| v == "/home" || v == "/workspace"));
+    }
+
+    #[test]
+    fn production_input_stays_inside_the_protected_tree_ceiling() {
+        assert!(ReadOnlyTreeLimits::production_input(8193, 1).is_err());
+        assert!(ReadOnlyTreeLimits::production_input(0, 1).is_err());
+        let admitted = ReadOnlyTreeLimits::production_input(4096, 1).unwrap();
+        assert_eq!(admitted.maximum_entries(), 4096);
+        assert_eq!(admitted.maximum_bytes(), 1);
     }
 }

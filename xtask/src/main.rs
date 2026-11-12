@@ -1,9 +1,16 @@
+// SPDX-License-Identifier: MPL-2.0
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
 #![forbid(unsafe_code)]
 //! Repository-local structural gates.
 
 use std::path::Path;
 use std::sync::Arc;
 
+#[cfg(target_os = "linux")]
+mod production_artifacts;
 mod simdoc;
 
 const REQUIRED: &[&str] = &[
@@ -22,10 +29,10 @@ fn main() {
     let command = std::env::args().nth(1);
     if !matches!(
         command.as_deref(),
-        Some("check" | "simdoc" | "crate-catalog" | "compute-acceptance")
+        Some("check" | "simdoc" | "crate-catalog" | "compute-acceptance" | "production-artifacts")
     ) {
         eprintln!(
-            "usage: cargo run -p xtask -- <check|simdoc|crate-catalog> [--check] | compute-acceptance <capture|verify|import> ..."
+            "usage: cargo run -p xtask -- <check|simdoc|crate-catalog> [--check] | compute-acceptance <capture|verify|import> ... | production-artifacts emit ..."
         );
         std::process::exit(2);
     }
@@ -39,6 +46,19 @@ fn main() {
     if command.as_deref() == Some("simdoc") {
         if let Err(error) = simdoc::run(&std::env::args().collect::<Vec<_>>()) {
             eprintln!("{error}");
+            std::process::exit(1);
+        }
+        return;
+    }
+    if command.as_deref() == Some("production-artifacts") {
+        #[cfg(target_os = "linux")]
+        if let Err(error) = production_artifacts::run(std::env::args().collect()) {
+            eprintln!("{error}");
+            std::process::exit(1);
+        }
+        #[cfg(not(target_os = "linux"))]
+        {
+            eprintln!("production-artifacts is available only on Linux");
             std::process::exit(1);
         }
         return;
