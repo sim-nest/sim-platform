@@ -6,6 +6,7 @@
 //! Thin simdoc launcher: defers to the isolated simdoc encoder.
 
 use std::env;
+use std::fs;
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
@@ -43,11 +44,24 @@ fn encoder_command(root: &Path, manifest: &Path, extra: &[String]) -> Result<Com
             manifest.display()
         )
     })?;
-    // rustup selects the toolchain from the working directory. The encoder
-    // refuses every compiler except the one its own checkout pins.
-    let mut command = Command::new("cargo");
+    let channel = pinned_channel(manifest_dir)?;
+    // A parent `cargo run` puts its own toolchain first on PATH and exports
+    // RUSTC. Invoke rustup directly and drop those overrides so the encoder
+    // is built with the compiler its checkout pins.
+    let mut command = Command::new("rustup");
     command.current_dir(manifest_dir);
-    command.args(["run", "--locked", "--offline", "--manifest-path"]);
+    for inherited in ["CARGO", "RUSTC", "RUSTDOC", "RUSTUP_TOOLCHAIN"] {
+        command.env_remove(inherited);
+    }
+    command.args([
+        "run",
+        &channel,
+        "cargo",
+        "run",
+        "--locked",
+        "--offline",
+        "--manifest-path",
+    ]);
     command.arg(manifest);
     command.args(["--quiet", "--", "simdoc", "--repo-root"]);
     command.arg(root);
@@ -55,6 +69,26 @@ fn encoder_command(root: &Path, manifest: &Path, extra: &[String]) -> Result<Com
         command.arg(arg);
     }
     Ok(command)
+}
+
+fn pinned_channel(manifest_dir: &Path) -> Result<String, String> {
+    let toolchain = manifest_dir.join("../../rust-toolchain.toml");
+    let text = fs::read_to_string(&toolchain)
+        .map_err(|err| format!("read {}: {err}", toolchain.display()))?;
+    for line in text.lines() {
+        let Some(rest) = line.trim().strip_prefix("channel") else {
+            continue;
+        };
+        let Some(rest) = rest.trim_start().strip_prefix('=') else {
+            continue;
+        };
+        let channel = rest.trim().trim_matches('"');
+        if channel.is_empty() || channel.contains(char::is_whitespace) {
+            break;
+        }
+        return Ok(channel.to_owned());
+    }
+    Err(format!("{} pins no channel", toolchain.display()))
 }
 
 fn locate_simdoc_manifest(repo_root: &Path) -> Result<PathBuf, String> {
@@ -100,7 +134,9 @@ fn isolated_manifest_from_hint(hint: &Path) -> Result<PathBuf, String> {
 
 #[cfg(test)]
 mod tests {
-    use super::{encoder_command, isolated_manifest_from_hint, locate_simdoc_manifest};
+    use super::{
+        encoder_command, isolated_manifest_from_hint, locate_simdoc_manifest, pinned_channel,
+    };
     use std::env;
     use std::path::{Path, PathBuf};
 
@@ -153,13 +189,27 @@ mod tests {
             .expect("xtask lives in the repository root")
             .to_path_buf();
         let manifest = locate_simdoc_manifest(&repo).expect("isolated encoder");
+        let manifest_dir = manifest.parent().expect("simdoc directory");
+        let channel = pinned_channel(manifest_dir).expect("pinned channel");
         let command =
             encoder_command(&repo, &manifest, &["--check".to_owned()]).expect("encoder command");
-        assert_eq!(command.get_current_dir(), manifest.parent());
+        assert_eq!(command.get_program().to_str(), Some("rustup"));
+        assert_eq!(command.get_current_dir(), Some(manifest_dir));
+        let removed = command
+            .get_envs()
+            .filter_map(|(key, value)| value.is_none().then_some(key))
+            .collect::<Vec<_>>();
+        for inherited in ["CARGO", "RUSTC", "RUSTDOC", "RUSTUP_TOOLCHAIN"] {
+            assert!(removed.iter().any(|key| *key == inherited));
+        }
         let args = command
             .get_args()
             .map(|arg| arg.to_string_lossy().into_owned())
             .collect::<Vec<_>>();
+        assert!(
+            args.windows(4)
+                .any(|window| window == ["run", channel.as_str(), "cargo", "run"])
+        );
         assert!(
             args.windows(2)
                 .any(|pair| pair == ["--locked", "--offline"])
