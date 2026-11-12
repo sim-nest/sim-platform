@@ -427,20 +427,7 @@ fn admit(input: &Inputs, bytes: &AdmittedBytes<'_>) -> io::Result<()> {
     confirm_digest(&input.boundary, bytes.boundary)?;
     confirm_digest(&input.controller, bytes.controller)?;
     distinct_owner_paths(input)?;
-    distinct_paths(&[
-        &input.build.bwrap,
-        &input.build.prlimit,
-        &input.build.cargo,
-        &input.build.source_root,
-        &input.build.vendor_root,
-        &input.build.operation_journal,
-        &input.build.roadmap_journal,
-        &input.continuation.bwrap,
-        &input.continuation.prlimit,
-        &input.continuation.retained_artifact,
-        &input.continuation.operation_journal,
-        &input.startup.journal,
-    ])?;
+    admit_job_paths(input)?;
     bounded_label(&input.roadmap)?;
     bounded_label(&input.phase)?;
     bounded_label(&input.startup.parent)?;
@@ -484,6 +471,40 @@ fn confirm_digest(file: &OwnerFile, bytes: &[u8]) -> io::Result<()> {
     } else {
         Err(invalid("owner input digest changed after it was read"))
     }
+}
+
+fn admit_job_paths(input: &Inputs) -> io::Result<()> {
+    distinct_paths(&[
+        input.build.bwrap.as_path(),
+        input.build.prlimit.as_path(),
+        input.build.cargo.as_path(),
+    ])?;
+    distinct_paths(&[
+        input.continuation.bwrap.as_path(),
+        input.continuation.prlimit.as_path(),
+    ])?;
+    let data = [
+        input.build.source_root.as_path(),
+        input.build.vendor_root.as_path(),
+        input.build.operation_journal.as_path(),
+        input.build.roadmap_journal.as_path(),
+        input.continuation.retained_artifact.as_path(),
+        input.continuation.operation_journal.as_path(),
+        input.startup.journal.as_path(),
+    ];
+    distinct_paths(&data)?;
+    for tool in [
+        input.build.bwrap.as_path(),
+        input.build.prlimit.as_path(),
+        input.build.cargo.as_path(),
+        input.continuation.bwrap.as_path(),
+        input.continuation.prlimit.as_path(),
+    ] {
+        if data.contains(&tool) {
+            return Err(invalid("job tools do not name distinct paths"));
+        }
+    }
+    Ok(())
 }
 
 fn distinct_paths(paths: &[&Path]) -> io::Result<()> {

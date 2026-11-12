@@ -139,6 +139,120 @@ fn publication_failure_exposes_no_partial_target() {
 }
 
 #[test]
+fn separate_jobs_may_reuse_the_same_executable() {
+    let shared = admit_job_paths(&emit_inputs(
+        "/usr/bin/bwrap",
+        "/usr/bin/prlimit",
+        "/var/log/startup",
+    ));
+    assert!(shared.is_ok());
+
+    let same_tool_inside_one_job = admit_job_paths(&emit_inputs(
+        "/usr/bin/bwrap",
+        "/usr/bin/bwrap",
+        "/var/log/startup",
+    ));
+    assert!(same_tool_inside_one_job.is_err());
+
+    let shared_journal = admit_job_paths(&emit_inputs(
+        "/usr/bin/bwrap",
+        "/usr/bin/prlimit",
+        "/var/log/build-operation",
+    ));
+    assert!(shared_journal.is_err());
+
+    let tool_aliases_journal = admit_job_paths(&emit_inputs(
+        "/usr/bin/bwrap",
+        "/usr/bin/prlimit",
+        "/usr/bin/bwrap",
+    ));
+    assert!(tool_aliases_journal.is_err());
+}
+
+fn emit_inputs(build_bwrap: &str, build_prlimit: &str, startup_journal: &str) -> Inputs {
+    let digest = "00".repeat(32);
+    let mut pairs = vec![
+        ("--output-dir", "/out"),
+        ("--materialization", "/owner/materialization"),
+        ("--build-command", "/owner/build-command"),
+        ("--build-request", "/owner/build-request"),
+        ("--continuation-command", "/owner/continuation-command"),
+        ("--continuation-request", "/owner/continuation-request"),
+        ("--installation", "/owner/installation"),
+        ("--volume", "/owner/volume"),
+        ("--boundary", "/owner/boundary"),
+        ("--controller", "/owner/controller"),
+        ("--unit-graph", "/owner/unit-graph"),
+        ("--analyzer", "/owner/analyzer"),
+        ("--build-cargo", "/usr/bin/cargo"),
+        ("--source-root", "/work/source"),
+        ("--vendor-root", "/work/vendor"),
+        ("--build-operation-journal", "/var/log/build-operation"),
+        ("--build-roadmap-journal", "/var/log/build-roadmap"),
+        ("--build-uid", "1"),
+        ("--build-lease-ms", "1"),
+        ("--continuation-bwrap", "/usr/bin/bwrap"),
+        ("--continuation-prlimit", "/usr/bin/prlimit"),
+        ("--retained-artifact", "/work/retained"),
+        (
+            "--continuation-operation-journal",
+            "/var/log/continuation-operation",
+        ),
+        ("--continuation-uid", "2"),
+        ("--continuation-lease-ms", "1"),
+        ("--startup-parent", "parent"),
+        ("--startup-supervisor", "supervisor"),
+        ("--startup-query-name", "query"),
+        ("--startup-parent-cpu-quota-us", "1000"),
+        ("--startup-parent-cpu-period-us", "1000"),
+        ("--startup-parent-cpu-burst-us", "0"),
+        ("--startup-parent-memory-bytes", "1"),
+        ("--startup-parent-swap-bytes", "1"),
+        ("--startup-parent-tasks", "1"),
+        ("--startup-parent-group-oom-kill", "1"),
+        ("--startup-query-cpu-quota-us", "1000"),
+        ("--startup-query-cpu-period-us", "1000"),
+        ("--startup-query-cpu-burst-us", "0"),
+        ("--startup-query-memory-bytes", "1"),
+        ("--startup-query-swap-bytes", "1"),
+        ("--startup-query-tasks", "1"),
+        ("--startup-query-group-oom-kill", "1"),
+        ("--startup-timeout-ms", "1"),
+        ("--roadmap", "roadmap"),
+        ("--phase", "phase"),
+        ("--target-triple", "triple"),
+    ];
+    pairs.push(("--build-bwrap", build_bwrap));
+    pairs.push(("--build-prlimit", build_prlimit));
+    pairs.push(("--startup-journal", startup_journal));
+    let mut args = vec!["emit".to_owned()];
+    for (flag, value) in pairs {
+        args.push(flag.to_owned());
+        args.push(value.to_owned());
+        if flag.starts_with("--")
+            && matches!(
+                flag,
+                "--materialization"
+                    | "--build-command"
+                    | "--build-request"
+                    | "--continuation-command"
+                    | "--continuation-request"
+                    | "--installation"
+                    | "--volume"
+                    | "--boundary"
+                    | "--controller"
+                    | "--unit-graph"
+                    | "--analyzer"
+            )
+        {
+            args.push(format!("{flag}-sha256"));
+            args.push(digest.clone());
+        }
+    }
+    Inputs::parse(args.into_iter()).expect("emit inputs")
+}
+
+#[test]
 fn malformed_typed_input_does_not_publish() {
     let root = unique_root("malformed");
     fs::create_dir(&root).unwrap();
