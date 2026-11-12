@@ -16,7 +16,7 @@ serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 thiserror = "2"
 sim-platform-core = { version = "0.2.0", path = "../sim-platform-core" }
-sim-platform-linux = { version = "0.1.0", path = "../sim-platform-linux" }
+sim-platform-linux = { version = "0.1.1", path = "../sim-platform-linux" }
 sim-lib-exec = "0.4.0"
 sim-lib-operation-gate = "0.4.0"
 sim-lib-journal = "0.3.1"

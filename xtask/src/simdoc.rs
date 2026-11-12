@@ -69,10 +69,29 @@ fn encoder_command(root: &Path, manifest: &Path, extra: &[String]) -> Result<Com
     command.arg(&manifest);
     command.args(["--quiet", "--", "simdoc", "--repo-root"]);
     command.arg(&root);
-    for arg in extra {
+    for arg in forwarded_simdoc_args(extra)? {
         command.arg(arg);
     }
     Ok(command)
+}
+
+fn forwarded_simdoc_args(extra: &[String]) -> Result<Vec<String>, String> {
+    let mut forwarded = Vec::with_capacity(extra.len());
+    let mut args = extra.iter();
+    while let Some(arg) = args.next() {
+        if arg == "--repo-root" {
+            let value = args
+                .next()
+                .ok_or_else(|| "simdoc --repo-root requires a path".to_owned())?;
+            let absolute = std::path::absolute(value)
+                .map_err(|err| format!("absolute simdoc repo root {value}: {err}"))?;
+            forwarded.push("--repo-root".to_owned());
+            forwarded.push(absolute.display().to_string());
+        } else {
+            forwarded.push(arg.clone());
+        }
+    }
+    Ok(forwarded)
 }
 
 fn pinned_channel(manifest_dir: &Path) -> Result<String, String> {
@@ -284,5 +303,40 @@ mod tests {
         assert!(args.iter().any(|arg| arg == "--check"));
         assert!(args.iter().any(|arg| Path::new(arg) == repo.as_path()));
         assert!(args.iter().any(|arg| Path::new(arg) == absolute_manifest));
+    }
+
+    #[test]
+    fn relative_repo_root_is_forwarded_absolutely() {
+        let fixture = Fixture::new();
+        let command = encoder_command(
+            &fixture.repo(),
+            &fixture.manifest(),
+            &[
+                "--repo-root".to_owned(),
+                ".".to_owned(),
+                "--check".to_owned(),
+            ],
+        )
+        .expect("encoder command");
+        let args = command
+            .get_args()
+            .map(|arg| arg.to_string_lossy().into_owned())
+            .collect::<Vec<_>>();
+        let roots = args
+            .windows(2)
+            .filter(|window| window[0] == "--repo-root")
+            .map(|window| window[1].clone())
+            .collect::<Vec<_>>();
+        assert!(roots.len() >= 2);
+        assert!(roots.iter().all(|path| Path::new(path).is_absolute()));
+        let caller = std::path::absolute(".").expect("caller directory");
+        assert_eq!(Path::new(roots.last().expect("forwarded root")), caller);
+        let missing = encoder_command(
+            &fixture.repo(),
+            &fixture.manifest(),
+            &["--repo-root".to_owned()],
+        )
+        .expect_err("missing repo root");
+        assert!(missing.contains("requires a path"));
     }
 }

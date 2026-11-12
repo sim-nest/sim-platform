@@ -19,7 +19,7 @@ rustix = { version = "1.1.4", features = ["fs"] }
 sha2 = "0.10"
 sim-codec-binary = "0.4.0"
 sim-lib-exec = "0.5.0"
-sim-platform-linux = { version = "0.1.0", path = "../crates/sim-platform-linux" }
+sim-platform-linux = { version = "0.1.1", path = "../crates/sim-platform-linux" }
 sim-platform-ubuntu-pc = { version = "0.3.1", path = "../crates/sim-platform-ubuntu-pc" }
 
 [lints]

@@ -5720,7 +5720,7 @@ dependencies = [
 
 [[package]]
 name = "sim-platform-linux"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "serde",
  "sim-kernel",
