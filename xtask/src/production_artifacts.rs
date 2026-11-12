@@ -10,7 +10,7 @@
 //! check succeeds. It grants no authority, opens no native provider, and
 //! starts no process.
 
-use rustix::fs::{CWD, RenameFlags, renameat_with};
+use rustix::fs::{CWD, OFlags, RenameFlags, renameat_with};
 use sha2::{Digest, Sha256};
 use sim_codec_binary::{
     BinaryFrameLane, DecodeLimits, decode_canonical_located_tree_frame_with_limits, encode_frame,
@@ -668,25 +668,37 @@ fn read_owner_file(file: &OwnerFile, maximum: usize) -> io::Result<Vec<u8>> {
     if !file.path.is_absolute() {
         return Err(invalid("owner input path is not absolute"));
     }
-    let metadata = fs::symlink_metadata(&file.path)?;
-    if metadata.file_type().is_symlink() || !metadata.is_file() {
+    // Open the final path component itself. A later replacement of that
+    // component cannot retarget this descriptor, and a fifo cannot block it.
+    let descriptor = rustix::fs::open(
+        &file.path,
+        OFlags::RDONLY | OFlags::CLOEXEC | OFlags::NOFOLLOW | OFlags::NONBLOCK,
+        rustix::fs::Mode::empty(),
+    )
+    .map_err(|err| {
+        if err == rustix::io::Errno::LOOP {
+            invalid("owner input is not a regular non-symlink file")
+        } else {
+            io::Error::from(err)
+        }
+    })?;
+    let stat = rustix::fs::fstat(&descriptor)?;
+    if !rustix::fs::FileType::from_raw_mode(stat.st_mode).is_file() {
         return Err(invalid("owner input is not a regular non-symlink file"));
     }
-    if metadata.len() == 0 || metadata.len() > maximum as u64 {
+    let opened_length = u64::try_from(stat.st_size)
+        .map_err(|_| invalid("owner input length exceeds this platform"))?;
+    if opened_length == 0 || opened_length > maximum as u64 {
         return Err(invalid("owner input exceeds its finite byte bound"));
     }
-    let mut handle = File::open(&file.path)?;
-    let opened = handle.metadata()?;
-    if !opened.is_file() || opened.len() != metadata.len() {
-        return Err(invalid("owner input changed while it was opened"));
-    }
-    let opened_length = usize::try_from(opened.len())
+    let mut handle = File::from(descriptor);
+    let length = usize::try_from(opened_length)
         .map_err(|_| invalid("owner input length exceeds this platform"))?;
-    let mut bytes = Vec::with_capacity(opened_length);
+    let mut bytes = Vec::with_capacity(length);
     Read::by_ref(&mut handle)
         .take((maximum as u64) + 1)
         .read_to_end(&mut bytes)?;
-    if bytes.len() != opened_length || bytes.len() > maximum {
+    if bytes.len() != length || bytes.len() > maximum {
         return Err(invalid(
             "owner input changed or exceeded its finite byte bound",
         ));

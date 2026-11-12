@@ -16,6 +16,19 @@ pub const MAXIMUM_PINNED_BOOT_TREE_ENTRIES: usize = 4096;
 /// Hard maximum of logical file bytes in one pinned read-only tree.
 pub const MAXIMUM_PINNED_BOOT_TREE_BYTES: usize = 256 * 1024 * 1024;
 
+/// 4 KiB base page of the 64-bit memory controller.
+const BASE_PAGE_BYTES: u64 = 4096;
+
+/// `LONG_MAX` as a byte count. `PAGE_COUNTER_MAX` is this value divided by
+/// the base page, and a counter equal to `PAGE_COUNTER_MAX` is unlimited.
+const SIGNED_LONG_MAX: u64 = (1_u64 << 63) - 1;
+
+/// Largest memory or swap byte count that remains a finite page limit.
+///
+/// The controller stores `min(bytes / PAGE_SIZE, PAGE_COUNTER_MAX)` pages and
+/// reports `PAGE_COUNTER_MAX` as `max`.
+const MAXIMUM_FINITE_MEMORY_BYTES: u64 = (SIGNED_LONG_MAX / BASE_PAGE_BYTES) * BASE_PAGE_BYTES - 1;
+
 /// Exact Linux controller values, in kernel accounting units.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct CgroupV2Limits {
@@ -39,8 +52,9 @@ impl CgroupV2Limits {
     /// Checks one named child selection against its parent without native I/O.
     ///
     /// # Errors
-    /// Refuses an empty or non-lowercase name, a non-finite limit, burst,
-    /// a disabled group workload, or a child that exceeds its parent.
+    /// Refuses an empty or non-lowercase name, a non-finite limit, an
+    /// unlimited memory or swap selection, burst, a disabled group workload,
+    /// or a child that exceeds its parent.
     pub fn admit_child(name: &str, child: Self, parent: Self) -> io::Result<()> {
         finite(name, child)?;
         finite("parent", parent)?;
@@ -66,6 +80,8 @@ fn finite(name: &str, limits: CgroupV2Limits) -> io::Result<()> {
         || !(1_000..=1_000_000).contains(&limits.cpu_period_us)
         || limits.cpu_burst_us != 0
         || limits.memory_bytes == 0
+        || limits.memory_bytes > MAXIMUM_FINITE_MEMORY_BYTES
+        || limits.swap_bytes > MAXIMUM_FINITE_MEMORY_BYTES
         || limits.tasks == 0
         || !limits.group_oom_kill
     {
@@ -104,6 +120,25 @@ mod tests {
         child.memory_bytes = limits().memory_bytes + 1;
         assert!(CgroupV2Limits::admit_child("query-1", child, limits()).is_err());
         assert!(CgroupV2Limits::admit_child("Query", limits(), limits()).is_err());
+
+        let mut unlimited = limits();
+        unlimited.memory_bytes = u64::MAX;
+        assert!(CgroupV2Limits::admit_child("query-1", unlimited, unlimited).is_err());
+        unlimited = limits();
+        unlimited.swap_bytes = u64::MAX;
+        assert!(CgroupV2Limits::admit_child("query-1", unlimited, unlimited).is_err());
+
+        let finite_max = ((1_u64 << 63) - 1) / 4096 * 4096 - 1;
+        assert_eq!(finite_max, 9_223_372_036_854_771_711);
+        let mut edge = limits();
+        edge.memory_bytes = finite_max;
+        edge.swap_bytes = finite_max;
+        CgroupV2Limits::admit_child("query-1", edge, edge).unwrap();
+        edge.memory_bytes = finite_max + 1;
+        assert!(CgroupV2Limits::admit_child("query-1", edge, edge).is_err());
+        edge.memory_bytes = finite_max;
+        edge.swap_bytes = finite_max + 1;
+        assert!(CgroupV2Limits::admit_child("query-1", edge, edge).is_err());
     }
 
     #[test]

@@ -63,7 +63,7 @@ fn parser_refuses_unknown_and_duplicate_scalar_inputs() {
 }
 
 #[test]
-fn owner_file_refuses_substitution_and_symlink() {
+fn owner_file_refuses_substitution_symlink_and_fifo() {
     let root = unique_root("owner-file");
     fs::create_dir(&root).unwrap();
     let path = root.join("owner.sxb");
@@ -86,6 +86,16 @@ fn owner_file_refuses_substitution_and_symlink() {
         sha256: digest,
     };
     assert!(read_owner_file(&alias, 16).is_err());
+    let fifo = root.join("owner.fifo");
+    rustix::fs::mkfifoat(rustix::fs::CWD, &fifo, rustix::fs::Mode::from(0o600)).unwrap();
+    let pipe = OwnerFile {
+        path: fifo,
+        sha256: digest,
+    };
+    let opened = std::time::Instant::now();
+    let refused = read_owner_file(&pipe, 16).unwrap_err();
+    assert!(opened.elapsed() < std::time::Duration::from_secs(2));
+    assert_eq!(refused.kind(), std::io::ErrorKind::InvalidInput);
     fs::remove_dir_all(root).unwrap();
 }
 
