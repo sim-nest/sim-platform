@@ -37,3 +37,6 @@ unsafe_code = "forbid"
 
 [workspace.lints.clippy]
 pedantic = "warn"
+
+[workspace.metadata.sim]
+docs-command = "cargo run -p xtask -- simdoc"
